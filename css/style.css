@@ -1864,6 +1864,75 @@ section.comment {
 .doubanshow div {
   padding: 0.5em 0;
 }
+.category-list {
+  font-size: 0.9em;
+  padding: 15px 20px;
+}
+@media only screen and (min-width: 768px) {
+  .category-container {
+    width: 45%;
+    float: left;
+    margin: 0 5% 0 0;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .category-container {
+    width: 100%;
+    float: none;
+    margin: 1em 0 0;
+  }
+}
+.category-title {
+  font-size: 1.1em;
+  color: #2ca6cb;
+  padding: 0 0 0.3125em 0;
+  border-bottom: 0.1875em solid #ccc;
+}
+.category-title a {
+  color: #2ca6cb;
+}
+.category-title a:hover {
+  color: #2ca6cb;
+  -webkit-transition: color 0.5s;
+  -moz-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  -ms-transition: color 0.5s;
+  transition: color 0.5s;
+}
+.category-list {
+  font-size: 0.9em;
+  padding: 15px 20px;
+}
+.category-list .category-list-count {
+  margin-left: 8px;
+  font-size: 0.8em;
+  color: #808080;
+}
+.category-list .category-list-count:before {
+  content: '(';
+}
+.category-list .category-list-count:after {
+  content: ')';
+}
+.category-list .category-list-link {
+  color: #2ca6cb;
+}
+ul,
+ol,
+dl {
+  list-style: none;
+}
+ul ul,
+ol ul,
+dl ul,
+ul ol,
+ol ol,
+dl ol,
+ul dl,
+ol dl,
+dl dl {
+  margin-left: 20px;
+}
 footer {
   margin-top: 1em;
   background: #1f1f1f;
