@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="一叶知秋">
 <meta property="og:description" content="这是新的开始，我用hexo创建了第一篇文章。
 通过下面的命令，就可以创建新文章1D:\workspace\javascript\nodejs-hexo&amp;#62;hexo new &amp;#26032;&amp;#30340;&amp;#24320;&amp;#22987;&amp;#10;[info] File created at D:\workspace\javascript\nodejs-hexo\source\_posts\&amp;">
-<meta property="og:updated_time" content="2015-09-25T15:15:05.937Z">
+<meta property="og:updated_time" content="2015-09-25T19:41:22.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一篇日志">
 <meta name="twitter:description" content="这是新的开始，我用hexo创建了第一篇文章。
@@ -119,13 +119,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/日志/">日志</a>►<a class="article-category-link" href="/categories/日志/子目录1/">子目录1</a>►<a class="article-category-link" href="/categories/日志/子目录1/子目录2/">子目录2</a>
+  <a class="article-category-link" href="/categories/StartUp/">StartUp</a>►<a class="article-category-link" href="/categories/StartUp/Hexo/">Hexo</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/开始/">开始</a><a href="/tags/日志/">日志</a>
+  <span></span> <a href="/tags/StartUp/">StartUp</a><a href="/tags/hexo/">hexo</a><a href="/tags/jacman/">jacman</a>
   </div>
 
 </div>
@@ -148,10 +148,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/09/25/hello-world/" title="Hello World">
+ <a href="/2015/09/25/hello-world/" title="Hell World">
   <strong>上一篇：</strong><br/>
   <span>
-  Hello World</span>
+  Hell World</span>
 </a>
 </div>
 
@@ -187,7 +187,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/">日志</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/子目录1/">子目录1</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/日志/子目录1/子目录2/">子目录2</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/StartUp/">StartUp</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/StartUp/Hexo/">Hexo</a><span class="category-list-count">2</span></li></ul></li></ul> 
 </div>
  
 
@@ -197,11 +197,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/日志/" title="日志">日志<sup>1</sup></a></li>
+				<li><a href="/tags/StartUp/" title="StartUp">StartUp<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/开始/" title="开始">开始<sup>1</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jacman/" title="jacman">jacman<sup>2</sup></a></li>
 			
 		
 		</ul>
@@ -364,8 +368,11 @@ $(document).ready(function(){
 <script type="text/javascript">
 $(document).ready(function(){ 
   var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
+      url = $this.attr('data-url');
+  if(url.indexOf('http://')<0){
+     url = 'http://' + url;
+  }
+  var encodedUrl = encodeURIComponent(url),
       title = $this.attr('data-title'),
       tsina = $this.attr('data-tsina'),
       description = $this.attr('description');
