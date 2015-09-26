@@ -11,20 +11,17 @@
     
 
     
-    <meta name="description" content="标准Markdwon语法Markdown是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML(或者pdf、docx)文档”。Markdown现在拥有非常多的扩展，而且标准化已经几乎不可能。有一个介绍标准化markdown的网站。里面的Syntax详细介绍了标准markdown所有语法。
-块元素(Block Elements)文档标头（HEADERS）有两种类">
+    <meta name="description" content="介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Markdown学习">
 <meta property="og:url" content="cwjcsu.github.io/2015/09/26/markdown-learning/index.html">
 <meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="标准Markdwon语法Markdown是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML(或者pdf、docx)文档”。Markdown现在拥有非常多的扩展，而且标准化已经几乎不可能。有一个介绍标准化markdown的网站。里面的Syntax详细介绍了标准markdown所有语法。
-块元素(Block Elements)文档标头（HEADERS）有两种类">
+<meta property="og:description" content="介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器">
 <meta property="og:image" content="http://images.cnitblog.com/blog2015/294941/201504/251326002036398.png">
-<meta property="og:updated_time" content="2015-09-26T10:22:20.217Z">
+<meta property="og:updated_time" content="2015-09-26T10:56:24.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown学习">
-<meta name="twitter:description" content="标准Markdwon语法Markdown是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML(或者pdf、docx)文档”。Markdown现在拥有非常多的扩展，而且标准化已经几乎不可能。有一个介绍标准化markdown的网站。里面的Syntax详细介绍了标准markdown所有语法。
-块元素(Block Elements)文档标头（HEADERS）有两种类">
+<meta name="twitter:description" content="介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器">
 
     
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
@@ -107,7 +104,8 @@
 		
 		</div>
 		
-		<h1 id="标准Markdwon语法">标准Markdwon语法</h1><p><strong>Markdown</strong>是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML(或者pdf、docx)文档”。Markdown现在拥有非常多的扩展，而且标准化已经几乎不可能。有一个介绍标准化markdown的<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">网站</a>。里面的<a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Syntax</a>详细介绍了标准markdown所有语法。</p>
+		<p>本文介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器<br><a id="more"></a></p>
+<h1 id="标准Markdwon语法">标准Markdwon语法</h1><p><strong>Markdown</strong>是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML(或者pdf、docx)文档”。Markdown现在拥有非常多的扩展，而且标准化已经几乎不可能。有一个介绍标准化markdown的<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">网站</a>。里面的<a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Syntax</a>详细介绍了标准markdown所有语法。</p>
 <h2 id="块元素(Block_Elements)">块元素(Block Elements)</h2><h3 id="文档标头（HEADERS）">文档标头（HEADERS）</h3><p>有两种类型的标题：Setext-style headers  和 Atx-style headers。<br>（1），Setext-style headers 的markdwon代码：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This is H1</span><br><span class="line">=</span><br><span class="line"><span class="header">This is H1</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure></p>
 <p>其中等于号(=)和破折号(-)的个数没有限制（好像要超过2个）。（效果免了，否则我这篇博客会被撑乱）。<br>（2），Atx-style headers 示例：<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is an H1</span></span><br><span class="line"><span class="comment">## This is an H2</span></span><br><span class="line"><span class="comment">###### This is an H6</span></span><br></pre></td></tr></table></figure></p>
 <p>注意#号后面要加空格，当前文档使用的就是这种格式标题。另外  atx-style 的头可以关闭：<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is an H1 #</span></span><br><span class="line"><span class="comment">## This is an H2 ##</span></span><br><span class="line"><span class="comment">### This is an H6 ######</span></span><br></pre></td></tr></table></figure></p>
@@ -227,7 +225,7 @@
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#x61;&#100;&#100;&#x72;&#x65;&#x73;&#x73;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#108;&#x65;&#46;&#x63;&#x6f;&#109;">&#x61;&#100;&#100;&#x72;&#x65;&#x73;&#x73;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#108;&#x65;&#46;&#x63;&#x6f;&#109;</a></p>
+<p><a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#97;&#x64;&#x64;&#114;&#x65;&#x73;&#115;&#x40;&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#101;&#x2e;&#99;&#111;&#x6d;">&#97;&#x64;&#x64;&#114;&#x65;&#x73;&#115;&#x40;&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#101;&#x2e;&#99;&#111;&#x6d;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
@@ -397,6 +395,10 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/hexo/" title="hexo">hexo<sup>2</sup></a></li>
 			
 		
@@ -405,17 +407,11 @@
 			
 		
 			
-				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
 			
 		
 		</ul>
