@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[一叶知秋]]></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  <link href="cwjcsu.github.io/"/>
+  <updated>2015-09-26T03:44:33.353Z</updated>
+  <id>cwjcsu.github.io/</id>
+  
+  <author>
+    <name><![CDATA[cwjcsu@gmail.com]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[第一篇日志]]></title>
+    <link href="cwjcsu.github.io/2015/09/25/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%97%A5%E5%BF%97/"/>
+    <id>cwjcsu.github.io/2015/09/25/第一篇日志/</id>
+    <published>2015-09-25T11:14:17.000Z</published>
+    <updated>2015-09-26T03:44:33.353Z</updated>
+    <content type="html"><![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
+<p>通过下面的命令，就可以创建新文章<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&#62;hexo new &#26032;&#30340;&#24320;&#22987;&#10;[info] File created at D:\workspace\javascript\nodejs-hexo\source\_posts\&#26032;&#30340;&#24320;&#22987;.md</span><br></pre></td></tr></table></figure></p>
+<p>感觉非常好。</p>
+<p>在命令行，启动服务器:<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&#62;hexo server&#10;[info] Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></p>
+<p>通过浏览器打开， <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> ，就出现了我们新写的文章。</p>
+<h2 id="引用">引用</h2><blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
+<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="external">Welcome to Island Marketing</a></cite></footer></blockquote>
+<h2 id="代码块">代码块</h2><figure class="highlight cpp"><figcaption><span>.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, ‘’, <span class="number">3</span>]);</span><br><span class="line">=&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="链接">链接</h2><a href="http://cwjcsu.github.io" title="粉丝日志" target="_blank">粉丝日志</a>
+<h2 id="数学公式">数学公式</h2><p>$$J_\alpha(x)=\sum _{m=0}^\infty \frac{(-1)^ m}{m! \, \Gamma (m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha }$$</p>
+<h2 id="图片">图片</h2><p><img src="http://7xn1o8.com1.z0.glb.clouddn.com/banner.jpg" alt="猜一猜这是哪里？"></p>
+<p>TODO</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
+<p>通过下面的命令，就可以创建新文章<br><figure class="highlight"><table><tr><td class="gutter"><pre><span cla]]>
+    </summary>
+    
+      <category term="StartUp" scheme="cwjcsu.github.io/tags/StartUp/"/>
+    
+      <category term="hexo" scheme="cwjcsu.github.io/tags/hexo/"/>
+    
+      <category term="jacman" scheme="cwjcsu.github.io/tags/jacman/"/>
+    
+      <category term="StartUp" scheme="cwjcsu.github.io/categories/StartUp/"/>
+    
+      <category term="Hexo" scheme="cwjcsu.github.io/categories/StartUp/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hell World]]></title>
+    <link href="cwjcsu.github.io/2015/09/25/hello-world/"/>
+    <id>cwjcsu.github.io/2015/09/25/hello-world/</id>
+    <published>2015-09-25T11:14:17.000Z</published>
+    <updated>2015-09-25T19:40:49.471Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+      <category term="StartUp" scheme="cwjcsu.github.io/tags/StartUp/"/>
+    
+      <category term="hexo" scheme="cwjcsu.github.io/tags/hexo/"/>
+    
+      <category term="jacman" scheme="cwjcsu.github.io/tags/jacman/"/>
+    
+      <category term="StartUp" scheme="cwjcsu.github.io/categories/StartUp/"/>
+    
+      <category term="Hexo" scheme="cwjcsu.github.io/categories/StartUp/Hexo/"/>
+    
+  </entry>
+  
+</feed>

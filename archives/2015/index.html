@@ -59,11 +59,15 @@
 					
 						<li><a href="/about">关于</a></li>
 					
+						<li><a href="/sitemap.xml">Sitemap</a></li>
+					
+						<li><a href="/atom.xml">Rss</a></li>
+					
 					<li>
  					
-						<form class="search" action="http://cwjcsu.github.io" target="_blank">
+						<form class="search">
 							<label>Search</label>
-						<input name="s" type="hidden" value= 9463367544772774000 ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
 						</form>
 					
 					</li>
@@ -87,19 +91,6 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/09/25/hello-world/" title="Hell World" itemprop="url">
-  
-
-    <time datetime="2015-09-25T11:14:17.000Z" itemprop="datePublished">2015-09-25</time>
-
-
-    <h1 itemprop="name">Hell World</h1>
-
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
     <a href="/2015/09/25/第一篇日志/" title="第一篇日志" itemprop="url">
   
 
@@ -107,6 +98,19 @@
 
 
     <h1 itemprop="name">第一篇日志</h1>
+
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/09/25/hello-world/" title="Hell World" itemprop="url">
+  
+
+    <time datetime="2015-09-25T11:14:17.000Z" itemprop="datePublished">2015-09-25</time>
+
+
+    <h1 itemprop="name">Hell World</h1>
 
   </a>
 </section>
@@ -227,26 +231,6 @@ $(document).ready(function(){
 </script> 
 
 
-<script type="text/javascript">
-
-var disqus_shortname = 'cwjcsu';
-
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
-</script>
-
 
 
 
@@ -279,6 +263,11 @@ $(document).ready(function(){
 
 
 
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F662ea760529ecbecde7d726d80717368' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
 
 
 <!-- Analytics End -->
@@ -295,10 +284,56 @@ $(document).ready(function(){
 <!-- MathJax Begin -->
 <!-- mathjax config similar to math.stackexchange -->
 
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 
 <!-- MathJax End -->
 
 <!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: '9058ca157e9c5b1686f7'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
 
 <!-- Tiny_search End -->
 
