@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="cwjcsu.github.io/"/>
-  <updated>2015-09-26T10:56:24.364Z</updated>
+  <updated>2015-09-27T15:42:57.958Z</updated>
   <id>cwjcsu.github.io/</id>
   
   <author>
@@ -13,6 +13,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[搭建Github博客容易走弯路的地方]]></title>
+    <link href="cwjcsu.github.io/2015/09/27/tips-about-github-blog/"/>
+    <id>cwjcsu.github.io/2015/09/27/tips-about-github-blog/</id>
+    <published>2015-09-27T15:40:51.000Z</published>
+    <updated>2015-09-27T15:42:57.958Z</updated>
+    <content type="html"><![CDATA[<h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
+<h2 id="不一定要注册域名">不一定要注册域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:<code>&lt;username&gt;.github.io</code>。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：<strong>你创建的github的Repository name必须是<code>&lt;username&gt;.github.io</code></strong>,这样你只要在<strong>master</strong>分支上仓库根目录上push一个<code>index.html</code>，这个文件就可以通过<code>http://&lt;username&gt;.github.io</code>访问到。<br><code>&lt;username&gt;</code>是你的github用户名。</p>
+<h2 id="仓库&lt;repoName&gt;的Github_Pages可以通过&lt;username&gt;-github-io/&lt;repoName&gt;访问">仓库<code>&lt;repoName&gt;</code>的Github Pages可以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;</code>访问</h2><h3 id="手工创建">手工创建</h3><p>很多博客都有介绍怎么建立github pages，你可以给你的任意仓库建立github pages，只是你必须把页面push到一个特定名字的分支：<strong>gh_pages</strong>。这样，这个分支里面的页面就可以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;</code>访问，<code>&lt;repoName&gt;</code>是这个仓库的名称。</p>
+<h3 id="github向导创建">github向导创建</h3><p>使用github的向导创建Github Pages，你可以选择它提供的模版，github会在后台给你创建<strong>gh_pages</strong>分支，并把模版所需的css、JavaScript、images、fonts全部上传到这个分支里面，和你手工创建没有区别。<br>github向导创建的index.html等页面，对css等资源的引用采用的的相对路径，所以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;/</code>访问这个Pages不会出现资源的404错误，即使你修改了<code>&lt;username&gt;</code>。当然，有些链接是采用绝对路径，比如:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"downloads"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"https://github.com/&lt;username&gt;/&lt;repoName&gt;/zipball/master"</span>&gt;</span>ZIP<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这个链接是下载当前仓库master分支的zip文件，绝对路径里面包含<code>&lt;username&gt;</code>和<code>&lt;repoName&gt;</code>，所以如果你修改了用户名<code>&lt;usernmae&gt;</code>或者当前仓库的名称<code>&lt;repoName&gt;</code>，那么这个链接就失效了。</p>
+<h2 id="Github_Pages也可以用hexo等进行定制">Github Pages也可以用<a href="https://hexo.io" target="_blank" rel="external">hexo</a>等进行定制</h2><p>网上很多文章都说用<strong>hexo+特定主题</strong>创建github+pages，会出现资源文件404错误，然后说可以去买个域名，创建CName映射文件解决问题。我在初次搭建github博客的时候，差点就下单买域名了,其实是不必要的。<br>在hexo的配置文件<code>_config.yml</code>里面修改配置:<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## If your site <span class="keyword">is</span> <span class="keyword">put</span> in <span class="keyword">a</span> subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">'http://yoursite.com/child'</span> <span class="built_in">and</span> root <span class="keyword">as</span> <span class="string">'/child/'</span></span><br><span class="line">ur<span class="variable">l:</span> cwjcsu.github.io</span><br><span class="line">roo<span class="variable">t:</span> /&lt;repoName&gt;/</span><br></pre></td></tr></table></figure></p>
+<p>那么hexo就会在生成页面的时候，给所有导入的资源加上<code>/&lt;repoName&gt;/</code>，从而可以正确访问到仓库<code>&lt;repoName&gt;</code>里面的资源文件，这样就会显示正常。</p>
+<h1 id="Tips_about_hexo_+_jacman">Tips about hexo + jacman</h1><ol>
+<li>.yml配置项冒号和值之间要有空格</li>
+<li><p>jacman主题的内置分享功能url没有用<code>http://</code>开头，导致分享不成功<br> 我修改了一下代码：themes/jacman/layout/_partial/after_footer.ejs:(大概第86行左右)</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var <span class="variable">$this</span> = $(<span class="string">'.share'</span>),</span><br><span class="line"> url = <span class="variable">$this</span>.attr(<span class="string">'data-url'</span>);</span><br><span class="line"> <span class="keyword">if</span>(url.indexOf(<span class="string">'http://'</span>)&lt;<span class="number">0</span>)&#123;</span><br><span class="line">    url = <span class="string">'http://'</span> + url;</span><br><span class="line"> &#125;</span><br><span class="line"> var encodedUrl = encodeURIComponent(url),</span><br><span class="line"> title = <span class="variable">$this</span>.attr(<span class="string">'data-title'</span>),</span><br><span class="line"> tsina = <span class="variable">$this</span>.attr(<span class="string">'data-tsina'</span>),</span><br><span class="line"> description = <span class="variable">$this</span>.attr(<span class="string">'description'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一些.md或者.html被hexo处理后出现中文乱码<br> 往往是.md或者.html文件使用的编码格式不是UTF-8，只需要把这些文件转换成UTF-8并保存就可以被hexo正常处理；</p>
+</li>
+<li><p>每篇文章的description属性会被hexo处理成description的meta，即：</p>
+ <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">title</span>: <span class="string">hexo你的博客</span></span><br><span class="line"><span class="attribute">date</span>: <span class="string">2013-11-22 17:11:54</span></span><br><span class="line"><span class="attribute">categories</span>: <span class="string">default</span></span><br><span class="line"><span class="attribute">tags</span>: <span class="string">[hexo]</span></span><br><span class="line"><span class="attribute">description</span>: <span class="string">你对本页的描述</span></span><br></pre></td></tr></table></figure>
+<p> 处理之后会在html页面的&lt;head&gt;标签内生成：</p>
+ <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="keyword">property</span>=<span class="string">"og:description"</span> content=<span class="string">"你对本页的描述"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p> 这个描述一般会在搜索引擎展示你的页面时出现。（SEO范畴）</p>
+</li>
+<li><p>使用hexo new page <em>pageName</em>会创建一个source/<em>pageName</em>目录，并在这里面创建一个index.md文件，这个页面可以通过<code>&lt;username&gt;.github.io/&lt;pageName&gt;</code>访问到。所以这个<em>pageName</em>不要与你的某个聚友Github Pages的仓库名称重复了。</p>
+</li>
+<li><p>使用<code>&lt;!--more--&gt;</code>标签可以让标签以上的文本作为摘要，在博客列表中显示出来，点击Read More显示特定博客有内容。</p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
+<h2 id="不一定要注册域名">不一定要注]]>
+    </summary>
+    
+      <category term="blogs" scheme="cwjcsu.github.io/tags/blogs/"/>
+    
+      <category term="hexo" scheme="cwjcsu.github.io/tags/hexo/"/>
+    
+      <category term="jacman" scheme="cwjcsu.github.io/tags/jacman/"/>
+    
+      <category term="工具" scheme="cwjcsu.github.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Markdown学习]]></title>
@@ -141,7 +188,7 @@
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#97;&#x64;&#x64;&#114;&#x65;&#x73;&#115;&#x40;&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#101;&#x2e;&#99;&#111;&#x6d;">&#97;&#x64;&#x64;&#114;&#x65;&#x73;&#115;&#x40;&#101;&#x78;&#x61;&#x6d;&#x70;&#108;&#101;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p><a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#97;&#x64;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#x65;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;">&#97;&#x64;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#x65;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
