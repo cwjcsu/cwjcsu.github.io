@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="cwjcsu.github.io/"/>
-  <updated>2015-09-27T15:42:57.958Z</updated>
+  <updated>2015-09-27T15:59:37.979Z</updated>
   <id>cwjcsu.github.io/</id>
   
   <author>
@@ -19,8 +19,9 @@
     <link href="cwjcsu.github.io/2015/09/27/tips-about-github-blog/"/>
     <id>cwjcsu.github.io/2015/09/27/tips-about-github-blog/</id>
     <published>2015-09-27T15:40:51.000Z</published>
-    <updated>2015-09-27T15:42:57.958Z</updated>
-    <content type="html"><![CDATA[<h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
+    <updated>2015-09-27T15:59:37.979Z</updated>
+    <content type="html"><![CDATA[<p>本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。<br><a id="more"></a></p>
+<h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
 <h2 id="不一定要注册域名">不一定要注册域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:<code>&lt;username&gt;.github.io</code>。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：<strong>你创建的github的Repository name必须是<code>&lt;username&gt;.github.io</code></strong>,这样你只要在<strong>master</strong>分支上仓库根目录上push一个<code>index.html</code>，这个文件就可以通过<code>http://&lt;username&gt;.github.io</code>访问到。<br><code>&lt;username&gt;</code>是你的github用户名。</p>
 <h2 id="仓库&lt;repoName&gt;的Github_Pages可以通过&lt;username&gt;-github-io/&lt;repoName&gt;访问">仓库<code>&lt;repoName&gt;</code>的Github Pages可以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;</code>访问</h2><h3 id="手工创建">手工创建</h3><p>很多博客都有介绍怎么建立github pages，你可以给你的任意仓库建立github pages，只是你必须把页面push到一个特定名字的分支：<strong>gh_pages</strong>。这样，这个分支里面的页面就可以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;</code>访问，<code>&lt;repoName&gt;</code>是这个仓库的名称。</p>
 <h3 id="github向导创建">github向导创建</h3><p>使用github的向导创建Github Pages，你可以选择它提供的模版，github会在后台给你创建<strong>gh_pages</strong>分支，并把模版所需的css、JavaScript、images、fonts全部上传到这个分支里面，和你手工创建没有区别。<br>github向导创建的index.html等页面，对css等资源的引用采用的的相对路径，所以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;/</code>访问这个Pages不会出现资源的404错误，即使你修改了<code>&lt;username&gt;</code>。当然，有些链接是采用绝对路径，比如:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"downloads"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"https://github.com/&lt;username&gt;/&lt;repoName&gt;/zipball/master"</span>&gt;</span>ZIP<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
@@ -47,8 +48,8 @@
 </ol>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
-<h2 id="不一定要注册域名">不一定要注]]>
+    <![CDATA[<p>本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。<br>]]>
+    
     </summary>
     
       <category term="blogs" scheme="cwjcsu.github.io/tags/blogs/"/>
@@ -188,7 +189,7 @@
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#58;&#97;&#x64;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#x65;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;">&#97;&#x64;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#x65;&#120;&#97;&#x6d;&#x70;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;</a></p>
+<p><a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x61;&#100;&#100;&#x72;&#101;&#x73;&#x73;&#64;&#101;&#120;&#97;&#109;&#112;&#x6c;&#x65;&#x2e;&#99;&#111;&#109;">&#x61;&#100;&#100;&#x72;&#101;&#x73;&#x73;&#64;&#101;&#120;&#97;&#109;&#112;&#x6c;&#x65;&#x2e;&#99;&#111;&#109;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>

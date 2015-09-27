@@ -11,19 +11,16 @@
     
 
     
-    <meta name="description" content="搭建github博客之前必须了解的东西用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。
-不一定要注册域名很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:&amp;lt;username&amp;gt;.github.io。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一">
+    <meta name="description" content="本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建Github博客容易走弯路的地方">
 <meta property="og:url" content="cwjcsu.github.io/2015/09/27/tips-about-github-blog/index.html">
 <meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="搭建github博客之前必须了解的东西用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。
-不一定要注册域名很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:&amp;lt;username&amp;gt;.github.io。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一">
-<meta property="og:updated_time" content="2015-09-27T15:42:57.958Z">
+<meta property="og:description" content="本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。">
+<meta property="og:updated_time" content="2015-09-27T15:59:37.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建Github博客容易走弯路的地方">
-<meta name="twitter:description" content="搭建github博客之前必须了解的东西用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。
-不一定要注册域名很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:&amp;lt;username&amp;gt;.github.io。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一">
+<meta name="twitter:description" content="本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。">
 
     
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
@@ -106,7 +103,8 @@
 		
 		</div>
 		
-		<h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
+		<p>本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。<br><a id="more"></a></p>
+<h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
 <h2 id="不一定要注册域名">不一定要注册域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:<code>&lt;username&gt;.github.io</code>。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：<strong>你创建的github的Repository name必须是<code>&lt;username&gt;.github.io</code></strong>,这样你只要在<strong>master</strong>分支上仓库根目录上push一个<code>index.html</code>，这个文件就可以通过<code>http://&lt;username&gt;.github.io</code>访问到。<br><code>&lt;username&gt;</code>是你的github用户名。</p>
 <h2 id="仓库&lt;repoName&gt;的Github_Pages可以通过&lt;username&gt;-github-io/&lt;repoName&gt;访问">仓库<code>&lt;repoName&gt;</code>的Github Pages可以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;</code>访问</h2><h3 id="手工创建">手工创建</h3><p>很多博客都有介绍怎么建立github pages，你可以给你的任意仓库建立github pages，只是你必须把页面push到一个特定名字的分支：<strong>gh_pages</strong>。这样，这个分支里面的页面就可以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;</code>访问，<code>&lt;repoName&gt;</code>是这个仓库的名称。</p>
 <h3 id="github向导创建">github向导创建</h3><p>使用github的向导创建Github Pages，你可以选择它提供的模版，github会在后台给你创建<strong>gh_pages</strong>分支，并把模版所需的css、JavaScript、images、fonts全部上传到这个分支里面，和你手工创建没有区别。<br>github向导创建的index.html等页面，对css等资源的引用采用的的相对路径，所以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;/</code>访问这个Pages不会出现资源的404错误，即使你修改了<code>&lt;username&gt;</code>。当然，有些链接是采用绝对路径，比如:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"downloads"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"https://github.com/&lt;username&gt;/&lt;repoName&gt;/zipball/master"</span>&gt;</span>ZIP<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
