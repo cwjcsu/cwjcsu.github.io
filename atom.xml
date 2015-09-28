@@ -1,110 +1,74 @@
-
- <!DOCTYPE HTML>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[一叶知秋]]></title>
   
-    <title>Markdown学习 | 一叶知秋</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="cwjcsu@gmail.com">
-    
-
-    
-    <meta name="description" content="介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Markdown学习">
-<meta property="og:url" content="cwjcsu.gitcafe.io/2015/09/26/markdown-learning/index.html">
-<meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器">
-<meta property="og:image" content="http://images.cnitblog.com/blog2015/294941/201504/251326002036398.png">
-<meta property="og:updated_time" content="2015-09-28T02:20:38.863Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Markdown学习">
-<meta name="twitter:description" content="介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器">
-
-    
-    <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
-</head>
-
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="一叶知秋" title="一叶知秋"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="一叶知秋">一叶知秋</a></h1>
-				<h2 class="blog-motto"></h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于</a></li>
-					
-						<li><a href="/sitemap.xml">Sitemap</a></li>
-					
-						<li><a href="/atom.xml">RSS</a></li>
-					
-					<li>
- 					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
-						</form>
-					
-					</li>
-				</ul>
-			</nav>			
-</div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+  <link href="/atom.xml" rel="self"/>
+  <link href="cwjcsu.gitcafe.io/"/>
+  <updated>2015-09-28T02:20:38.863Z</updated>
+  <id>cwjcsu.gitcafe.io/</id>
   
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+  <author>
+    <name><![CDATA[cwjcsu@gmail.com]]></name>
     
-      <a href="/2015/09/26/markdown-learning/" title="Markdown学习" itemprop="url">Markdown学习</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="cwjcsu@gmail.com" target="_blank" itemprop="author">cwjcsu@gmail.com</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-26T07:01:19.000Z" itemprop="datePublished"> 发表于 2015-09-26</time>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[搭建Github博客容易走弯路的地方]]></title>
+    <link href="cwjcsu.gitcafe.io/2015/09/27/tips-about-github-blog/"/>
+    <id>cwjcsu.gitcafe.io/2015/09/27/tips-about-github-blog/</id>
+    <published>2015-09-27T15:40:51.000Z</published>
+    <updated>2015-09-28T02:20:38.863Z</updated>
+    <content type="html"><![CDATA[<p>本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。<br><a id="more"></a></p>
+<h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
+<h2 id="不一定要注册域名">不一定要注册域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:<code>&lt;username&gt;.github.io</code>。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：<strong>你创建的github的Repository name必须是<code>&lt;username&gt;.github.io</code></strong>,这样你只要在<strong>master</strong>分支上仓库根目录上push一个<code>index.html</code>，这个文件就可以通过<code>http://&lt;username&gt;.github.io</code>访问到。<br><code>&lt;username&gt;</code>是你的github用户名。</p>
+<h2 id="仓库&lt;repoName&gt;的Github_Pages可以通过&lt;username&gt;-github-io/&lt;repoName&gt;访问">仓库<code>&lt;repoName&gt;</code>的Github Pages可以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;</code>访问</h2><h3 id="手工创建">手工创建</h3><p>很多博客都有介绍怎么建立github pages，你可以给你的任意仓库建立github pages，只是你必须把页面push到一个特定名字的分支：<strong>gh_pages</strong>。这样，这个分支里面的页面就可以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;</code>访问，<code>&lt;repoName&gt;</code>是这个仓库的名称。</p>
+<h3 id="github向导创建">github向导创建</h3><p>使用github的向导创建Github Pages，你可以选择它提供的模版，github会在后台给你创建<strong>gh_pages</strong>分支，并把模版所需的css、JavaScript、images、fonts全部上传到这个分支里面，和你手工创建没有区别。<br>github向导创建的index.html等页面，对css等资源的引用采用的的相对路径，所以通过<code>&lt;username&gt;.github.io/&lt;repoName&gt;/</code>访问这个Pages不会出现资源的404错误，即使你修改了<code>&lt;username&gt;</code>。当然，有些链接是采用绝对路径，比如:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"downloads"</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"https://github.com/&lt;username&gt;/&lt;repoName&gt;/zipball/master"</span>&gt;</span>ZIP<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这个链接是下载当前仓库master分支的zip文件，绝对路径里面包含<code>&lt;username&gt;</code>和<code>&lt;repoName&gt;</code>，所以如果你修改了用户名<code>&lt;usernmae&gt;</code>或者当前仓库的名称<code>&lt;repoName&gt;</code>，那么这个链接就失效了。</p>
+<h2 id="Github_Pages也可以用hexo等进行定制">Github Pages也可以用<a href="https://hexo.io" target="_blank" rel="external">hexo</a>等进行定制</h2><p>网上很多文章都说用<strong>hexo+特定主题</strong>创建github+pages，会出现资源文件404错误，然后说可以去买个域名，创建CName映射文件解决问题。我在初次搭建github博客的时候，差点就下单买域名了,其实是不必要的。<br>在hexo的配置文件<code>_config.yml</code>里面修改配置:<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## If your site <span class="keyword">is</span> <span class="keyword">put</span> in <span class="keyword">a</span> subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">'http://yoursite.com/child'</span> <span class="built_in">and</span> root <span class="keyword">as</span> <span class="string">'/child/'</span></span><br><span class="line">ur<span class="variable">l:</span> cwjcsu.github.io</span><br><span class="line">roo<span class="variable">t:</span> /&lt;repoName&gt;/</span><br></pre></td></tr></table></figure></p>
+<p>那么hexo就会在生成页面的时候，给所有导入的资源加上<code>/&lt;repoName&gt;/</code>，从而可以正确访问到仓库<code>&lt;repoName&gt;</code>里面的资源文件，这样就会显示正常。</p>
+<h1 id="Tips_about_hexo_+_jacman">Tips about hexo + jacman</h1><ol>
+<li>.yml配置项冒号和值之间要有空格</li>
+<li><p>jacman主题的内置分享功能url没有用<code>http://</code>开头，导致分享不成功<br> 我修改了一下代码：themes/jacman/layout/_partial/after_footer.ejs:(大概第86行左右)</p>
+ <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var <span class="variable">$this</span> = $(<span class="string">'.share'</span>),</span><br><span class="line"> url = <span class="variable">$this</span>.attr(<span class="string">'data-url'</span>);</span><br><span class="line"> <span class="keyword">if</span>(url.indexOf(<span class="string">'http://'</span>)&lt;<span class="number">0</span>)&#123;</span><br><span class="line">    url = <span class="string">'http://'</span> + url;</span><br><span class="line"> &#125;</span><br><span class="line"> var encodedUrl = encodeURIComponent(url),</span><br><span class="line"> title = <span class="variable">$this</span>.attr(<span class="string">'data-title'</span>),</span><br><span class="line"> tsina = <span class="variable">$this</span>.attr(<span class="string">'data-tsina'</span>),</span><br><span class="line"> description = <span class="variable">$this</span>.attr(<span class="string">'description'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一些.md或者.html被hexo处理后出现中文乱码<br> 往往是.md或者.html文件使用的编码格式不是UTF-8，只需要把这些文件转换成UTF-8并保存就可以被hexo正常处理；</p>
+</li>
+<li><p>每篇文章的description属性会被hexo处理成description的meta，即：</p>
+ <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">title</span>: <span class="string">hexo你的博客</span></span><br><span class="line"><span class="attribute">date</span>: <span class="string">2013-11-22 17:11:54</span></span><br><span class="line"><span class="attribute">categories</span>: <span class="string">default</span></span><br><span class="line"><span class="attribute">tags</span>: <span class="string">[hexo]</span></span><br><span class="line"><span class="attribute">description</span>: <span class="string">你对本页的描述</span></span><br></pre></td></tr></table></figure>
+<p> 处理之后会在html页面的&lt;head&gt;标签内生成：</p>
+ <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="keyword">property</span>=<span class="string">"og:description"</span> content=<span class="string">"你对本页的描述"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p> 这个描述一般会在搜索引擎展示你的页面时出现。（SEO范畴）</p>
+</li>
+<li><p>使用hexo new page <em>pageName</em>会创建一个source/<em>pageName</em>目录，并在这里面创建一个index.md文件，这个页面可以通过<code>&lt;username&gt;.github.io/&lt;pageName&gt;</code>访问到。所以这个<em>pageName</em>不要与你的某个聚友Github Pages的仓库名称重复了。</p>
+</li>
+<li><p>使用<code>&lt;!--more--&gt;</code>标签可以让标签以上的文本作为摘要，在博客列表中显示出来，点击Read More显示特定博客有内容。</p>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。<br>]]>
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#标准Markdwon语法"><span class="toc-number">1.</span> <span class="toc-text">标准Markdwon语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块元素(Block_Elements)"><span class="toc-number">1.1.</span> <span class="toc-text">块元素(Block Elements)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文档标头（HEADERS）"><span class="toc-number">1.1.1.</span> <span class="toc-text">文档标头（HEADERS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块引用(BLOCKQUOTES)"><span class="toc-number">1.1.2.</span> <span class="toc-text">块引用(BLOCKQUOTES)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#This_is_a_header-"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">This is a header.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-number">1.1.3.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码块（CODE_BLOCKS）"><span class="toc-number">1.1.4.</span> <span class="toc-text">代码块（CODE BLOCKS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平规则（HORIZONTAL_RULES）"><span class="toc-number">1.1.5.</span> <span class="toc-text">水平规则（HORIZONTAL RULES）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPAN元素（SPAN_ELEMENTS）"><span class="toc-number">1.2.</span> <span class="toc-text">SPAN元素（SPAN ELEMENTS）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#链接(Links)"><span class="toc-number">1.2.1.</span> <span class="toc-text">链接(Links)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#强调（EMPHASIS）"><span class="toc-number">1.2.2.</span> <span class="toc-text">强调（EMPHASIS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码（CODE）"><span class="toc-number">1.2.3.</span> <span class="toc-text">代码（CODE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片（IMAGES）"><span class="toc-number">1.2.4.</span> <span class="toc-text">图片（IMAGES）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项（Miscellaneous）"><span class="toc-number">1.3.</span> <span class="toc-text">杂项（Miscellaneous）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自动链接（AUTOMATIC_LINKS）"><span class="toc-number">1.3.1.</span> <span class="toc-text">自动链接（AUTOMATIC LINKS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反斜线（BACKSLASH_ESCAPES）"><span class="toc-number">1.3.2.</span> <span class="toc-text">反斜线（BACKSLASH ESCAPES）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GitHub_Flavored_Markdown"><span class="toc-number">2.</span> <span class="toc-text">GitHub Flavored Markdown</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#与传统Markdwon的区别"><span class="toc-number">2.1.</span> <span class="toc-text">与传统Markdwon的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文字中的下划线"><span class="toc-number">2.1.1.</span> <span class="toc-text">文字中的下划线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL自动链接"><span class="toc-number">2.1.2.</span> <span class="toc-text">URL自动链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中划线（Strikethrough)"><span class="toc-number">2.1.3.</span> <span class="toc-text">中划线（Strikethrough)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包裹的代码块（Fenced_code_blocks）"><span class="toc-number">2.1.4.</span> <span class="toc-text">包裹的代码块（Fenced code blocks）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法高亮（Syntax_highlighting）"><span class="toc-number">2.1.5.</span> <span class="toc-text">语法高亮（Syntax highlighting）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格（Tables）"><span class="toc-number">2.1.6.</span> <span class="toc-text">表格（Tables）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML"><span class="toc-number">2.1.7.</span> <span class="toc-text">HTML</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">2.2.</span> <span class="toc-text">扩展阅读</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown编辑器推荐"><span class="toc-number">3.</span> <span class="toc-text">Markdown编辑器推荐</span></a></li></ol>
-		
-		</div>
-		
-		<p>本文介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器<br><a id="more"></a></p>
+    </summary>
+    
+      <category term="blogs" scheme="cwjcsu.gitcafe.io/tags/blogs/"/>
+    
+      <category term="hexo" scheme="cwjcsu.gitcafe.io/tags/hexo/"/>
+    
+      <category term="jacman" scheme="cwjcsu.gitcafe.io/tags/jacman/"/>
+    
+      <category term="工具" scheme="cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Markdown学习]]></title>
+    <link href="cwjcsu.gitcafe.io/2015/09/26/markdown-learning/"/>
+    <id>cwjcsu.gitcafe.io/2015/09/26/markdown-learning/</id>
+    <published>2015-09-26T07:01:19.000Z</published>
+    <updated>2015-09-28T02:20:38.863Z</updated>
+    <content type="html"><![CDATA[<p>本文介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器<br><a id="more"></a></p>
 <h1 id="标准Markdwon语法">标准Markdwon语法</h1><p><strong>Markdown</strong>是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML(或者pdf、docx)文档”。Markdown现在拥有非常多的扩展，而且标准化已经几乎不可能。有一个介绍标准化markdown的<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">网站</a>。里面的<a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Syntax</a>详细介绍了标准markdown所有语法。</p>
 <h2 id="块元素(Block_Elements)">块元素(Block Elements)</h2><h3 id="文档标头（HEADERS）">文档标头（HEADERS）</h3><p>有两种类型的标题：Setext-style headers  和 Atx-style headers。<br>（1），Setext-style headers 的markdwon代码：<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This is H1</span><br><span class="line">=</span><br><span class="line"><span class="header">This is H1</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure></p>
 <p>其中等于号(=)和破折号(-)的个数没有限制（好像要超过2个）。（效果免了，否则我这篇博客会被撑乱）。<br>（2），Atx-style headers 示例：<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is an H1</span></span><br><span class="line"><span class="comment">## This is an H2</span></span><br><span class="line"><span class="comment">###### This is an H6</span></span><br></pre></td></tr></table></figure></p>
@@ -316,442 +280,86 @@
 <p>webstorm<br><a href="http://blog.fens.me/webstorm-markdown/" target="_blank" rel="external">http://blog.fens.me/webstorm-markdown/</a></p>
 <p>eclipse plugin 编辑和查看：<br><a href="https://github.com/winterstein/Eclipse-Markdown-Editor-Plugin" target="_blank" rel="external">https://github.com/winterstein/Eclipse-Markdown-Editor-Plugin</a><br><a href="http://marketplace.eclipse.org/content/markdown-text-editor" target="_blank" rel="external">http://marketplace.eclipse.org/content/markdown-text-editor</a><br><a href="http://marketplace.eclipse.org/content/github-flavored-markdown-viewer-plugin-eclipse" target="_blank" rel="external">http://marketplace.eclipse.org/content/github-flavored-markdown-viewer-plugin-eclipse</a></p>
 <p><strong>当然sublime text 3 + Markdown Editing 配合 hexo 是目前我采用的方式。</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器]]>
+    
+    </summary>
+    
+      <category term="markdown" scheme="cwjcsu.gitcafe.io/tags/markdown/"/>
+    
+      <category term="工具" scheme="cwjcsu.gitcafe.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="工具" scheme="cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/工具/">工具</a>
-</div>
-
-
-  <div class="article-tags">
+  <entry>
+    <title><![CDATA[第一篇日志]]></title>
+    <link href="cwjcsu.gitcafe.io/2015/09/25/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%97%A5%E5%BF%97/"/>
+    <id>cwjcsu.gitcafe.io/2015/09/25/第一篇日志/</id>
+    <published>2015-09-25T11:14:17.000Z</published>
+    <updated>2015-09-28T02:20:38.873Z</updated>
+    <content type="html"><![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
+<p>通过下面的命令，就可以创建新文章<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo new 新的开始</span><br><span class="line">[info] File created at D:\workspace\javascript\nodejs-hexo\<span class="built_in">source</span>\_posts\新的开始.md</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>感觉非常好。</p>
+<p>在命令行，启动服务器:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo server</span><br><span class="line">[info] Hexo is running at http://localhost:<span class="number">4000</span>/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></p>
+<p>通过浏览器打开， <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> ，就出现了我们新写的文章。</p>
+<h2 id="引用">引用</h2><blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
+<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="external">Welcome to Island Marketing</a></cite></footer></blockquote>
+<h2 id="代码块">代码块</h2><figure class="highlight cpp"><figcaption><span>.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, ‘’, <span class="number">3</span>]);</span><br><span class="line">=&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="链接">链接</h2><a href="http://cwjcsu.github.io" title="粉丝日志" target="_blank">粉丝日志</a>
+<h2 id="数学公式">数学公式</h2><p>$$J_\alpha(x)=\sum _{m=0}^\infty \frac{(-1)^ m}{m! \, \Gamma (m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha }$$</p>
+<h2 id="图片">图片</h2><p><img src="http://7xn1o8.com1.z0.glb.clouddn.com/banner.jpg" alt="猜一猜这是哪里？"></p>
+<p>TODO</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
+<p>通过下面的命令，就可以创建新文章<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo new 新的开始</span><br><span class="line">[info] File created at D:\workspace\javascript\nodejs-hexo\<span class="built_in">source</span>\_posts\新的开始.md</span><br></pre></td></tr></table></figure></p>]]>
+    
+    </summary>
+    
+      <category term="Get Started" scheme="cwjcsu.gitcafe.io/tags/Get-Started/"/>
+    
+      <category term="hexo" scheme="cwjcsu.gitcafe.io/tags/hexo/"/>
+    
+      <category term="jacman" scheme="cwjcsu.gitcafe.io/tags/jacman/"/>
+    
+      <category term="工具" scheme="cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
-  <span></span> <a href="/tags/markdown/">markdown</a><a href="/tags/工具/">工具</a>
-  </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="cwjcsu.gitcafe.io/2015/09/26/markdown-learning/" data-title="Markdown学习 | 一叶知秋" data-tsina="2172283884" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2015/09/27/tips-about-github-blog/" title="搭建Github博客容易走弯路的地方">
-  <strong>上一篇：</strong><br/>
-  <span>
-  搭建Github博客容易走弯路的地方</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2015/09/25/第一篇日志/"  title="第一篇日志">
- <strong>下一篇：</strong><br/> 
- <span>第一篇日志
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/09/26/markdown-learning/" data-title="Markdown学习" data-url="cwjcsu.gitcafe.io/2015/09/26/markdown-learning/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#标准Markdwon语法"><span class="toc-number">1.</span> <span class="toc-text">标准Markdwon语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#块元素(Block_Elements)"><span class="toc-number">1.1.</span> <span class="toc-text">块元素(Block Elements)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文档标头（HEADERS）"><span class="toc-number">1.1.1.</span> <span class="toc-text">文档标头（HEADERS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块引用(BLOCKQUOTES)"><span class="toc-number">1.1.2.</span> <span class="toc-text">块引用(BLOCKQUOTES)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#This_is_a_header-"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">This is a header.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-number">1.1.3.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码块（CODE_BLOCKS）"><span class="toc-number">1.1.4.</span> <span class="toc-text">代码块（CODE BLOCKS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平规则（HORIZONTAL_RULES）"><span class="toc-number">1.1.5.</span> <span class="toc-text">水平规则（HORIZONTAL RULES）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SPAN元素（SPAN_ELEMENTS）"><span class="toc-number">1.2.</span> <span class="toc-text">SPAN元素（SPAN ELEMENTS）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#链接(Links)"><span class="toc-number">1.2.1.</span> <span class="toc-text">链接(Links)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#强调（EMPHASIS）"><span class="toc-number">1.2.2.</span> <span class="toc-text">强调（EMPHASIS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码（CODE）"><span class="toc-number">1.2.3.</span> <span class="toc-text">代码（CODE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片（IMAGES）"><span class="toc-number">1.2.4.</span> <span class="toc-text">图片（IMAGES）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项（Miscellaneous）"><span class="toc-number">1.3.</span> <span class="toc-text">杂项（Miscellaneous）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自动链接（AUTOMATIC_LINKS）"><span class="toc-number">1.3.1.</span> <span class="toc-text">自动链接（AUTOMATIC LINKS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反斜线（BACKSLASH_ESCAPES）"><span class="toc-number">1.3.2.</span> <span class="toc-text">反斜线（BACKSLASH ESCAPES）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GitHub_Flavored_Markdown"><span class="toc-number">2.</span> <span class="toc-text">GitHub Flavored Markdown</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#与传统Markdwon的区别"><span class="toc-number">2.1.</span> <span class="toc-text">与传统Markdwon的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文字中的下划线"><span class="toc-number">2.1.1.</span> <span class="toc-text">文字中的下划线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL自动链接"><span class="toc-number">2.1.2.</span> <span class="toc-text">URL自动链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中划线（Strikethrough)"><span class="toc-number">2.1.3.</span> <span class="toc-text">中划线（Strikethrough)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包裹的代码块（Fenced_code_blocks）"><span class="toc-number">2.1.4.</span> <span class="toc-text">包裹的代码块（Fenced code blocks）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法高亮（Syntax_highlighting）"><span class="toc-number">2.1.5.</span> <span class="toc-text">语法高亮（Syntax highlighting）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格（Tables）"><span class="toc-number">2.1.6.</span> <span class="toc-text">表格（Tables）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML"><span class="toc-number">2.1.7.</span> <span class="toc-text">HTML</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展阅读"><span class="toc-number">2.2.</span> <span class="toc-text">扩展阅读</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown编辑器推荐"><span class="toc-number">3.</span> <span class="toc-text">Markdown编辑器推荐</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
+  <entry>
+    <title><![CDATA[Hell World]]></title>
+    <link href="cwjcsu.gitcafe.io/2015/09/25/hello-world/"/>
+    <id>cwjcsu.gitcafe.io/2015/09/25/hello-world/</id>
+    <published>2015-09-25T11:14:17.000Z</published>
+    <updated>2015-09-28T02:20:38.836Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<a id="more"></a>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>]]>
+    
+    </summary>
+    
+      <category term="Get Started" scheme="cwjcsu.gitcafe.io/tags/Get-Started/"/>
+    
+      <category term="hexo" scheme="cwjcsu.gitcafe.io/tags/hexo/"/>
+    
+      <category term="jacman" scheme="cwjcsu.gitcafe.io/tags/jacman/"/>
+    
+      <category term="工具" scheme="cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
-<div class="category-container">
-  <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">4</span></li></ul> 
-</div>
- 
-
-  
-<div class="tagslist">
-	<p class="asidetitle">标签</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jacman/" title="jacman">jacman<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/blogs/" title="blogs">blogs<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-
-  <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="http://projecteuler.net/" target="_blank" title="一个有挑战性的数学和计算机编程试题网站">Project Euler</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://openmind.iteye.com/" target="_blank" title="我的iteye博客">OpenMind&#39;s Blog</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-</aside>
-</div>
-    </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Atlas in Github. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2172283884" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/cwjcsu" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		<a href="http://stackoverflow.com/users/1770716" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
-		
-		
-		
-		
-		
-		
-		
-		
-		<a href="mailto:cwjcsu@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-
-		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
-		
-		<a href="/about" target="_blank" title="cwjcsu@gmail.com">cwjcsu@gmail.com</a>
-		
-		
-		</p>
-</div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
-        
-    }
-  });
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url');
-  if(url.indexOf('http://')<0){
-     url = 'http://' + url;
-  }
-  var encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<div class="hoverqrcode clearfix"></div>',
-  '<a class="overlay" id="qrcode"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-
-  $('.hoverqrcode').hide();
-
-  var myWidth = 0;
-  function updatehoverqrcode(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-    var qrsize = myWidth > 1024 ? 200:100;
-    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
-    var p = $('.article-share-qrcode').position();
-    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
-                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
-                          .qrcode(options);
-  };
-  $(window).resize(function(){
-    $('.hoverqrcode').hide();
-  });
-  $('.article-share-qrcode').click(function(){
-    updatehoverqrcode();
-    $('.hoverqrcode').toggle();
-  });
-  $('.article-share-qrcode').hover(function(){}, function(){
-      $('.hoverqrcode').hide();
-  });
-});   
-</script>
-
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"cwjcsu"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
-
-
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256448778'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1256448778' type='text/javascript'%3E%3C/script%3E"));</script>
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<script>
-var option = {
-  engineKey: '9058ca157e9c5b1686f7'
-};
-(function(w,d,t,u,n,s,e){
-  s = d.createElement(t);
-  s.src = u;
-  s.async = 1;
-  w[n] = function(r){
-    w[n].opts = r;
-  };
-  e = d.getElementsByTagName(t)[0];
-  e.parentNode.insertBefore(s, e);
-})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
-_ts(option);
-</script>
-
-<!-- Tiny_search End -->
-
-  </body>
-</html>
+</feed>
