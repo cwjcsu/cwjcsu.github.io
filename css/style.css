@@ -1917,6 +1917,12 @@ section.comment {
 .category-list .category-list-link {
   color: #2ca6cb;
 }
+.category-list .category-list-link:hover {
+  color: #ea6753;
+}
+.category-list .category-list-link:before {
+  content: '►';
+}
 ul,
 ol,
 dl {

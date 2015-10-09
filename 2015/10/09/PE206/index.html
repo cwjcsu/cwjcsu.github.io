@@ -107,8 +107,8 @@
 		<p><a href="https://projecteuler.net/problem=206" target="_blank" rel="external">Project Euler 206</a>,寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根，其中’_’是一个数字。<em>Completed on 2013-04-25  17:35</em><br><a id="more"></a></p>
 <h2 id="分析">分析</h2><p>1_2_3_4_5_6_7_8_9_0格式的平方数，由于末尾是0，则平方根肯定是0结尾的，具有这个格式的最大数是：192939495969798990。由于平方根末尾是0，则这个数末尾必然是00，即这个数的格式为：1_2_3_4_5_6_7_8_900。</p>
 <h2 id="穷举法">穷举法</h2><p>经过分析，可以从具有这个格式的最大数字19293949596979899开始往下搜索，如果确定是平方数，则找到了平方根。<br>这个数超过了long的范围，所以要用<a href="http://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html" target="_blank" rel="external"><code>BigInteger</code></a>。</p>
-<h3 id="Java代码">Java代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> PE206 &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">        BigInteger N = <span class="keyword">new</span> BigInteger(<span class="string">"19293949596979899"</span>);</span><br><span class="line">        <span class="keyword">int</span> max = (<span class="keyword">int</span>) Math.<span class="built_in">sqrt</span>(N.doubleValue()) + <span class="number">1</span>;<span class="comment">//平方根可能的最大值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> i = max;; i--) &#123;</span><br><span class="line">            BigInteger I = BigInteger.valueOf(i);</span><br><span class="line">            I = I.<span class="built_in">pow</span>(<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (I.toString().matches(<span class="string">"1.2.3.4.5.6.7.8.9"</span>)) &#123;<span class="comment">//平方数匹配当前模式，则找到目标</span></span><br><span class="line">                System.out.println(i * <span class="number">10</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">                + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1389019170</span></span><br><span class="line">Time consumed <span class="number">68</span> ms</span><br></pre></td></tr></table></figure>
+<h3 id="Java代码">Java代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> PE206 &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">        BigInteger N = <span class="keyword">new</span> BigInteger(<span class="string">"19293949596979899"</span>);</span><br><span class="line">        <span class="keyword">int</span> max = (<span class="keyword">int</span>) Math.<span class="built_in">sqrt</span>(N.doubleValue()) + <span class="number">1</span>;<span class="comment">//平方根可能的最大值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> i = max;; i--) &#123;</span><br><span class="line">            BigInteger I = BigInteger.valueOf(i);</span><br><span class="line">            I = I.<span class="built_in">pow</span>(<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (I.toString().matches(<span class="string">"1.2.3.4.5.6.7.8.9"</span>)) &#123;<span class="comment">//平方数匹配当前模式，则找到目标</span></span><br><span class="line">                System.out.println(i * <span class="number">10</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">                + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">1389019170</span></span><br><span class="line">Time consumed <span class="number">68</span> ms</span><br></pre></td></tr></table></figure>
 <p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
   
 	</div>
@@ -187,7 +187,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">4</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">4</span></li></ul> 
 </div>
  
 
@@ -197,7 +197,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Java/" title="Java">Java<sup>3</sup></a></li>
+				<li><a href="/tags/Java/" title="Java">Java<sup>4</sup></a></li>
 			
 		
 			
@@ -209,7 +209,7 @@
 			
 		
 			
-				<li><a href="/tags/Project-Euler/" title="Project Euler">Project Euler<sup>2</sup></a></li>
+				<li><a href="/tags/Project-Euler/" title="Project Euler">Project Euler<sup>3</sup></a></li>
 			
 		
 			
@@ -217,27 +217,7 @@
 			
 		
 			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/平方数/" title="平方数">平方数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/blogs/" title="blogs">blogs<sup>1</sup></a></li>
+				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>2</sup></a></li>
 			
 		
 			
@@ -245,9 +225,27 @@
 			
 		
 			
-				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>1</sup></a></li>
+				<li><a href="/tags/blogs/" title="blogs">blogs<sup>1</sup></a></li>
 			
 		
+			
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/平方数/" title="平方数">平方数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
 			
 		
 		</ul>
