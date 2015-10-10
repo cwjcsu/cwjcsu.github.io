@@ -17,7 +17,8 @@
 <meta property="og:url" content="http://cwjcsu.gitcafe.io/2015/10/10/PE318/index.html">
 <meta property="og:site_name" content="一叶知秋-博客">
 <meta property="og:description" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
-<meta property="og:updated_time" content="2015-10-10T09:32:10.417Z">
+<meta property="og:image" content="https://projecteuler.net/profile/cwjcsu.png">
+<meta property="og:updated_time" content="2015-10-10T09:38:32.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
 <meta name="twitter:description" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
@@ -103,7 +104,7 @@
 		
 		</div>
 		
-		<p>[Project Euler Problem 318 - 涉及二项式分解、接近整数、Pisot数等数学知识(<a href="https://projecteuler.net/problem=318" target="_blank" rel="external">https://projecteuler.net/problem=318</a>) ,<em>Completed on 2015-10-10  13:50</em><br><a id="more"></a></p>
+		<p><a href="https://projecteuler.net/problem=318" target="_blank" rel="external">Project Euler Problem 318</a> - 涉及二项式分解、接近整数、Pisot数等数学知识 ,<em>Completed on 2015-10-10  15:00</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>Consider the real number √2+√3.<br>When we calculate the even powers of √2+√3 we get:<br>(√2+√3)<sup>2</sup> = 9.898979485566356…<br>(√2+√3)<sup>4</sup> = 97.98979485566356…<br>(√2+√3)<sup>6</sup> = 969.998969071069263…<br>(√2+√3)<sup>8</sup> = 9601.99989585502907…<br>(√2+√3)<sup>10</sup> = 95049.999989479221…<br>(√2+√3)<sup>11</sup> = 940897.9999989371855…<br>(√2+√3)<sup>14</sup> = 9313929.99999989263…<br>(√2+√3)<sup>16</sup> = 92198401.99999998915…</p>
 <p>It looks like that the number of consecutive nines at the beginning of the fractional part of these powers is non-decreasing.<br>In fact it can be proven that the fractional part of (√2+√3)<sup>2n</sup> approaches 1 for large n.</p>
 <p>Consider all real numbers of the form √p+√q with p and q positive integers and p&lt;q, such that the fractional part of (√p+√q)<sup>2n</sup> approaches 1 for large n.</p>
@@ -121,6 +122,7 @@
 <h3 id="代码">代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> t = System.nanoTime();</span><br><span class="line">    <span class="keyword">long</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">2011</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">1</span>; p &lt; L; p++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> q = p + <span class="number">1</span>; q &lt; L - p + <span class="number">1</span>; q++) &#123;</span><br><span class="line">            <span class="keyword">double</span> c = p + q - <span class="number">2</span> * Math.<span class="built_in">sqrt</span>(p * q);</span><br><span class="line">            <span class="keyword">if</span> (c &lt; <span class="number">1</span>) &#123;<span class="comment">// 等价于 (√q-√p) &lt; 1</span></span><br><span class="line">                s += Math.<span class="built_in">ceil</span>(-L / Math.<span class="built_in">log10</span>(c));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">    System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">            + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - t) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">709313889</span></span><br><span class="line">Time consumed <span class="number">22</span> ms</span><br></pre></td></tr></table></figure></p>
 <h2 id="小结：">小结：</h2><p><a href="http://blog.dreamshire.com/project-euler-318-solution/" target="_blank" rel="external">参考1</a><br><a href="https://projecteuler.net/thread=318" target="_blank" rel="external">参考2-NickMcG</a><br><a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot–Vijayaraghavan_number</a></p>
+<p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
