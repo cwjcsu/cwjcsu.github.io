@@ -4,7 +4,7 @@
   <subtitle><![CDATA[码农，程序员，数学物理科幻爱好者]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cwjcsu.gitcafe.io/"/>
-  <updated>2015-10-10T09:38:32.767Z</updated>
+  <updated>2015-10-10T10:36:55.666Z</updated>
   <id>http://cwjcsu.gitcafe.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/10/PE318/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/10/PE318/</id>
     <published>2015-10-10T07:40:11.000Z</published>
-    <updated>2015-10-10T09:38:32.767Z</updated>
+    <updated>2015-10-10T10:36:55.666Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=318" target="_blank" rel="external">Project Euler Problem 318</a> - 涉及二项式分解、接近整数、Pisot数等数学知识 ,<em>Completed on 2015-10-10  15:00</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>Consider the real number √2+√3.<br>When we calculate the even powers of √2+√3 we get:<br>(√2+√3)<sup>2</sup> = 9.898979485566356…<br>(√2+√3)<sup>4</sup> = 97.98979485566356…<br>(√2+√3)<sup>6</sup> = 969.998969071069263…<br>(√2+√3)<sup>8</sup> = 9601.99989585502907…<br>(√2+√3)<sup>10</sup> = 95049.999989479221…<br>(√2+√3)<sup>11</sup> = 940897.9999989371855…<br>(√2+√3)<sup>14</sup> = 9313929.99999989263…<br>(√2+√3)<sup>16</sup> = 92198401.99999998915…</p>
 <p>It looks like that the number of consecutive nines at the beginning of the fractional part of these powers is non-decreasing.<br>In fact it can be proven that the fractional part of (√2+√3)<sup>2n</sup> approaches 1 for large n.</p>
@@ -37,8 +37,7 @@
 <p>于是，只需要循环p和q，寻找满足条件的 (a-b)&lt;1 的p、q对，然后计算n，并相加即可。</p>
 <h3 id="代码">代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> t = System.nanoTime();</span><br><span class="line">    <span class="keyword">long</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">2011</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">1</span>; p &lt; L; p++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> q = p + <span class="number">1</span>; q &lt; L - p + <span class="number">1</span>; q++) &#123;</span><br><span class="line">            <span class="keyword">double</span> c = p + q - <span class="number">2</span> * Math.<span class="built_in">sqrt</span>(p * q);</span><br><span class="line">            <span class="keyword">if</span> (c &lt; <span class="number">1</span>) &#123;<span class="comment">// 等价于 (√q-√p) &lt; 1</span></span><br><span class="line">                s += Math.<span class="built_in">ceil</span>(-L / Math.<span class="built_in">log10</span>(c));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">    System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">            + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - t) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">709313889</span></span><br><span class="line">Time consumed <span class="number">22</span> ms</span><br></pre></td></tr></table></figure></p>
-<h2 id="小结：">小结：</h2><p><a href="http://blog.dreamshire.com/project-euler-318-solution/" target="_blank" rel="external">参考1</a><br><a href="https://projecteuler.net/thread=318" target="_blank" rel="external">参考2-NickMcG</a><br><a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot–Vijayaraghavan_number</a></p>
-<p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
+<h2 id="小结：">小结：</h2><p><a href="http://blog.dreamshire.com/project-euler-318-solution/" target="_blank" rel="external">参考1</a><br><a href="https://projecteuler.net/thread=318" target="_blank" rel="external">参考2-NickMcG</a><br><a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot–Vijayaraghavan_number</a> </p>
 ]]></content>
     <summary type="html">
     <![CDATA[Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n]]>
@@ -64,7 +63,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/10/PE455/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/10/PE455/</id>
     <published>2015-10-10T01:40:11.000Z</published>
-    <updated>2015-10-10T04:17:38.876Z</updated>
+    <updated>2015-10-10T10:37:01.250Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=455" target="_blank" rel="external">Project Euler Problem 455 - Powers With Trailing Digits</a> ,<em>Completed on 2015-10-10  00:50</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>Let f(n) be the largest positive integer x less than 10<sup>9</sup> such that the last 9 digits of n<sup>x</sup> form the number x (including leading zeros), or zero if no such integer exists.</p>
 <p>For example:</p>
@@ -80,7 +79,6 @@
 <h2 id="解决问题">解决问题</h2><p>从i=2到10<sup>9</sup>遍历相加f(i)得到结果：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求f(n) = x，满足：</span><br><span class="line"> * （1）， n^x % 10^9 = x； or</span><br><span class="line"> * （2），x=0 如果不存在满足（1）的x </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> m = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">long</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">long</span> x = Util.powerMod(n, k, m);</span><br><span class="line">        <span class="keyword">if</span> (k == x || x == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        k = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">450186511399999</span></span><br><span class="line">Time consumed : <span class="number">983</span> ms</span><br></pre></td></tr></table></figure>
 <h2 id="小结">小结</h2><p>这个题目也用到了快速幂模运算，求解f(n)，理解f(n)=x对x进行迭代是解决问题的关键。</p>
-<p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[Project Euler Problem 455 -]]>
@@ -102,7 +100,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE48/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/PE48/</id>
     <published>2015-10-09T11:36:36.000Z</published>
-    <updated>2015-10-10T01:45:40.838Z</updated>
+    <updated>2015-10-10T10:37:06.329Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=48" target="_blank" rel="external">Project Euler 48</a> ,获取大数 1^1 + 2^2 + … + 1000^1000 的最后10个数字<br><a id="more"></a></p>
 <h2 id="暴力法">暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">static</span> <span class="keyword">String </span><span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    <span class="keyword">String </span>s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="使用幂模运算规则">使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="preprocessor">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="preprocessor">%</span> p</span><br></pre></td></tr></table></figure></p>
@@ -116,7 +114,6 @@
 <li>See also, <a href="/2015/10/09/PE188/">Project Euler 188 Solution: Find the last 8 digits of 1777↑↑1855.</a></li>
 <li>See also, <a href="https://projecteuler.net/problem=97" target="_blank" rel="external">Project Euler 97 : Find the last ten digits of the non-Mersenne prime: 28433 × 2<sup>7830457</sup> + 1.</a></li>
 </ul>
-<p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[Project Euler 48 - 求大数的模]]>
@@ -138,7 +135,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE188/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/PE188/</id>
     <published>2015-10-09T11:36:36.000Z</published>
-    <updated>2015-10-10T04:07:55.479Z</updated>
+    <updated>2015-10-10T10:36:46.202Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=188" target="_blank" rel="external">Project Euler 188</a> ,求超指数1777↑↑1855的最后8位。<em>Completed on 2013-04-28  11:27</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>The hyperexponentiation or tetration of a number <code>a</code> by a positive integer <code>b</code>, denoted by <code>a↑↑b</code> or <sup>b</sup>a, is recursively defined by:</p>
 <p>a↑↑1 = a,<br>a↑↑(k+1) = a<sup>(a↑↑k)</sup>.</p>
@@ -162,7 +159,6 @@
 <li>See also, <a href="https://projecteuler.net/problem=97" target="_blank" rel="external">Project Euler 97 Solution: Find the last ten digits of the non-Mersenne prime: 28433 × 2<sup>7830457</sup> + 1.</a></li>
 </ul>
 <p><a href="http://blog.csdn.net/chen77716/article/details/7093600" target="_blank" rel="external">参考1-幂取模算法</a><br><a href="http://blog.dreamshire.com/project-euler-188-solution/" target="_blank" rel="external">参考2-</a><br><a href="https://en.wikipedia.org/wiki/Modular_exponentiation" target="_blank" rel="external">Montgomery算法</a></p>
-<p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[Project Euler 188 - 求超指数的最后8位，幂模运算]]>
@@ -186,13 +182,12 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE206/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/PE206/</id>
     <published>2015-10-09T09:45:55.000Z</published>
-    <updated>2015-10-10T01:45:22.652Z</updated>
+    <updated>2015-10-10T10:36:51.793Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=206" target="_blank" rel="external">Project Euler 206</a>,寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根，其中’_’是一个数字。<em>Completed on 2013-04-25  17:35</em><br><a id="more"></a></p>
 <h2 id="分析">分析</h2><p>1_2_3_4_5_6_7_8_9_0格式的平方数，由于末尾是0，则平方根肯定是0结尾的，具有这个格式的最大数是：192939495969798990。由于平方根末尾是0，则这个数末尾必然是00，即这个数的格式为：1_2_3_4_5_6_7_8_900。</p>
 <h2 id="穷举法">穷举法</h2><p>经过分析，可以从具有这个格式的最大数字19293949596979899开始往下搜索，如果确定是平方数，则找到了平方根。<br>这个数超过了long的范围，所以要用<a href="http://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html" target="_blank" rel="external"><code>BigInteger</code></a>。</p>
 <h3 id="Java代码">Java代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> PE206 &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">        BigInteger N = <span class="keyword">new</span> BigInteger(<span class="string">"19293949596979899"</span>);</span><br><span class="line">        <span class="keyword">int</span> max = (<span class="keyword">int</span>) Math.<span class="built_in">sqrt</span>(N.doubleValue()) + <span class="number">1</span>;<span class="comment">//平方根可能的最大值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> i = max;; i--) &#123;</span><br><span class="line">            BigInteger I = BigInteger.valueOf(i);</span><br><span class="line">            I = I.<span class="built_in">pow</span>(<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (I.toString().matches(<span class="string">"1.2.3.4.5.6.7.8.9"</span>)) &#123;<span class="comment">//平方数匹配当前模式，则找到目标</span></span><br><span class="line">                System.out.println(i * <span class="number">10</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">                + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">1389019170</span></span><br><span class="line">Time consumed <span class="number">68</span> ms</span><br></pre></td></tr></table></figure>
-<p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[Project Euler 206 - 寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根]]>
@@ -426,7 +421,7 @@
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#58;&#97;&#100;&#100;&#114;&#x65;&#x73;&#115;&#x40;&#x65;&#120;&#97;&#109;&#112;&#108;&#101;&#x2e;&#99;&#111;&#x6d;">&#97;&#100;&#100;&#114;&#x65;&#x73;&#115;&#x40;&#x65;&#120;&#97;&#109;&#112;&#108;&#101;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p><a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x61;&#100;&#100;&#114;&#x65;&#x73;&#x73;&#x40;&#x65;&#x78;&#97;&#x6d;&#112;&#108;&#x65;&#46;&#99;&#111;&#x6d;">&#x61;&#100;&#100;&#114;&#x65;&#x73;&#x73;&#x40;&#x65;&#x78;&#97;&#x6d;&#112;&#108;&#x65;&#46;&#99;&#111;&#x6d;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>

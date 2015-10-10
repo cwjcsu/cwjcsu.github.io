@@ -17,8 +17,7 @@
 <meta property="og:url" content="http://cwjcsu.gitcafe.io/2015/10/09/PE206/index.html">
 <meta property="og:site_name" content="一叶知秋-博客">
 <meta property="og:description" content="Project Euler 206 - 寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根">
-<meta property="og:image" content="https://projecteuler.net/profile/cwjcsu.png">
-<meta property="og:updated_time" content="2015-10-10T01:45:22.652Z">
+<meta property="og:updated_time" content="2015-10-10T10:36:51.793Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 206 - 寻找特定模式的数的平方根">
 <meta name="twitter:description" content="Project Euler 206 - 寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根">
@@ -109,7 +108,6 @@
 <h2 id="穷举法">穷举法</h2><p>经过分析，可以从具有这个格式的最大数字19293949596979899开始往下搜索，如果确定是平方数，则找到了平方根。<br>这个数超过了long的范围，所以要用<a href="http://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html" target="_blank" rel="external"><code>BigInteger</code></a>。</p>
 <h3 id="Java代码">Java代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> PE206 &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">        BigInteger N = <span class="keyword">new</span> BigInteger(<span class="string">"19293949596979899"</span>);</span><br><span class="line">        <span class="keyword">int</span> max = (<span class="keyword">int</span>) Math.<span class="built_in">sqrt</span>(N.doubleValue()) + <span class="number">1</span>;<span class="comment">//平方根可能的最大值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> i = max;; i--) &#123;</span><br><span class="line">            BigInteger I = BigInteger.valueOf(i);</span><br><span class="line">            I = I.<span class="built_in">pow</span>(<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (I.toString().matches(<span class="string">"1.2.3.4.5.6.7.8.9"</span>)) &#123;<span class="comment">//平方数匹配当前模式，则找到目标</span></span><br><span class="line">                System.out.println(i * <span class="number">10</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">                + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">1389019170</span></span><br><span class="line">Time consumed <span class="number">68</span> ms</span><br></pre></td></tr></table></figure>
-<p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -183,6 +181,7 @@
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
+<img src="http://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler Profile" title="Project Euler Profile" class="aligncenter" width="200" height="60">
 
   
 <div class="category-container">

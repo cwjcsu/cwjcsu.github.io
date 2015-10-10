@@ -17,8 +17,7 @@
 <meta property="og:url" content="http://cwjcsu.gitcafe.io/2015/10/10/PE318/index.html">
 <meta property="og:site_name" content="一叶知秋-博客">
 <meta property="og:description" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
-<meta property="og:image" content="https://projecteuler.net/profile/cwjcsu.png">
-<meta property="og:updated_time" content="2015-10-10T09:38:32.767Z">
+<meta property="og:updated_time" content="2015-10-10T10:36:55.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
 <meta name="twitter:description" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
@@ -121,8 +120,7 @@
 <p>于是，只需要循环p和q，寻找满足条件的 (a-b)&lt;1 的p、q对，然后计算n，并相加即可。</p>
 <h3 id="代码">代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> t = System.nanoTime();</span><br><span class="line">    <span class="keyword">long</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">2011</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">1</span>; p &lt; L; p++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> q = p + <span class="number">1</span>; q &lt; L - p + <span class="number">1</span>; q++) &#123;</span><br><span class="line">            <span class="keyword">double</span> c = p + q - <span class="number">2</span> * Math.<span class="built_in">sqrt</span>(p * q);</span><br><span class="line">            <span class="keyword">if</span> (c &lt; <span class="number">1</span>) &#123;<span class="comment">// 等价于 (√q-√p) &lt; 1</span></span><br><span class="line">                s += Math.<span class="built_in">ceil</span>(-L / Math.<span class="built_in">log10</span>(c));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">    System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">            + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - t) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">709313889</span></span><br><span class="line">Time consumed <span class="number">22</span> ms</span><br></pre></td></tr></table></figure></p>
-<h2 id="小结：">小结：</h2><p><a href="http://blog.dreamshire.com/project-euler-318-solution/" target="_blank" rel="external">参考1</a><br><a href="https://projecteuler.net/thread=318" target="_blank" rel="external">参考2-NickMcG</a><br><a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot–Vijayaraghavan_number</a></p>
-<p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
+<h2 id="小结：">小结：</h2><p><a href="http://blog.dreamshire.com/project-euler-318-solution/" target="_blank" rel="external">参考1</a><br><a href="https://projecteuler.net/thread=318" target="_blank" rel="external">参考2-NickMcG</a><br><a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot–Vijayaraghavan_number</a> </p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -188,6 +186,7 @@
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
+<img src="http://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler Profile" title="Project Euler Profile" class="aligncenter" width="200" height="60">
 
   
 <div class="category-container">
