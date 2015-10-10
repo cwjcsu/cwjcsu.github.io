@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Project Euler 188-求超指数的最后8位-大数求余 | 一叶知秋-博客</title>
+    <title>Project Euler Problem 188-求超指数的最后8位-大数求余 | 一叶知秋-博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="cwjcsu@gmail.com">
@@ -13,13 +13,14 @@
     
     <meta name="description" content="Project Euler 188 - 求超指数的最后8位，幂模运算">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Project Euler 188-求超指数的最后8位-大数求余">
+<meta property="og:title" content="Project Euler Problem 188-求超指数的最后8位-大数求余">
 <meta property="og:url" content="http://cwjcsu.gitcafe.io/2015/10/09/PE188/index.html">
 <meta property="og:site_name" content="一叶知秋-博客">
 <meta property="og:description" content="Project Euler 188 - 求超指数的最后8位，幂模运算">
-<meta property="og:updated_time" content="2015-10-09T16:11:38.193Z">
+<meta property="og:image" content="https://projecteuler.net/profile/cwjcsu.png">
+<meta property="og:updated_time" content="2015-10-10T04:07:55.479Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Project Euler 188-求超指数的最后8位-大数求余">
+<meta name="twitter:title" content="Project Euler Problem 188-求超指数的最后8位-大数求余">
 <meta name="twitter:description" content="Project Euler 188 - 求超指数的最后8位，幂模运算">
 
     
@@ -83,7 +84,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/09/PE188/" title="Project Euler 188-求超指数的最后8位-大数求余" itemprop="url">Project Euler 188-求超指数的最后8位-大数求余</a>
+      <a href="/2015/10/09/PE188/" title="Project Euler Problem 188-求超指数的最后8位-大数求余" itemprop="url">Project Euler Problem 188-求超指数的最后8位-大数求余</a>
   </h1>
   <p class="article-author">By
        
@@ -115,7 +116,7 @@
 <li>当p为奇数时：<br>n<sup>p</sup>%m = (n % m) <em> n<sup>p-1</sup> % m = r </em> n<sup>p-1</sup> % m ，此是p-1为偶数；</li>
 <li>当p为偶数时：<br>  n<sup>p</sup> % m = n<sup>2k</sup> % m = (n<sup>k</sup> % m )<sup>2</sup> % m = tmp * tmp % m<br>  其中k = p/2,tmp = n<sup>k</sup> % m = powerMod2(n,k,m)</li>
 </ul>
-<h3 id="非递归法">非递归法</h3><p>非递归的<a href="https://en.wikipedia.org/wiki/Modular_exponentiation, Right-to-left binary method" target="_blank" rel="external">蒙哥马利(Montgomery)幂模运算:</a></p>
+<h3 id="非递归法">非递归法</h3><p><a name="powerMod"></a>非递归的<a href="https://en.wikipedia.org/wiki/Modular_exponentiation, Right-to-left binary method" target="_blank" rel="external">蒙哥马利(Montgomery)幂模运算:</a></p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">powerMod</span><span class="params">(<span class="keyword">long</span> n, <span class="keyword">long</span> p, <span class="keyword">long</span> m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> r = n % m;</span><br><span class="line">    <span class="keyword">long</span> tmp = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (p &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((p &amp; <span class="number">1</span>) != <span class="number">0</span>) &#123;<span class="comment">// p 是奇数，则</span></span><br><span class="line">            tmp = (tmp * r) % m;</span><br><span class="line">        &#125;</span><br><span class="line">        r = (r * r) % m;</span><br><span class="line">        p &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (r * tmp) % m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="解决PE188">解决PE188</h2><h3 id="递归方法：">递归方法：</h3><p>a↑↑(k+1) % m = (a<sup>(a↑↑k)</sup>) % m = powMod(a,a↑↑k %m,m)<br>所以，对于模m的余数，每次用a % m 替换 a，(k+1)就可以降到k。从而得到代码：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">long</span> <span class="title">hyper_exp2</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> k, <span class="keyword">long</span> m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (k == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> powerMod(a, hyper_exp2(a, k - <span class="number">1</span>, m), m);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="非递归方法：">非递归方法：</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">    System.out.println(hyper_exp(<span class="number">1777</span>, <span class="number">1855</span>, <span class="number">100000000</span>));</span><br><span class="line">    System.out.println(<span class="string">"time consumed:"</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">long</span> <span class="title">hyper_exp</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> k, <span class="keyword">long</span> m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> temp = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        temp = powerMod(a, temp, m);</span><br><span class="line">        k--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -126,6 +127,7 @@
 <li>See also, <a href="https://projecteuler.net/problem=97" target="_blank" rel="external">Project Euler 97 Solution: Find the last ten digits of the non-Mersenne prime: 28433 × 2<sup>7830457</sup> + 1.</a></li>
 </ul>
 <p><a href="http://blog.csdn.net/chen77716/article/details/7093600" target="_blank" rel="external">参考1-幂取模算法</a><br><a href="http://blog.dreamshire.com/project-euler-188-solution/" target="_blank" rel="external">参考2-</a><br><a href="https://en.wikipedia.org/wiki/Modular_exponentiation" target="_blank" rel="external">Montgomery算法</a></p>
+<p><img src="https://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler profile"></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -148,7 +150,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://cwjcsu.gitcafe.io/2015/10/09/PE188/" data-title="Project Euler 188-求超指数的最后8位-大数求余 | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
+	  <div data-url="http://cwjcsu.gitcafe.io/2015/10/09/PE188/" data-title="Project Euler Problem 188-求超指数的最后8位-大数求余 | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -162,18 +164,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/10/09/PE48/" title="Project Euler 48 - 求大数的模">
+ <a href="/2015/10/09/PE48/" title="Project Euler Problem 48 - 求大数的模">
   <strong>上一篇：</strong><br/>
   <span>
-  Project Euler 48 - 求大数的模</span>
+  Project Euler Problem 48 - 求大数的模</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/10/09/PE206/"  title="Project Euler 206 - 寻找特定模式的数的平方根">
+<a href="/2015/10/09/PE206/"  title="Project Euler Problem 206 - 寻找特定模式的数的平方根">
  <strong>下一篇：</strong><br/> 
- <span>Project Euler 206 - 寻找特定模式的数的平方根
+ <span>Project Euler Problem 206 - 寻找特定模式的数的平方根
 </span>
 </a>
 </div>
@@ -182,7 +184,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/10/09/PE188/" data-title="Project Euler 188-求超指数的最后8位-大数求余" data-url="http://cwjcsu.gitcafe.io/2015/10/09/PE188/"></div>
+	<div class="ds-thread" data-thread-key="2015/10/09/PE188/" data-title="Project Euler Problem 188-求超指数的最后8位-大数求余" data-url="http://cwjcsu.gitcafe.io/2015/10/09/PE188/"></div>
 </section>
 
 
@@ -203,7 +205,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">4</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">4</span></li></ul> 
 </div>
  
 
@@ -213,7 +215,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Java/" title="Java">Java<sup>4</sup></a></li>
+				<li><a href="/tags/Java/" title="Java">Java<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Project-Euler/" title="Project Euler">Project Euler<sup>4</sup></a></li>
 			
 		
 			
@@ -225,15 +231,11 @@
 			
 		
 			
-				<li><a href="/tags/Project-Euler/" title="Project Euler">Project Euler<sup>3</sup></a></li>
+				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>2</sup></a></li>
 			
 		
 			
