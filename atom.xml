@@ -4,7 +4,7 @@
   <subtitle><![CDATA[码农，程序员，数学物理科幻爱好者]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cwjcsu.gitcafe.io/"/>
-  <updated>2015-10-10T12:35:28.205Z</updated>
+  <updated>2015-10-11T10:36:35.876Z</updated>
   <id>http://cwjcsu.gitcafe.io/</id>
   
   <author>
@@ -13,6 +13,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[hexo建立github,gitcafe博客并实时同步的要点]]></title>
+    <link href="http://cwjcsu.gitcafe.io/2015/10/11/hexo-github-gitcafe/"/>
+    <id>http://cwjcsu.gitcafe.io/2015/10/11/hexo-github-gitcafe/</id>
+    <published>2015-10-11T05:40:51.000Z</published>
+    <updated>2015-10-11T10:36:35.876Z</updated>
+    <content type="html"><![CDATA[<p>把hexo博客的源码和生成的页面实时同步到github和gitcafe。<br><a id="more"></a></p>
+<p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些关键点，希望可以让你少走弯路。这篇博客的markdown源代码在：<a href="https://gitcafe.com/cwjcsu/cwjcsu/blob/master/source/_posts/hexo-github-gitcafe.md" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu/blob/master/source/_posts/hexo-github-gitcafe.md</a><br>其他涉及的源码在同一个仓库可以找到。</p>
+<h2 id="1，_不一定要购买域名">1， 不一定要购买域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:cwjcsu.github.io。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：你创建的github的仓库名称必须是cwjcsu.github.io,这样你只要在master分支上 仓库根目录push一个index.html，这个页面就可以通过 <a href="http://cwjcsu.github.io" target="_blank" rel="external">http://cwjcsu.github.io</a> 访问到。cwjcsu是我的github用户名，实际操作中替换成你的即可。</p>
+<h2 id="2，使用gh_pages分支创建的页面">2，使用gh_pages分支创建的页面</h2><p>在github上，你可以为你的任何仓库添加一个网站，你只需要：</p>
+<ol>
+<li>把网站的页面push到这个仓库的gh_pages分支；（github有向导可以指引你自动创建这个分支）</li>
+<li>通过<a href="http://username.github.io/reponame" target="_blank" rel="external">http://username.github.io/reponame</a> 进行访问（即<code>http://博客地址/仓库名称/</code>）。我的github博客地址是：<a href="http://cwjcsu.github.io/" target="_blank" rel="external"><code>http://cwjcsu.github.io/</code></a>，而joutable是我一个开源项目的仓库名称，它的页面可以通过<a href="http://cwjcsu.github.io/joutable" target="_blank" rel="external">http://cwjcsu.github.io/joutable</a> 访问到</li>
+</ol>
+<h2 id="3，举例说明">3，举例说明</h2><p>我在github上面的首页是：<a href="https://github.com/cwjcsu" target="_blank" rel="external">https://github.com/cwjcsu</a><br>我在github上的博客源码仓库是：<a href="https://github.com/cwjcsu/cwjcsu.github.io" target="_blank" rel="external">https://github.com/cwjcsu/cwjcsu.github.io</a><br>我在github上博客首页：<a href="http://cwjcsu.github.io" target="_blank" rel="external">http://cwjcsu.github.io</a><br>我的一个开源项目joutable仓库是：<a href="https://github.com/cwjcsu/joutable" target="_blank" rel="external">https://github.com/cwjcsu/joutable</a> ，有两个分支，一个是master放置开源项目源码，一个是gh_pages放置项目介绍页面可以通过<a href="http://cwjcsu.github.io/joutable/" target="_blank" rel="external">http://cwjcsu.github.io/joutable/</a> 访问</p>
+<h2 id="4，hexo搭建">4，hexo搭建</h2><p>hexo主页：<a href="https://hexo.io/" target="_blank" rel="external">https://hexo.io/</a><br>经过试用，hexo用来写博客真是不二选择（配合<a href="http://www.sublimetext.com/3" target="_blank" rel="external">sublime Text3</a> +<a href="http://www.cnblogs.com/IPrograming/p/Sublime-markdown-editor.html" target="_blank" rel="external">Markdown Editing</a>,），具有下面的优势：</p>
+<ol>
+<li>使用markdown，完美支持github-flavored-markdown</li>
+<li>实时本地预览，（#hexo s 创建一个本地http-server在本地实时预览你的博客网站）</li>
+<li>大量丰富的主题模版(<a href="https://hexo.io/themes/" target="_blank" rel="external">https://hexo.io/themes/</a>)</li>
+<li>支持Tex语法(通过mathjax:<a href="https://www.mathjax.org" target="_blank" rel="external">https://www.mathjax.org</a> )</li>
+<li>一键部署到多个站点（这个是我自己写的git脚本，下面有介绍）</li>
+</ol>
+<p>使用hexo需要安装nodejs，npm，以及其他的依赖工具，网上教程不少，本文不赘述（遇到问题可以给我留言），不过特别提醒以下几点：</p>
+<ol>
+<li>.yml 配置文件采用缩进进行分开，key和value之间至少要有一个空格；</li>
+<li>如果hexo生成的html里面有乱码，那是对应的源文件没有用UTF-8保存，你可以使用nodepadd++或者记事本把他们保存为UTF-8，然后重新生成即可；</li>
+<li>使用<code>&lt;!--more--&gt;</code>用来分割摘要和正文，上面部分是摘要，会出现在主页。同wordpress。</li>
+<li>description:xxx 会生成网页的description描述:<code>&lt;meta property=&quot;og:description&quot; content=&quot;xxx&quot;&gt;</code>这是SEO需要注意的地方。</li>
+</ol>
+<h3 id="推荐几篇好文章：">推荐几篇好文章：</h3><p>hexo搭建博客：<a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>hexo的Jacman主题：<a href="https://github.com/wuchong/jacman" target="_blank" rel="external">https://github.com/wuchong/jacman</a><br>hexo配置介绍：<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">https://hexo.io/docs/configuration.html</a><br>markdown大全：<a href="http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/">http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/</a> </p>
+<h2 id="5，hexo部署">5，hexo部署</h2><p>在hexo配置文件_config.yml 有个deploy的配置项目用来配置git仓库，注意type需设置为git，是hexo3中的类型，需要安装：hexo-deployer-git：<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure></p>
+<p>网上的教程大多是hexo2的，很多文章没有指出这个区别。</p>
+<p>#hexo deploy 可以一键部署到github仓库，但是我需要部署到不同仓库，所以没有采用hexo的自动部署，二是写了一个脚本：<br>在hexo生成的博客根目录cwjcsu.github.io下有个脚本：up.sh</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">git commit -am <span class="string">"<span class="variable">$1</span>"</span> </span><br><span class="line">git push github master:master </span><br><span class="line">git push gitcafe master:gitcafe-pages</span><br></pre></td></tr></table></figure>
+<p>于是，可以通过下面命令一键把生成的博客内容更新到github和gitcafe了。<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">#./up<span class="class">.sh</span> <span class="string">"commit comment"</span></span><br></pre></td></tr></table></figure></p>
+<p> 下面是我的git配置文件：cwjcsu.github.io/.git/config</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">[core]</span><br><span class="line">    repositoryformatversion = <span class="number">0</span></span><br><span class="line">    filemode = <span class="keyword">false</span></span><br><span class="line">    bare = <span class="keyword">false</span></span><br><span class="line">    logallrefupdates = <span class="keyword">true</span></span><br><span class="line">    symlinks = <span class="keyword">false</span></span><br><span class="line">    ignorecase = <span class="keyword">true</span></span><br><span class="line">    hideDotFiles = dotGitOnly</span><br><span class="line"></span><br><span class="line">[remote <span class="string">"gitcafe"</span>]</span><br><span class="line">    url = git<span class="variable">@gitcafe</span>.<span class="symbol">com:</span>cwjcsu/cwjcsu.git</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/gitcafe/*</span></span><br><span class="line"></span><br><span class="line">[remote <span class="string">"github"</span>]</span><br><span class="line">    url = git<span class="variable">@github</span>.<span class="symbol">com:</span>cwjcsu/cwjcsu.github.io.git</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/github/*</span></span><br><span class="line">    </span><br><span class="line">[branch <span class="string">"master"</span>]</span><br><span class="line">    remote = github</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure>
+<p> 可以看到有两个remote：github和gitcafe，分别配置github和gitcafe上面我的博客所在的仓库地址。up.sh脚本中gitcafe的分支是gitcafe-pages而不是master，仓库名称也不是域名而是直接用户名。这是因为gitcafe博客与github博客略有不同，下面会介绍。<br> 为了避免每次push都提示你输入用户名和密码，你需要在github和gitcafe中添加你的公钥，具体操作本文不赘述。[user]部分我没有贴出来。</p>
+<h2 id="6,gitcafe博客">6,gitcafe博客</h2><p> 与github不同的是，创建gitcafe的博客，<strong>你只需要创建一个和你的用户名一样的仓库，然后把页面push到这个仓库的gitcafe-pages分支即可</strong>，然后把源码push到这个分支的master。<br> 比如：<br> 博客所在仓库是：<a href="https://gitcafe.com/cwjcsu/cwjcsu" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu</a><br> 博客源码的分支是master：<a href="https://gitcafe.com/cwjcsu/cwjcsu/tree/master" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu/tree/master</a><br> 博客页面分支是gitcafe-pages：<a href="https://gitcafe.com/cwjcsu/cwjcsu/tree/gitcafe-pages" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu/tree/gitcafe-pages</a></p>
+<p> 这两个分支与github上两个仓库代码是同一份，我又写了个脚本，用来实时push博客源码到两个仓库：blog/up.sh: (blog是博客源码所在目录)<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">git commit -am <span class="string">"<span class="variable">$1</span>"</span> </span><br><span class="line">git push github master:master </span><br><span class="line">git push gitcafe master:master</span><br></pre></td></tr></table></figure></p>
+<p>blog/.git/config:<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">[core]</span><br><span class="line">    repositoryformatversion = <span class="number">0</span></span><br><span class="line">    filemode = <span class="keyword">false</span></span><br><span class="line">    bare = <span class="keyword">false</span></span><br><span class="line">    logallrefupdates = <span class="keyword">true</span></span><br><span class="line">    symlinks = <span class="keyword">false</span></span><br><span class="line">    ignorecase = <span class="keyword">true</span></span><br><span class="line">    hideDotFiles = dotGitOnly</span><br><span class="line"></span><br><span class="line">[remote <span class="string">"gitcafe"</span>]</span><br><span class="line">    url = git<span class="variable">@gitcafe</span>.<span class="symbol">com:</span>cwjcsu/cwjcsu.git</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/gitcafe/*</span></span><br><span class="line"></span><br><span class="line">[remote <span class="string">"github"</span>]</span><br><span class="line">    url = git<span class="variable">@github</span>.<span class="symbol">com:</span>cwjcsu/blog.git</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/github/*</span></span><br><span class="line">    </span><br><span class="line">[branch <span class="string">"master"</span>]</span><br><span class="line">    remote = github</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure></p>
+<p>[user]部分我没有贴出来。</p>
+<h2 id="7,配置评论系统和百度统计">7,配置评论系统和百度统计</h2><p>我使用了国内很火的一个评论系统：<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>,注册、添加站点后，只需要把ID设置到hexo主题的_config.yml文件里面即可（注意不是hexo的配置文件而是themes/jacman/_config.yml，jacman是我使用的一个主题）。添加百度统计网上教程很多不赘述。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[把hexo博客的源码和生成的页面实时同步到github和gitcafe。]]>
+    
+    </summary>
+    
+      <category term="blogs" scheme="http://cwjcsu.gitcafe.io/tags/blogs/"/>
+    
+      <category term="github" scheme="http://cwjcsu.gitcafe.io/tags/github/"/>
+    
+      <category term="hexo" scheme="http://cwjcsu.gitcafe.io/tags/hexo/"/>
+    
+      <category term="工具" scheme="http://cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n]]></title>
@@ -96,41 +156,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Project Euler Problem 48 - 求大数的模]]></title>
-    <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE48/"/>
-    <id>http://cwjcsu.gitcafe.io/2015/10/09/PE48/</id>
-    <published>2015-10-09T11:36:36.000Z</published>
-    <updated>2015-10-10T12:35:28.209Z</updated>
-    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=48" target="_blank" rel="external">Project Euler 48</a> ,获取大数 1^1 + 2^2 + … + 1000^1000 的最后10个数字<br><a id="more"></a></p>
-<h2 id="暴力法">暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">static</span> <span class="keyword">String </span><span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    <span class="keyword">String </span>s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="使用幂模运算规则">使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="preprocessor">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="preprocessor">%</span> p</span><br></pre></td></tr></table></figure></p>
-<p>所以, (1<sup>1</sup>+ 2<sup>2</sup>+ … + 1000<sup>1000</sup>) % m = (1<sup>1</sup> % m + 2<sup>2</sup> % m + … + 1000<sup>1000</sup> % m) % m </p>
-<p>用BigInteger实现<a href="/2015/10/09/PE188/">powerMod方法</a>：<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static BigInteger powerMod(BigInteger <span class="keyword">n</span>, BigInteger p, BigInteger <span class="keyword">m</span>) &#123;</span><br><span class="line">    BigInteger r = <span class="keyword">n</span>.<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">    BigInteger tmp = BigInteger.<span class="keyword">ONE</span>;</span><br><span class="line">    <span class="keyword">while</span> (p.compareTo(BigInteger.<span class="keyword">ONE</span>) &gt; 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((p.byteValue() &amp; 1) != 0) &#123;<span class="comment">// p 是奇数，则</span></span><br><span class="line">            tmp = (tmp.multiply(r)).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        r = r.multiply(r).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        p = p.divide(BigInteger.valueOf(2L));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r.multiply(tmp).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="实现PE48">实现PE48</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">// 9110846700</span></span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">         System.out.println(usePowerMod(<span class="number">1000</span>));</span><br><span class="line"><span class="comment">//      System.err.println(bruteForce(1000));</span></span><br><span class="line">        System.out.println(<span class="string">"time consumed : "</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">usePowerMod</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        BigInteger N = BigInteger.valueOf(n);</span><br><span class="line">        BigInteger S = BigInteger.ZERO;</span><br><span class="line">        BigInteger m = BigInteger.valueOf((<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span> (BigInteger i = BigInteger.ONE; i.compareTo(N) &lt;= <span class="number">0</span>; i = i.add(BigInteger.ONE)) &#123;</span><br><span class="line">            S = S.add(powerMod(i, i, m));</span><br><span class="line">        &#125;</span><br><span class="line">        S = S.mod(m);</span><br><span class="line">        String s = S.toString(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="输出">输出</h2><p>使用幂模运算规则的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">124</span> ms</span><br></pre></td></tr></table></figure></p>
-<p>使用暴力法的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">89</span> ms</span><br></pre></td></tr></table></figure></p>
-<h2 id="小结">小结</h2><p>发现暴力法速度更快，原因估计是powerMod(BigInteger,BigInteger,BigInteger)创建了太多的重量级BigInteger导致的。</p>
-<ul>
-<li>See also, <a href="/2015/10/09/PE188/">Project Euler 188 Solution: Find the last 8 digits of 1777↑↑1855.</a></li>
-<li>See also, <a href="https://projecteuler.net/problem=97" target="_blank" rel="external">Project Euler 97 : Find the last ten digits of the non-Mersenne prime: 28433 × 2<sup>7830457</sup> + 1.</a></li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[Project Euler 48 - 求大数的模]]>
-    
-    </summary>
-    
-      <category term="Java" scheme="http://cwjcsu.gitcafe.io/tags/Java/"/>
-    
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/tags/Project-Euler/"/>
-    
-      <category term="幂模运算" scheme="http://cwjcsu.gitcafe.io/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
-    
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/categories/Project-Euler/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Project Euler Problem 188-求超指数的最后8位-大数求余]]></title>
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE188/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/PE188/</id>
@@ -178,6 +203,41 @@
   </entry>
   
   <entry>
+    <title><![CDATA[Project Euler Problem 48 - 求大数的模]]></title>
+    <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE48/"/>
+    <id>http://cwjcsu.gitcafe.io/2015/10/09/PE48/</id>
+    <published>2015-10-09T11:36:36.000Z</published>
+    <updated>2015-10-10T12:35:28.209Z</updated>
+    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=48" target="_blank" rel="external">Project Euler 48</a> ,获取大数 1^1 + 2^2 + … + 1000^1000 的最后10个数字<br><a id="more"></a></p>
+<h2 id="暴力法">暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">static</span> <span class="keyword">String </span><span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    <span class="keyword">String </span>s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用幂模运算规则">使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="preprocessor">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="preprocessor">%</span> p</span><br></pre></td></tr></table></figure></p>
+<p>所以, (1<sup>1</sup>+ 2<sup>2</sup>+ … + 1000<sup>1000</sup>) % m = (1<sup>1</sup> % m + 2<sup>2</sup> % m + … + 1000<sup>1000</sup> % m) % m </p>
+<p>用BigInteger实现<a href="/2015/10/09/PE188/">powerMod方法</a>：<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static BigInteger powerMod(BigInteger <span class="keyword">n</span>, BigInteger p, BigInteger <span class="keyword">m</span>) &#123;</span><br><span class="line">    BigInteger r = <span class="keyword">n</span>.<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">    BigInteger tmp = BigInteger.<span class="keyword">ONE</span>;</span><br><span class="line">    <span class="keyword">while</span> (p.compareTo(BigInteger.<span class="keyword">ONE</span>) &gt; 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((p.byteValue() &amp; 1) != 0) &#123;<span class="comment">// p 是奇数，则</span></span><br><span class="line">            tmp = (tmp.multiply(r)).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        r = r.multiply(r).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        p = p.divide(BigInteger.valueOf(2L));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r.multiply(tmp).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现PE48">实现PE48</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">// 9110846700</span></span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">         System.out.println(usePowerMod(<span class="number">1000</span>));</span><br><span class="line"><span class="comment">//      System.err.println(bruteForce(1000));</span></span><br><span class="line">        System.out.println(<span class="string">"time consumed : "</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">usePowerMod</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        BigInteger N = BigInteger.valueOf(n);</span><br><span class="line">        BigInteger S = BigInteger.ZERO;</span><br><span class="line">        BigInteger m = BigInteger.valueOf((<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span> (BigInteger i = BigInteger.ONE; i.compareTo(N) &lt;= <span class="number">0</span>; i = i.add(BigInteger.ONE)) &#123;</span><br><span class="line">            S = S.add(powerMod(i, i, m));</span><br><span class="line">        &#125;</span><br><span class="line">        S = S.mod(m);</span><br><span class="line">        String s = S.toString(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="输出">输出</h2><p>使用幂模运算规则的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">124</span> ms</span><br></pre></td></tr></table></figure></p>
+<p>使用暴力法的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">89</span> ms</span><br></pre></td></tr></table></figure></p>
+<h2 id="小结">小结</h2><p>发现暴力法速度更快，原因估计是powerMod(BigInteger,BigInteger,BigInteger)创建了太多的重量级BigInteger导致的。</p>
+<ul>
+<li>See also, <a href="/2015/10/09/PE188/">Project Euler 188 Solution: Find the last 8 digits of 1777↑↑1855.</a></li>
+<li>See also, <a href="https://projecteuler.net/problem=97" target="_blank" rel="external">Project Euler 97 : Find the last ten digits of the non-Mersenne prime: 28433 × 2<sup>7830457</sup> + 1.</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[Project Euler 48 - 求大数的模]]>
+    
+    </summary>
+    
+      <category term="Java" scheme="http://cwjcsu.gitcafe.io/tags/Java/"/>
+    
+      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/tags/Project-Euler/"/>
+    
+      <category term="幂模运算" scheme="http://cwjcsu.gitcafe.io/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
+    
+      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/categories/Project-Euler/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Project Euler Problem 206 - 寻找特定模式的数的平方根]]></title>
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE206/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/PE206/</id>
@@ -209,8 +269,8 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/joutable/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/joutable/</id>
     <published>2015-10-09T08:50:52.000Z</published>
-    <updated>2015-10-09T11:34:45.192Z</updated>
-    <content type="html"><![CDATA[<p>一个Java写的把简单表格格式化打印到控制台的工具，自动对齐和换行，可以定制标题填充字符、表头分隔字符。<a href="https://github.com/cwjcsu/joutable/" target="_blank" rel="external">Click Here to see more detail</a><br><a id="more"></a></p>
+    <updated>2015-10-11T08:48:30.742Z</updated>
+    <content type="html"><![CDATA[<p>一个Java写的把简单表格格式化打印到控制台的工具，自动对齐和换行，可以定制标题填充字符、表头分隔字符。<a href="https://cwjcsu.github.io/joutable/" target="_blank" rel="external">Click Here to see more detail</a><br><a id="more"></a></p>
 <h1 id="An_simple_and_pretty_formatted_Table_in_Java">An simple and pretty formatted Table in Java</h1><p>You may want to print out some simple table (with title,headers) to the console with a readable format,then joutable is your best choise.</p>
 <h1 id="Usages">Usages</h1><h2 id="How_to_Use_joutable_?">How to Use joutable ?</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">DefaultTable dt = <span class="keyword">new</span> DefaultTable();</span><br><span class="line">dt.setTitle(<span class="string">"Aacademic Record Table"</span>);</span><br><span class="line">dt.setHeaders(<span class="keyword">new</span> String[] &#123; <span class="string">"Id"</span>, <span class="string">"Name"</span>, <span class="string">"Grade"</span>, <span class="string">"Remark"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1001</span>, <span class="string">"Jack Bower"</span>, <span class="string">"A"</span>, <span class="string">"Good at fighting"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1002</span>, <span class="string">"Vincent Willem  Van Gogh"</span>, <span class="string">"A+"</span>,<span class="string">"Good at painting"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1003</span>, <span class="string">"Jone Doe"</span>, <span class="string">"B"</span>, <span class="string">"Noop"</span> &#125;);</span><br><span class="line">DefaultTableFormatter dtf = <span class="keyword">new</span> DefaultTableFormatter(<span class="number">100</span>, <span class="number">2</span>);</span><br><span class="line">System.out.println(dtf.format(dt));</span><br></pre></td></tr></table></figure>
 <p>this will print a pretty formatted table :<br><figure class="highlight brainfuck"><table><tr><td class="code"><pre><span class="line"><span class="comment">===============</span> <span class="comment">Aacademic</span> <span class="comment">Record</span> <span class="comment">Table</span> <span class="comment">===============</span></span><br><span class="line"><span class="comment">Id</span>     <span class="comment">Name</span>                      <span class="comment">Grade</span>  <span class="comment">Remark</span>          </span><br><span class="line"><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>  <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>  <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>  <span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>  </span><br><span class="line"><span class="comment">1001</span>   <span class="comment">Jack</span> <span class="comment">Bower</span>                <span class="comment">A</span>      <span class="comment">Good</span> <span class="comment">at</span> <span class="comment">fighting</span></span><br><span class="line"><span class="comment">1002</span>   <span class="comment">Vincent</span> <span class="comment">Willem</span>  <span class="comment">Van</span> <span class="comment">Gogh</span>  <span class="comment">A</span><span class="literal">+</span>     <span class="comment">Good</span> <span class="comment">at</span> <span class="comment">painting</span></span><br><span class="line"><span class="comment">1003</span>   <span class="comment">Jone</span> <span class="comment">Doe</span>                  <span class="comment">B</span>      <span class="comment">Noop</span></span><br></pre></td></tr></table></figure></p>
@@ -251,7 +311,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/09/27/tips-about-github-blog/"/>
     <id>http://cwjcsu.gitcafe.io/2015/09/27/tips-about-github-blog/</id>
     <published>2015-09-27T15:40:51.000Z</published>
-    <updated>2015-09-27T15:59:37.979Z</updated>
+    <updated>2015-10-11T10:30:49.414Z</updated>
     <content type="html"><![CDATA[<p>本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。<br><a id="more"></a></p>
 <h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
 <h2 id="不一定要注册域名">不一定要注册域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:<code>&lt;username&gt;.github.io</code>。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：<strong>你创建的github的Repository name必须是<code>&lt;username&gt;.github.io</code></strong>,这样你只要在<strong>master</strong>分支上仓库根目录上push一个<code>index.html</code>，这个文件就可以通过<code>http://&lt;username&gt;.github.io</code>访问到。<br><code>&lt;username&gt;</code>是你的github用户名。</p>
@@ -295,11 +355,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Markdown学习]]></title>
+    <title><![CDATA[Markdown标准语法与GitHub Flavored Markdown语法大全]]></title>
     <link href="http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/"/>
     <id>http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/</id>
     <published>2015-09-26T07:01:19.000Z</published>
-    <updated>2015-10-10T12:35:28.211Z</updated>
+    <updated>2015-10-11T09:57:04.451Z</updated>
     <content type="html"><![CDATA[<p>本文介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器<br><a id="more"></a></p>
 <h1 id="标准Markdwon语法">标准Markdwon语法</h1><p><strong>Markdown</strong>是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML(或者pdf、docx)文档”。Markdown现在拥有非常多的扩展，而且标准化已经几乎不可能。有一个介绍标准化markdown的<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">网站</a>。里面的<a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Syntax</a>详细介绍了标准markdown所有语法。</p>
 <h2 id="块元素(Block_Elements)">块元素(Block Elements)</h2><h3 id="文档标头（HEADERS）">文档标头（HEADERS）</h3><p>有两种类型的标题：Setext-style headers  和 Atx-style headers。<br>（1），Setext-style headers 的markdwon代码：<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">This is H1</span><br><span class="line">=</span><br><span class="line"><span class="header">This is H1</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure></p>
@@ -421,7 +481,7 @@
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#97;&#x64;&#100;&#x72;&#x65;&#115;&#115;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#x2e;&#99;&#111;&#109;">&#97;&#x64;&#100;&#x72;&#x65;&#115;&#115;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#x2e;&#99;&#111;&#109;</a></p>
+<p><a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#x61;&#100;&#100;&#114;&#101;&#115;&#x73;&#x40;&#x65;&#120;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#99;&#111;&#x6d;">&#x61;&#100;&#100;&#114;&#101;&#115;&#x73;&#x40;&#x65;&#120;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#99;&#111;&#x6d;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
