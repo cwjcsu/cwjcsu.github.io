@@ -4,7 +4,7 @@
   <subtitle><![CDATA[码农，程序员，数学物理科幻爱好者]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://cwjcsu.gitcafe.io/"/>
-  <updated>2015-10-10T10:36:55.666Z</updated>
+  <updated>2015-10-10T12:35:28.205Z</updated>
   <id>http://cwjcsu.gitcafe.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/10/PE318/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/10/PE318/</id>
     <published>2015-10-10T07:40:11.000Z</published>
-    <updated>2015-10-10T10:36:55.666Z</updated>
+    <updated>2015-10-10T12:35:28.205Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=318" target="_blank" rel="external">Project Euler Problem 318</a> - 涉及二项式分解、接近整数、Pisot数等数学知识 ,<em>Completed on 2015-10-10  15:00</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>Consider the real number √2+√3.<br>When we calculate the even powers of √2+√3 we get:<br>(√2+√3)<sup>2</sup> = 9.898979485566356…<br>(√2+√3)<sup>4</sup> = 97.98979485566356…<br>(√2+√3)<sup>6</sup> = 969.998969071069263…<br>(√2+√3)<sup>8</sup> = 9601.99989585502907…<br>(√2+√3)<sup>10</sup> = 95049.999989479221…<br>(√2+√3)<sup>11</sup> = 940897.9999989371855…<br>(√2+√3)<sup>14</sup> = 9313929.99999989263…<br>(√2+√3)<sup>16</sup> = 92198401.99999998915…</p>
 <p>It looks like that the number of consecutive nines at the beginning of the fractional part of these powers is non-decreasing.<br>In fact it can be proven that the fractional part of (√2+√3)<sup>2n</sup> approaches 1 for large n.</p>
@@ -63,7 +63,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/10/PE455/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/10/PE455/</id>
     <published>2015-10-10T01:40:11.000Z</published>
-    <updated>2015-10-10T10:37:01.250Z</updated>
+    <updated>2015-10-10T12:35:28.206Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=455" target="_blank" rel="external">Project Euler Problem 455 - Powers With Trailing Digits</a> ,<em>Completed on 2015-10-10  00:50</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>Let f(n) be the largest positive integer x less than 10<sup>9</sup> such that the last 9 digits of n<sup>x</sup> form the number x (including leading zeros), or zero if no such integer exists.</p>
 <p>For example:</p>
@@ -100,7 +100,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE48/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/PE48/</id>
     <published>2015-10-09T11:36:36.000Z</published>
-    <updated>2015-10-10T10:37:06.329Z</updated>
+    <updated>2015-10-10T12:35:28.209Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=48" target="_blank" rel="external">Project Euler 48</a> ,获取大数 1^1 + 2^2 + … + 1000^1000 的最后10个数字<br><a id="more"></a></p>
 <h2 id="暴力法">暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">static</span> <span class="keyword">String </span><span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    <span class="keyword">String </span>s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="使用幂模运算规则">使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="preprocessor">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="preprocessor">%</span> p</span><br></pre></td></tr></table></figure></p>
@@ -135,7 +135,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE188/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/PE188/</id>
     <published>2015-10-09T11:36:36.000Z</published>
-    <updated>2015-10-10T10:36:46.202Z</updated>
+    <updated>2015-10-10T12:35:28.203Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=188" target="_blank" rel="external">Project Euler 188</a> ,求超指数1777↑↑1855的最后8位。<em>Completed on 2013-04-28  11:27</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>The hyperexponentiation or tetration of a number <code>a</code> by a positive integer <code>b</code>, denoted by <code>a↑↑b</code> or <sup>b</sup>a, is recursively defined by:</p>
 <p>a↑↑1 = a,<br>a↑↑(k+1) = a<sup>(a↑↑k)</sup>.</p>
@@ -182,7 +182,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/PE206/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/PE206/</id>
     <published>2015-10-09T09:45:55.000Z</published>
-    <updated>2015-10-10T10:36:51.793Z</updated>
+    <updated>2015-10-10T12:35:28.204Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=206" target="_blank" rel="external">Project Euler 206</a>,寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根，其中’_’是一个数字。<em>Completed on 2013-04-25  17:35</em><br><a id="more"></a></p>
 <h2 id="分析">分析</h2><p>1_2_3_4_5_6_7_8_9_0格式的平方数，由于末尾是0，则平方根肯定是0结尾的，具有这个格式的最大数是：192939495969798990。由于平方根末尾是0，则这个数末尾必然是00，即这个数的格式为：1_2_3_4_5_6_7_8_900。</p>
 <h2 id="穷举法">穷举法</h2><p>经过分析，可以从具有这个格式的最大数字19293949596979899开始往下搜索，如果确定是平方数，则找到了平方根。<br>这个数超过了long的范围，所以要用<a href="http://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html" target="_blank" rel="external"><code>BigInteger</code></a>。</p>
@@ -209,7 +209,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/10/09/joutable/"/>
     <id>http://cwjcsu.gitcafe.io/2015/10/09/joutable/</id>
     <published>2015-10-09T08:50:52.000Z</published>
-    <updated>2015-10-09T09:01:21.757Z</updated>
+    <updated>2015-10-09T11:34:45.192Z</updated>
     <content type="html"><![CDATA[<p>一个Java写的把简单表格格式化打印到控制台的工具，自动对齐和换行，可以定制标题填充字符、表头分隔字符。<a href="https://github.com/cwjcsu/joutable/" target="_blank" rel="external">Click Here to see more detail</a><br><a id="more"></a></p>
 <h1 id="An_simple_and_pretty_formatted_Table_in_Java">An simple and pretty formatted Table in Java</h1><p>You may want to print out some simple table (with title,headers) to the console with a readable format,then joutable is your best choise.</p>
 <h1 id="Usages">Usages</h1><h2 id="How_to_Use_joutable_?">How to Use joutable ?</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">DefaultTable dt = <span class="keyword">new</span> DefaultTable();</span><br><span class="line">dt.setTitle(<span class="string">"Aacademic Record Table"</span>);</span><br><span class="line">dt.setHeaders(<span class="keyword">new</span> String[] &#123; <span class="string">"Id"</span>, <span class="string">"Name"</span>, <span class="string">"Grade"</span>, <span class="string">"Remark"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1001</span>, <span class="string">"Jack Bower"</span>, <span class="string">"A"</span>, <span class="string">"Good at fighting"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1002</span>, <span class="string">"Vincent Willem  Van Gogh"</span>, <span class="string">"A+"</span>,<span class="string">"Good at painting"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1003</span>, <span class="string">"Jone Doe"</span>, <span class="string">"B"</span>, <span class="string">"Noop"</span> &#125;);</span><br><span class="line">DefaultTableFormatter dtf = <span class="keyword">new</span> DefaultTableFormatter(<span class="number">100</span>, <span class="number">2</span>);</span><br><span class="line">System.out.println(dtf.format(dt));</span><br></pre></td></tr></table></figure>
@@ -251,7 +251,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/09/27/tips-about-github-blog/"/>
     <id>http://cwjcsu.gitcafe.io/2015/09/27/tips-about-github-blog/</id>
     <published>2015-09-27T15:40:51.000Z</published>
-    <updated>2015-09-28T02:20:38.863Z</updated>
+    <updated>2015-09-27T15:59:37.979Z</updated>
     <content type="html"><![CDATA[<p>本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。<br><a id="more"></a></p>
 <h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
 <h2 id="不一定要注册域名">不一定要注册域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:<code>&lt;username&gt;.github.io</code>。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：<strong>你创建的github的Repository name必须是<code>&lt;username&gt;.github.io</code></strong>,这样你只要在<strong>master</strong>分支上仓库根目录上push一个<code>index.html</code>，这个文件就可以通过<code>http://&lt;username&gt;.github.io</code>访问到。<br><code>&lt;username&gt;</code>是你的github用户名。</p>
@@ -299,7 +299,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/"/>
     <id>http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/</id>
     <published>2015-09-26T07:01:19.000Z</published>
-    <updated>2015-10-10T04:07:23.763Z</updated>
+    <updated>2015-10-10T12:35:28.211Z</updated>
     <content type="html"><![CDATA[<p>本文介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器<br><a id="more"></a></p>
 <h1 id="标准Markdwon语法">标准Markdwon语法</h1><p><strong>Markdown</strong>是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML(或者pdf、docx)文档”。Markdown现在拥有非常多的扩展，而且标准化已经几乎不可能。有一个介绍标准化markdown的<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">网站</a>。里面的<a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Syntax</a>详细介绍了标准markdown所有语法。</p>
 <h2 id="块元素(Block_Elements)">块元素(Block Elements)</h2><h3 id="文档标头（HEADERS）">文档标头（HEADERS）</h3><p>有两种类型的标题：Setext-style headers  和 Atx-style headers。<br>（1），Setext-style headers 的markdwon代码：<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">This is H1</span><br><span class="line">=</span><br><span class="line"><span class="header">This is H1</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure></p>
@@ -421,7 +421,7 @@
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x61;&#100;&#100;&#x72;&#101;&#115;&#x73;&#64;&#101;&#x78;&#x61;&#109;&#x70;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#109;">&#x61;&#100;&#100;&#x72;&#101;&#115;&#x73;&#64;&#101;&#x78;&#x61;&#109;&#x70;&#x6c;&#x65;&#x2e;&#99;&#x6f;&#109;</a></p>
+<p><a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#97;&#x64;&#100;&#x72;&#x65;&#115;&#115;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#x2e;&#99;&#111;&#109;">&#97;&#x64;&#100;&#x72;&#x65;&#115;&#115;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#x2e;&#99;&#111;&#109;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
@@ -539,7 +539,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/09/25/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%97%A5%E5%BF%97/"/>
     <id>http://cwjcsu.gitcafe.io/2015/09/25/第一篇日志/</id>
     <published>2015-09-25T11:14:17.000Z</published>
-    <updated>2015-09-28T02:20:38.873Z</updated>
+    <updated>2015-09-26T11:03:54.415Z</updated>
     <content type="html"><![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
 <p>通过下面的命令，就可以创建新文章<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo new 新的开始</span><br><span class="line">[info] File created at D:\workspace\javascript\nodejs-hexo\<span class="built_in">source</span>\_posts\新的开始.md</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
@@ -575,7 +575,7 @@
     <link href="http://cwjcsu.gitcafe.io/2015/09/25/hello-world/"/>
     <id>http://cwjcsu.gitcafe.io/2015/09/25/hello-world/</id>
     <published>2015-09-25T11:14:17.000Z</published>
-    <updated>2015-09-28T02:20:38.836Z</updated>
+    <updated>2015-09-26T11:01:31.219Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <a id="more"></a>
 <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
