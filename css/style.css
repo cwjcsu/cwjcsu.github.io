@@ -640,7 +640,7 @@ header nav ul li a:hover {
 }
 #main article.post-expand {
   background: #fafafa;
-  margin-bottom: 3.5em;
+  margin-bottom: 1em;
 }
 #main article.post-expand .img-logo {
   max-width: 180px;
@@ -878,10 +878,10 @@ header nav ul li a:hover {
     border-bottom: 1px solid #dbdbdb;
   }
 }
-article header.article-info >h1 {
+article header.article-info >h2 {
   padding: 0.2em 3%;
   font-size: 170%;
-  line-height: 1.5;
+  line-height: 120%;
   word-wrap: break-word;
   word-break: normal;
   -webkit-font-smoothing: antialiased;
@@ -889,8 +889,8 @@ article header.article-info >h1 {
   border-left: 5px solid #2ca6cb;
 }
 @media only screen and (min-width: 1024px) {
-  article header.article-info >h1 {
-    font-size: 200%;
+  article header.article-info >h2 {
+    font-size: 220%;
     padding-top: 0.3em;
   }
 }
@@ -927,7 +927,7 @@ article header.article-info >p.article-time:before {
   -moz-osx-font-smoothing: grayscale;
 }
 article .article-content {
-  padding: 1.5em 4%;
+  padding: 0.5em 4%;
   color: #413f3f;
   font-size: 100%;
 }
@@ -1165,6 +1165,9 @@ article .article-content .right {
   margin-left: 1em;
   float: right;
 }
+article.post-expand header.article-info >h2 {
+  font-size: 150%;
+}
 footer.article-footer {
   background: #fafafa;
   padding: 0 4%;
@@ -1317,7 +1320,7 @@ footer.article-footer {
 }
 .article-tags,
 .article-categories {
-  padding: 0.5em 0;
+  padding: 0.2em 0;
   float: left;
 /**width 100%**/
 }
