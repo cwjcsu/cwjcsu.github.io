@@ -4,27 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>第一篇日志 | 一叶知秋-博客</title>
+    <title>Project Euler Problem 206 - 寻找特定模式的数的平方根 | 一叶知秋-博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="cwjcsu@gmail.com">
     
 
     
-    <meta name="description" content="这是新的开始，我用hexo创建了第一篇文章。
-通过下面的命令，就可以创建新文章D:\workspace\javascript\nodejs-hexo&amp;gt;hexo new 新的开始[info] File created at D:\workspace\javascript\nodejs-hexo\source\_posts\新的开始.md">
+    <meta name="description" content="Project Euler 206 - 寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一篇日志">
-<meta property="og:url" content="http://cwjcsu.gitcafe.io/2015/09/25/第一篇日志/index.html">
+<meta property="og:title" content="Project Euler Problem 206 - 寻找特定模式的数的平方根">
+<meta property="og:url" content="http://cwjcsu.gitcafe.io/Project-Euler/PE206/index.html">
 <meta property="og:site_name" content="一叶知秋-博客">
-<meta property="og:description" content="这是新的开始，我用hexo创建了第一篇文章。
-通过下面的命令，就可以创建新文章D:\workspace\javascript\nodejs-hexo&amp;gt;hexo new 新的开始[info] File created at D:\workspace\javascript\nodejs-hexo\source\_posts\新的开始.md">
-<meta property="og:image" content="http://7xn1o8.com1.z0.glb.clouddn.com/banner.jpg">
-<meta property="og:updated_time" content="2015-09-26T11:03:54.415Z">
+<meta property="og:description" content="Project Euler 206 - 寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根">
+<meta property="og:updated_time" content="2015-10-10T10:36:51.793Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一篇日志">
-<meta name="twitter:description" content="这是新的开始，我用hexo创建了第一篇文章。
-通过下面的命令，就可以创建新文章D:\workspace\javascript\nodejs-hexo&amp;gt;hexo new 新的开始[info] File created at D:\workspace\javascript\nodejs-hexo\source\_posts\新的开始.md">
+<meta name="twitter:title" content="Project Euler Problem 206 - 寻找特定模式的数的平方根">
+<meta name="twitter:description" content="Project Euler 206 - 寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根">
 
     
     <link rel="alternative" href="/atom.xml" title="一叶知秋-博客" type="application/atom+xml">
@@ -85,16 +81,16 @@
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
-  <h1 itemprop="name">
+  <h2 itemprop="name">
     
-      <a href="/2015/09/25/第一篇日志/" title="第一篇日志" itemprop="url">第一篇日志</a>
-  </h1>
+      <a href="/Project-Euler/PE206/" title="Project Euler Problem 206 - 寻找特定模式的数的平方根" itemprop="url">Project Euler Problem 206 - 寻找特定模式的数的平方根</a>
+  </h2>
   <p class="article-author">By
        
 		<a href="/about" title="cwjcsu@gmail.com" target="_blank" itemprop="author">cwjcsu@gmail.com</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-25T11:14:17.000Z" itemprop="datePublished"> 发表于 2015-09-25</time>
+    <time datetime="2015-10-09T09:45:55.000Z" itemprop="datePublished"> 发表于 2015-10-09</time>
     
   </p>
 </header>
@@ -103,23 +99,15 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-number">1.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码块"><span class="toc-number">2.</span> <span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-number">3.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数学公式"><span class="toc-number">4.</span> <span class="toc-text">数学公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片"><span class="toc-number">5.</span> <span class="toc-text">图片</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#穷举法"><span class="toc-number">2.</span> <span class="toc-text">穷举法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码"><span class="toc-number">2.1.</span> <span class="toc-text">Java代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">2.2.</span> <span class="toc-text">输出</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
-<p>通过下面的命令，就可以创建新文章<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo new 新的开始</span><br><span class="line">[info] File created at D:\workspace\javascript\nodejs-hexo\<span class="built_in">source</span>\_posts\新的开始.md</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>感觉非常好。</p>
-<p>在命令行，启动服务器:<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo server</span><br><span class="line">[info] Hexo is running at http://localhost:<span class="number">4000</span>/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></p>
-<p>通过浏览器打开， <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> ，就出现了我们新写的文章。</p>
-<h2 id="引用">引用</h2><blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
-<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="external">Welcome to Island Marketing</a></cite></footer></blockquote>
-<h2 id="代码块">代码块</h2><figure class="highlight cpp"><figcaption><span>.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">Underscore.js</a></figcaption><table><tr><td class="code"><pre><span class="line">.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, ‘’, <span class="number">3</span>]);</span><br><span class="line">=&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-<h2 id="链接">链接</h2><a href="http://cwjcsu.github.io" title="粉丝日志" target="_blank">粉丝日志</a>
-<h2 id="数学公式">数学公式</h2><p>$$J_\alpha(x)=\sum _{m=0}^\infty \frac{(-1)^ m}{m! \, \Gamma (m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha }$$</p>
-<h2 id="图片">图片</h2><p><img src="http://7xn1o8.com1.z0.glb.clouddn.com/banner.jpg" alt="猜一猜这是哪里？"></p>
-<p>TODO</p>
+		<p><a href="https://projecteuler.net/problem=206" target="_blank" rel="external">Project Euler 206</a>,寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根，其中’_’是一个数字。<em>Completed on 2013-04-25  17:35</em><br><a id="more"></a></p>
+<h2 id="分析">分析</h2><p>1_2_3_4_5_6_7_8_9_0格式的平方数，由于末尾是0，则平方根肯定是0结尾的，具有这个格式的最大数是：192939495969798990。由于平方根末尾是0，则这个数末尾必然是00，即这个数的格式为：1_2_3_4_5_6_7_8_900。</p>
+<h2 id="穷举法">穷举法</h2><p>经过分析，可以从具有这个格式的最大数字19293949596979899开始往下搜索，如果确定是平方数，则找到了平方根。<br>这个数超过了long的范围，所以要用<a href="http://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html" target="_blank" rel="external"><code>BigInteger</code></a>。</p>
+<h3 id="Java代码">Java代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> PE206 &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">        BigInteger N = <span class="keyword">new</span> BigInteger(<span class="string">"19293949596979899"</span>);</span><br><span class="line">        <span class="keyword">int</span> max = (<span class="keyword">int</span>) Math.<span class="built_in">sqrt</span>(N.doubleValue()) + <span class="number">1</span>;<span class="comment">//平方根可能的最大值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> i = max;; i--) &#123;</span><br><span class="line">            BigInteger I = BigInteger.valueOf(i);</span><br><span class="line">            I = I.<span class="built_in">pow</span>(<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (I.toString().matches(<span class="string">"1.2.3.4.5.6.7.8.9"</span>)) &#123;<span class="comment">//平方数匹配当前模式，则找到目标</span></span><br><span class="line">                System.out.println(i * <span class="number">10</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">                + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">1389019170</span></span><br><span class="line">Time consumed <span class="number">68</span> ms</span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -127,13 +115,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/工具/">工具</a>
+  <a class="article-category-link" href="/categories/Project-Euler/">Project Euler</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Get-Started/">Get Started</a><a href="/tags/hexo/">hexo</a><a href="/tags/jacman/">jacman</a>
+  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/平方数/">平方数</a>
   </div>
 
 </div>
@@ -142,7 +130,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://cwjcsu.gitcafe.io/2015/09/25/第一篇日志/" data-title="第一篇日志 | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
+	  <div data-url="http://cwjcsu.gitcafe.io/Project-Euler/PE206/" data-title="Project Euler Problem 206 - 寻找特定模式的数的平方根 | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -156,18 +144,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/09/26/markdown-learning/" title="Markdown标准语法与GitHub Flavored Markdown语法大全">
+ <a href="/Project-Euler/PE188/" title="Project Euler Problem 188-求超指数的最后8位-大数求余">
   <strong>上一篇：</strong><br/>
   <span>
-  Markdown标准语法与GitHub Flavored Markdown语法大全</span>
+  Project Euler Problem 188-求超指数的最后8位-大数求余</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/09/25/hello-world/"  title="Hell World">
+<a href="/My-Projects/joutable/"  title="joutable - Java格式化打印表格工具">
  <strong>下一篇：</strong><br/> 
- <span>Hell World
+ <span>joutable - Java格式化打印表格工具
 </span>
 </a>
 </div>
@@ -176,7 +164,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/09/25/第一篇日志/" data-title="第一篇日志" data-url="http://cwjcsu.gitcafe.io/2015/09/25/第一篇日志/"></div>
+	<div class="ds-thread" data-thread-key="Project-Euler/PE206/" data-title="Project Euler Problem 206 - 寻找特定模式的数的平方根" data-url="http://cwjcsu.gitcafe.io/Project-Euler/PE206/"></div>
 </section>
 
 
@@ -186,7 +174,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-number">1.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码块"><span class="toc-number">2.</span> <span class="toc-text">代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接"><span class="toc-number">3.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数学公式"><span class="toc-number">4.</span> <span class="toc-text">数学公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片"><span class="toc-number">5.</span> <span class="toc-text">图片</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#穷举法"><span class="toc-number">2.</span> <span class="toc-text">穷举法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码"><span class="toc-number">2.1.</span> <span class="toc-text">Java代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">2.2.</span> <span class="toc-text">输出</span></a></li></ol></li></ol>
  
   </div>
 
@@ -228,27 +216,15 @@
 			
 		
 			
-				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/blogs/" title="blogs">blogs<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/超指数/" title="超指数">超指数<sup>1</sup></a></li>
+				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
 			
 		
 			
@@ -256,11 +232,19 @@
 			
 		
 			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
 			
 		
 			
@@ -272,7 +256,13 @@
 			
 		
 			
-				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+				<li><a href="/tags/超指数/" title="超指数">超指数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
 			
 		
 		</ul>

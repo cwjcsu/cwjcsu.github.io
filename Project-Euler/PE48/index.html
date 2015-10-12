@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Project Euler Problem 455 - Powers With Trailing Digits | 一叶知秋-博客</title>
+    <title>Project Euler Problem 48 - 求大数的模 | 一叶知秋-博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="cwjcsu@gmail.com">
     
 
     
-    <meta name="description" content="Project Euler Problem 455 -">
+    <meta name="description" content="Project Euler 48 - 求大数的模">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Project Euler Problem 455 - Powers With Trailing Digits">
-<meta property="og:url" content="http://cwjcsu.gitcafe.io/2015/10/10/PE455/index.html">
+<meta property="og:title" content="Project Euler Problem 48 - 求大数的模">
+<meta property="og:url" content="http://cwjcsu.gitcafe.io/Project-Euler/PE48/index.html">
 <meta property="og:site_name" content="一叶知秋-博客">
-<meta property="og:description" content="Project Euler Problem 455 -">
-<meta property="og:updated_time" content="2015-10-10T12:35:28.206Z">
+<meta property="og:description" content="Project Euler 48 - 求大数的模">
+<meta property="og:updated_time" content="2015-10-10T10:37:06.329Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Project Euler Problem 455 - Powers With Trailing Digits">
-<meta name="twitter:description" content="Project Euler Problem 455 -">
+<meta name="twitter:title" content="Project Euler Problem 48 - 求大数的模">
+<meta name="twitter:description" content="Project Euler 48 - 求大数的模">
 
     
     <link rel="alternative" href="/atom.xml" title="一叶知秋-博客" type="application/atom+xml">
@@ -81,16 +81,16 @@
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
-  <h1 itemprop="name">
+  <h2 itemprop="name">
     
-      <a href="/2015/10/10/PE455/" title="Project Euler Problem 455 - Powers With Trailing Digits" itemprop="url">Project Euler Problem 455 - Powers With Trailing Digits</a>
-  </h1>
+      <a href="/Project-Euler/PE48/" title="Project Euler Problem 48 - 求大数的模" itemprop="url">Project Euler Problem 48 - 求大数的模</a>
+  </h2>
   <p class="article-author">By
        
 		<a href="/about" title="cwjcsu@gmail.com" target="_blank" itemprop="author">cwjcsu@gmail.com</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-10T01:40:11.000Z" itemprop="datePublished"> 发表于 2015-10-10</time>
+    <time datetime="2015-10-09T11:36:36.000Z" itemprop="datePublished"> 发表于 2015-10-09</time>
     
   </p>
 </header>
@@ -99,25 +99,23 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#递推算法实现"><span class="toc-number">3.</span> <span class="toc-text">递推算法实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决问题"><span class="toc-number">4.</span> <span class="toc-text">解决问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">4.1.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#暴力法"><span class="toc-number">1.</span> <span class="toc-text">暴力法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用幂模运算规则"><span class="toc-number">2.</span> <span class="toc-text">使用幂模运算规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现PE48"><span class="toc-number">3.</span> <span class="toc-text">实现PE48</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出"><span class="toc-number">4.</span> <span class="toc-text">输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
 		
 		</div>
 		
-		<p><a href="https://projecteuler.net/problem=455" target="_blank" rel="external">Project Euler Problem 455 - Powers With Trailing Digits</a> ,<em>Completed on 2015-10-10  00:50</em><br><a id="more"></a></p>
-<h2 id="原题">原题</h2><p>Let f(n) be the largest positive integer x less than 10<sup>9</sup> such that the last 9 digits of n<sup>x</sup> form the number x (including leading zeros), or zero if no such integer exists.</p>
-<p>For example:</p>
+		<p><a href="https://projecteuler.net/problem=48" target="_blank" rel="external">Project Euler 48</a> ,获取大数 1^1 + 2^2 + … + 1000^1000 的最后10个数字<br><a id="more"></a></p>
+<h2 id="暴力法">暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">static</span> <span class="keyword">String </span><span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    <span class="keyword">String </span>s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用幂模运算规则">使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="preprocessor">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="preprocessor">%</span> p</span><br></pre></td></tr></table></figure></p>
+<p>所以, (1<sup>1</sup>+ 2<sup>2</sup>+ … + 1000<sup>1000</sup>) % m = (1<sup>1</sup> % m + 2<sup>2</sup> % m + … + 1000<sup>1000</sup> % m) % m </p>
+<p>用BigInteger实现<a href="/2015/10/09/PE188/">powerMod方法</a>：<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static BigInteger powerMod(BigInteger <span class="keyword">n</span>, BigInteger p, BigInteger <span class="keyword">m</span>) &#123;</span><br><span class="line">    BigInteger r = <span class="keyword">n</span>.<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">    BigInteger tmp = BigInteger.<span class="keyword">ONE</span>;</span><br><span class="line">    <span class="keyword">while</span> (p.compareTo(BigInteger.<span class="keyword">ONE</span>) &gt; 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((p.byteValue() &amp; 1) != 0) &#123;<span class="comment">// p 是奇数，则</span></span><br><span class="line">            tmp = (tmp.multiply(r)).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        r = r.multiply(r).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        p = p.divide(BigInteger.valueOf(2L));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r.multiply(tmp).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现PE48">实现PE48</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">// 9110846700</span></span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">         System.out.println(usePowerMod(<span class="number">1000</span>));</span><br><span class="line"><span class="comment">//      System.err.println(bruteForce(1000));</span></span><br><span class="line">        System.out.println(<span class="string">"time consumed : "</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">usePowerMod</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        BigInteger N = BigInteger.valueOf(n);</span><br><span class="line">        BigInteger S = BigInteger.ZERO;</span><br><span class="line">        BigInteger m = BigInteger.valueOf((<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span> (BigInteger i = BigInteger.ONE; i.compareTo(N) &lt;= <span class="number">0</span>; i = i.add(BigInteger.ONE)) &#123;</span><br><span class="line">            S = S.add(powerMod(i, i, m));</span><br><span class="line">        &#125;</span><br><span class="line">        S = S.mod(m);</span><br><span class="line">        String s = S.toString(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="输出">输出</h2><p>使用幂模运算规则的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">124</span> ms</span><br></pre></td></tr></table></figure></p>
+<p>使用暴力法的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">89</span> ms</span><br></pre></td></tr></table></figure></p>
+<h2 id="小结">小结</h2><p>发现暴力法速度更快，原因估计是powerMod(BigInteger,BigInteger,BigInteger)创建了太多的重量级BigInteger导致的。</p>
 <ul>
-<li>f(4) = 411728896 (4<sup>411728896</sup> = …490411728896)</li>
-<li>f(10) = 0</li>
-<li>f(157) = 743757 (157<sup>743757</sup> = …567000743757)</li>
-<li>Σf(n), 2 ≤ n ≤ 10<sup>3</sup> = 442530011399<br>Find Σf(n), 2 ≤ n ≤ 10<sup>6</sup>.</li>
+<li>See also, <a href="/2015/10/09/PE188/">Project Euler 188 Solution: Find the last 8 digits of 1777↑↑1855.</a></li>
+<li>See also, <a href="https://projecteuler.net/problem=97" target="_blank" rel="external">Project Euler 97 : Find the last ten digits of the non-Mersenne prime: 28433 × 2<sup>7830457</sup> + 1.</a></li>
 </ul>
-<h2 id="分析">分析</h2><p>设 f(n) = x，根据题意可得：<br>n<sup>x</sup>≡x(mod 10<sup>9</sup>)<br>也就是x满足：<br>x = powerMod(n,x,10<sup>9</sup>)  [1]<br>所以，为了求f(n)的值x，可以用穷举试探法，从 x = 0开始试探，直到找到满足[1]的x，或者x变成0；x每次递归取值为:<br>    x<sub>k+1</sub> = powerMod(n,  x<sub>k</sub>,  10<sup>9</sup>);<br>终止条件是：<br>    x<sub>k+1</sub> = x<sub>k</sub> or x<sub>k+1</sub>=0</p>
-<h2 id="递推算法实现">递推算法实现</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求f(n) = x，满足：</span><br><span class="line"> * （1）， n^x % 10^9 = x； or</span><br><span class="line"> * （2），x=0 如果不存在满足（1）的x </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> m = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">long</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">long</span> x = powerMod(n, k, m);</span><br><span class="line">        <span class="keyword">if</span> (x == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k == x &amp;&amp; x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        k = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>powerMod是幂模运算的快速算法，参见<a href="/2015/10/09/PE188/#powerMod">蒙哥马利(Montgomery)幂模运算</a></p>
-<h2 id="解决问题">解决问题</h2><p>从i=2到10<sup>9</sup>遍历相加f(i)得到结果：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求f(n) = x，满足：</span><br><span class="line"> * （1）， n^x % 10^9 = x； or</span><br><span class="line"> * （2），x=0 如果不存在满足（1）的x </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> m = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">long</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">long</span> x = Util.powerMod(n, k, m);</span><br><span class="line">        <span class="keyword">if</span> (k == x || x == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        k = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">450186511399999</span></span><br><span class="line">Time consumed : <span class="number">983</span> ms</span><br></pre></td></tr></table></figure>
-<h2 id="小结">小结</h2><p>这个题目也用到了快速幂模运算，求解f(n)，理解f(n)=x对x进行迭代是解决问题的关键。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -140,7 +138,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://cwjcsu.gitcafe.io/2015/10/10/PE455/" data-title="Project Euler Problem 455 - Powers With Trailing Digits | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
+	  <div data-url="http://cwjcsu.gitcafe.io/Project-Euler/PE48/" data-title="Project Euler Problem 48 - 求大数的模 | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -154,16 +152,16 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/10/10/PE318/" title="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
+ <a href="/Project-Euler/PE455/" title="Project Euler Problem 455 - Powers With Trailing Digits">
   <strong>上一篇：</strong><br/>
   <span>
-  Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n</span>
+  Project Euler Problem 455 - Powers With Trailing Digits</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/10/09/PE188/"  title="Project Euler Problem 188-求超指数的最后8位-大数求余">
+<a href="/Project-Euler/PE188/"  title="Project Euler Problem 188-求超指数的最后8位-大数求余">
  <strong>下一篇：</strong><br/> 
  <span>Project Euler Problem 188-求超指数的最后8位-大数求余
 </span>
@@ -174,7 +172,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/10/10/PE455/" data-title="Project Euler Problem 455 - Powers With Trailing Digits" data-url="http://cwjcsu.gitcafe.io/2015/10/10/PE455/"></div>
+	<div class="ds-thread" data-thread-key="Project-Euler/PE48/" data-title="Project Euler Problem 48 - 求大数的模" data-url="http://cwjcsu.gitcafe.io/Project-Euler/PE48/"></div>
 </section>
 
 
@@ -184,7 +182,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#递推算法实现"><span class="toc-number">3.</span> <span class="toc-text">递推算法实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决问题"><span class="toc-number">4.</span> <span class="toc-text">解决问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">4.1.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#暴力法"><span class="toc-number">1.</span> <span class="toc-text">暴力法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用幂模运算规则"><span class="toc-number">2.</span> <span class="toc-text">使用幂模运算规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现PE48"><span class="toc-number">3.</span> <span class="toc-text">实现PE48</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出"><span class="toc-number">4.</span> <span class="toc-text">输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
  
   </div>
 
@@ -226,27 +224,15 @@
 			
 		
 			
-				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/blogs/" title="blogs">blogs<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/超指数/" title="超指数">超指数<sup>1</sup></a></li>
+				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
 			
 		
 			
@@ -254,11 +240,19 @@
 			
 		
 			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
 			
 		
 			
@@ -270,7 +264,13 @@
 			
 		
 			
-				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+				<li><a href="/tags/超指数/" title="超指数">超指数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
 			
 		
 		</ul>

@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Project Euler Problem 206 - 寻找特定模式的数的平方根 | 一叶知秋-博客</title>
+    <title>Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n | 一叶知秋-博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="cwjcsu@gmail.com">
     
 
     
-    <meta name="description" content="Project Euler 206 - 寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根">
+    <meta name="description" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Project Euler Problem 206 - 寻找特定模式的数的平方根">
-<meta property="og:url" content="http://cwjcsu.gitcafe.io/2015/10/09/PE206/index.html">
+<meta property="og:title" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
+<meta property="og:url" content="http://cwjcsu.gitcafe.io/Project-Euler/PE318/index.html">
 <meta property="og:site_name" content="一叶知秋-博客">
-<meta property="og:description" content="Project Euler 206 - 寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根">
-<meta property="og:updated_time" content="2015-10-10T12:35:28.204Z">
+<meta property="og:description" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
+<meta property="og:updated_time" content="2015-10-10T10:36:55.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Project Euler Problem 206 - 寻找特定模式的数的平方根">
-<meta name="twitter:description" content="Project Euler 206 - 寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根">
+<meta name="twitter:title" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
+<meta name="twitter:description" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
 
     
     <link rel="alternative" href="/atom.xml" title="一叶知秋-博客" type="application/atom+xml">
@@ -81,16 +81,16 @@
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
-  <h1 itemprop="name">
+  <h2 itemprop="name">
     
-      <a href="/2015/10/09/PE206/" title="Project Euler Problem 206 - 寻找特定模式的数的平方根" itemprop="url">Project Euler Problem 206 - 寻找特定模式的数的平方根</a>
-  </h1>
+      <a href="/Project-Euler/PE318/" title="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n" itemprop="url">Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n</a>
+  </h2>
   <p class="article-author">By
        
 		<a href="/about" title="cwjcsu@gmail.com" target="_blank" itemprop="author">cwjcsu@gmail.com</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-09T09:45:55.000Z" itemprop="datePublished"> 发表于 2015-10-09</time>
+    <time datetime="2015-10-10T07:40:11.000Z" itemprop="datePublished"> 发表于 2015-10-10</time>
     
   </p>
 </header>
@@ -99,15 +99,28 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#穷举法"><span class="toc-number">2.</span> <span class="toc-text">穷举法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码"><span class="toc-number">2.1.</span> <span class="toc-text">Java代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">2.2.</span> <span class="toc-text">输出</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共轭实数"><span class="toc-number">2.1.</span> <span class="toc-text"> 共轭实数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#证明它们的n次方和是整数"><span class="toc-number">2.2.</span> <span class="toc-text">证明它们的n次方和是整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展-Fibonacci数"><span class="toc-number">2.3.</span> <span class="toc-text">扩展-Fibonacci数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#|√p-√q|<_1"><span class="toc-number">2.4.</span> <span class="toc-text">|√p-√q|< 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.1.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结："><span class="toc-number">4.</span> <span class="toc-text">小结：</span></a></li></ol>
 		
 		</div>
 		
-		<p><a href="https://projecteuler.net/problem=206" target="_blank" rel="external">Project Euler 206</a>,寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根，其中’_’是一个数字。<em>Completed on 2013-04-25  17:35</em><br><a id="more"></a></p>
-<h2 id="分析">分析</h2><p>1_2_3_4_5_6_7_8_9_0格式的平方数，由于末尾是0，则平方根肯定是0结尾的，具有这个格式的最大数是：192939495969798990。由于平方根末尾是0，则这个数末尾必然是00，即这个数的格式为：1_2_3_4_5_6_7_8_900。</p>
-<h2 id="穷举法">穷举法</h2><p>经过分析，可以从具有这个格式的最大数字19293949596979899开始往下搜索，如果确定是平方数，则找到了平方根。<br>这个数超过了long的范围，所以要用<a href="http://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html" target="_blank" rel="external"><code>BigInteger</code></a>。</p>
-<h3 id="Java代码">Java代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> PE206 &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">        BigInteger N = <span class="keyword">new</span> BigInteger(<span class="string">"19293949596979899"</span>);</span><br><span class="line">        <span class="keyword">int</span> max = (<span class="keyword">int</span>) Math.<span class="built_in">sqrt</span>(N.doubleValue()) + <span class="number">1</span>;<span class="comment">//平方根可能的最大值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> i = max;; i--) &#123;</span><br><span class="line">            BigInteger I = BigInteger.valueOf(i);</span><br><span class="line">            I = I.<span class="built_in">pow</span>(<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">if</span> (I.toString().matches(<span class="string">"1.2.3.4.5.6.7.8.9"</span>)) &#123;<span class="comment">//平方数匹配当前模式，则找到目标</span></span><br><span class="line">                System.out.println(i * <span class="number">10</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">                + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">1389019170</span></span><br><span class="line">Time consumed <span class="number">68</span> ms</span><br></pre></td></tr></table></figure>
+		<p><a href="https://projecteuler.net/problem=318" target="_blank" rel="external">Project Euler Problem 318</a> - 涉及二项式分解、接近整数、Pisot数等数学知识 ,<em>Completed on 2015-10-10  15:00</em><br><a id="more"></a></p>
+<h2 id="原题">原题</h2><p>Consider the real number √2+√3.<br>When we calculate the even powers of √2+√3 we get:<br>(√2+√3)<sup>2</sup> = 9.898979485566356…<br>(√2+√3)<sup>4</sup> = 97.98979485566356…<br>(√2+√3)<sup>6</sup> = 969.998969071069263…<br>(√2+√3)<sup>8</sup> = 9601.99989585502907…<br>(√2+√3)<sup>10</sup> = 95049.999989479221…<br>(√2+√3)<sup>11</sup> = 940897.9999989371855…<br>(√2+√3)<sup>14</sup> = 9313929.99999989263…<br>(√2+√3)<sup>16</sup> = 92198401.99999998915…</p>
+<p>It looks like that the number of consecutive nines at the beginning of the fractional part of these powers is non-decreasing.<br>In fact it can be proven that the fractional part of (√2+√3)<sup>2n</sup> approaches 1 for large n.</p>
+<p>Consider all real numbers of the form √p+√q with p and q positive integers and p&lt;q, such that the fractional part of (√p+√q)<sup>2n</sup> approaches 1 for large n.</p>
+<p>Let C(p,q,n) be the number of consecutive nines at the beginning of the f于actional part of<br>(√p+√q)<sup>2n</sup> = (p+q+2.√pq)<sup>2n</sup>,<br>(√p+√q)<sup>2n</sup> = (p+q+2.√pq)<sup>2n</sup>,</p>
+<p>Let N(p,q) be the minimal value of n such that C(p,q,n) ≥ 2011.</p>
+<p>Find ∑N(p,q) for p+q ≤ 2011.</p>
+<h2 id="分析">分析</h2><p>题中的(√2+√3)<sup>2</sup>就是一个<a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot数</a>，它具有这个特点：<br>当n趋向无穷大的时候，它的n次方趋向一个整数，而它的共轭实数(√2-√3)<sup>2</sup>的n次方趋向0。而且这两个n次方数相加是一个整数。</p>
+<h3 id="共轭实数"><a name="conjugates"></a> 共轭实数</h3><p>形如a+b√m和a-b√m的两个实数,叫做共轭实数。</p>
+<h3 id="证明它们的n次方和是整数">证明它们的n次方和是整数</h3><p>对于p和q：<br>(√p+√q)<sup>2n</sup> = (p+q+2√pq)<sup>2n</sup>,<br>(√p-√q)<sup>2n</sup> = (p+q-2√pq)<sup>2n</sup>,<br>设a = p+q,b = 2√pq，<br>（这里a+b与a-b是<a href="#conjugates">共轭实数</a>，它们的小数部分相加等于1，现在证明它们的任意n次方和是整数）<br>则<br>(√p+√q)<sup>2n</sup> + (p+q-2√pq)<sup>2n</sup> = (a+b)<sup>n</sup>+(a-b)<sup>n</sup>,其中a是整数，b是实数，<br>根据二项式展开式可知，所有展开项中，b为偶数次方的都同号，b为奇数次方的都不同号（从而相减消除了），而b的偶数次方是整数，所以展开项相加也是整数。</p>
+<h3 id="扩展-Fibonacci数">扩展-Fibonacci数</h3><p>Fibonacci数就是两个共轭实数的n次方和：<br>$$a_n = A \left(  { \frac {1 + \sqrt 5} 2 } \right) ^ n + B \left( { \frac {1 - \sqrt 5} 2 } \right) ^ n.$$</p>
+<h3 id="|√p-√q|&lt;_1">|√p-√q|&lt; 1</h3><p>还有一个关键条件，就是必须满足|√p-√q|&lt; 1，即(a-b)&lt;1 才是上面几个结论成立的关键，也是解答本题的关键（证明还没有找到）。</p>
+<h2 id="解题">解题</h2><p>为了使(√p+√q)<sup>2n</sup>的小数有2011或更多的9，那么(√p-√q)<sup>2n</sup>的小数就必须具有2011或更多的0（就是非常接近0），从而：<br>$$(\sqrt p - \sqrt q)^{2n}  \le 10 ^{-2011}$$<br>可以导出：<br>$$n \ge \frac{-2011}{2\lg(\sqrt q -\sqrt p)}$$</p>
+<p>n取最小值：<br>$$n = ceil(\frac{-2011}{2\lg(\sqrt q -\sqrt p)})$$</p>
+<p>于是，只需要循环p和q，寻找满足条件的 (a-b)&lt;1 的p、q对，然后计算n，并相加即可。</p>
+<h3 id="代码">代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> t = System.nanoTime();</span><br><span class="line">    <span class="keyword">long</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">2011</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">1</span>; p &lt; L; p++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> q = p + <span class="number">1</span>; q &lt; L - p + <span class="number">1</span>; q++) &#123;</span><br><span class="line">            <span class="keyword">double</span> c = p + q - <span class="number">2</span> * Math.<span class="built_in">sqrt</span>(p * q);</span><br><span class="line">            <span class="keyword">if</span> (c &lt; <span class="number">1</span>) &#123;<span class="comment">// 等价于 (√q-√p) &lt; 1</span></span><br><span class="line">                s += Math.<span class="built_in">ceil</span>(-L / Math.<span class="built_in">log10</span>(c));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">    System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">            + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - t) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">709313889</span></span><br><span class="line">Time consumed <span class="number">22</span> ms</span><br></pre></td></tr></table></figure></p>
+<h2 id="小结：">小结：</h2><p><a href="http://blog.dreamshire.com/project-euler-318-solution/" target="_blank" rel="external">参考1</a><br><a href="https://projecteuler.net/thread=318" target="_blank" rel="external">参考2-NickMcG</a><br><a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot–Vijayaraghavan_number</a> </p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -121,7 +134,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/平方数/">平方数</a>
+  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Pisot数/">Pisot数</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/二项式/">二项式</a><a href="/tags/共轭实数/">共轭实数</a>
   </div>
 
 </div>
@@ -130,7 +143,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://cwjcsu.gitcafe.io/2015/10/09/PE206/" data-title="Project Euler Problem 206 - 寻找特定模式的数的平方根 | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
+	  <div data-url="http://cwjcsu.gitcafe.io/Project-Euler/PE318/" data-title="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -144,18 +157,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/10/09/PE48/" title="Project Euler Problem 48 - 求大数的模">
+ <a href="/工具/hexo-github-gitcafe/" title="hexo建立github,gitcafe博客并实时同步的要点">
   <strong>上一篇：</strong><br/>
   <span>
-  Project Euler Problem 48 - 求大数的模</span>
+  hexo建立github,gitcafe博客并实时同步的要点</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/10/09/joutable/"  title="joutable - Java格式化打印表格工具">
+<a href="/Project-Euler/PE455/"  title="Project Euler Problem 455 - Powers With Trailing Digits">
  <strong>下一篇：</strong><br/> 
- <span>joutable - Java格式化打印表格工具
+ <span>Project Euler Problem 455 - Powers With Trailing Digits
 </span>
 </a>
 </div>
@@ -164,7 +177,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/10/09/PE206/" data-title="Project Euler Problem 206 - 寻找特定模式的数的平方根" data-url="http://cwjcsu.gitcafe.io/2015/10/09/PE206/"></div>
+	<div class="ds-thread" data-thread-key="Project-Euler/PE318/" data-title="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n" data-url="http://cwjcsu.gitcafe.io/Project-Euler/PE318/"></div>
 </section>
 
 
@@ -174,7 +187,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">1.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#穷举法"><span class="toc-number">2.</span> <span class="toc-text">穷举法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码"><span class="toc-number">2.1.</span> <span class="toc-text">Java代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">2.2.</span> <span class="toc-text">输出</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共轭实数"><span class="toc-number">2.1.</span> <span class="toc-text"> 共轭实数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#证明它们的n次方和是整数"><span class="toc-number">2.2.</span> <span class="toc-text">证明它们的n次方和是整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展-Fibonacci数"><span class="toc-number">2.3.</span> <span class="toc-text">扩展-Fibonacci数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#|√p-√q|<_1"><span class="toc-number">2.4.</span> <span class="toc-text">|√p-√q|< 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.1.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结："><span class="toc-number">4.</span> <span class="toc-text">小结：</span></a></li></ol>
  
   </div>
 
@@ -216,27 +229,15 @@
 			
 		
 			
-				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/blogs/" title="blogs">blogs<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/超指数/" title="超指数">超指数<sup>1</sup></a></li>
+				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
 			
 		
 			
@@ -244,11 +245,19 @@
 			
 		
 			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
 			
 		
 			
@@ -260,7 +269,13 @@
 			
 		
 			
-				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+				<li><a href="/tags/超指数/" title="超指数">超指数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
 			
 		
 		</ul>
