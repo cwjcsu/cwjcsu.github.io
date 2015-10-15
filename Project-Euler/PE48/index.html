@@ -4,26 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Project Euler Problem 48 - 求大数的模 | 一叶知秋-博客</title>
+    <title>Project Euler Problem 48 - 求大数的模 | debug4me | 一叶知秋-博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="cwjcsu@gmail.com">
+    <meta name="author" content="debug4me@163.com">
     
 
     
     <meta name="description" content="Project Euler 48 - 求大数的模">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Project Euler Problem 48 - 求大数的模">
-<meta property="og:url" content="http://cwjcsu.gitcafe.io/Project-Euler/PE48/index.html">
-<meta property="og:site_name" content="一叶知秋-博客">
+<meta property="og:url" content="http://debug4.me/Project-Euler/PE48/index.html">
+<meta property="og:site_name" content="debug4me | 一叶知秋-博客">
 <meta property="og:description" content="Project Euler 48 - 求大数的模">
-<meta property="og:updated_time" content="2015-10-10T10:37:06.329Z">
+<meta property="og:updated_time" content="2015-10-15T09:37:00.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 48 - 求大数的模">
 <meta name="twitter:description" content="Project Euler 48 - 求大数的模">
 
     
-    <link rel="alternative" href="/atom.xml" title="一叶知秋-博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="debug4me | 一叶知秋-博客" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
@@ -41,11 +41,11 @@
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="一叶知秋-博客" title="一叶知秋-博客"/></a>
+				<a href="/"><img src="/img/logo.png" alt="debug4me | 一叶知秋-博客" title="debug4me | 一叶知秋-博客"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="一叶知秋-博客">一叶知秋-博客</a></h1>
+				<h1 class="site-name"><a href="/" title="debug4me | 一叶知秋-博客">debug4me | 一叶知秋-博客</a></h1>
 				<h2 class="blog-motto">码农，程序员，数学物理科幻爱好者</h2>
 			</div>
 			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
@@ -87,7 +87,7 @@
   </h2>
   <p class="article-author">By
        
-		<a href="/about" title="cwjcsu@gmail.com" target="_blank" itemprop="author">cwjcsu@gmail.com</a>
+		<a href="/about" title="debug4me@163.com" target="_blank" itemprop="author">debug4me@163.com</a>
 		
   <p class="article-time">
     <time datetime="2015-10-09T11:36:36.000Z" itemprop="datePublished"> 发表于 2015-10-09</time>
@@ -107,13 +107,13 @@
 <h2 id="暴力法">暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">static</span> <span class="keyword">String </span><span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    <span class="keyword">String </span>s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="使用幂模运算规则">使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="preprocessor">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="preprocessor">%</span> p</span><br></pre></td></tr></table></figure></p>
 <p>所以, (1<sup>1</sup>+ 2<sup>2</sup>+ … + 1000<sup>1000</sup>) % m = (1<sup>1</sup> % m + 2<sup>2</sup> % m + … + 1000<sup>1000</sup> % m) % m </p>
-<p>用BigInteger实现<a href="/2015/10/09/PE188/">powerMod方法</a>：<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static BigInteger powerMod(BigInteger <span class="keyword">n</span>, BigInteger p, BigInteger <span class="keyword">m</span>) &#123;</span><br><span class="line">    BigInteger r = <span class="keyword">n</span>.<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">    BigInteger tmp = BigInteger.<span class="keyword">ONE</span>;</span><br><span class="line">    <span class="keyword">while</span> (p.compareTo(BigInteger.<span class="keyword">ONE</span>) &gt; 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((p.byteValue() &amp; 1) != 0) &#123;<span class="comment">// p 是奇数，则</span></span><br><span class="line">            tmp = (tmp.multiply(r)).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        r = r.multiply(r).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        p = p.divide(BigInteger.valueOf(2L));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r.multiply(tmp).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用BigInteger实现<a href="http://cwjcsu.gitcafe.io/Project-Euler/PE188/#powerMod" target="_blank" rel="external">powerMod方法</a>：<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static BigInteger powerMod(BigInteger <span class="keyword">n</span>, BigInteger p, BigInteger <span class="keyword">m</span>) &#123;</span><br><span class="line">    BigInteger r = <span class="keyword">n</span>.<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">    BigInteger tmp = BigInteger.<span class="keyword">ONE</span>;</span><br><span class="line">    <span class="keyword">while</span> (p.compareTo(BigInteger.<span class="keyword">ONE</span>) &gt; 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((p.byteValue() &amp; 1) != 0) &#123;<span class="comment">// p 是奇数，则</span></span><br><span class="line">            tmp = (tmp.multiply(r)).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        r = r.multiply(r).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        p = p.divide(BigInteger.valueOf(2L));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r.multiply(tmp).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="实现PE48">实现PE48</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">// 9110846700</span></span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">         System.out.println(usePowerMod(<span class="number">1000</span>));</span><br><span class="line"><span class="comment">//      System.err.println(bruteForce(1000));</span></span><br><span class="line">        System.out.println(<span class="string">"time consumed : "</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">usePowerMod</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        BigInteger N = BigInteger.valueOf(n);</span><br><span class="line">        BigInteger S = BigInteger.ZERO;</span><br><span class="line">        BigInteger m = BigInteger.valueOf((<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span> (BigInteger i = BigInteger.ONE; i.compareTo(N) &lt;= <span class="number">0</span>; i = i.add(BigInteger.ONE)) &#123;</span><br><span class="line">            S = S.add(powerMod(i, i, m));</span><br><span class="line">        &#125;</span><br><span class="line">        S = S.mod(m);</span><br><span class="line">        String s = S.toString(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="输出">输出</h2><p>使用幂模运算规则的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">124</span> ms</span><br></pre></td></tr></table></figure></p>
 <p>使用暴力法的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">89</span> ms</span><br></pre></td></tr></table></figure></p>
 <h2 id="小结">小结</h2><p>发现暴力法速度更快，原因估计是powerMod(BigInteger,BigInteger,BigInteger)创建了太多的重量级BigInteger导致的。</p>
 <ul>
-<li>See also, <a href="/2015/10/09/PE188/">Project Euler 188 Solution: Find the last 8 digits of 1777↑↑1855.</a></li>
+<li>See also, <a href="/Project-Euler/PE188/">Project Euler 188 Solution: Find the last 8 digits of 1777↑↑1855.</a></li>
 <li>See also, <a href="https://projecteuler.net/problem=97" target="_blank" rel="external">Project Euler 97 : Find the last ten digits of the non-Mersenne prime: 28433 × 2<sup>7830457</sup> + 1.</a></li>
 </ul>
   
@@ -138,7 +138,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://cwjcsu.gitcafe.io/Project-Euler/PE48/" data-title="Project Euler Problem 48 - 求大数的模 | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
+	  <div data-url="http://debug4.me/Project-Euler/PE48/" data-title="Project Euler Problem 48 - 求大数的模 | debug4me | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -172,7 +172,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="Project-Euler/PE48/" data-title="Project Euler Problem 48 - 求大数的模" data-url="http://cwjcsu.gitcafe.io/Project-Euler/PE48/"></div>
+	<div class="ds-thread" data-thread-key="Project-Euler/PE48/" data-title="Project Euler Problem 48 - 求大数的模" data-url="http://debug4.me/Project-Euler/PE48/"></div>
 </section>
 
 
@@ -355,7 +355,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
 		
-		<a href="/about" target="_blank" title="cwjcsu@gmail.com">cwjcsu@gmail.com</a>
+		<a href="/about" target="_blank" title="debug4me@163.com">debug4me@163.com</a>
 		
 		
 		</p>
@@ -550,7 +550,7 @@ ga('send', 'pageview');
 
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc8b697969f1cf6e191614a49fe8668e7' type='text/javascript'%3E%3C/script%3E"));
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F90520fa0d03b2ba198c8e692f1d8664a' type='text/javascript'%3E%3C/script%3E"));
 </script>
 
 

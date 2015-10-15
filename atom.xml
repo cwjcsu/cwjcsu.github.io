@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[一叶知秋-博客]]></title>
+  <title><![CDATA[debug4me | 一叶知秋-博客]]></title>
   <subtitle><![CDATA[码农，程序员，数学物理科幻爱好者]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://cwjcsu.gitcafe.io/"/>
+  <link href="http://debug4.me/"/>
   <updated>2015-10-13T09:12:24.247Z</updated>
-  <id>http://cwjcsu.gitcafe.io/</id>
+  <id>http://debug4.me/</id>
   
   <author>
-    <name><![CDATA[cwjcsu@gmail.com]]></name>
+    <name><![CDATA[debug4me@163.com]]></name>
     
   </author>
   
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[Project Euler Problem 387 - Harshad Numbers]]></title>
-    <link href="http://cwjcsu.gitcafe.io/Project-Euler/PE387/"/>
-    <id>http://cwjcsu.gitcafe.io/Project-Euler/PE387/</id>
+    <link href="http://debug4.me/Project-Euler/PE387/"/>
+    <id>http://debug4.me/Project-Euler/PE387/</id>
     <published>2015-10-12T11:33:56.000Z</published>
     <updated>2015-10-13T09:12:24.247Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=387" target="_blank" rel="external">Project Euler Problem 387</a> - Find the sum of the strong, right truncatable Harshad primes less than 10<sup>14</sup> ,<em>Completed on 2015-10-11  23:41</em><br><a id="more"></a></p>
@@ -50,28 +50,28 @@
     
     </summary>
     
-      <category term="Harshad number" scheme="http://cwjcsu.gitcafe.io/tags/Harshad-number/"/>
+      <category term="Harshad number" scheme="http://debug4.me/tags/Harshad-number/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/tags/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
-      <category term="哈沙德数" scheme="http://cwjcsu.gitcafe.io/tags/%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/"/>
+      <category term="哈沙德数" scheme="http://debug4.me/tags/%E5%93%88%E6%B2%99%E5%BE%B7%E6%95%B0/"/>
     
-      <category term="尼云数" scheme="http://cwjcsu.gitcafe.io/tags/%E5%B0%BC%E4%BA%91%E6%95%B0/"/>
+      <category term="尼云数" scheme="http://debug4.me/tags/%E5%B0%BC%E4%BA%91%E6%95%B0/"/>
     
-      <category term="数论" scheme="http://cwjcsu.gitcafe.io/tags/%E6%95%B0%E8%AE%BA/"/>
+      <category term="数论" scheme="http://debug4.me/tags/%E6%95%B0%E8%AE%BA/"/>
     
-      <category term="深度遍历" scheme="http://cwjcsu.gitcafe.io/tags/%E6%B7%B1%E5%BA%A6%E9%81%8D%E5%8E%86/"/>
+      <category term="深度遍历" scheme="http://debug4.me/tags/%E6%B7%B1%E5%BA%A6%E9%81%8D%E5%8E%86/"/>
     
-      <category term="素数" scheme="http://cwjcsu.gitcafe.io/tags/%E7%B4%A0%E6%95%B0/"/>
+      <category term="素数" scheme="http://debug4.me/tags/%E7%B4%A0%E6%95%B0/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/categories/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/categories/Project-Euler/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[hexo建立github,gitcafe博客并实时同步的要点]]></title>
-    <link href="http://cwjcsu.gitcafe.io/%E5%B7%A5%E5%85%B7/hexo-github-gitcafe/"/>
-    <id>http://cwjcsu.gitcafe.io/工具/hexo-github-gitcafe/</id>
+    <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/hexo-github-gitcafe/"/>
+    <id>http://debug4.me/工具/hexo-github-gitcafe/</id>
     <published>2015-10-11T05:40:51.000Z</published>
     <updated>2015-10-12T02:46:49.863Z</updated>
     <content type="html"><![CDATA[<p>把hexo博客的源码和生成的页面实时同步到github和gitcafe。<br><a id="more"></a></p>
@@ -98,7 +98,7 @@
 <li>使用<code>&lt;!--more--&gt;</code>用来分割摘要和正文，上面部分是摘要，会出现在主页。同wordpress。</li>
 <li>description:xxx 会生成网页的description描述:<code>&lt;meta property=&quot;og:description&quot; content=&quot;xxx&quot;&gt;</code>这是SEO需要注意的地方。</li>
 </ol>
-<h3 id="推荐几篇好文章：">推荐几篇好文章：</h3><p>hexo搭建博客：<a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>hexo的Jacman主题：<a href="https://github.com/wuchong/jacman" target="_blank" rel="external">https://github.com/wuchong/jacman</a><br>hexo配置介绍：<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">https://hexo.io/docs/configuration.html</a><br>markdown大全：<a href="http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/">http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/</a> </p>
+<h3 id="推荐几篇好文章：">推荐几篇好文章：</h3><p>hexo搭建博客：<a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>hexo的Jacman主题：<a href="https://github.com/wuchong/jacman" target="_blank" rel="external">https://github.com/wuchong/jacman</a><br>hexo配置介绍：<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">https://hexo.io/docs/configuration.html</a><br>markdown大全：<a href="http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/" target="_blank" rel="external">http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/</a> </p>
 <h2 id="5，hexo部署">5，hexo部署</h2><p>在hexo配置文件_config.yml 有个deploy的配置项目用来配置git仓库，注意type需设置为git，是hexo3中的类型，需要安装：hexo-deployer-git：<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure></p>
 <p>网上的教程大多是hexo2的，很多文章没有指出这个区别。</p>
 <p>#hexo deploy 可以一键部署到github仓库，但是我需要部署到不同仓库，所以没有采用hexo的自动部署，二是写了一个脚本：<br>在hexo生成的博客根目录cwjcsu.github.io下有个脚本：up.sh</p>
@@ -118,20 +118,20 @@
     
     </summary>
     
-      <category term="blogs" scheme="http://cwjcsu.gitcafe.io/tags/blogs/"/>
+      <category term="blogs" scheme="http://debug4.me/tags/blogs/"/>
     
-      <category term="github" scheme="http://cwjcsu.gitcafe.io/tags/github/"/>
+      <category term="github" scheme="http://debug4.me/tags/github/"/>
     
-      <category term="hexo" scheme="http://cwjcsu.gitcafe.io/tags/hexo/"/>
+      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
     
-      <category term="工具" scheme="http://cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n]]></title>
-    <link href="http://cwjcsu.gitcafe.io/Project-Euler/PE318/"/>
-    <id>http://cwjcsu.gitcafe.io/Project-Euler/PE318/</id>
+    <link href="http://debug4.me/Project-Euler/PE318/"/>
+    <id>http://debug4.me/Project-Euler/PE318/</id>
     <published>2015-10-10T07:40:11.000Z</published>
     <updated>2015-10-10T10:36:55.666Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=318" target="_blank" rel="external">Project Euler Problem 318</a> - 涉及二项式分解、接近整数、Pisot数等数学知识 ,<em>Completed on 2015-10-10  15:00</em><br><a id="more"></a></p>
@@ -158,24 +158,24 @@
     
     </summary>
     
-      <category term="Java" scheme="http://cwjcsu.gitcafe.io/tags/Java/"/>
+      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
     
-      <category term="Pisot数" scheme="http://cwjcsu.gitcafe.io/tags/Pisot%E6%95%B0/"/>
+      <category term="Pisot数" scheme="http://debug4.me/tags/Pisot%E6%95%B0/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/tags/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
-      <category term="二项式" scheme="http://cwjcsu.gitcafe.io/tags/%E4%BA%8C%E9%A1%B9%E5%BC%8F/"/>
+      <category term="二项式" scheme="http://debug4.me/tags/%E4%BA%8C%E9%A1%B9%E5%BC%8F/"/>
     
-      <category term="共轭实数" scheme="http://cwjcsu.gitcafe.io/tags/%E5%85%B1%E8%BD%AD%E5%AE%9E%E6%95%B0/"/>
+      <category term="共轭实数" scheme="http://debug4.me/tags/%E5%85%B1%E8%BD%AD%E5%AE%9E%E6%95%B0/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/categories/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/categories/Project-Euler/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Project Euler Problem 455 - Powers With Trailing Digits]]></title>
-    <link href="http://cwjcsu.gitcafe.io/Project-Euler/PE455/"/>
-    <id>http://cwjcsu.gitcafe.io/Project-Euler/PE455/</id>
+    <link href="http://debug4.me/Project-Euler/PE455/"/>
+    <id>http://debug4.me/Project-Euler/PE455/</id>
     <published>2015-10-10T01:40:11.000Z</published>
     <updated>2015-10-10T10:37:01.250Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=455" target="_blank" rel="external">Project Euler Problem 455 - Powers With Trailing Digits</a> ,<em>Completed on 2015-10-10  00:50</em><br><a id="more"></a></p>
@@ -199,33 +199,33 @@
     
     </summary>
     
-      <category term="Java" scheme="http://cwjcsu.gitcafe.io/tags/Java/"/>
+      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/tags/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
-      <category term="幂模运算" scheme="http://cwjcsu.gitcafe.io/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
+      <category term="幂模运算" scheme="http://debug4.me/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/categories/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/categories/Project-Euler/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Project Euler Problem 48 - 求大数的模]]></title>
-    <link href="http://cwjcsu.gitcafe.io/Project-Euler/PE48/"/>
-    <id>http://cwjcsu.gitcafe.io/Project-Euler/PE48/</id>
+    <link href="http://debug4.me/Project-Euler/PE48/"/>
+    <id>http://debug4.me/Project-Euler/PE48/</id>
     <published>2015-10-09T11:36:36.000Z</published>
-    <updated>2015-10-10T10:37:06.329Z</updated>
+    <updated>2015-10-15T09:37:00.718Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=48" target="_blank" rel="external">Project Euler 48</a> ,获取大数 1^1 + 2^2 + … + 1000^1000 的最后10个数字<br><a id="more"></a></p>
 <h2 id="暴力法">暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">static</span> <span class="keyword">String </span><span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    <span class="keyword">String </span>s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="使用幂模运算规则">使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="preprocessor">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="preprocessor">%</span> p</span><br></pre></td></tr></table></figure></p>
 <p>所以, (1<sup>1</sup>+ 2<sup>2</sup>+ … + 1000<sup>1000</sup>) % m = (1<sup>1</sup> % m + 2<sup>2</sup> % m + … + 1000<sup>1000</sup> % m) % m </p>
-<p>用BigInteger实现<a href="/2015/10/09/PE188/">powerMod方法</a>：<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static BigInteger powerMod(BigInteger <span class="keyword">n</span>, BigInteger p, BigInteger <span class="keyword">m</span>) &#123;</span><br><span class="line">    BigInteger r = <span class="keyword">n</span>.<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">    BigInteger tmp = BigInteger.<span class="keyword">ONE</span>;</span><br><span class="line">    <span class="keyword">while</span> (p.compareTo(BigInteger.<span class="keyword">ONE</span>) &gt; 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((p.byteValue() &amp; 1) != 0) &#123;<span class="comment">// p 是奇数，则</span></span><br><span class="line">            tmp = (tmp.multiply(r)).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        r = r.multiply(r).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        p = p.divide(BigInteger.valueOf(2L));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r.multiply(tmp).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用BigInteger实现<a href="http://cwjcsu.gitcafe.io/Project-Euler/PE188/#powerMod" target="_blank" rel="external">powerMod方法</a>：<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static BigInteger powerMod(BigInteger <span class="keyword">n</span>, BigInteger p, BigInteger <span class="keyword">m</span>) &#123;</span><br><span class="line">    BigInteger r = <span class="keyword">n</span>.<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">    BigInteger tmp = BigInteger.<span class="keyword">ONE</span>;</span><br><span class="line">    <span class="keyword">while</span> (p.compareTo(BigInteger.<span class="keyword">ONE</span>) &gt; 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((p.byteValue() &amp; 1) != 0) &#123;<span class="comment">// p 是奇数，则</span></span><br><span class="line">            tmp = (tmp.multiply(r)).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        r = r.multiply(r).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        p = p.divide(BigInteger.valueOf(2L));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r.multiply(tmp).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="实现PE48">实现PE48</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">// 9110846700</span></span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">         System.out.println(usePowerMod(<span class="number">1000</span>));</span><br><span class="line"><span class="comment">//      System.err.println(bruteForce(1000));</span></span><br><span class="line">        System.out.println(<span class="string">"time consumed : "</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">usePowerMod</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        BigInteger N = BigInteger.valueOf(n);</span><br><span class="line">        BigInteger S = BigInteger.ZERO;</span><br><span class="line">        BigInteger m = BigInteger.valueOf((<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span> (BigInteger i = BigInteger.ONE; i.compareTo(N) &lt;= <span class="number">0</span>; i = i.add(BigInteger.ONE)) &#123;</span><br><span class="line">            S = S.add(powerMod(i, i, m));</span><br><span class="line">        &#125;</span><br><span class="line">        S = S.mod(m);</span><br><span class="line">        String s = S.toString(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="输出">输出</h2><p>使用幂模运算规则的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">124</span> ms</span><br></pre></td></tr></table></figure></p>
 <p>使用暴力法的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">89</span> ms</span><br></pre></td></tr></table></figure></p>
 <h2 id="小结">小结</h2><p>发现暴力法速度更快，原因估计是powerMod(BigInteger,BigInteger,BigInteger)创建了太多的重量级BigInteger导致的。</p>
 <ul>
-<li>See also, <a href="/2015/10/09/PE188/">Project Euler 188 Solution: Find the last 8 digits of 1777↑↑1855.</a></li>
+<li>See also, <a href="/Project-Euler/PE188/">Project Euler 188 Solution: Find the last 8 digits of 1777↑↑1855.</a></li>
 <li>See also, <a href="https://projecteuler.net/problem=97" target="_blank" rel="external">Project Euler 97 : Find the last ten digits of the non-Mersenne prime: 28433 × 2<sup>7830457</sup> + 1.</a></li>
 </ul>
 ]]></content>
@@ -234,20 +234,20 @@
     
     </summary>
     
-      <category term="Java" scheme="http://cwjcsu.gitcafe.io/tags/Java/"/>
+      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/tags/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
-      <category term="幂模运算" scheme="http://cwjcsu.gitcafe.io/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
+      <category term="幂模运算" scheme="http://debug4.me/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/categories/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/categories/Project-Euler/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Project Euler Problem 188-求超指数的最后8位-大数求余]]></title>
-    <link href="http://cwjcsu.gitcafe.io/Project-Euler/PE188/"/>
-    <id>http://cwjcsu.gitcafe.io/Project-Euler/PE188/</id>
+    <link href="http://debug4.me/Project-Euler/PE188/"/>
+    <id>http://debug4.me/Project-Euler/PE188/</id>
     <published>2015-10-09T11:36:36.000Z</published>
     <updated>2015-10-10T10:36:46.202Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=188" target="_blank" rel="external">Project Euler 188</a> ,求超指数1777↑↑1855的最后8位。<em>Completed on 2013-04-28  11:27</em><br><a id="more"></a></p>
@@ -279,22 +279,22 @@
     
     </summary>
     
-      <category term="Java" scheme="http://cwjcsu.gitcafe.io/tags/Java/"/>
+      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/tags/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
-      <category term="幂模运算" scheme="http://cwjcsu.gitcafe.io/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
+      <category term="幂模运算" scheme="http://debug4.me/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
     
-      <category term="超指数" scheme="http://cwjcsu.gitcafe.io/tags/%E8%B6%85%E6%8C%87%E6%95%B0/"/>
+      <category term="超指数" scheme="http://debug4.me/tags/%E8%B6%85%E6%8C%87%E6%95%B0/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/categories/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/categories/Project-Euler/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Project Euler Problem 206 - 寻找特定模式的数的平方根]]></title>
-    <link href="http://cwjcsu.gitcafe.io/Project-Euler/PE206/"/>
-    <id>http://cwjcsu.gitcafe.io/Project-Euler/PE206/</id>
+    <link href="http://debug4.me/Project-Euler/PE206/"/>
+    <id>http://debug4.me/Project-Euler/PE206/</id>
     <published>2015-10-09T09:45:55.000Z</published>
     <updated>2015-10-10T10:36:51.793Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=206" target="_blank" rel="external">Project Euler 206</a>,寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根，其中’_’是一个数字。<em>Completed on 2013-04-25  17:35</em><br><a id="more"></a></p>
@@ -308,20 +308,20 @@
     
     </summary>
     
-      <category term="Java" scheme="http://cwjcsu.gitcafe.io/tags/Java/"/>
+      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/tags/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
-      <category term="平方数" scheme="http://cwjcsu.gitcafe.io/tags/%E5%B9%B3%E6%96%B9%E6%95%B0/"/>
+      <category term="平方数" scheme="http://debug4.me/tags/%E5%B9%B3%E6%96%B9%E6%95%B0/"/>
     
-      <category term="Project Euler" scheme="http://cwjcsu.gitcafe.io/categories/Project-Euler/"/>
+      <category term="Project Euler" scheme="http://debug4.me/categories/Project-Euler/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[joutable - Java格式化打印表格工具]]></title>
-    <link href="http://cwjcsu.gitcafe.io/My-Projects/joutable/"/>
-    <id>http://cwjcsu.gitcafe.io/My-Projects/joutable/</id>
+    <link href="http://debug4.me/My-Projects/joutable/"/>
+    <id>http://debug4.me/My-Projects/joutable/</id>
     <published>2015-10-09T08:50:52.000Z</published>
     <updated>2015-10-12T02:46:49.863Z</updated>
     <content type="html"><![CDATA[<p>一个Java写的把简单表格格式化打印到控制台的工具，自动对齐和换行，可以定制标题填充字符、表头分隔字符。<a href="https://cwjcsu.github.io/joutable/" target="_blank" rel="external">Click Here to see more detail</a><br><a id="more"></a></p>
@@ -350,20 +350,20 @@
     
     </summary>
     
-      <category term="Java" scheme="http://cwjcsu.gitcafe.io/tags/Java/"/>
+      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
     
-      <category term="My Projects" scheme="http://cwjcsu.gitcafe.io/tags/My-Projects/"/>
+      <category term="My Projects" scheme="http://debug4.me/tags/My-Projects/"/>
     
-      <category term="joutable" scheme="http://cwjcsu.gitcafe.io/tags/joutable/"/>
+      <category term="joutable" scheme="http://debug4.me/tags/joutable/"/>
     
-      <category term="My Projects" scheme="http://cwjcsu.gitcafe.io/categories/My-Projects/"/>
+      <category term="My Projects" scheme="http://debug4.me/categories/My-Projects/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[搭建Github博客容易走弯路的地方]]></title>
-    <link href="http://cwjcsu.gitcafe.io/%E5%B7%A5%E5%85%B7/tips-about-github-blog/"/>
-    <id>http://cwjcsu.gitcafe.io/工具/tips-about-github-blog/</id>
+    <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/tips-about-github-blog/"/>
+    <id>http://debug4.me/工具/tips-about-github-blog/</id>
     <published>2015-09-27T15:40:51.000Z</published>
     <updated>2015-10-12T02:46:49.864Z</updated>
     <content type="html"><![CDATA[<p>本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。<br><a id="more"></a></p>
@@ -398,20 +398,20 @@
     
     </summary>
     
-      <category term="blogs" scheme="http://cwjcsu.gitcafe.io/tags/blogs/"/>
+      <category term="blogs" scheme="http://debug4.me/tags/blogs/"/>
     
-      <category term="hexo" scheme="http://cwjcsu.gitcafe.io/tags/hexo/"/>
+      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
     
-      <category term="jacman" scheme="http://cwjcsu.gitcafe.io/tags/jacman/"/>
+      <category term="jacman" scheme="http://debug4.me/tags/jacman/"/>
     
-      <category term="工具" scheme="http://cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Markdown标准语法与GitHub Flavored Markdown语法大全]]></title>
-    <link href="http://cwjcsu.gitcafe.io/%E5%B7%A5%E5%85%B7/markdown-learning/"/>
-    <id>http://cwjcsu.gitcafe.io/工具/markdown-learning/</id>
+    <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/markdown-learning/"/>
+    <id>http://debug4.me/工具/markdown-learning/</id>
     <published>2015-09-26T07:01:19.000Z</published>
     <updated>2015-10-12T02:46:49.864Z</updated>
     <content type="html"><![CDATA[<p>本文介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器<br><a id="more"></a></p>
@@ -535,7 +535,7 @@
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#97;&#x64;&#x64;&#x72;&#101;&#x73;&#x73;&#x40;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#99;&#111;&#109;">&#97;&#x64;&#x64;&#x72;&#101;&#x73;&#x73;&#x40;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#99;&#111;&#109;</a></p>
+<p><a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#97;&#100;&#100;&#114;&#101;&#115;&#115;&#64;&#101;&#120;&#97;&#109;&#112;&#x6c;&#101;&#46;&#x63;&#111;&#109;">&#97;&#100;&#100;&#114;&#101;&#115;&#115;&#64;&#101;&#120;&#97;&#109;&#112;&#x6c;&#101;&#46;&#x63;&#111;&#109;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
@@ -640,18 +640,18 @@
     
     </summary>
     
-      <category term="markdown" scheme="http://cwjcsu.gitcafe.io/tags/markdown/"/>
+      <category term="markdown" scheme="http://debug4.me/tags/markdown/"/>
     
-      <category term="工具" scheme="http://cwjcsu.gitcafe.io/tags/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="http://debug4.me/tags/%E5%B7%A5%E5%85%B7/"/>
     
-      <category term="工具" scheme="http://cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Hell World]]></title>
-    <link href="http://cwjcsu.gitcafe.io/%E5%B7%A5%E5%85%B7/hello-world/"/>
-    <id>http://cwjcsu.gitcafe.io/工具/hello-world/</id>
+    <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/hello-world/"/>
+    <id>http://debug4.me/工具/hello-world/</id>
     <published>2015-09-25T11:14:17.000Z</published>
     <updated>2015-09-28T02:20:38.836Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
@@ -670,20 +670,20 @@
     
     </summary>
     
-      <category term="Get Started" scheme="http://cwjcsu.gitcafe.io/tags/Get-Started/"/>
+      <category term="Get Started" scheme="http://debug4.me/tags/Get-Started/"/>
     
-      <category term="hexo" scheme="http://cwjcsu.gitcafe.io/tags/hexo/"/>
+      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
     
-      <category term="jacman" scheme="http://cwjcsu.gitcafe.io/tags/jacman/"/>
+      <category term="jacman" scheme="http://debug4.me/tags/jacman/"/>
     
-      <category term="工具" scheme="http://cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[第一篇日志]]></title>
-    <link href="http://cwjcsu.gitcafe.io/%E5%B7%A5%E5%85%B7/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%97%A5%E5%BF%97/"/>
-    <id>http://cwjcsu.gitcafe.io/工具/第一篇日志/</id>
+    <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%97%A5%E5%BF%97/"/>
+    <id>http://debug4.me/工具/第一篇日志/</id>
     <published>2015-09-25T11:14:17.000Z</published>
     <updated>2015-09-28T02:20:38.873Z</updated>
     <content type="html"><![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
@@ -706,13 +706,13 @@
     
     </summary>
     
-      <category term="Get Started" scheme="http://cwjcsu.gitcafe.io/tags/Get-Started/"/>
+      <category term="Get Started" scheme="http://debug4.me/tags/Get-Started/"/>
     
-      <category term="hexo" scheme="http://cwjcsu.gitcafe.io/tags/hexo/"/>
+      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
     
-      <category term="jacman" scheme="http://cwjcsu.gitcafe.io/tags/jacman/"/>
+      <category term="jacman" scheme="http://debug4.me/tags/jacman/"/>
     
-      <category term="工具" scheme="http://cwjcsu.gitcafe.io/categories/%E5%B7%A5%E5%85%B7/"/>
+      <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
