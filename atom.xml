@@ -4,7 +4,7 @@
   <subtitle><![CDATA[码农，程序员，数学物理科幻爱好者]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://debug4.me/"/>
-  <updated>2015-10-13T09:12:24.247Z</updated>
+  <updated>2015-10-19T15:48:50.105Z</updated>
   <id>http://debug4.me/</id>
   
   <author>
@@ -15,11 +15,118 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Project Euler Problem 134 - Prime pair connection]]></title>
+    <link href="http://debug4.me/Project-Euler/PE134/"/>
+    <id>http://debug4.me/Project-Euler/PE134/</id>
+    <published>2015-10-19T11:36:36.000Z</published>
+    <updated>2015-10-19T15:48:50.105Z</updated>
+    <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=134" target="_blank" rel="external">Project Euler 134</a> ,求以整数p1结尾，且整除另一个整数p2的数。<em>Completed on 2015-10-19  16:42</em><br><a id="more"></a></p>
+<h2 id="原题">原题</h2><p>Consider the consecutive primes p1 = 19 and p2 = 23. It can be verified that 1219 is the smallest number such that the last digits are formed by p1 whilst also being divisible by p2.</p>
+<p>In fact, with the exception of p1 = 3 and p2 = 5, for every pair of consecutive primes, p2 &gt; p1, there exist values of n for which the last digits are formed by p1 and n is divisible by p2. Let S be the smallest of these values of n.</p>
+<p>Find ∑ S for every pair of consecutive primes with 5 ≤ p1 ≤ 1000000.</p>
+<p>对于连续素数对p1,p2，存在一个整数n，满足：n以p1结尾，而且n整除p2。设S为满足条件的n中的最小值，求∑ S，使得 5 ≤ p1 ≤ 1000000</p>
+<h2 id="分析">分析</h2><p>根据条件“n以p1结尾”可以得出：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">n = <span class="literal">p1</span> + k*n0         （<span class="number">1</span>）</span><br></pre></td></tr></table></figure></p>
+<p>其中n0是满足n0 &gt; p1的10的最小幂，k是整数。很自然可以想到从1循环k，根据（1）式求得n，然后检验n是否整除p2。于是得到</p>
+<h3 id="穷举法">穷举法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * get the min integer n which endWiths p1 and can be divided by p2</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">getProductEndWith</span><span class="params">(<span class="keyword">int</span> p1, <span class="keyword">int</span> p2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> size = Util.getSize(p1);</span><br><span class="line">    <span class="keyword">long</span> n0 = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, size);</span><br><span class="line">    <span class="keyword">long</span> n = p1 + n0;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % p2 == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        n += n0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法搜索5 ~ 1000000以内的素数，花费时间大概是5分钟左右。</p>
+<h2 id="利用乘法竖式">利用乘法竖式</h2><p>回忆两个整数相乘时是如何进位和相加的，举例说明，对于p1=101,p2=103,乘法算式如下:<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  x2  x1</span><br><span class="line"><span class="blockquote">______________________</span><br><span class="line"></span><br><span class="line">   ....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
+<p>中间用”…”省略未知的数字和运算过程。</p>
+<h3 id="迭代_step1">迭代 step1</h3><p>由于3*x1 的个位数是1，即3*x1 % 10 = 1，于是得到x1=7，于是103 * 7 = 721<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  x2  7</span><br><span class="line"><span class="blockquote">______________________</span><br><span class="line">   7   2   1</span><br><span class="line">   ....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
+<h3 id="迭代step2">迭代step2</h3><p>由于 3 * x2 + 2 的个位数是0，从而得出x2 = 6 :<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">   <span class="number">1</span>   <span class="number">0</span>   <span class="number">3</span></span><br><span class="line">...x3  <span class="number">6</span>   <span class="number">7</span></span><br><span class="line">______________________</span><br><span class="line">   <span class="number">7</span>   <span class="number">2</span>   <span class="number">1</span></span><br><span class="line"><span class="number">6</span>  <span class="number">1</span>   <span class="number">8</span>    </span><br><span class="line">   ....</span><br><span class="line">_______________________</span><br><span class="line">..<span class="number">.1</span>   <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>整理得到：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">   <span class="number">1</span>   <span class="number">0</span>   <span class="number">3</span></span><br><span class="line">...x3  <span class="number">6</span>   <span class="number">7</span></span><br><span class="line">______________________</span><br><span class="line"><span class="number">6</span>  <span class="number">9</span>   <span class="number">0</span>   <span class="number">1</span>         </span><br><span class="line">....</span><br><span class="line">_______________________</span><br><span class="line">..<span class="number">.1</span>   <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="迭代_step3">迭代 step3</h3><p>由于 3 * x3 +9 的个位数是1，从而得到x3 = 4，带入上面竖式得到：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">      <span class="number">1</span>   <span class="number">0</span>   <span class="number">3</span></span><br><span class="line">   ..<span class="number">.4</span>   <span class="number">6</span>   <span class="number">7</span></span><br><span class="line">   ______________________</span><br><span class="line">   <span class="number">6</span>  <span class="number">9</span>   <span class="number">0</span>   <span class="number">1</span>         </span><br><span class="line"><span class="number">4</span>  <span class="number">1</span>  <span class="number">2</span></span><br><span class="line">   _______________________</span><br><span class="line"><span class="number">4</span>  <span class="number">8</span>  <span class="number">1</span>   <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>经过3次迭代得到n= 48101 = 467 * 103 满足条件。</p>
+<h3 id="因数表">因数表</h3><p>上面根据个位上的数字确定因数的方法可以做一张10x10的因数表（不是九九乘法表），代码如下：<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> <span class="bullet">* 因子multiplier[i][j] = k,满足 j = i *</span> k % 10</span><br><span class="line"> */</span><br><span class="line">public static int[<span class="link_label"></span>][<span class="link_reference"></span>] multiplier = new int[<span class="link_label">10</span>][<span class="link_reference">10</span>];</span><br><span class="line">static &#123;</span><br><span class="line"><span class="code">    for (int i = 0; i &lt; 10; i++) &#123;</span></span><br><span class="line"><span class="code">        for (int k = 0; k &lt; 10; k++) &#123;</span></span><br><span class="line"><span class="code">            int j = i * k % 10;</span></span><br><span class="line"><span class="code">            multiplier[i][j] = k;</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>核心代码：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * get the minimum integer n which endWiths p1 and can be divided by p2</span><br><span class="line"> * </span><br><span class="line"> * @param p1</span><br><span class="line"> * @param p2</span><br><span class="line"> * @return</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">getProductEndWith</span><span class="params">(<span class="keyword">int</span> p1, <span class="keyword">int</span> p2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = getLeftmostKthDigit(p2, <span class="number">0</span>);<span class="comment">// leftmost digit of p2</span></span><br><span class="line">    <span class="keyword">long</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> L = ((<span class="keyword">int</span>) Math.<span class="built_in">log10</span>(p1)) + <span class="number">1</span>;<span class="comment">// size of digits of p1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; L; k++) &#123;<span class="comment">// from the leftmost xth</span></span><br><span class="line">        <span class="comment">// (10 + p1左起第k位 - n左起第k位 )%10得到这次乘积的个位数字j</span></span><br><span class="line">        <span class="keyword">int</span> j = (<span class="number">10</span> + getLeftmostKthDigit(p1, k) - getLeftmostKthDigit(n, k)) % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">long</span> m = multiplier[i][j];<span class="comment">// 乘积的各位数字是j，一个因子是i，则另一个因子是m</span></span><br><span class="line">        n += p2 * (m * (<span class="keyword">int</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, k));<span class="comment">// 因子m在k位上，所以要乘10^k然后加到n</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从p1=5开始累加：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> s = System.currentTimeMillis();</span><br><span class="line">    <span class="keyword">int</span> L = BigInteger.valueOf(<span class="number">1000000</span>).nextProbablePrime().intValue();<span class="comment">// 1000003</span></span><br><span class="line">    <span class="keyword">int</span>[] primes = Util.getPrimesBlow(L);<span class="comment">// last 2 is 999983,1000003</span></span><br><span class="line">    <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    System.out.println(getProductEndWith(<span class="number">999983</span>, <span class="number">1000003</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= primes.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> p1 = primes[i];</span><br><span class="line">        <span class="keyword">int</span> p2 = primes[i + <span class="number">1</span>];</span><br><span class="line">        sum += Util.getProductEndWith(p1, p2);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(sum);</span><br><span class="line">    System.out.println(<span class="string">"Time consumed:"</span> + (System.currentTimeMillis() - s) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">18613426663617118</span></span><br><span class="line">Time consumed:<span class="number">100</span> ms</span><br></pre></td></tr></table></figure>
+<h2 id="利用中国剩余定理_（孙子定理）">利用中国剩余定理  （孙子定理）</h2><p>在<a href="https://projecteuler.net/thread=134" target="_blank" rel="external">Thread 134 -Project Euler</a>里面有看到使用ChineseRemainder算法，时间在20s内，但是没有看懂，以后有时间再研究。<br>TODO</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[Project Euler 134 - 求以整数p1结尾，且整除另一个整数p2的数]]>
+    
+    </summary>
+    
+      <category term="Chinese remainder theorem" scheme="http://debug4.me/tags/Chinese-remainder-theorem/"/>
+    
+      <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
+    
+      <category term="中国剩余定理" scheme="http://debug4.me/tags/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/"/>
+    
+      <category term="素数" scheme="http://debug4.me/tags/%E7%B4%A0%E6%95%B0/"/>
+    
+      <category term="Project Euler" scheme="http://debug4.me/categories/Project-Euler/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[无穷大——你从没听说过的事情 Infinity - You've Never Heard of]]></title>
+    <link href="http://debug4.me/Math/infinity-you-never-heard-of/"/>
+    <id>http://debug4.me/Math/infinity-you-never-heard-of/</id>
+    <published>2015-10-18T16:00:20.000Z</published>
+    <updated>2015-10-19T15:50:21.471Z</updated>
+    <content type="html"><![CDATA[<p>本文从原理上探讨集合的基数，以及无穷大的分类依据。<br><a id="more"></a></p>
+<h2 id="关于计数">关于计数</h2><p>据考古证据显示，原始非洲部落的人对超过3的数是数不清楚的。就是说如果一个人他有4个儿子，他只会说有很多儿子，而不是4个。</p>
+<p>虽然原始人不会计数，但当数目比较多时，他们可以判断一个东西的个数是否比另一个东西多。而这条能被原始人理解使用的简单原理也是理解几类无穷大的关键。</p>
+<h3 id="原始人怎么比较呢？">原始人怎么比较呢？</h3><p>假设有一堆珠宝和一堆石头，要比较那一堆数目多，只需要每次从珠宝和石头中各拿出来一个，放到其他地方，一直拿，最终会有三种情况：</p>
+<ol>
+<li>珠宝拿完了剩下了石头；</li>
+<li>石头拿完了剩下了珠宝；</li>
+<li>珠宝和石头同时都没有了。<br>显然，第一种情况石头比珠宝多，第二种情况珠宝比石头多，第三种情况珠宝石头一样多。</li>
+</ol>
+<h3 id="集合的基数">集合的基数</h3><p>集合A和集合B有相同的基数，当且仅当存在从A到B的一一对应。<br><strong>什么是一一对应呢？</strong>如果你不知道，那高中数学的函数那一章你不可能及格。假设上面的珠宝集合是A，石头集合是B，</p>
+<ul>
+<li>每拿掉一块珠宝，必须拿掉且仅拿掉一块石头;</li>
+<li>拿掉的珠宝和石头不能重新放进去；</li>
+<li>珠宝拿完以后，石头也恰好拿完。<br>满足上面三个条件，就可以称A-&gt; B存在一个一一对应 （也称为 一一映射）。</li>
+</ul>
+<h3 id="可数集合">可数集合</h3><p>有限集合以及与自然数集合基数相同的集合都称为<strong>可数集合</strong>，其他的集合均是不可数集合。</p>
+<p>可数集合包括第一类基数<strong>无穷大</strong>集合 - 零级无穷大。</p>
+<h2 id="零级无穷大_-_整数个数">零级无穷大  - 整数个数</h2><h3 id="什么是无穷大？">什么是无穷大？</h3><p>∞,infinity.简单的说，就是你比任何一个数都大。其实无穷大也是一个数，但你写不出来，它大到什么程度呢？想象一下地球上所有沙子的数目，无穷大比它要大，再大一点，地球上所有原子的数目，无穷大比它还要大。</p>
+<p>既然无穷大比任何数都大，那它和自己相比呢？是什么情况。我们知道，所有整数的个数是无穷大，所有偶数的个数也是无穷大，但整数包含奇数和偶数，那你觉得是整数多还是偶数多？如果你不加思索仅凭直觉，你可能会认为整数比偶数多，毕竟整数还包含奇数。</p>
+<p>正确答案是：<strong>整数和偶数一样多。</strong> 为什么？<br><strong>比较两个无穷大是否相等，关键看它们之间能否建立一个一一对应。 </strong><br>我们学一学非洲原始人吧，把整数和偶数分成两堆。从偶数里面拿掉2，相应的从整数里面拿掉1；从偶数里面拿掉4，相应的从整数里面拿掉2；…；从偶数里面拿掉n，从整数里面拿掉n/2…只要你从偶数里面拿掉任何一个，总是能从整数里面也拿掉一个，就是它除以2；相反，你从整数里面拿掉任意一个数m，对应的总是可以从偶数里面也拿掉一个数，就是2m。这样，所有整数和所有偶数就建立了一个对应一一对应关系，不重复不遗漏，所以这两个集合的基数相同。</p>
+<h2 id="一级无穷大_-_实数个数">一级无穷大  - 实数个数</h2><p>问：<strong>一条长度为1的线段上面的点数与整数个数那个大？</strong><br>我们试着建立一个整数到点的一一对应：线段上的每一个点都可以表示为点到端点的距离，它是一个小数，比如0.72134355451…假设我们找到了一个一一对应,它是这样的：<br><img src="http://7xn1o8.com1.z0.glb.clouddn.com/infinity1.png" alt="任意假定的整数到实数的一一对应"><br>看到这个映射以后，我们还可以写出无穷多个不在这个表格里面的小数，怎么写呢？让这个小数的第一个小数位不同于表中第一个小数的第一个小数位，让它的第二个小数位不同于表中第二个小数的第二个小数位,…，例如，可以写出下面的小数：<br><img src="http://7xn1o8.com1.z0.glb.clouddn.com/infinity2.png" alt="找出一个不在上述映射表中的实数"><br>这个数无论如何在上表中是找不到的。这样一一对应就建立不起来。所以这条线段上的点数比整数的个数还要多得多。这就是两类不同的无穷大。</p>
+<p>那么，长度为1的线段和长度为2的线段，谁的点多呢？这就跟整数与偶数的比较一样，是一样多的。一一对应很简单：x-&gt; 2x。实际上，不管线段多长，它与长度为1的线段可以建立下面的投影关系：<br><img src="http://7xn1o8.com1.z0.glb.clouddn.com/infinity3.png" alt="长度不同的线段建立一一对应"></p>
+<p>长度为1的线段与边长为1的正方形的点数是一样多的吗？是的：<br><img src="http://7xn1o8.com1.z0.glb.clouddn.com/infinity4.png" alt="边长为1的正方形与长度为1的线段建立一一对应"></p>
+<p>同样的，立方体内所有的点数和正 方形或线段上的所有点数相等，只要把代表线段上一个点的无穷小数分作三部分：<br><img src="http://7xn1o8.com1.z0.glb.clouddn.com/infinity5.png" alt="边长为1的立方体与长度为1的线段建立一一对应"></p>
+<h2 id="二级无穷大">二级无穷大</h2><p>上面两种，分别称为0级和1级无穷大。那有没有比线段上的点还要多的无穷大呢？有，那就是所有曲线的数目，称为2级无穷大。目前只发现这三类无穷大（意思是可以被描述和表达出来的）。</p>
+<p><strong>有没有比三类无穷大都大的无穷大？</strong><br>有，见下文；<br><strong>三类无穷的夹层中间有没有其他无穷大？</strong><br>不存在。</p>
+<h2 id="小结">小结</h2><ul>
+<li>零级无穷大：所有整数的数量</li>
+<li>一级无穷大：所有小数的数量（等于上面提及的线上所有的点数、面上所有的点数、立方体上所有的点数）</li>
+<li>二级无穷大：在一张纸上随意地画线条，所有可能画出的线条数目（曲线样式的数目）</li>
+</ul>
+<p>零级无穷大 &lt; 一级无穷大 &lt; 二级无穷大</p>
+<h3 id="三类无穷大的关系">三类无穷大的关系</h3><p>可以证明：<strong>任何一个集合的所有子集所形成的集合的大小比原集合大。</strong></p>
+<p><strong>最大的无穷大是多大呢？</strong><br>答案是没有尽头。</p>
+<p>事实上，[0,1）上的实数可以和正整数的所有子集的集合建立一一对应。</p>
+<p>把这些实数写成二进制。小数点后第n位为1，对应n在子集中，为0对应不在子集中，这样[0,1)上的实数就和正整数的子集有了一一对应，因此实数和正整数集的所有子集的个数一样多。</p>
+<p>也可以证明前面所说曲线可以和实数集的所有子集有一一对应关系。<br>我们把前面说所曲线看成一个集合，他的所有子集的个数又将比这个集合大。这个过程可以一直进行下去，得到越来越大的无穷大。<br>　　另外还有一个问题，整数的无穷大和实数的无穷大之间存不存在别的无穷大。也就是说，是否存在比整数的无穷大大，而比实数的无穷大小的无穷大。（连续统假设）<br>在现有集合公理下面，至今无法证明或证伪。</p>
+<h3 id="参考文档">参考文档</h3><p><a href="http://baike.baidu.com/view/530029.htm" target="_blank" rel="external">无穷大 - 百度百科</a><br><a href="https://zh.wikipedia.org/zh/%E6%97%A0%E7%A9%B7" target="_blank" rel="external">无穷 - 维基百科</a><br><a href="">《从1到无穷大-科学中的事实与臆测》</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[关于三类无穷大的讨论]]>
+    
+    </summary>
+    
+      <category term="一一对应" scheme="http://debug4.me/tags/%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94/"/>
+    
+      <category term="基数" scheme="http://debug4.me/tags/%E5%9F%BA%E6%95%B0/"/>
+    
+      <category term="无穷大" scheme="http://debug4.me/tags/%E6%97%A0%E7%A9%B7%E5%A4%A7/"/>
+    
+      <category term="集合论" scheme="http://debug4.me/tags/%E9%9B%86%E5%90%88%E8%AE%BA/"/>
+    
+      <category term="Math" scheme="http://debug4.me/categories/Math/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Project Euler Problem 387 - Harshad Numbers]]></title>
     <link href="http://debug4.me/Project-Euler/PE387/"/>
     <id>http://debug4.me/Project-Euler/PE387/</id>
     <published>2015-10-12T11:33:56.000Z</published>
-    <updated>2015-10-13T09:12:24.247Z</updated>
+    <updated>2015-10-12T12:19:14.832Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=387" target="_blank" rel="external">Project Euler Problem 387</a> - Find the sum of the strong, right truncatable Harshad primes less than 10<sup>14</sup> ,<em>Completed on 2015-10-11  23:41</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>A Harshad or Niven number is a number that is divisible by the sum of its digits.<br>201 is a Harshad number because it is divisible by 3 (the sum of its digits.)<br>When we truncate the last digit from 201, we get 20, which is a Harshad number.<br>When we truncate the last digit from 20, we get 2, which is also a Harshad number.<br>Let’s call a Harshad number that, while recursively truncating the last digit, always results in a Harshad number a right truncatable Harshad number.</p>
 <p>Also:<br>201/3=67 which is prime.<br>Let’s call a Harshad number that, when divided by the sum of its digits, results in a prime a strong Harshad number.</p>
@@ -73,7 +180,7 @@
     <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/hexo-github-gitcafe/"/>
     <id>http://debug4.me/工具/hexo-github-gitcafe/</id>
     <published>2015-10-11T05:40:51.000Z</published>
-    <updated>2015-10-12T02:46:49.863Z</updated>
+    <updated>2015-10-11T10:36:35.876Z</updated>
     <content type="html"><![CDATA[<p>把hexo博客的源码和生成的页面实时同步到github和gitcafe。<br><a id="more"></a></p>
 <p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些关键点，希望可以让你少走弯路。这篇博客的markdown源代码在：<a href="https://gitcafe.com/cwjcsu/cwjcsu/blob/master/source/_posts/hexo-github-gitcafe.md" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu/blob/master/source/_posts/hexo-github-gitcafe.md</a><br>其他涉及的源码在同一个仓库可以找到。</p>
 <h2 id="1，_不一定要购买域名">1， 不一定要购买域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:cwjcsu.github.io。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：你创建的github的仓库名称必须是cwjcsu.github.io,这样你只要在master分支上 仓库根目录push一个index.html，这个页面就可以通过 <a href="http://cwjcsu.github.io" target="_blank" rel="external">http://cwjcsu.github.io</a> 访问到。cwjcsu是我的github用户名，实际操作中替换成你的即可。</p>
@@ -133,7 +240,7 @@
     <link href="http://debug4.me/Project-Euler/PE318/"/>
     <id>http://debug4.me/Project-Euler/PE318/</id>
     <published>2015-10-10T07:40:11.000Z</published>
-    <updated>2015-10-10T10:36:55.666Z</updated>
+    <updated>2015-10-10T12:35:28.205Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=318" target="_blank" rel="external">Project Euler Problem 318</a> - 涉及二项式分解、接近整数、Pisot数等数学知识 ,<em>Completed on 2015-10-10  15:00</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>Consider the real number √2+√3.<br>When we calculate the even powers of √2+√3 we get:<br>(√2+√3)<sup>2</sup> = 9.898979485566356…<br>(√2+√3)<sup>4</sup> = 97.98979485566356…<br>(√2+√3)<sup>6</sup> = 969.998969071069263…<br>(√2+√3)<sup>8</sup> = 9601.99989585502907…<br>(√2+√3)<sup>10</sup> = 95049.999989479221…<br>(√2+√3)<sup>11</sup> = 940897.9999989371855…<br>(√2+√3)<sup>14</sup> = 9313929.99999989263…<br>(√2+√3)<sup>16</sup> = 92198401.99999998915…</p>
 <p>It looks like that the number of consecutive nines at the beginning of the fractional part of these powers is non-decreasing.<br>In fact it can be proven that the fractional part of (√2+√3)<sup>2n</sup> approaches 1 for large n.</p>
@@ -177,7 +284,7 @@
     <link href="http://debug4.me/Project-Euler/PE455/"/>
     <id>http://debug4.me/Project-Euler/PE455/</id>
     <published>2015-10-10T01:40:11.000Z</published>
-    <updated>2015-10-10T10:37:01.250Z</updated>
+    <updated>2015-10-10T12:35:28.206Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=455" target="_blank" rel="external">Project Euler Problem 455 - Powers With Trailing Digits</a> ,<em>Completed on 2015-10-10  00:50</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>Let f(n) be the largest positive integer x less than 10<sup>9</sup> such that the last 9 digits of n<sup>x</sup> form the number x (including leading zeros), or zero if no such integer exists.</p>
 <p>For example:</p>
@@ -214,7 +321,7 @@
     <link href="http://debug4.me/Project-Euler/PE48/"/>
     <id>http://debug4.me/Project-Euler/PE48/</id>
     <published>2015-10-09T11:36:36.000Z</published>
-    <updated>2015-10-15T09:37:00.718Z</updated>
+    <updated>2015-10-19T15:51:49.724Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=48" target="_blank" rel="external">Project Euler 48</a> ,获取大数 1^1 + 2^2 + … + 1000^1000 的最后10个数字<br><a id="more"></a></p>
 <h2 id="暴力法">暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">static</span> <span class="keyword">String </span><span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    <span class="keyword">String </span>s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="使用幂模运算规则">使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="preprocessor">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="preprocessor">%</span> p</span><br></pre></td></tr></table></figure></p>
@@ -249,7 +356,7 @@
     <link href="http://debug4.me/Project-Euler/PE188/"/>
     <id>http://debug4.me/Project-Euler/PE188/</id>
     <published>2015-10-09T11:36:36.000Z</published>
-    <updated>2015-10-10T10:36:46.202Z</updated>
+    <updated>2015-10-10T12:35:28.203Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=188" target="_blank" rel="external">Project Euler 188</a> ,求超指数1777↑↑1855的最后8位。<em>Completed on 2013-04-28  11:27</em><br><a id="more"></a></p>
 <h2 id="原题">原题</h2><p>The hyperexponentiation or tetration of a number <code>a</code> by a positive integer <code>b</code>, denoted by <code>a↑↑b</code> or <sup>b</sup>a, is recursively defined by:</p>
 <p>a↑↑1 = a,<br>a↑↑(k+1) = a<sup>(a↑↑k)</sup>.</p>
@@ -296,7 +403,7 @@
     <link href="http://debug4.me/Project-Euler/PE206/"/>
     <id>http://debug4.me/Project-Euler/PE206/</id>
     <published>2015-10-09T09:45:55.000Z</published>
-    <updated>2015-10-10T10:36:51.793Z</updated>
+    <updated>2015-10-10T12:35:28.204Z</updated>
     <content type="html"><![CDATA[<p><a href="https://projecteuler.net/problem=206" target="_blank" rel="external">Project Euler 206</a>,寻找特定模式(1_2_3_4_5_6_7_8_9_0)的数平方根，其中’_’是一个数字。<em>Completed on 2013-04-25  17:35</em><br><a id="more"></a></p>
 <h2 id="分析">分析</h2><p>1_2_3_4_5_6_7_8_9_0格式的平方数，由于末尾是0，则平方根肯定是0结尾的，具有这个格式的最大数是：192939495969798990。由于平方根末尾是0，则这个数末尾必然是00，即这个数的格式为：1_2_3_4_5_6_7_8_900。</p>
 <h2 id="穷举法">穷举法</h2><p>经过分析，可以从具有这个格式的最大数字19293949596979899开始往下搜索，如果确定是平方数，则找到了平方根。<br>这个数超过了long的范围，所以要用<a href="http://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html" target="_blank" rel="external"><code>BigInteger</code></a>。</p>
@@ -323,7 +430,7 @@
     <link href="http://debug4.me/My-Projects/joutable/"/>
     <id>http://debug4.me/My-Projects/joutable/</id>
     <published>2015-10-09T08:50:52.000Z</published>
-    <updated>2015-10-12T02:46:49.863Z</updated>
+    <updated>2015-10-11T08:48:30.742Z</updated>
     <content type="html"><![CDATA[<p>一个Java写的把简单表格格式化打印到控制台的工具，自动对齐和换行，可以定制标题填充字符、表头分隔字符。<a href="https://cwjcsu.github.io/joutable/" target="_blank" rel="external">Click Here to see more detail</a><br><a id="more"></a></p>
 <h1 id="An_simple_and_pretty_formatted_Table_in_Java">An simple and pretty formatted Table in Java</h1><p>You may want to print out some simple table (with title,headers) to the console with a readable format,then joutable is your best choise.</p>
 <h1 id="Usages">Usages</h1><h2 id="How_to_Use_joutable_?">How to Use joutable ?</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">DefaultTable dt = <span class="keyword">new</span> DefaultTable();</span><br><span class="line">dt.setTitle(<span class="string">"Aacademic Record Table"</span>);</span><br><span class="line">dt.setHeaders(<span class="keyword">new</span> String[] &#123; <span class="string">"Id"</span>, <span class="string">"Name"</span>, <span class="string">"Grade"</span>, <span class="string">"Remark"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1001</span>, <span class="string">"Jack Bower"</span>, <span class="string">"A"</span>, <span class="string">"Good at fighting"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1002</span>, <span class="string">"Vincent Willem  Van Gogh"</span>, <span class="string">"A+"</span>,<span class="string">"Good at painting"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1003</span>, <span class="string">"Jone Doe"</span>, <span class="string">"B"</span>, <span class="string">"Noop"</span> &#125;);</span><br><span class="line">DefaultTableFormatter dtf = <span class="keyword">new</span> DefaultTableFormatter(<span class="number">100</span>, <span class="number">2</span>);</span><br><span class="line">System.out.println(dtf.format(dt));</span><br></pre></td></tr></table></figure>
@@ -365,7 +472,7 @@
     <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/tips-about-github-blog/"/>
     <id>http://debug4.me/工具/tips-about-github-blog/</id>
     <published>2015-09-27T15:40:51.000Z</published>
-    <updated>2015-10-12T02:46:49.864Z</updated>
+    <updated>2015-10-11T10:30:49.414Z</updated>
     <content type="html"><![CDATA[<p>本为介绍了hexo + pacman主题搭建github博客容易犯错的地方。<br><a id="more"></a></p>
 <h1 id="搭建github博客之前必须了解的东西">搭建github博客之前必须了解的东西</h1><p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些容易走弯路指引。</p>
 <h2 id="不一定要注册域名">不一定要注册域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:<code>&lt;username&gt;.github.io</code>。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：<strong>你创建的github的Repository name必须是<code>&lt;username&gt;.github.io</code></strong>,这样你只要在<strong>master</strong>分支上仓库根目录上push一个<code>index.html</code>，这个文件就可以通过<code>http://&lt;username&gt;.github.io</code>访问到。<br><code>&lt;username&gt;</code>是你的github用户名。</p>
@@ -413,7 +520,7 @@
     <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/markdown-learning/"/>
     <id>http://debug4.me/工具/markdown-learning/</id>
     <published>2015-09-26T07:01:19.000Z</published>
-    <updated>2015-10-12T02:46:49.864Z</updated>
+    <updated>2015-10-11T09:57:04.451Z</updated>
     <content type="html"><![CDATA[<p>本文介绍了标准Markdown语法和GitHub Flavored Markdown (GFM)，并推荐了一款Markdown编辑器<br><a id="more"></a></p>
 <h1 id="标准Markdwon语法">标准Markdwon语法</h1><p><strong>Markdown</strong>是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的HTML(或者pdf、docx)文档”。Markdown现在拥有非常多的扩展，而且标准化已经几乎不可能。有一个介绍标准化markdown的<a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">网站</a>。里面的<a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">Syntax</a>详细介绍了标准markdown所有语法。</p>
 <h2 id="块元素(Block_Elements)">块元素(Block Elements)</h2><h3 id="文档标头（HEADERS）">文档标头（HEADERS）</h3><p>有两种类型的标题：Setext-style headers  和 Atx-style headers。<br>（1），Setext-style headers 的markdwon代码：<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">This is H1</span><br><span class="line">=</span><br><span class="line"><span class="header">This is H1</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure></p>
@@ -535,7 +642,7 @@
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#x61;&#x64;&#x64;&#114;&#x65;&#115;&#x73;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#x61;&#x64;&#x64;&#114;&#x65;&#115;&#x73;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#108;&#x65;&#x2e;&#x63;&#x6f;&#109;</a></p>
+<p><a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x61;&#100;&#100;&#114;&#101;&#x73;&#x73;&#x40;&#101;&#120;&#x61;&#109;&#x70;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;">&#x61;&#100;&#100;&#114;&#101;&#x73;&#x73;&#x40;&#101;&#120;&#x61;&#109;&#x70;&#108;&#x65;&#46;&#x63;&#x6f;&#x6d;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
@@ -653,7 +760,7 @@
     <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/hello-world/"/>
     <id>http://debug4.me/工具/hello-world/</id>
     <published>2015-09-25T11:14:17.000Z</published>
-    <updated>2015-09-28T02:20:38.836Z</updated>
+    <updated>2015-09-26T11:01:31.219Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <a id="more"></a>
 <h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
@@ -685,7 +792,7 @@
     <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%97%A5%E5%BF%97/"/>
     <id>http://debug4.me/工具/第一篇日志/</id>
     <published>2015-09-25T11:14:17.000Z</published>
-    <updated>2015-09-28T02:20:38.873Z</updated>
+    <updated>2015-09-26T11:03:54.415Z</updated>
     <content type="html"><![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
 <p>通过下面的命令，就可以创建新文章<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo new 新的开始</span><br><span class="line">[info] File created at D:\workspace\javascript\nodejs-hexo\<span class="built_in">source</span>\_posts\新的开始.md</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>

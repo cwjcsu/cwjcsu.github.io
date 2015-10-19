@@ -1,0 +1,626 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Project Euler Problem 134 - Prime pair connection | debug4me | 一叶知秋-博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="debug4me@163.com">
+    
+
+    
+    <meta name="description" content="Project Euler 134 - 求以整数p1结尾，且整除另一个整数p2的数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project Euler Problem 134 - Prime pair connection">
+<meta property="og:url" content="http://debug4.me/Project-Euler/PE134/index.html">
+<meta property="og:site_name" content="debug4me | 一叶知秋-博客">
+<meta property="og:description" content="Project Euler 134 - 求以整数p1结尾，且整除另一个整数p2的数">
+<meta property="og:updated_time" content="2015-10-19T15:48:50.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Project Euler Problem 134 - Prime pair connection">
+<meta name="twitter:description" content="Project Euler 134 - 求以整数p1结尾，且整除另一个整数p2的数">
+
+    
+    <link rel="alternative" href="/atom.xml" title="debug4me | 一叶知秋-博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="debug4me | 一叶知秋-博客" title="debug4me | 一叶知秋-博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="debug4me | 一叶知秋-博客">debug4me | 一叶知秋-博客</a></h1>
+				<h2 class="blog-motto">码农，程序员，数学物理科幻爱好者</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/sitemap.xml">Sitemap</a></li>
+					
+						<li><a href="/atom.xml">RSS</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h2 itemprop="name">
+    
+      <a href="/Project-Euler/PE134/" title="Project Euler Problem 134 - Prime pair connection" itemprop="url">Project Euler Problem 134 - Prime pair connection</a>
+  </h2>
+  <p class="article-author">By
+       
+		<a href="/about" title="debug4me@163.com" target="_blank" itemprop="author">debug4me@163.com</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-19T11:36:36.000Z" itemprop="datePublished"> 发表于 2015-10-19</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#穷举法"><span class="toc-number">2.1.</span> <span class="toc-text">穷举法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用乘法竖式"><span class="toc-number">3.</span> <span class="toc-text">利用乘法竖式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代_step1"><span class="toc-number">3.1.</span> <span class="toc-text">迭代 step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代step2"><span class="toc-number">3.2.</span> <span class="toc-text">迭代step2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代_step3"><span class="toc-number">3.3.</span> <span class="toc-text">迭代 step3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#因数表"><span class="toc-number">3.4.</span> <span class="toc-text">因数表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.5.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用中国剩余定理_（孙子定理）"><span class="toc-number">4.</span> <span class="toc-text">利用中国剩余定理  （孙子定理）</span></a></li></ol>
+		
+		</div>
+		
+		<p><a href="https://projecteuler.net/problem=134" target="_blank" rel="external">Project Euler 134</a> ,求以整数p1结尾，且整除另一个整数p2的数。<em>Completed on 2015-10-19  16:42</em><br><a id="more"></a></p>
+<h2 id="原题">原题</h2><p>Consider the consecutive primes p1 = 19 and p2 = 23. It can be verified that 1219 is the smallest number such that the last digits are formed by p1 whilst also being divisible by p2.</p>
+<p>In fact, with the exception of p1 = 3 and p2 = 5, for every pair of consecutive primes, p2 &gt; p1, there exist values of n for which the last digits are formed by p1 and n is divisible by p2. Let S be the smallest of these values of n.</p>
+<p>Find ∑ S for every pair of consecutive primes with 5 ≤ p1 ≤ 1000000.</p>
+<p>对于连续素数对p1,p2，存在一个整数n，满足：n以p1结尾，而且n整除p2。设S为满足条件的n中的最小值，求∑ S，使得 5 ≤ p1 ≤ 1000000</p>
+<h2 id="分析">分析</h2><p>根据条件“n以p1结尾”可以得出：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">n = <span class="literal">p1</span> + k*n0         （<span class="number">1</span>）</span><br></pre></td></tr></table></figure></p>
+<p>其中n0是满足n0 &gt; p1的10的最小幂，k是整数。很自然可以想到从1循环k，根据（1）式求得n，然后检验n是否整除p2。于是得到</p>
+<h3 id="穷举法">穷举法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * get the min integer n which endWiths p1 and can be divided by p2</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">getProductEndWith</span><span class="params">(<span class="keyword">int</span> p1, <span class="keyword">int</span> p2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> size = Util.getSize(p1);</span><br><span class="line">    <span class="keyword">long</span> n0 = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, size);</span><br><span class="line">    <span class="keyword">long</span> n = p1 + n0;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % p2 == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        n += n0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法搜索5 ~ 1000000以内的素数，花费时间大概是5分钟左右。</p>
+<h2 id="利用乘法竖式">利用乘法竖式</h2><p>回忆两个整数相乘时是如何进位和相加的，举例说明，对于p1=101,p2=103,乘法算式如下:<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  x2  x1</span><br><span class="line"><span class="blockquote">______________________</span><br><span class="line"></span><br><span class="line">   ....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
+<p>中间用”…”省略未知的数字和运算过程。</p>
+<h3 id="迭代_step1">迭代 step1</h3><p>由于3*x1 的个位数是1，即3*x1 % 10 = 1，于是得到x1=7，于是103 * 7 = 721<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  x2  7</span><br><span class="line"><span class="blockquote">______________________</span><br><span class="line">   7   2   1</span><br><span class="line">   ....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
+<h3 id="迭代step2">迭代step2</h3><p>由于 3 * x2 + 2 的个位数是0，从而得出x2 = 6 :<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">   <span class="number">1</span>   <span class="number">0</span>   <span class="number">3</span></span><br><span class="line">...x3  <span class="number">6</span>   <span class="number">7</span></span><br><span class="line">______________________</span><br><span class="line">   <span class="number">7</span>   <span class="number">2</span>   <span class="number">1</span></span><br><span class="line"><span class="number">6</span>  <span class="number">1</span>   <span class="number">8</span>    </span><br><span class="line">   ....</span><br><span class="line">_______________________</span><br><span class="line">..<span class="number">.1</span>   <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>整理得到：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">   <span class="number">1</span>   <span class="number">0</span>   <span class="number">3</span></span><br><span class="line">...x3  <span class="number">6</span>   <span class="number">7</span></span><br><span class="line">______________________</span><br><span class="line"><span class="number">6</span>  <span class="number">9</span>   <span class="number">0</span>   <span class="number">1</span>         </span><br><span class="line">....</span><br><span class="line">_______________________</span><br><span class="line">..<span class="number">.1</span>   <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="迭代_step3">迭代 step3</h3><p>由于 3 * x3 +9 的个位数是1，从而得到x3 = 4，带入上面竖式得到：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">      <span class="number">1</span>   <span class="number">0</span>   <span class="number">3</span></span><br><span class="line">   ..<span class="number">.4</span>   <span class="number">6</span>   <span class="number">7</span></span><br><span class="line">   ______________________</span><br><span class="line">   <span class="number">6</span>  <span class="number">9</span>   <span class="number">0</span>   <span class="number">1</span>         </span><br><span class="line"><span class="number">4</span>  <span class="number">1</span>  <span class="number">2</span></span><br><span class="line">   _______________________</span><br><span class="line"><span class="number">4</span>  <span class="number">8</span>  <span class="number">1</span>   <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>经过3次迭代得到n= 48101 = 467 * 103 满足条件。</p>
+<h3 id="因数表">因数表</h3><p>上面根据个位上的数字确定因数的方法可以做一张10x10的因数表（不是九九乘法表），代码如下：<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> <span class="bullet">* 因子multiplier[i][j] = k,满足 j = i *</span> k % 10</span><br><span class="line"> */</span><br><span class="line">public static int[<span class="link_label"></span>][<span class="link_reference"></span>] multiplier = new int[<span class="link_label">10</span>][<span class="link_reference">10</span>];</span><br><span class="line">static &#123;</span><br><span class="line"><span class="code">    for (int i = 0; i &lt; 10; i++) &#123;</span></span><br><span class="line"><span class="code">        for (int k = 0; k &lt; 10; k++) &#123;</span></span><br><span class="line"><span class="code">            int j = i * k % 10;</span></span><br><span class="line"><span class="code">            multiplier[i][j] = k;</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>核心代码：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * get the minimum integer n which endWiths p1 and can be divided by p2</span><br><span class="line"> * </span><br><span class="line"> * @param p1</span><br><span class="line"> * @param p2</span><br><span class="line"> * @return</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">getProductEndWith</span><span class="params">(<span class="keyword">int</span> p1, <span class="keyword">int</span> p2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = getLeftmostKthDigit(p2, <span class="number">0</span>);<span class="comment">// leftmost digit of p2</span></span><br><span class="line">    <span class="keyword">long</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> L = ((<span class="keyword">int</span>) Math.<span class="built_in">log10</span>(p1)) + <span class="number">1</span>;<span class="comment">// size of digits of p1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; L; k++) &#123;<span class="comment">// from the leftmost xth</span></span><br><span class="line">        <span class="comment">// (10 + p1左起第k位 - n左起第k位 )%10得到这次乘积的个位数字j</span></span><br><span class="line">        <span class="keyword">int</span> j = (<span class="number">10</span> + getLeftmostKthDigit(p1, k) - getLeftmostKthDigit(n, k)) % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">long</span> m = multiplier[i][j];<span class="comment">// 乘积的各位数字是j，一个因子是i，则另一个因子是m</span></span><br><span class="line">        n += p2 * (m * (<span class="keyword">int</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, k));<span class="comment">// 因子m在k位上，所以要乘10^k然后加到n</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从p1=5开始累加：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> s = System.currentTimeMillis();</span><br><span class="line">    <span class="keyword">int</span> L = BigInteger.valueOf(<span class="number">1000000</span>).nextProbablePrime().intValue();<span class="comment">// 1000003</span></span><br><span class="line">    <span class="keyword">int</span>[] primes = Util.getPrimesBlow(L);<span class="comment">// last 2 is 999983,1000003</span></span><br><span class="line">    <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    System.out.println(getProductEndWith(<span class="number">999983</span>, <span class="number">1000003</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= primes.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> p1 = primes[i];</span><br><span class="line">        <span class="keyword">int</span> p2 = primes[i + <span class="number">1</span>];</span><br><span class="line">        sum += Util.getProductEndWith(p1, p2);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(sum);</span><br><span class="line">    System.out.println(<span class="string">"Time consumed:"</span> + (System.currentTimeMillis() - s) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">18613426663617118</span></span><br><span class="line">Time consumed:<span class="number">100</span> ms</span><br></pre></td></tr></table></figure>
+<h2 id="利用中国剩余定理_（孙子定理）">利用中国剩余定理  （孙子定理）</h2><p>在<a href="https://projecteuler.net/thread=134" target="_blank" rel="external">Thread 134 -Project Euler</a>里面有看到使用ChineseRemainder算法，时间在20s内，但是没有看懂，以后有时间再研究。<br>TODO</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Project-Euler/">Project Euler</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Chinese-remainder-theorem/">Chinese remainder theorem</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/中国剩余定理/">中国剩余定理</a><a href="/tags/素数/">素数</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://debug4.me/Project-Euler/PE134/" data-title="Project Euler Problem 134 - Prime pair connection | debug4me | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Math/infinity-you-never-heard-of/"  title="无穷大——你从没听说过的事情 Infinity - You&#39;ve Never Heard of">
+ <strong>下一篇：</strong><br/> 
+ <span>无穷大——你从没听说过的事情 Infinity - You&#39;ve Never Heard of
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="Project-Euler/PE134/" data-title="Project Euler Problem 134 - Prime pair connection" data-url="http://debug4.me/Project-Euler/PE134/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#穷举法"><span class="toc-number">2.1.</span> <span class="toc-text">穷举法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用乘法竖式"><span class="toc-number">3.</span> <span class="toc-text">利用乘法竖式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代_step1"><span class="toc-number">3.1.</span> <span class="toc-text">迭代 step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代step2"><span class="toc-number">3.2.</span> <span class="toc-text">迭代step2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代_step3"><span class="toc-number">3.3.</span> <span class="toc-text">迭代 step3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#因数表"><span class="toc-number">3.4.</span> <span class="toc-text">因数表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.5.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用中国剩余定理_（孙子定理）"><span class="toc-number">4.</span> <span class="toc-text">利用中国剩余定理  （孙子定理）</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<a href="https://projecteuler.net/"><img src="http://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler Profile" title="Project Euler Profile" class="aligncenter" width="200" height="60"></a>
+
+  
+<div class="category-container">
+  <h3 class="category-title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">5</span></li></ul> 
+</div>
+ 
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Project-Euler/" title="Project Euler">Project Euler<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jacman/" title="jacman">jacman<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/blogs/" title="blogs">blogs<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/素数/" title="素数">素数<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Chinese-remainder-theorem/" title="Chinese remainder theorem">Chinese remainder theorem<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/深度遍历/" title="深度遍历">深度遍历<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://projecteuler.net/" target="_blank" title="一个有挑战性的数学和计算机编程试题网站">Project Euler</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://openmind.iteye.com/" target="_blank" title="我的iteye博客">OpenMind&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Atlas in Github. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2172283884" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/cwjcsu" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/1770716" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:cwjcsu@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="debug4me@163.com">debug4me@163.com</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url');
+  if(url.indexOf('http://')<0){
+     url = 'http://' + url;
+  }
+  var encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"cwjcsu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-68836938-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F90520fa0d03b2ba198c8e692f1d8664a' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: '9058ca157e9c5b1686f7'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
