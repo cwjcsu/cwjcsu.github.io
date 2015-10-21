@@ -1,0 +1,677 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference | debug4me | 一叶知秋-博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="debug4me@163.com">
+    
+
+    
+    <meta name="description" content="MathJax与LaTeX教程与速查手册 MathJax and LaTeX basic tutorial and quick reference">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference">
+<meta property="og:url" content="http://debug4.me/工具/mathjax-and-latex-quick-reference/index.html">
+<meta property="og:site_name" content="debug4me | 一叶知秋-博客">
+<meta property="og:description" content="MathJax与LaTeX教程与速查手册 MathJax and LaTeX basic tutorial and quick reference">
+<meta property="og:updated_time" content="2015-10-21T15:49:33.675Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference">
+<meta name="twitter:description" content="MathJax与LaTeX教程与速查手册 MathJax and LaTeX basic tutorial and quick reference">
+
+    
+    <link rel="alternative" href="/atom.xml" title="debug4me | 一叶知秋-博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="debug4me | 一叶知秋-博客" title="debug4me | 一叶知秋-博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="debug4me | 一叶知秋-博客">debug4me | 一叶知秋-博客</a></h1>
+				<h2 class="blog-motto">码农，程序员，数学物理科幻爱好者</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/sitemap.xml">Sitemap</a></li>
+					
+						<li><a href="/atom.xml">RSS</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h2 itemprop="name">
+    
+      <a href="/工具/mathjax-and-latex-quick-reference/" title="MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference" itemprop="url">MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference</a>
+  </h2>
+  <p class="article-author">By
+       
+		<a href="/about" title="debug4me@163.com" target="_blank" itemprop="author">debug4me@163.com</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-21T12:42:22.000Z" itemprop="datePublished"> 发表于 2015-10-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#速查手册"><span class="toc-number">1.</span> <span class="toc-text">速查手册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看TeX命令"><span class="toc-number">1.1.</span> <span class="toc-text">查看TeX命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内联和公式块"><span class="toc-number">1.2.</span> <span class="toc-text">内联和公式块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#希腊字母"><span class="toc-number">1.3.</span> <span class="toc-text">希腊字母</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上角下角符号"><span class="toc-number">1.4.</span> <span class="toc-text">上角下角符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#花括号"><span class="toc-number">1.5.</span> <span class="toc-text">花括号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求和与积分"><span class="toc-number">1.6.</span> <span class="toc-text">求和与积分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分数"><span class="toc-number">1.7.</span> <span class="toc-text">分数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体："><span class="toc-number">1.8.</span> <span class="toc-text">字体：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开根号"><span class="toc-number">1.9.</span> <span class="toc-text">开根号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊函数"><span class="toc-number">1.10.</span> <span class="toc-text">特殊函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊符号"><span class="toc-number">1.11.</span> <span class="toc-text">特殊符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空格"><span class="toc-number">1.12.</span> <span class="toc-text">空格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纯文本"><span class="toc-number">1.13.</span> <span class="toc-text">纯文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字母上面的符号"><span class="toc-number">1.14.</span> <span class="toc-text">字母上面的符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MathJax特殊字符"><span class="toc-number">1.15.</span> <span class="toc-text">MathJax特殊字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他示例"><span class="toc-number">2.</span> <span class="toc-text">其他示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#矩阵"><span class="toc-number">2.1.</span> <span class="toc-text">矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分情况定义"><span class="toc-number">2.2.</span> <span class="toc-text">分情况定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-number">2.3.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方程"><span class="toc-number">2.4.</span> <span class="toc-text">方程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文档"><span class="toc-number">3.</span> <span class="toc-text">参考文档</span></a></li></ol>
+		
+		</div>
+		
+		<p>MathJax与LaTex教程与速查手册。以及LaTeX在Markdown中使用的注意事项。</p>
+<a id="more"></a>
+<h2 id="速查手册">速查手册</h2><h3 id="查看TeX命令">查看TeX命令</h3><p> 查看本页的公式是如何编写，右击表达式，选择 “Show Math As &gt; Tex Commands”就可以显示了。</p>
+<h3 id="内联和公式块">内联和公式块</h3><ol>
+<li>内联公式，用美元符号<code>$...$</code>包裹，比如<code>$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$</code>产生:$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$.</li>
+<li>换行的块，用两对美元符号<code>$$...$$</code>包裹，如<code>$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}\tag{displayed}$$</code>产生</li>
+</ol>
+<p>$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}\tag{displayed}$$</p>
+<h3 id="希腊字母">希腊字母</h3><p>对于<strong>希腊字母</strong>,用<code>\alpha</code>, <code>\beta</code>, …, <code>\omega</code>: $\alpha,\beta,…,\omega$. 大写的，可以使用<code>\Gamma</code>, <code>\Delta</code>, …, <code>\Omega</code>:$ \Gamma,\Delta,…,\Omega$等等。</p>
+<h3 id="上角下角符号">上角下角符号</h3><p>对于<strong>上角文字和下角文字</strong>，分别使用<code>^</code>和<code>_</code>，比如：<code>x_i^2</code>:$x_i^2$</p>
+<p>用花括号<code>{...}</code>包裹一个原子的符号或者表达式，比如用<code>10^10</code>会得到:$10^10$，正确的写法是：<code>10^{10}</code>:$10^{10}$。另外，这种写法：<code>x^5^6</code>是错误的，需要用花括号进行界定。<code>{x^y}^z</code>是:${x^y}^z$，<code>x^{y^z}</code>是：$x^{y^z}$。注意<code>x_i^2</code>:$x<em>i^2$和`x</em>{i^2}`:$x_{i^2}$。</p>
+<h3 id="花括号">花括号</h3><ol>
+<li><p>圆括号和方括号<code>()[]</code>用法就是普通的用法，比如<code>(2+2)[4-4]</code>:$(2+2)[4-4]$。<br>而表达式中的花括号需要用<code>\\{</code>和<code>\\}</code>表示，比如<code>\{x| x&gt;0\}</code>:$\{x| x&gt;0\}$</p>
+</li>
+<li><p>默认插入会被压缩变小：<code>(\frac{\sqrt x}{y^3})</code>:$(\frac{\sqrt x}{y^3})$,使用<code>\left(…\right)</code>可以自动调整行高,<code>\left(\frac{\sqrt x}{y^3}\right)</code> :$\left(\frac{\sqrt x}{y^3}\right)$。</p>
+</li>
+<li><code>\left</code> 和 <code>\right</code> 适用于下面的各种符号：<code>(</code>和<code>)</code>,$\left((x)\right)$； <code>[</code> 和 <code>]</code>:\left([x]\right)；<code>\{</code> and <code>\}</code>:$\left(\{x\}\right)$； <code>|</code>：$\left(|x|\right)$； <code>\langle</code> and <code>\rangle</code>：$\left(\langle x \rangle\right)$；,  <code>\lceil</code> and <code>\rceil</code>:$\left(\lceil x \rceil\right)$, and <code>\lfloor</code> and <code>\rfloor</code>：$\left(\lfloor x \rfloor\right)$；也可以用<code>.</code>进行隐式插入：<code>\left.\frac12\right\rbrace</code> : $\left.\frac12\right\rbrace$.</li>
+</ol>
+<h3 id="求和与积分">求和与积分</h3><p>求和与积分:<code>\sum_1^n</code>,<code>\int</code> :$\sum<em>1^n$,`\sum</em>{i=0}^\infty i^2<code>:$\sum_{i=0}^\infty i^2$;乘积：</code>\prod<code>:$\prod$;</code>\int<code>:$\int$;</code>\bigcup<code>:$\bigcup$,</code>\bigcap<code>: $\bigcap$,</code>\iint`:$\iint$.</p>
+<h3 id="分数">分数</h3><p>分数有两种方式。</p>
+<ol>
+<li><code>\frac ab</code>:$\frac ab$,<code>\frac {a+1}{b+2}</code>:$\frac {a+1}{b+2}$;</li>
+<li><code>\over</code>，<code>{a+1\over b+1}</code>:${a+1\over b+1}$.</li>
+</ol>
+<h3 id="字体：">字体：</h3><ul>
+<li>Use \mathbb or \Bbb for “blackboard bold”: $\mathbb{CHNQRZ}$;</li>
+<li>Use \mathbf for boldface: $mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$;</li>
+<li>Use \mathrm for roman font:$\mathrm{ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$;</li>
+<li>Use \mathsf for sans-serif font:$\mathsf{ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$;</li>
+<li>Use \mathcal for “calligraphic” letters:$\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$;</li>
+<li>Use \mathscr for script letters:$\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$;</li>
+<li>Use \mathfrak for “Fraktur” (old German style) letters:$\mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz}$;</li>
+</ul>
+<h3 id="开根号">开根号</h3><p>使用<code>\sqrt</code> :$\sqrt{x^3}$,<code>\sqrt[3]{\frac xy}</code>:$\sqrt[3]{\frac xy}$,对于复杂表达式，可以使用：<code>{...}^{1/2}</code>.</p>
+<h3 id="特殊函数">特殊函数</h3><p>比如：”lim”, “sin”, “max”, “ln”，使用<code>\lim</code>,<code>\sin</code>等等。<code>\sin x</code>:$\sin x$;<br>极限：<code>\lim_{x\to 0}</code>:$$\lim_{x\to 0}$$.</p>
+<h3 id="特殊符号">特殊符号</h3><p>有很多，有个<a href="http://pic.plover.com/MISC/symbols.pdf" target="_blank" rel="external">简表</a>和<a href="http://mirror.math.ku.edu/tex-archive/info/symbols/comprehensive/symbols-a4.pdf" target="_blank" rel="external">全表</a>可以查询。最常用的包括：</p>
+<ul>
+<li><code>\lt \gt \le \ge \neq</code> :$\lt \gt \le \ge \neq$,<code>\not\lt</code> :$\not\lt$;</li>
+<li><code>\times \div \pm \mp</code> :$\times \div \pm \mp$，中间点是<code>\cdot</code>:$x\cdot y$;</li>
+<li><code>\cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing</code>:$\cup \cap \setminus \subset \subseteq \subsetneq \supset \in \notin \emptyset \varnothing$;</li>
+<li><code>{n+1 \choose 2k}</code> or <code>\binom{n+1}{2k}</code> :$\binom{n+1}{2k}$;</li>
+<li><code>\to \rightarrow \leftarrow \Rightarrow \Leftarrow \mapsto</code> :$\to \rightarrow \leftarrow \Rightarrow \Leftarrow \mapsto$;</li>
+<li><code>\land \lor \lnot \forall \exists \top \bot \vdash \vDash</code>:$\land \lor \lnot \forall \exists \top \bot \vdash \vDash$;</li>
+<li><code>\star \ast \oplus \circ \bullet</code> :$\star \ast \oplus \circ \bullet$;</li>
+<li><code>\approx \sim \simeq \cong \equiv \prec</code> :$\approx \sim \simeq \cong \equiv \prec$;</li>
+<li><code>\infty \aleph_0</code>: $\infty \aleph_0$;<code>\nabla \partial</code>:$\nabla \partial$;<code>\Im \Re IR</code>:$\Im \Re IR$;</li>
+<li><code>\pmod</code> : <code>a\equiv b\pmod n</code>:$a\equiv b\pmod n$;</li>
+<li><code>\ldots</code>:$a_1,a_2,\ldots,a_n$, <code>\cdots</code> :$a_1+a_2+\cdots+a_n$;</li>
+<li>一些希腊字母的变种：<code>\epsilon \varepsilon</code>:$\epsilon \varepsilon$, <code>\phi \varphi</code>:$\phi \varphi$, and others. Script lowercase l is <code>\ell</code>:$\ell$.<br><a href="http://detexify.kirelabs.org/classify.html" target="_blank" rel="external">这里可以查看更多</a><br><a href="http://docs.mathjax.org/en/latest/tex.html#supported-latex-commands" target="_blank" rel="external">MathJax支持的LaTex命令</a><br><a href="http://www.onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm" target="_blank" rel="external">MathJax常用命令</a></li>
+</ul>
+<h3 id="空格">空格</h3><p>常量空格MathJax并不会起作用，而要用<code>\,</code>,比如:$a\,b$.对于很宽的空格使用<code>\quad</code> 和 <code>\qquad</code>:$a \quad b,a \qquad b$.</p>
+<h3 id="纯文本">纯文本</h3><p><code>\text{…}</code>:$\{x\in s\mid x\text{ is extra large}\}$</p>
+<h3 id="字母上面的符号">字母上面的符号</h3><ul>
+<li><code>\hat</code>,<code>\hat x</code> :$\hat x$;</li>
+<li><code>\widehat</code>给多个字母<code>\widehat{xy}</code>:$\widehat{xy}$;</li>
+<li><code>\bar</code>,<code>\bar x</code> :$\bar x$;</li>
+<li><code>\overline</code>,<code>\overline {xyz}</code> :$\overline {xyz}$;</li>
+<li>向量<code>\vec</code>,<code>\vec x</code> :$\vec x$;</li>
+<li><code>\overrightarrow</code>,<code>\overrightarrow {xy}</code>:$\overrightarrow {xy}$;</li>
+<li><code>\overleftrightarrow</code>,’\overleftrightarrow {xy}’:$\overleftrightarrow{xy}$;</li>
+<li>点:<code>\frac d{dx}x\dot x =  \dot x^2 +  x\ddot x</code> :$\frac d{dx}x\dot x =  \dot x^2 +  x\ddot x$;</li>
+</ul>
+<h3 id="MathJax特殊字符">MathJax特殊字符</h3><p>Special characters used for MathJax interpreting can be escaped using the <code>\</code> character: <code>\\$</code>:$\$$, <code>\\{</code>:$\{$, <code>\\_</code>:$\_$, etc. If you want <code>\</code> itself, you should use <code>\backslash</code>:$\backslash$, because <code>\\</code> is for a new line.<br>(<strong>Note</strong>:发现Hexo生成的markdown里面反斜杠数目要加倍，比如，MathJax用<code>\{</code>表示左花括号，在markdown里面要用<code>\\{</code>，而markdown里面换行要用:<code>\\\\</code>)</p>
+<h2 id="其他示例">其他示例</h2><h3 id="矩阵">矩阵</h3><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="formula">$$</span><br><span class="line">        <span class="command">\begin</span><span class="special">&#123;</span>matrix<span class="special">&#125;</span></span><br><span class="line">        1 <span class="special">&amp;</span> x <span class="special">&amp;</span> x^2 <span class="command">\\</span><span class="command">\\</span></span><br><span class="line">        1 <span class="special">&amp;</span> y <span class="special">&amp;</span> y^2 <span class="command">\\</span><span class="command">\\</span></span><br><span class="line">        1 <span class="special">&amp;</span> z <span class="special">&amp;</span> z^2 <span class="command">\\</span><span class="command">\\</span></span><br><span class="line">        <span class="command">\end</span><span class="special">&#123;</span>matrix<span class="special">&#125;</span></span><br><span class="line">$$</span></span><br></pre></td></tr></table></figure>
+<p>产生：<br>$$<br>        \begin{matrix}<br>        1 &amp; x &amp; x^2 \\<br>        1 &amp; y &amp; y^2 \\<br>        1 &amp; z &amp; z^2 \\<br>        \end{matrix}<br>$$</p>
+<h3 id="分情况定义">分情况定义</h3><figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line"> f(n) =</span><br><span class="line">\begin&#123;cases&#125;</span><br><span class="line">n/<span class="number">2</span>,  &amp; \text&#123;if <span class="variable">$n</span>$ is even&#125; \\</span><br><span class="line"><span class="number">3</span>n+<span class="number">1</span>, &amp; \text&#123;if <span class="variable">$n</span>$ is odd&#125;</span><br><span class="line">\<span class="keyword">end</span>&#123;cases&#125;</span><br></pre></td></tr></table></figure>
+<p>产生<br> $$f(n) =<br>\begin{cases}<br>n/2,  &amp; \text{if $n$ is even} \\<br>3n+1, &amp; \text{if $n$ is odd}<br>\end{cases}$$</p>
+<h3 id="数组">数组</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;<span class="built_in">array</span>&#125;&#123;c|lcr&#125;</span><br><span class="line">n &amp; \text&#123;Left&#125; &amp; \text&#123;Center&#125; &amp; \text&#123;Right&#125; \\</span><br><span class="line">\hline</span><br><span class="line"><span class="number">1</span> &amp; <span class="number">0.24</span> &amp; <span class="number">1</span> &amp; <span class="number">125</span> \\</span><br><span class="line"><span class="number">2</span> &amp; -<span class="number">1</span> &amp; <span class="number">189</span> &amp; -<span class="number">8</span> \\</span><br><span class="line"><span class="number">3</span> &amp; -<span class="number">20</span> &amp; <span class="number">2000</span> &amp; <span class="number">1</span>+<span class="number">10</span>i</span><br><span class="line">\end&#123;<span class="built_in">array</span>&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>产生：<br>$$<br>\begin{array}{c|lcr}<br>n &amp; \text{Left} &amp; \text{Center} &amp; \text{Right} \\<br>\hline<br>1 &amp; 0.24 &amp; 1 &amp; 125 \\<br>2 &amp; -1 &amp; 189 &amp; -8 \\<br>3 &amp; -20 &amp; 2000 &amp; 1+10i<br>\end{array}<br>$$</p>
+<h3 id="方程">方程</h3><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line"><span class="formula">$$</span><br><span class="line"><span class="command">\left</span><span class="command">\&#123;</span> </span><br><span class="line"><span class="command">\begin</span><span class="special">&#123;</span>array<span class="special">&#125;</span><span class="special">&#123;</span>c<span class="special">&#125;</span></span><br><span class="line">a_1x+b_1y+c_1z=d_1 <span class="command">\\</span> </span><br><span class="line">a_2x+b_2y+c_2z=d_2 <span class="command">\\</span> </span><br><span class="line">a_3x+b_3y+c_3z=d_3</span><br><span class="line"><span class="command">\end</span><span class="special">&#123;</span>array<span class="special">&#125;</span></span><br><span class="line"><span class="command">\right</span>. </span><br><span class="line">$$</span></span><br></pre></td></tr></table></figure>
+<p>产生：<br>$$<br>\left\{<br>\begin{array}{c}<br>a_1x+b_1y+c_1z=d_1 \\<br>a_2x+b_2y+c_2z=d_2 \\<br>a_3x+b_3y+c_3z=d_3<br>\end{array}<br>\right.<br>$$</p>
+<h2 id="参考文档">参考文档</h2><p>这里面有更多：<br><a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">http://meta.math.stackexchange.com/ 上面一个完成的教程</a><br><a href="http://cdn.mathjax.org/mathjax/latest/test/examples.html" target="_blank" rel="external">mathjax示例</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/工具/">工具</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/LaTeX/">LaTeX</a><a href="/tags/MathJax/">MathJax</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://debug4.me/工具/mathjax-and-latex-quick-reference/" data-title="MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference | debug4me | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/Project-Euler/PE134/"  title="Project Euler Problem 134 - Prime pair connection">
+ <strong>下一篇：</strong><br/> 
+ <span>Project Euler Problem 134 - Prime pair connection
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="工具/mathjax-and-latex-quick-reference/" data-title="MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference" data-url="http://debug4.me/工具/mathjax-and-latex-quick-reference/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#速查手册"><span class="toc-number">1.</span> <span class="toc-text">速查手册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看TeX命令"><span class="toc-number">1.1.</span> <span class="toc-text">查看TeX命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内联和公式块"><span class="toc-number">1.2.</span> <span class="toc-text">内联和公式块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#希腊字母"><span class="toc-number">1.3.</span> <span class="toc-text">希腊字母</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上角下角符号"><span class="toc-number">1.4.</span> <span class="toc-text">上角下角符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#花括号"><span class="toc-number">1.5.</span> <span class="toc-text">花括号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求和与积分"><span class="toc-number">1.6.</span> <span class="toc-text">求和与积分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分数"><span class="toc-number">1.7.</span> <span class="toc-text">分数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体："><span class="toc-number">1.8.</span> <span class="toc-text">字体：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开根号"><span class="toc-number">1.9.</span> <span class="toc-text">开根号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊函数"><span class="toc-number">1.10.</span> <span class="toc-text">特殊函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特殊符号"><span class="toc-number">1.11.</span> <span class="toc-text">特殊符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空格"><span class="toc-number">1.12.</span> <span class="toc-text">空格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纯文本"><span class="toc-number">1.13.</span> <span class="toc-text">纯文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字母上面的符号"><span class="toc-number">1.14.</span> <span class="toc-text">字母上面的符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MathJax特殊字符"><span class="toc-number">1.15.</span> <span class="toc-text">MathJax特殊字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他示例"><span class="toc-number">2.</span> <span class="toc-text">其他示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#矩阵"><span class="toc-number">2.1.</span> <span class="toc-text">矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分情况定义"><span class="toc-number">2.2.</span> <span class="toc-text">分情况定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组"><span class="toc-number">2.3.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方程"><span class="toc-number">2.4.</span> <span class="toc-text">方程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文档"><span class="toc-number">3.</span> <span class="toc-text">参考文档</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<a href="https://projecteuler.net/"><img src="http://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler Profile" title="Project Euler Profile" class="aligncenter" width="200" height="60"></a>
+
+  
+<div class="category-container">
+  <h3 class="category-title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
+</div>
+ 
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Project-Euler/" title="Project Euler">Project Euler<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jacman/" title="jacman">jacman<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/blogs/" title="blogs">blogs<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/素数/" title="素数">素数<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/基数/" title="基数">基数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/无穷大/" title="无穷大">无穷大<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/一一对应/" title="一一对应">一一对应<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MathJax/" title="MathJax">MathJax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/尼云数/" title="尼云数">尼云数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://projecteuler.net/" target="_blank" title="一个有挑战性的数学和计算机编程试题网站">Project Euler</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://openmind.iteye.com/" target="_blank" title="我的iteye博客">OpenMind&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Atlas in Github. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2172283884" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/cwjcsu" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/1770716" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:cwjcsu@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="debug4me@163.com">debug4me@163.com</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url');
+  if(url.indexOf('http://')<0){
+     url = 'http://' + url;
+  }
+  var encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"cwjcsu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-68836938-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F90520fa0d03b2ba198c8e692f1d8664a' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: '9058ca157e9c5b1686f7'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
