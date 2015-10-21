@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://debug4.me/Math/infinity-you-never-heard-of/</loc>
+    <lastmod>2015-10-21T07:29:28.968Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://debug4.me/Algorithm/ternary-search/</loc>
     <lastmod>2015-10-21T04:49:51.272Z</lastmod>
   </url>
@@ -9,11 +14,6 @@
   <url>
     <loc>http://debug4.me/Project-Euler/PE134/</loc>
     <lastmod>2015-10-20T06:14:35.216Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://debug4.me/Math/infinity-you-never-heard-of/</loc>
-    <lastmod>2015-10-20T01:20:12.295Z</lastmod>
   </url>
   
   <url>
