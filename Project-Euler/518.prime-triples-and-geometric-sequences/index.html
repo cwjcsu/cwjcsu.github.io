@@ -4,24 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>三分法求极值-Ternary Search | debug4me | 一叶知秋-博客</title>
+    <title>Project Euler Problem 518 - 等比素数三元组 | debug4me | 一叶知秋-博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="debug4me@163.com">
     
 
     
-    <meta name="description" content="本文介绍了三分法（Ternary Search）的适用场景以及与二分法的区别">
+    <meta name="description" content="Project Euler Problem 518 - Prime triples and geometric sequences">
 <meta property="og:type" content="article">
-<meta property="og:title" content="三分法求极值-Ternary Search">
-<meta property="og:url" content="http://debug4.me/Algorithm/ternary-search/index.html">
+<meta property="og:title" content="Project Euler Problem 518 - 等比素数三元组">
+<meta property="og:url" content="http://debug4.me/Project-Euler/518.prime-triples-and-geometric-sequences/index.html">
 <meta property="og:site_name" content="debug4me | 一叶知秋-博客">
-<meta property="og:description" content="本文介绍了三分法（Ternary Search）的适用场景以及与二分法的区别">
-<meta property="og:image" content="http://7xn1o8.com1.z0.glb.clouddn.com/ternary_search.png">
-<meta property="og:updated_time" content="2015-10-21T15:55:05.192Z">
+<meta property="og:description" content="Project Euler Problem 518 - Prime triples and geometric sequences">
+<meta property="og:updated_time" content="2015-10-22T15:18:01.361Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三分法求极值-Ternary Search">
-<meta name="twitter:description" content="本文介绍了三分法（Ternary Search）的适用场景以及与二分法的区别">
+<meta name="twitter:title" content="Project Euler Problem 518 - 等比素数三元组">
+<meta name="twitter:description" content="Project Euler Problem 518 - Prime triples and geometric sequences">
 
     
     <link rel="alternative" href="/atom.xml" title="debug4me | 一叶知秋-博客" type="application/atom+xml">
@@ -84,14 +83,14 @@
 		<header class="article-info clearfix">
   <h2 itemprop="name">
     
-      <a href="/Algorithm/ternary-search/" title="三分法求极值-Ternary Search" itemprop="url">三分法求极值-Ternary Search</a>
+      <a href="/Project-Euler/518.prime-triples-and-geometric-sequences/" title="Project Euler Problem 518 - 等比素数三元组" itemprop="url">Project Euler Problem 518 - 等比素数三元组</a>
   </h2>
   <p class="article-author">By
        
 		<a href="/about" title="debug4me@163.com" target="_blank" itemprop="author">debug4me@163.com</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-21T02:57:53.000Z" itemprop="datePublished"> 发表于 2015-10-21</time>
+    <time datetime="2015-10-22T12:36:18.000Z" itemprop="datePublished"> 发表于 2015-10-22</time>
     
   </p>
 </header>
@@ -100,32 +99,35 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是三分法"><span class="toc-number">1.</span> <span class="toc-text">什么是三分法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法描述"><span class="toc-number">2.</span> <span class="toc-text">算法描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2015百度笔试题（算法）"><span class="toc-number">3.1.</span> <span class="toc-text">2015百度笔试题（算法）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析"><span class="toc-number">3.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例代码"><span class="toc-number">3.3.</span> <span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与二分法的区别"><span class="toc-number">4.</span> <span class="toc-text">与二分法的区别</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补偿法"><span class="toc-number">2.</span> <span class="toc-text">补偿法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤"><span class="toc-number">2.1.</span> <span class="toc-text">算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">2.2.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遍历比值法"><span class="toc-number">3.</span> <span class="toc-text">遍历比值法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤-1"><span class="toc-number">3.1.</span> <span class="toc-text">算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码实现"><span class="toc-number">3.2.</span> <span class="toc-text">Java代码实现</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<p>本文介绍了三分法（Ternary Search）的适用场景，并用一道2015百度笔试题讲解三分法，最后分析了三分法和二分法的区别。<br><a id="more"></a></p>
-<h2 id="什么是三分法">什么是三分法</h2><p>三分法是求单峰函数的最大值或最小值的算法，是一种<a href="https://en.wikipedia.org/wiki/Divide_and_conquer_algorithm" target="_blank" rel="external">分治算法</a>。维基百科：<a href="https://en.wikipedia.org/wiki/Ternary_search" target="_blank" rel="external">Ternary_search</a>。</p>
-<p>所谓单峰函数，就是凸函数（包括上凸和下凸，严格定义不赘述）。举个例子，假设求函数f(x)的最大值，而且最大值落在区间[A,B]上，为了使用三分法，那么必须存在一个x满足下面的条件：</p>
+		<p><a href="https://projecteuler.net/problem=518" target="_blank" rel="external">Problem 518 - Prime triples and geometric sequences </a> ,存在一些素数三元组(a,b,c)，使得(a+1,b+1,c+1)是等比数列，求10<sup>8</sup>以内的所有这种三元组的元素的和。<em>Completed on 2015-10-22  14:39</em><br><a id="more"></a></p>
+<h2 id="原题">原题</h2><p>Let S(n) = a+b+c over all triples (a,b,c) such that:</p>
 <ul>
-<li>对任意a,b，如果 A ≤ a &lt; b ≤ x ,则f(a) &lt; f(b)，并且</li>
-<li>对任意a,b，如果 x ≤ a &lt; b ≤ B，则f(a) &gt; F(b)<br>这样，f(x)就是函数f的最大值。 </li>
+<li>a, b, and c are prime numbers.</li>
+<li>a &lt; b &lt; c &lt; n.</li>
+<li>a+1, b+1, and c+1 form a geometric sequence.<br>For example, S(100) = 1035 with the following triples:<br>(2, 5, 11), (2, 11, 47), (5, 11, 23), (5, 17, 53), (7, 11, 17), (7, 23, 71), (11, 23, 47), (17, 23, 31), (17, 41, 97), (31, 47, 71), (71, 83, 97)</li>
 </ul>
-<h2 id="算法描述">算法描述</h2><p>假设函数f(x)在区间[A,B]上有最大值，那么随机取两个点m1和m2 : A &lt; m1 &lt; m2 &lt; B,然后有三种可能：<br>if f(m1) &lt; f(m2) ,那么最大值不可能在区间[A,m1]上，而是落在(m1,B]上；<br>if f(m1) &gt; f(m2) ,那么最大值不可能再区间[m2,B]上，而是落在[A,m2)上；<br>if f(m1) = f(m2) ,那么最大值落在区间[m1,m2]上。</p>
-<p><strong>注意</strong>:上面区间的表示法，用’(‘和’)’表示不包含端点，用’[‘和’]’表示包含端点。</p>
-<p>上面每次选取m1,m2可以排除一块区间，即每次划分成三份，根据函数值去掉一份或者两份，正所谓三分法也。<br>每次可以三等分，即m1和m2的选取可以这样：</p>
-<ul>
-<li>m1 = A + (A-B)/3</li>
-<li>m2 = B - (A-B)/3</li>
-</ul>
-<p>时间复杂度：Ｏ(log n)</p>
-<p>三分法示意图:<br><img src="http://7xn1o8.com1.z0.glb.clouddn.com/ternary_search.png" alt="三分法算法示意图"></p>
-<h2 id="实例">实例</h2><h3 id="2015百度笔试题（算法）">2015百度笔试题（算法）</h3><p>题目：一个升序数组，可能包含正数负数或者0，求数组中绝对值最小的数，要求复杂度小于O(n)。</p>
-<p>题目被发到<a href="http://group.jobbole.com/9254" target="_blank" rel="external">伯乐在线 - 2015百度笔试题（算法）</a>。</p>
-<h3 id="分析">分析</h3><p>有序数组搜索一个元素，经验主义者会立刻想到二分法，殊不知，本题是求绝对值，数组的绝对值不再是有序的，而是下凸的，即中间小，两边大。所求的正好是最小值。能满足三分法的要求。</p>
-<h3 id="示例代码">示例代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 用三分法求升序数组data中绝对值最小的元素。如果有两个绝对值相等，返回值小的那一个。</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">findMinAbs</span><span class="params">(<span class="keyword">int</span>[] data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = data.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> m1 = left;</span><br><span class="line">    <span class="keyword">int</span> m2 = right;</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        m1 = left + (right - left) / <span class="number">3</span>;</span><br><span class="line">        m2 = right - (right - left) / <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> f1 = Math.<span class="built_in">abs</span>(data[m1]);</span><br><span class="line">        <span class="keyword">int</span> f2 = Math.<span class="built_in">abs</span>(data[m2]);</span><br><span class="line">        <span class="keyword">if</span> (f1 &gt; f2) &#123;<span class="comment">//缩小到区间(m1,right]</span></span><br><span class="line">            left = m1 + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (f1 &lt; f2) &#123;<span class="comment">//缩小到区间[left,m2)</span></span><br><span class="line">            right = m2 - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">//缩小到区间[m1,m2]</span></span><br><span class="line">            left = m1;</span><br><span class="line">            right = m2;</span><br><span class="line">            <span class="keyword">if</span> (left == right - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;<span class="comment">//TODO这里是发现了两个最小值</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data[left];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] data = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; -<span class="number">123</span>, -<span class="number">23</span>, -<span class="number">1</span>, <span class="number">2</span>, <span class="number">25</span>, <span class="number">100</span> &#125;;</span><br><span class="line">    System.out.println(findMinAbs(data));</span><br><span class="line">    data = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; -<span class="number">123</span>, -<span class="number">23</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">25</span>, <span class="number">100</span> &#125;;</span><br><span class="line">    System.out.println(findMinAbs(data));</span><br><span class="line">    data = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; <span class="number">12</span>, <span class="number">12</span>, <span class="number">23</span>, <span class="number">34</span>,<span class="number">112</span>, <span class="number">125</span>, <span class="number">1100</span> &#125;;</span><br><span class="line">    System.out.println(findMinAbs(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出:<br><figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">-<span class="ruby"><span class="number">1</span></span><br><span class="line"></span>-<span class="ruby"><span class="number">1</span></span><br><span class="line"></span>12</span><br></pre></td></tr></table></figure></p>
-<h2 id="与二分法的区别">与二分法的区别</h2><p>二分法适用的场景是：从一个有序数组中寻找指定值的元素。二分法适用的是有序数组，三分法适用的是先升后降或者先降后升的数组。</p>
+<p>Find S(10<sup>8</sup>).</p>
+<h2 id="补偿法">补偿法</h2><p>根据等比数列的特征，可以得到$(a+1)(c+1)=(b+1)^2$。将$(b+1)^2$分解质因数之后，每个质因子的幂必然是偶数，从而(a+1)和(c+1)的<strong>相同的</strong>质因数的幂必然都是同奇或者同偶，那么只需要把这些奇数次质因数相乘得到一个积，那么(a+1)和(c+1)的这个积相等，把(p+1)的这个积称为<strong>质素p的补偿数</strong> 。可以利用这个结论求解这个题。</p>
+<h3 id="算法步骤">算法步骤</h3><ol>
+<li>获取小于$N=10^8$的所有素数:primes;</li>
+<li>遍历数组primes，给每个质素p分解质因数并把奇数次因子相乘得到complements数组，complements[i]保存素数primes[i]的补偿数；</li>
+<li>把补偿数相同的素数放入相同的列表并排序，得到Map{complements[i] =&gt; Li},Li是补偿数为complements[i]的素数列表。</li>
+<li>把所有素数的平方存入一个Set，遍历列表Li，如果有两个质数的积在这个Set中，则是满足条件的三元组，把它们相加；</li>
+<li>对每个补偿数和列表进行上述操作对结果求和。</li>
+</ol>
+<h3 id="复杂度分析">复杂度分析</h3><p>用上述方法在我的T420s笔记本上跑了大概<strong>两个半小时</strong>,8核CPU呼呼转了那么久才算出来。中间有很多次因为内存溢出而失败，把内存加到4G还是溢出，后面去掉了补偿数那个Map集合以及保存相同补偿数质素列表的那些List，全部用原生的int[]进行运算才成功。</p>
+<p>Java的包装类Integer，Long，以及对象引用本身消耗的内存在这种情况下不得不考虑。所以做大尺度的数值计算，只能用原生类型而不能用对象类型，但是Java的Set和Map等基本数据结构都是基于对象的，都是吃内存大户。这是Java在计算领域的劣势。</p>
+<h2 id="遍历比值法">遍历比值法</h2><p>根据等比数列得到:b+1 = (a+1)*(k/d) ,(c+1)=(b+1)*(k/d)=(a+1)* k<sup>2</sup>/d<sup>2</sup>，假设gcd(k,d)=1,则(a+1)可被d<sup>2</sup>整除。(dev_random’s answer in <a href="https://projecteuler.net/thread=518" target="_blank" rel="external">Thread 518</a>)。</p>
+<h3 id="算法步骤-1">算法步骤</h3><ol>
+<li>创建一个数组，flag[i]=1表示i是素数flag[i]=0表示i是合数；</li>
+<li>loop d from 1 to N with step 1,for each d ,loop n from d^2 to N with step d^2，如果flag[n-1]=1,loop k from d+1 to K with step 1。这样，已知a,k,d，可以求出另外b+1,c+1,只需判断b和c是否是质素就可以判断是否满足条件。这里K是使c+1&lt;=N的最大数，$k^2 = {(c+1) \over (a+1)}d^2$. 得到<br>$$ \frac{k^2 (a+1)}{d^2}  = c+1 &lt;= N$$</li>
+</ol>
+<h3 id="Java代码实现">Java代码实现</h3><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static long sumGeometricPrimeTriples(int <span class="keyword">N</span>) &#123;</span><br><span class="line">    BitSet flag = Util.getPrimeDecisionBlow2(<span class="keyword">N</span>);</span><br><span class="line">    long <span class="keyword">sum</span> = 0;</span><br><span class="line">    <span class="keyword">for</span> (int <span class="keyword">d</span> = 1; <span class="keyword">d</span> &lt; <span class="keyword">N</span>; <span class="keyword">d</span>++) &#123;<span class="comment">// 遍历d</span></span><br><span class="line">        long d2 = <span class="keyword">d</span> * <span class="keyword">d</span>;</span><br><span class="line">        <span class="keyword">if</span> (d2 &gt; <span class="keyword">N</span>) &#123;<span class="comment">// when convert to int,may overflow</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (int <span class="keyword">n</span> = (int) d2; <span class="keyword">n</span> &lt; <span class="keyword">N</span>; <span class="keyword">n</span> += d2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (flag.<span class="literal">get</span>(<span class="keyword">n</span> - 1)) &#123;<span class="comment">// a = n-1是素数</span></span><br><span class="line">                int nd = <span class="keyword">n</span> / <span class="keyword">d</span>;</span><br><span class="line">                int ndd = <span class="keyword">n</span> / <span class="keyword">d</span> / <span class="keyword">d</span>;</span><br><span class="line">                <span class="keyword">for</span> (int k = <span class="keyword">d</span> + 1; ndd * k * k &lt;= <span class="keyword">N</span>; k++) &#123;<span class="comment">// 找到a之后遍历k,根据d,k可以确定b和c</span></span><br><span class="line">                    int b = nd * k - 1;</span><br><span class="line">                    int c = ndd * k * k - 1;</span><br><span class="line">                    <span class="keyword">if</span> (flag.<span class="literal">get</span>(b) &amp;&amp; flag.<span class="literal">get</span>(c) &amp;&amp; gcd(<span class="keyword">d</span>, k) == 1) &#123;</span><br><span class="line">                        <span class="comment">// gcd这个条件去除重复统计</span></span><br><span class="line">                        <span class="keyword">sum</span> += (<span class="keyword">n</span> - 1) + b + c;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>答案不贴出来了，在10<sup>14</sup>数量级上，运行时间，大概5秒。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -133,13 +135,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  <a class="article-category-link" href="/categories/Project-Euler/">Project Euler</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/三分法/">三分法</a><a href="/tags/分治算法/">分治算法</a><a href="/tags/搜索算法/">搜索算法</a>
+  <span></span> <a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/等比数列/">等比数列</a><a href="/tags/素数/">素数</a>
   </div>
 
 </div>
@@ -148,7 +150,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://debug4.me/Algorithm/ternary-search/" data-title="三分法求极值-Ternary Search | debug4me | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
+	  <div data-url="http://debug4.me/Project-Euler/518.prime-triples-and-geometric-sequences/" data-title="Project Euler Problem 518 - 等比素数三元组 | debug4me | 一叶知秋-博客" data-tsina="2172283884" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -161,19 +163,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/工具/mathjax-and-latex-quick-reference/" title="MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference">
-  <strong>上一篇：</strong><br/>
-  <span>
-  MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/Project-Euler/PE134/"  title="Project Euler Problem 134 - Prime pair connection">
+<a href="/工具/mathjax-and-latex-quick-reference/"  title="MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference">
  <strong>下一篇：</strong><br/> 
- <span>Project Euler Problem 134 - Prime pair connection
+ <span>MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference
 </span>
 </a>
 </div>
@@ -182,7 +176,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="Algorithm/ternary-search/" data-title="三分法求极值-Ternary Search" data-url="http://debug4.me/Algorithm/ternary-search/"></div>
+	<div class="ds-thread" data-thread-key="Project-Euler/518.prime-triples-and-geometric-sequences/" data-title="Project Euler Problem 518 - 等比素数三元组" data-url="http://debug4.me/Project-Euler/518.prime-triples-and-geometric-sequences/"></div>
 </section>
 
 
@@ -192,7 +186,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是三分法"><span class="toc-number">1.</span> <span class="toc-text">什么是三分法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#算法描述"><span class="toc-number">2.</span> <span class="toc-text">算法描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2015百度笔试题（算法）"><span class="toc-number">3.1.</span> <span class="toc-text">2015百度笔试题（算法）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析"><span class="toc-number">3.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例代码"><span class="toc-number">3.3.</span> <span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#与二分法的区别"><span class="toc-number">4.</span> <span class="toc-text">与二分法的区别</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补偿法"><span class="toc-number">2.</span> <span class="toc-text">补偿法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤"><span class="toc-number">2.1.</span> <span class="toc-text">算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">2.2.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遍历比值法"><span class="toc-number">3.</span> <span class="toc-text">遍历比值法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤-1"><span class="toc-number">3.1.</span> <span class="toc-text">算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码实现"><span class="toc-number">3.2.</span> <span class="toc-text">Java代码实现</span></a></li></ol></li></ol>
  
   </div>
 
