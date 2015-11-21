@@ -4,7 +4,7 @@
   <subtitle><![CDATA[码农，数学物理科幻爱好者 - 子非鱼，安知鱼之乐]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://debug4.me/"/>
-  <updated>2015-10-22T15:18:01.361Z</updated>
+  <updated>2015-11-21T08:40:54.354Z</updated>
   <id>http://debug4.me/</id>
   
   <author>
@@ -13,6 +13,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[关于庄子“子非鱼”是诡辩，我为你正名]]></title>
+    <link href="http://debug4.me/Math/logic-and-debate/"/>
+    <id>http://debug4.me/Math/logic-and-debate/</id>
+    <published>2015-11-21T05:03:07.000Z</published>
+    <updated>2015-11-21T08:40:54.354Z</updated>
+    <content type="html"><![CDATA[<p>一般评论和著作都认为庄子对于“子非鱼”的辩论是诡辩，输了惠子一筹，其实不是。</p>
+<a id="more"></a>
+<h2 id="原文及翻译">原文及翻译</h2><p>子非鱼的辩论，原文是：<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">庄子曰：“鲦鱼出游从容，是鱼乐也。”</span><br><span class="line">惠子曰：“子非鱼，安知鱼之乐？”</span><br><span class="line">庄子曰：“子非我，安知我不知鱼之乐？”</span><br><span class="line">惠子曰：“我非子，固不知子矣，子固非鱼也，子不知鱼之乐，全矣。”</span><br><span class="line">庄子曰：“请循其本。子曰汝安知鱼乐云者，既已知吾知之而问我，我知之濠上也。”</span><br></pre></td></tr></table></figure></p>
+<p>精简翻译是：<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">庄子说：鱼很快乐。</span><br><span class="line">惠子说：你不是鱼，你怎么知道鱼很快乐呢？</span><br><span class="line">庄子说：你不是我，你怎么知道我不知鱼快乐呢？</span><br><span class="line">惠子说：我不是你，所以我不知道你；你不是鱼，所以，你也不知道鱼的快乐。</span><br><span class="line">庄子说：请回到开始时的话题，你刚才说的‘你不是鱼，怎么知道鱼的快乐呢？’这句话，就是说你已经知道了我知道鱼的快乐却还来问我，我是在濠上知道的。</span><br></pre></td></tr></table></figure></p>
+<h2 id="如何得出诡辩的误解？">如何得出诡辩的误解？</h2><p>我们先用接近逻辑学的数学语言，把这些关键点列出来，庄子的话可以划分成一个复合命题：</p>
+<pre><code>命题<span class="literal">A</span>：鱼快乐。
+命题B：庄子知道<span class="literal">A</span>。
+</code></pre><p>认为庄子是诡辩的人的思维逻辑是这样的：</p>
+<p>惠子问 “汝安知鱼乐” ，原本惠子的意思是：“你怎么知道鱼快乐”，庄子把这句话曲解为：“你在哪里知道鱼快乐的”，言下之意，惠子承认了“鱼快乐”和“庄子知道鱼快乐”，只是不知道庄子是在哪里知道的。然后庄子说：“我是在濠水的桥上知道的”。</p>
+<p>咋一看这段文章和翻译，都感觉庄子确实是诡辩，然而，我要为我的偶像正名。</p>
+<h2 id="惠子的循环论证">惠子的循环论证</h2><p>从惠子的角度出发，惠子反驳的依据是：</p>
+<pre><code>依据<span class="keyword">P</span>：不同的个体是不能相知的。
+</code></pre><p>从这个依据出发，我们重新翻译上面的对话，你可以看出惠子是如果得出这个结论以及如果利用这个结论进行推理的。</p>
+<pre><code>庄子：<span class="comment">(1)</span>我知道鱼快乐。
+惠子：<span class="comment">(2)</span>因为“不同个体不能相知”，所以“你不知道鱼快乐”。
+庄子：<span class="comment">(3)</span>如果“不同个体不能相知”，那么你不是我，“你也不知道<span class="string">'我不知道鱼快乐'</span>”
+惠子：<span class="comment">(4)</span>因为“我不知道<span class="string">'你不知道鱼的快乐'</span>，所以“不同个体不能相知”；
+      又因为“不同个体不能相知”，所以“你不知道鱼的快乐”。
+</code></pre><p>大家注意，庄子的回击是假设惠子的逻辑是对的，得出惠子也不可能知道“我不知道鱼快乐”。庄子只是一个假设，然后惠子利用庄子这个假设得出的结论来做论据，证明自己的逻辑是对的。所以，惠子的逻辑过程是<strong>循环论证</strong>。</p>
+<p>用更一般的词汇描述这个辩论过程：<br>庄子：a知道b。<br>惠子：因为a不是b，所以a不知道b。<br>庄子：如果“a不是b，a就不知道b”，那么“你不是我，你也不知道我”<br>惠子：因为“我不是你，我就不知道你”，所以，“a不是b，a就不知道b”，所以“你不是鱼，你就不知道鱼”。</p>
+<p>可以清晰的看出，惠子的论据就是庄子的假设，惠子的论证是<strong>循环论证</strong></p>
+<h2 id="你扯皮，我也来一个">你扯皮，我也来一个</h2><p>想起了赵本山的一个小品：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">范：不对，不对，大哥，我喊完四千，你直接喊五千，对不对？ </span><br><span class="line">观众：对！ </span><br><span class="line">赵：这样啊，乱了。既然咱哥俩，你同意收藏，咱们再喊一次，是不是，听明白这五千到底是谁喊的。起价多少？ </span><br><span class="line">生：两千。 </span><br><span class="line">范：我，两千。 </span><br><span class="line">赵：（落椎）成交！这回不乱了。</span><br></pre></td></tr></table></figure>
+<p>其实，前面4句话，庄子看出了惠子用假设得出的结论反过来证明这个假设，心想“惠子你怎么扯皮啊，行吧我也试试，我们重新开始：”</p>
+<pre><code>庄子：鱼快乐；
+惠子：子非鱼，安知鱼之乐；
+庄子：我知之濠上也。
+</code></pre><p>O(∩<em>∩)O哈哈~</em>)</p>
+<h3 id="参考">参考</h3><p>百度关于<a href="http://baike.baidu.com/view/302629.htm" target="_blank" rel="external">循环论证</a><br><a href="http://www.zhihu.com/question/20037135" target="_blank" rel="external">知乎问答</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>一般评论和著作都认为庄子对于“子非鱼”的辩论是诡辩，输了惠子一筹，其实不是。</p>]]>
+    
+    </summary>
+    
+      <category term="辩论" scheme="http://debug4.me/tags/%E8%BE%A9%E8%AE%BA/"/>
+    
+      <category term="逻辑学" scheme="http://debug4.me/tags/%E9%80%BB%E8%BE%91%E5%AD%A6/"/>
+    
+      <category term="Math" scheme="http://debug4.me/categories/Math/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Project Euler Problem 518 - 等比素数三元组]]></title>
@@ -826,7 +875,7 @@
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#x61;&#100;&#100;&#x72;&#101;&#115;&#x73;&#x40;&#x65;&#120;&#97;&#x6d;&#112;&#108;&#101;&#46;&#x63;&#111;&#x6d;">&#x61;&#100;&#100;&#x72;&#101;&#115;&#x73;&#x40;&#x65;&#120;&#97;&#x6d;&#112;&#108;&#101;&#46;&#x63;&#111;&#x6d;</a></p>
+<p><a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#97;&#x64;&#100;&#114;&#101;&#x73;&#115;&#64;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x63;&#111;&#109;">&#97;&#x64;&#100;&#114;&#101;&#x73;&#115;&#64;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x63;&#111;&#109;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>

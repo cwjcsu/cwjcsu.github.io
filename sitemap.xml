@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://debug4.me/Math/logic-and-debate/</loc>
+    <lastmod>2015-11-21T08:40:54.354Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://debug4.me/Project-Euler/518.prime-triples-and-geometric-sequences/</loc>
     <lastmod>2015-10-22T15:18:01.361Z</lastmod>
   </url>
