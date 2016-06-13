@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://debug4.me/Project-Euler/PE134/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
 <meta property="og:description" content="Project Euler 134 - 求以整数p1结尾，且整除另一个整数p2的数">
-<meta property="og:updated_time" content="2015-10-21T15:55:05.189Z">
+<meta property="og:updated_time" content="2016-06-12T15:21:35.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 134 - Prime pair connection">
 <meta name="twitter:description" content="Project Euler 134 - 求以整数p1结尾，且整除另一个整数p2的数">
@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -99,31 +99,31 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#穷举法"><span class="toc-number">2.1.</span> <span class="toc-text">穷举法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用乘法竖式"><span class="toc-number">3.</span> <span class="toc-text">利用乘法竖式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代_step1"><span class="toc-number">3.1.</span> <span class="toc-text">迭代 step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代step2"><span class="toc-number">3.2.</span> <span class="toc-text">迭代step2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代_step3"><span class="toc-number">3.3.</span> <span class="toc-text">迭代 step3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#因数表"><span class="toc-number">3.4.</span> <span class="toc-text">因数表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.5.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用中国剩余定理_（孙子定理）"><span class="toc-number">4.</span> <span class="toc-text">利用中国剩余定理  （孙子定理）</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#穷举法"><span class="toc-number">2.1.</span> <span class="toc-text">穷举法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用乘法竖式"><span class="toc-number">3.</span> <span class="toc-text">利用乘法竖式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代-step1"><span class="toc-number">3.1.</span> <span class="toc-text">迭代 step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代step2"><span class="toc-number">3.2.</span> <span class="toc-text">迭代step2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代-step3"><span class="toc-number">3.3.</span> <span class="toc-text">迭代 step3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#因数表"><span class="toc-number">3.4.</span> <span class="toc-text">因数表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.5.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用中国剩余定理-（孙子定理）"><span class="toc-number">4.</span> <span class="toc-text">利用中国剩余定理  （孙子定理）</span></a></li></ol>
 		
 		</div>
 		
 		<p><a href="https://projecteuler.net/problem=134" target="_blank" rel="external">Project Euler 134</a> ,求以整数p1结尾，且整除另一个整数p2的数。<em>Completed on 2015-10-19  16:42</em><br><a id="more"></a></p>
-<h2 id="原题">原题</h2><p>Consider the consecutive primes p1 = 19 and p2 = 23. It can be verified that 1219 is the smallest number such that the last digits are formed by p1 whilst also being divisible by p2.</p>
+<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>Consider the consecutive primes p1 = 19 and p2 = 23. It can be verified that 1219 is the smallest number such that the last digits are formed by p1 whilst also being divisible by p2.</p>
 <p>In fact, with the exception of p1 = 3 and p2 = 5, for every pair of consecutive primes, p2 &gt; p1, there exist values of n for which the last digits are formed by p1 and n is divisible by p2. Let S be the smallest of these values of n.</p>
 <p>Find ∑ S for every pair of consecutive primes with 5 ≤ p1 ≤ 1000000.</p>
 <p>对于连续素数对p1,p2，存在一个整数n，满足：n以p1结尾，而且n整除p2。设S为满足条件的n中的最小值，求∑ S，使得 5 ≤ p1 ≤ 1000000</p>
-<h2 id="分析">分析</h2><p>根据条件“n以p1结尾”可以得出：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">n = <span class="literal">p1</span> + k*n0         （<span class="number">1</span>）</span><br></pre></td></tr></table></figure></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>根据条件“n以p1结尾”可以得出：<br><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">n</span> = p1 + k*n0         （<span class="number">1</span>）</span><br></pre></td></tr></table></figure></p>
 <p>其中n0是满足n0 &gt; p1的10的最小幂，k是整数。很自然可以想到从1循环k，根据（1）式求得n，然后检验n是否整除p2。于是得到</p>
-<h3 id="穷举法">穷举法</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * get the min integer n which endWiths p1 and can be divided by p2</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">getProductEndWith</span><span class="params">(<span class="keyword">int</span> p1, <span class="keyword">int</span> p2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> size = Util.getSize(p1);</span><br><span class="line">    <span class="keyword">long</span> n0 = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, size);</span><br><span class="line">    <span class="keyword">long</span> n = p1 + n0;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % p2 == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        n += n0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="穷举法"><a href="#穷举法" class="headerlink" title="穷举法"></a>穷举法</h3><figure class="highlight processing"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * get the min integer n which endWiths p1 and can be divided by p2</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> getProductEndWith(<span class="built_in">int</span> p1, <span class="built_in">int</span> p2) &#123;</span><br><span class="line">    <span class="built_in">int</span> <span class="built_in">size</span> = Util.getSize(p1);</span><br><span class="line">    <span class="keyword">long</span> n0 = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="built_in">size</span>);</span><br><span class="line">    <span class="keyword">long</span> n = p1 + n0;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % p2 == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        n += n0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个方法搜索5 ~ 1000000以内的素数，花费时间大概是5分钟左右。</p>
-<h2 id="利用乘法竖式">利用乘法竖式</h2><p>回忆两个整数相乘时是如何进位和相加的，举例说明，对于p1=101,p2=103,乘法算式如下:<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  x2  x1</span><br><span class="line"><span class="blockquote">______________________</span><br><span class="line"></span><br><span class="line">   ....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
+<h2 id="利用乘法竖式"><a href="#利用乘法竖式" class="headerlink" title="利用乘法竖式"></a>利用乘法竖式</h2><p>回忆两个整数相乘时是如何进位和相加的，举例说明，对于p1=101,p2=103,乘法算式如下:<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  x2  x1</span><br><span class="line"><span class="quote">______________________</span><br><span class="line"></span><br><span class="line">   ....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
 <p>中间用”…”省略未知的数字和运算过程。</p>
-<h3 id="迭代_step1">迭代 step1</h3><p>由于3*x1 的个位数是1，即3*x1 % 10 = 1，于是得到x1=7，于是103 * 7 = 721<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  x2  7</span><br><span class="line"><span class="blockquote">______________________</span><br><span class="line">   7   2   1</span><br><span class="line">   ....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
-<h3 id="迭代step2">迭代step2</h3><p>由于 3 * x2 + 2 的个位数是0，从而得出x2 = 6 :<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">   <span class="number">1</span>   <span class="number">0</span>   <span class="number">3</span></span><br><span class="line">...x3  <span class="number">6</span>   <span class="number">7</span></span><br><span class="line">______________________</span><br><span class="line">   <span class="number">7</span>   <span class="number">2</span>   <span class="number">1</span></span><br><span class="line"><span class="number">6</span>  <span class="number">1</span>   <span class="number">8</span>    </span><br><span class="line">   ....</span><br><span class="line">_______________________</span><br><span class="line">..<span class="number">.1</span>   <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>整理得到：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">   <span class="number">1</span>   <span class="number">0</span>   <span class="number">3</span></span><br><span class="line">...x3  <span class="number">6</span>   <span class="number">7</span></span><br><span class="line">______________________</span><br><span class="line"><span class="number">6</span>  <span class="number">9</span>   <span class="number">0</span>   <span class="number">1</span>         </span><br><span class="line">....</span><br><span class="line">_______________________</span><br><span class="line">..<span class="number">.1</span>   <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="迭代_step3">迭代 step3</h3><p>由于 3 * x3 +9 的个位数是1，从而得到x3 = 4，带入上面竖式得到：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">      <span class="number">1</span>   <span class="number">0</span>   <span class="number">3</span></span><br><span class="line">   ..<span class="number">.4</span>   <span class="number">6</span>   <span class="number">7</span></span><br><span class="line">   ______________________</span><br><span class="line">   <span class="number">6</span>  <span class="number">9</span>   <span class="number">0</span>   <span class="number">1</span>         </span><br><span class="line"><span class="number">4</span>  <span class="number">1</span>  <span class="number">2</span></span><br><span class="line">   _______________________</span><br><span class="line"><span class="number">4</span>  <span class="number">8</span>  <span class="number">1</span>   <span class="number">0</span>    <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="迭代-step1"><a href="#迭代-step1" class="headerlink" title="迭代 step1"></a>迭代 step1</h3><p>由于3*x1 的个位数是1，即3*x1 % 10 = 1，于是得到x1=7，于是103 * 7 = 721<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  x2  7</span><br><span class="line"><span class="quote">______________________</span><br><span class="line">   7   2   1</span><br><span class="line">   ....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
+<h3 id="迭代step2"><a href="#迭代step2" class="headerlink" title="迭代step2"></a>迭代step2</h3><p>由于 3 * x2 + 2 的个位数是0，从而得出x2 = 6 :<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  6   7</span><br><span class="line"><span class="quote">______________________</span><br><span class="line">   7   2   1</span><br><span class="line">6  1   8    </span><br><span class="line">   ....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
+<p>整理得到：<br><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line"><span class="code">   1   0   3</span></span><br><span class="line">...x3  6   7</span><br><span class="line"><span class="quote">______________________</span><br><span class="line">6  9   0   1         </span><br><span class="line">....</span><br><span class="line">_______________________</span></span><br><span class="line">...1   0    1</span><br></pre></td></tr></table></figure></p>
+<h3 id="迭代-step3"><a href="#迭代-step3" class="headerlink" title="迭代 step3"></a>迭代 step3</h3><p>由于 3 * x3 +9 的个位数是1，从而得到x3 = 4，带入上面竖式得到：<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">      1   0   3</span></span><br><span class="line">   ...4   6   7</span><br><span class="line">   <span class="strong">_____</span><span class="strong">_____</span><span class="strong">_____</span><span class="strong">_____</span>__</span><br><span class="line">   6  9   0   1         </span><br><span class="line">4  1  2</span><br><span class="line">   <span class="strong">_____</span><span class="strong">_____</span><span class="strong">_____</span><span class="strong">_____</span><span class="emphasis">___</span></span><br><span class="line">4  8  1   0    1</span><br></pre></td></tr></table></figure></p>
 <p>经过3次迭代得到n= 48101 = 467 * 103 满足条件。</p>
-<h3 id="因数表">因数表</h3><p>上面根据个位上的数字确定因数的方法可以做一张10x10的因数表（不是九九乘法表），代码如下：<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> <span class="bullet">* 因子multiplier[i][j] = k,满足 j = i *</span> k % 10</span><br><span class="line"> */</span><br><span class="line">public static int[<span class="link_label"></span>][<span class="link_reference"></span>] multiplier = new int[<span class="link_label">10</span>][<span class="link_reference">10</span>];</span><br><span class="line">static &#123;</span><br><span class="line"><span class="code">    for (int i = 0; i &lt; 10; i++) &#123;</span></span><br><span class="line"><span class="code">        for (int k = 0; k &lt; 10; k++) &#123;</span></span><br><span class="line"><span class="code">            int j = i * k % 10;</span></span><br><span class="line"><span class="code">            multiplier[i][j] = k;</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="因数表"><a href="#因数表" class="headerlink" title="因数表"></a>因数表</h3><p>上面根据个位上的数字确定因数的方法可以做一张10x10的因数表（不是九九乘法表），代码如下：<br><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> <span class="bullet">* 因子multiplier[i][j] = k,满足 j = i *</span> k % 10</span><br><span class="line"> */</span><br><span class="line">public static int[<span class="string"></span>][<span class="symbol"></span>] multiplier = new int[<span class="string">10</span>][<span class="symbol">10</span>];</span><br><span class="line">static &#123;</span><br><span class="line"><span class="code">    for (int i = 0; i &lt; 10; i++) &#123;</span></span><br><span class="line"><span class="code">        for (int k = 0; k &lt; 10; k++) &#123;</span></span><br><span class="line"><span class="code">            int j = i * k % 10;</span></span><br><span class="line"><span class="code">            multiplier[i][j] = k;</span></span><br><span class="line"><span class="code">        &#125;</span></span><br><span class="line"><span class="code">    &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>核心代码：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * get the minimum integer n which endWiths p1 and can be divided by p2</span><br><span class="line"> * </span><br><span class="line"> * @param p1</span><br><span class="line"> * @param p2</span><br><span class="line"> * @return</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">getProductEndWith</span><span class="params">(<span class="keyword">int</span> p1, <span class="keyword">int</span> p2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = getRightmostKthDigit(p2, <span class="number">0</span>);<span class="comment">// rightmost digit of p2</span></span><br><span class="line">    <span class="keyword">long</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> L = ((<span class="keyword">int</span>) Math.<span class="built_in">log10</span>(p1)) + <span class="number">1</span>;<span class="comment">// size of digits of p1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; L; k++) &#123;<span class="comment">// from the rightmost xth</span></span><br><span class="line">        <span class="comment">// (10 + p1右起第k位 - n右起第k位 )%10得到这次乘积的个位数字j</span></span><br><span class="line">        <span class="keyword">int</span> j = (<span class="number">10</span> + getRightmostKthDigit(p1, k) - getRightmostKthDigit(n, k)) % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">long</span> m = multiplier[i][j];<span class="comment">// 乘积的各位数字是j，一个因子是i，则另一个因子是m</span></span><br><span class="line">        n += p2 * (m * (<span class="keyword">int</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, k));<span class="comment">// 因子m在k位上，所以要乘10^k然后加到n</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从p1=5开始累加：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> s = System.currentTimeMillis();</span><br><span class="line">    <span class="keyword">int</span> L = BigInteger.valueOf(<span class="number">1000000</span>).nextProbablePrime().intValue();<span class="comment">// 1000003</span></span><br><span class="line">    <span class="keyword">int</span>[] primes = Util.getPrimesBlow(L);<span class="comment">// last 2 is 999983,1000003</span></span><br><span class="line">    <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    System.out.println(getProductEndWith(<span class="number">999983</span>, <span class="number">1000003</span>));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= primes.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> p1 = primes[i];</span><br><span class="line">        <span class="keyword">int</span> p2 = primes[i + <span class="number">1</span>];</span><br><span class="line">        sum += Util.getProductEndWith(p1, p2);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(sum);</span><br><span class="line">    System.out.println(<span class="string">"Time consumed:"</span> + (System.currentTimeMillis() - s) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">18613426663617118</span></span><br><span class="line">Time consumed:<span class="number">100</span> ms</span><br></pre></td></tr></table></figure>
-<h2 id="利用中国剩余定理_（孙子定理）">利用中国剩余定理  （孙子定理）</h2><p>在<a href="https://projecteuler.net/thread=134" target="_blank" rel="external">Thread 134 -Project Euler</a>里面有看到使用ChineseRemainder算法，时间在20s内，但是没有看懂，以后有时间再研究。<br>TODO</p>
+<p>从p1=5开始累加：<br><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">    <span class="keyword">long</span> s = System.currentTimeMillis();</span><br><span class="line">    <span class="keyword">int</span> L = BigInteger.valueOf(<span class="number">1000000</span>).nextProbablePrime().intValue();<span class="comment">// 1000003</span></span><br><span class="line">    <span class="keyword">int</span>[] primes = Util.getPrimesBlow(L);<span class="comment">// last 2 is 999983,1000003</span></span><br><span class="line">    <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    System.out.<span class="built_in">println</span>(getProductEndWith(<span class="number">999983</span>, <span class="number">1000003</span>));</span><br><span class="line">    <span class="built_in">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= primes.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> p1 = primes[i];</span><br><span class="line">        <span class="keyword">int</span> p2 = primes[i + <span class="number">1</span>];</span><br><span class="line">        sum += Util.getProductEndWith(p1, p2);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.<span class="built_in">println</span>(sum);</span><br><span class="line">    System.out.<span class="built_in">println</span>(<span class="string">"Time consumed:"</span> + (System.currentTimeMillis() - s) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">18613426663617118</span><br><span class="line"><span class="selector-tag">Time</span> <span class="selector-tag">consumed</span><span class="selector-pseudo">:100</span> <span class="selector-tag">ms</span></span><br></pre></td></tr></table></figure>
+<h2 id="利用中国剩余定理-（孙子定理）"><a href="#利用中国剩余定理-（孙子定理）" class="headerlink" title="利用中国剩余定理  （孙子定理）"></a>利用中国剩余定理  （孙子定理）</h2><p>在<a href="https://projecteuler.net/thread=134" target="_blank" rel="external">Thread 134 -Project Euler</a>里面有看到使用ChineseRemainder算法，时间在20s内，但是没有看懂，以后有时间再研究。<br>TODO</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -137,7 +137,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Chinese-remainder-theorem/">Chinese remainder theorem</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/中国剩余定理/">中国剩余定理</a><a href="/tags/素数/">素数</a>
+  <span></span> <a href="/tags/素数/">素数</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/中国剩余定理/">中国剩余定理</a><a href="/tags/Chinese-remainder-theorem/">Chinese remainder theorem</a>
   </div>
 
 </div>
@@ -190,7 +190,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#穷举法"><span class="toc-number">2.1.</span> <span class="toc-text">穷举法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用乘法竖式"><span class="toc-number">3.</span> <span class="toc-text">利用乘法竖式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代_step1"><span class="toc-number">3.1.</span> <span class="toc-text">迭代 step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代step2"><span class="toc-number">3.2.</span> <span class="toc-text">迭代step2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代_step3"><span class="toc-number">3.3.</span> <span class="toc-text">迭代 step3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#因数表"><span class="toc-number">3.4.</span> <span class="toc-text">因数表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.5.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用中国剩余定理_（孙子定理）"><span class="toc-number">4.</span> <span class="toc-text">利用中国剩余定理  （孙子定理）</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#穷举法"><span class="toc-number">2.1.</span> <span class="toc-text">穷举法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用乘法竖式"><span class="toc-number">3.</span> <span class="toc-text">利用乘法竖式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代-step1"><span class="toc-number">3.1.</span> <span class="toc-text">迭代 step1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代step2"><span class="toc-number">3.2.</span> <span class="toc-text">迭代step2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代-step3"><span class="toc-number">3.3.</span> <span class="toc-text">迭代 step3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#因数表"><span class="toc-number">3.4.</span> <span class="toc-text">因数表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.5.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用中国剩余定理-（孙子定理）"><span class="toc-number">4.</span> <span class="toc-text">利用中国剩余定理  （孙子定理）</span></a></li></ol>
  
   </div>
 
@@ -202,7 +202,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
 </div>
  
 
@@ -220,7 +220,7 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>4</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>5</sup></a></li>
 			
 		
 			
@@ -228,11 +228,15 @@
 			
 		
 			
-				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
+				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
+				<li><a href="/tags/blogs/" title="blogs">blogs<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
 			
 		
 			
@@ -240,55 +244,51 @@
 			
 		
 			
-				<li><a href="/tags/blogs/" title="blogs">blogs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/逻辑学/" title="逻辑学">逻辑学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/基数/" title="基数">基数<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/无穷大/" title="无穷大">无穷大<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/一一对应/" title="一一对应">一一对应<sup>1</sup></a></li>
+				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/搜索算法/" title="搜索算法">搜索算法<sup>1</sup></a></li>
+				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/三分法/" title="三分法">三分法<sup>1</sup></a></li>
+				<li><a href="/tags/平方数/" title="平方数">平方数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/尼云数/" title="尼云数">尼云数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/深度遍历/" title="深度遍历">深度遍历<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pisot数/" title="Pisot数">Pisot数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/等比数列/" title="等比数列">等比数列<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -361,7 +361,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="debug4me@163.com">debug4me@163.com</a>
 		

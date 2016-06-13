@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Project Euler Problem 518 - 等比素数三元组 | debug4me | 子非鱼-博客</title>
+    <title>我回来了 | debug4me | 子非鱼-博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="debug4me@163.com">
     
 
     
-    <meta name="description" content="Project Euler Problem 518 - Prime triples and geometric sequences">
+    <meta name="description" content="I&apos;m back.我回来了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Project Euler Problem 518 - 等比素数三元组">
-<meta property="og:url" content="http://debug4.me/Project-Euler/518.prime-triples-and-geometric-sequences/index.html">
+<meta property="og:title" content="我回来了">
+<meta property="og:url" content="http://debug4.me/Misc/imback/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
-<meta property="og:description" content="Project Euler Problem 518 - Prime triples and geometric sequences">
-<meta property="og:updated_time" content="2016-06-12T15:21:35.743Z">
+<meta property="og:description" content="I&apos;m back.我回来了。">
+<meta property="og:updated_time" content="2016-06-13T12:04:04.555Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Project Euler Problem 518 - 等比素数三元组">
-<meta name="twitter:description" content="Project Euler Problem 518 - Prime triples and geometric sequences">
+<meta name="twitter:title" content="我回来了">
+<meta name="twitter:description" content="I&apos;m back.我回来了。">
 
     
     <link rel="alternative" href="/atom.xml" title="debug4me | 子非鱼-博客" type="application/atom+xml">
@@ -83,14 +83,14 @@
 		<header class="article-info clearfix">
   <h2 itemprop="name">
     
-      <a href="/Project-Euler/518.prime-triples-and-geometric-sequences/" title="Project Euler Problem 518 - 等比素数三元组" itemprop="url">Project Euler Problem 518 - 等比素数三元组</a>
+      <a href="/Misc/imback/" title="我回来了" itemprop="url">我回来了</a>
   </h2>
   <p class="article-author">By
        
 		<a href="/about" title="debug4me@163.com" target="_blank" itemprop="author">debug4me@163.com</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-22T12:36:18.000Z" itemprop="datePublished"> 发表于 2015-10-22</time>
+    <time datetime="2016-06-12T16:41:40.000Z" itemprop="datePublished"> 发表于 2016-06-13</time>
     
   </p>
 </header>
@@ -99,49 +99,31 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补偿法"><span class="toc-number">2.</span> <span class="toc-text">补偿法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤"><span class="toc-number">2.1.</span> <span class="toc-text">算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">2.2.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遍历比值法"><span class="toc-number">3.</span> <span class="toc-text">遍历比值法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤-1"><span class="toc-number">3.1.</span> <span class="toc-text">算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码实现"><span class="toc-number">3.2.</span> <span class="toc-text">Java代码实现</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#昨天去digitalocean充值了25美元，够用5个月了。"><span class="toc-number">1.</span> <span class="toc-text">昨天去digitalocean充值了25美元，够用5个月了。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#今天开始，整理代码并写博客。"><span class="toc-number">2.</span> <span class="toc-text">今天开始，整理代码并写博客。</span></a></li></ol>
 		
 		</div>
 		
-		<p><a href="https://projecteuler.net/problem=518" target="_blank" rel="external">Problem 518 - Prime triples and geometric sequences </a> ,存在一些素数三元组(a,b,c)，使得(a+1,b+1,c+1)是等比数列，求10<sup>8</sup>以内的所有这种三元组的元素的和。<em>Completed on 2015-10-22  14:39</em><br><a id="more"></a></p>
-<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>Let S(n) = a+b+c over all triples (a,b,c) such that:</p>
-<ul>
-<li>a, b, and c are prime numbers.</li>
-<li>a &lt; b &lt; c &lt; n.</li>
-<li>a+1, b+1, and c+1 form a geometric sequence.<br>For example, S(100) = 1035 with the following triples:<br>(2, 5, 11), (2, 11, 47), (5, 11, 23), (5, 17, 53), (7, 11, 17), (7, 23, 71), (11, 23, 47), (17, 23, 31), (17, 41, 97), (31, 47, 71), (71, 83, 97)</li>
-</ul>
-<p>Find S(10<sup>8</sup>).</p>
-<h2 id="补偿法"><a href="#补偿法" class="headerlink" title="补偿法"></a>补偿法</h2><p>根据等比数列的特征，可以得到$(a+1)(c+1)=(b+1)^2$。将$(b+1)^2$分解质因数之后，每个质因子的幂必然是偶数，从而(a+1)和(c+1)的<strong>相同的</strong>质因数的幂必然都是同奇或者同偶，那么只需要把这些奇数次质因数相乘得到一个积，那么(a+1)和(c+1)的这个积相等，把(p+1)的这个积称为<strong>质素p的补偿数</strong> 。可以利用这个结论求解这个题。</p>
-<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><ol>
-<li>获取小于$N=10^8$的所有素数:primes;</li>
-<li>遍历数组primes，给每个质素p分解质因数并把奇数次因子相乘得到complements数组，complements[i]保存素数primes[i]的补偿数；</li>
-<li>把补偿数相同的素数放入相同的列表并排序，得到Map{complements[i] =&gt; Li},Li是补偿数为complements[i]的素数列表。</li>
-<li>把所有素数的平方存入一个Set，遍历列表Li，如果有两个质数的积在这个Set中，则是满足条件的三元组，把它们相加；</li>
-<li>对每个补偿数和列表进行上述操作对结果求和。</li>
-</ol>
-<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>用上述方法在我的T420s笔记本上跑了大概<strong>两个半小时</strong>,8核CPU呼呼转了那么久才算出来。中间有很多次因为内存溢出而失败，把内存加到4G还是溢出，后面去掉了补偿数那个Map集合以及保存相同补偿数质素列表的那些List，全部用原生的int[]进行运算才成功。</p>
-<p>Java的包装类Integer，Long，以及对象引用本身消耗的内存在这种情况下不得不考虑。所以做大尺度的数值计算，只能用原生类型而不能用对象类型，但是Java的Set和Map等基本数据结构都是基于对象的，都是吃内存大户。这是Java在计算领域的劣势。</p>
-<h2 id="遍历比值法"><a href="#遍历比值法" class="headerlink" title="遍历比值法"></a>遍历比值法</h2><p>根据等比数列得到:b+1 = (a+1)*(k/d) ,(c+1)=(b+1)*(k/d)=(a+1)* k<sup>2</sup>/d<sup>2</sup>，假设gcd(k,d)=1,则(a+1)可被d<sup>2</sup>整除。(dev_random’s answer in <a href="https://projecteuler.net/thread=518" target="_blank" rel="external">Thread 518</a>)。</p>
-<h3 id="算法步骤-1"><a href="#算法步骤-1" class="headerlink" title="算法步骤"></a>算法步骤</h3><ol>
-<li>创建一个数组，flag[i]=1表示i是素数flag[i]=0表示i是合数；</li>
-<li>loop d from 1 to N with step 1,for each d ,loop n from d^2 to N with step d^2，如果flag[n-1]=1,loop k from d+1 to K with step 1。这样，已知a,k,d，可以求出另外b+1,c+1,只需判断b和c是否是质素就可以判断是否满足条件。这里K是使c+1&lt;=N的最大数，$k^2 = {(c+1) \over (a+1)}d^2$. 得到<br>$$ \frac{k^2 (a+1)}{d^2}  = c+1 &lt;= N$$</li>
-</ol>
-<h3 id="Java代码实现"><a href="#Java代码实现" class="headerlink" title="Java代码实现"></a>Java代码实现</h3><figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">sumGeometricPrimeTriples</span>(<span class="params"><span class="keyword">int</span> N</span>) </span>&#123;</span><br><span class="line">    BitSet flag = Util.getPrimeDecisionBlow2(N);</span><br><span class="line">    <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> d = <span class="number">1</span>; d &lt; N; d++) &#123;<span class="comment">// 遍历d</span></span><br><span class="line">        <span class="keyword">long</span> d2 = d * d;</span><br><span class="line">        <span class="keyword">if</span> (d2 &gt; N) &#123;<span class="comment">// when convert to int,may overflow</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> n = (<span class="keyword">int</span>) d2; n &lt; N; n += d2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (flag.<span class="keyword">get</span>(n - <span class="number">1</span>)) &#123;<span class="comment">// a = n-1是素数</span></span><br><span class="line">                <span class="keyword">int</span> nd = n / d;</span><br><span class="line">                <span class="keyword">int</span> ndd = n / d / d;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = d + <span class="number">1</span>; ndd * k * k &lt;= N; k++) &#123;<span class="comment">// 找到a之后遍历k,根据d,k可以确定b和c</span></span><br><span class="line">                    <span class="keyword">int</span> b = nd * k - <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">int</span> c = ndd * k * k - <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (flag.<span class="keyword">get</span>(b) &amp;&amp; flag.<span class="keyword">get</span>(c) &amp;&amp; gcd(d, k) == <span class="number">1</span>) &#123;</span><br><span class="line">                        <span class="comment">// gcd这个条件去除重复统计</span></span><br><span class="line">                        sum += (n - <span class="number">1</span>) + b + c;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>答案不贴出来了，在10<sup>14</sup>数量级上，运行时间，大概5秒。</p>
-  
+		<p>由于家里的电脑重装了系统，昨晚重新搭建了node+hexo环境。结果<code>hexo s</code>没有任何异常，但是无法通过<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 查看到任何文章。后来…<br><a id="more"></a><br>后来用下面命令找到了原来是Foxit程序占用了这个端口。<br><figure class="highlight taggerscript"><table><tr><td class="code"><pre><span class="line">C:<span class="symbol">\U</span>sers<span class="symbol">\A</span>tlas&gt;netstat -aon |findstr 4000</span><br></pre></td></tr></table></figure></p>
+<p>果断结束进程，然后去<code>msconfig</code>里面把Foxit相关的自启动服务全部停止。</p>
+<p>你以为这就完了？</p>
+<p>NO！！！<br>sublime text 3又闹脾气了，（这个版本<a href="https://download.sublimetext.com/Sublime%20Text%20Build%203114%20x64%20Setup.exe" target="_blank" rel="external">win 7 64 bit build 3114</a>），直接把系统卡成翔。</p>
+<p>重装subl3=》打开md文件：卡死，=》重启；</p>
+<p>卸载subl3的一个markdown组件的问题=》打开md文件，卡死=》重启；</p>
+<p>使用portable版本，并且删除sublime的程序文件，打开md文件，OK了。</p>
+<h3 id="昨天去digitalocean充值了25美元，够用5个月了。"><a href="#昨天去digitalocean充值了25美元，够用5个月了。" class="headerlink" title="昨天去digitalocean充值了25美元，够用5个月了。"></a>昨天去<a href="https://cloud.digitalocean.com" target="_blank" rel="external">digitalocean</a>充值了25美元，够用5个月了。</h3><h3 id="今天开始，整理代码并写博客。"><a href="#今天开始，整理代码并写博客。" class="headerlink" title="今天开始，整理代码并写博客。"></a>今天开始，整理代码并写博客。</h3>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Project-Euler/">Project Euler</a>
+  <a class="article-category-link" href="/categories/Misc/">Misc</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/素数/">素数</a><a href="/tags/等比数列/">等比数列</a><a href="/tags/Project-Euler/">Project Euler</a>
+  <span></span> <a href="/tags/blogs/">blogs</a><a href="/tags/hexo/">hexo</a>
   </div>
 
 </div>
@@ -150,7 +132,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://debug4.me/Project-Euler/518.prime-triples-and-geometric-sequences/" data-title="Project Euler Problem 518 - 等比素数三元组 | debug4me | 子非鱼-博客" data-tsina="2172283884" class="share clearfix">
+	  <div data-url="http://debug4.me/Misc/imback/" data-title="我回来了 | debug4me | 子非鱼-博客" data-tsina="2172283884" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -163,19 +145,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/Math/logic-and-debate/" title="关于庄子“子非鱼”是诡辩，我为你正名">
-  <strong>上一篇：</strong><br/>
-  <span>
-  关于庄子“子非鱼”是诡辩，我为你正名</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/工具/mathjax-and-latex-quick-reference/"  title="MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference">
+<a href="/Math/logic-and-debate/"  title="关于庄子“子非鱼”是诡辩，我为你正名">
  <strong>下一篇：</strong><br/> 
- <span>MathJax与LaTeX教程与速查手册 - MathJax and LaTeX basic tutorial and quick reference
+ <span>关于庄子“子非鱼”是诡辩，我为你正名
 </span>
 </a>
 </div>
@@ -184,7 +158,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="Project-Euler/518.prime-triples-and-geometric-sequences/" data-title="Project Euler Problem 518 - 等比素数三元组" data-url="http://debug4.me/Project-Euler/518.prime-triples-and-geometric-sequences/"></div>
+	<div class="ds-thread" data-thread-key="Misc/imback/" data-title="我回来了" data-url="http://debug4.me/Misc/imback/"></div>
 </section>
 
 
@@ -194,7 +168,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补偿法"><span class="toc-number">2.</span> <span class="toc-text">补偿法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤"><span class="toc-number">2.1.</span> <span class="toc-text">算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">2.2.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#遍历比值法"><span class="toc-number">3.</span> <span class="toc-text">遍历比值法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤-1"><span class="toc-number">3.1.</span> <span class="toc-text">算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java代码实现"><span class="toc-number">3.2.</span> <span class="toc-text">Java代码实现</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#昨天去digitalocean充值了25美元，够用5个月了。"><span class="toc-number">1.</span> <span class="toc-text">昨天去digitalocean充值了25美元，够用5个月了。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#今天开始，整理代码并写博客。"><span class="toc-number">2.</span> <span class="toc-text">今天开始，整理代码并写博客。</span></a></li></ol>
  
   </div>
 

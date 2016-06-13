@@ -18,10 +18,11 @@
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
 <meta property="og:description" content="本文介绍了三分法（Ternary Search）的适用场景以及与二分法的区别">
 <meta property="og:image" content="http://7xn1o8.com1.z0.glb.clouddn.com/ternary_search.png">
-<meta property="og:updated_time" content="2015-10-21T15:55:05.192Z">
+<meta property="og:updated_time" content="2016-06-12T15:21:35.749Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三分法求极值-Ternary Search">
 <meta name="twitter:description" content="本文介绍了三分法（Ternary Search）的适用场景以及与二分法的区别">
+<meta name="twitter:image" content="http://7xn1o8.com1.z0.glb.clouddn.com/ternary_search.png">
 
     
     <link rel="alternative" href="/atom.xml" title="debug4me | 子非鱼-博客" type="application/atom+xml">
@@ -33,7 +34,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -105,13 +106,13 @@
 		</div>
 		
 		<p>本文介绍了三分法（Ternary Search）的适用场景，并用一道2015百度笔试题讲解三分法，最后分析了三分法和二分法的区别。<br><a id="more"></a></p>
-<h2 id="什么是三分法">什么是三分法</h2><p>三分法是求单峰函数的最大值或最小值的算法，是一种<a href="https://en.wikipedia.org/wiki/Divide_and_conquer_algorithm" target="_blank" rel="external">分治算法</a>。维基百科：<a href="https://en.wikipedia.org/wiki/Ternary_search" target="_blank" rel="external">Ternary_search</a>。</p>
+<h2 id="什么是三分法"><a href="#什么是三分法" class="headerlink" title="什么是三分法"></a>什么是三分法</h2><p>三分法是求单峰函数的最大值或最小值的算法，是一种<a href="https://en.wikipedia.org/wiki/Divide_and_conquer_algorithm" target="_blank" rel="external">分治算法</a>。维基百科：<a href="https://en.wikipedia.org/wiki/Ternary_search" target="_blank" rel="external">Ternary_search</a>。</p>
 <p>所谓单峰函数，就是凸函数（包括上凸和下凸，严格定义不赘述）。举个例子，假设求函数f(x)的最大值，而且最大值落在区间[A,B]上，为了使用三分法，那么必须存在一个x满足下面的条件：</p>
 <ul>
 <li>对任意a,b，如果 A ≤ a &lt; b ≤ x ,则f(a) &lt; f(b)，并且</li>
 <li>对任意a,b，如果 x ≤ a &lt; b ≤ B，则f(a) &gt; F(b)<br>这样，f(x)就是函数f的最大值。 </li>
 </ul>
-<h2 id="算法描述">算法描述</h2><p>假设函数f(x)在区间[A,B]上有最大值，那么随机取两个点m1和m2 : A &lt; m1 &lt; m2 &lt; B,然后有三种可能：<br>if f(m1) &lt; f(m2) ,那么最大值不可能在区间[A,m1]上，而是落在(m1,B]上；<br>if f(m1) &gt; f(m2) ,那么最大值不可能再区间[m2,B]上，而是落在[A,m2)上；<br>if f(m1) = f(m2) ,那么最大值落在区间[m1,m2]上。</p>
+<h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p>假设函数f(x)在区间[A,B]上有最大值，那么随机取两个点m1和m2 : A &lt; m1 &lt; m2 &lt; B,然后有三种可能：<br>if f(m1) &lt; f(m2) ,那么最大值不可能在区间[A,m1]上，而是落在(m1,B]上；<br>if f(m1) &gt; f(m2) ,那么最大值不可能再区间[m2,B]上，而是落在[A,m2)上；<br>if f(m1) = f(m2) ,那么最大值落在区间[m1,m2]上。</p>
 <p><strong>注意</strong>:上面区间的表示法，用’(‘和’)’表示不包含端点，用’[‘和’]’表示包含端点。</p>
 <p>上面每次选取m1,m2可以排除一块区间，即每次划分成三份，根据函数值去掉一份或者两份，正所谓三分法也。<br>每次可以三等分，即m1和m2的选取可以这样：</p>
 <ul>
@@ -120,12 +121,12 @@
 </ul>
 <p>时间复杂度：Ｏ(log n)</p>
 <p>三分法示意图:<br><img src="http://7xn1o8.com1.z0.glb.clouddn.com/ternary_search.png" alt="三分法算法示意图"></p>
-<h2 id="实例">实例</h2><h3 id="2015百度笔试题（算法）">2015百度笔试题（算法）</h3><p>题目：一个升序数组，可能包含正数负数或者0，求数组中绝对值最小的数，要求复杂度小于O(n)。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="2015百度笔试题（算法）"><a href="#2015百度笔试题（算法）" class="headerlink" title="2015百度笔试题（算法）"></a>2015百度笔试题（算法）</h3><p>题目：一个升序数组，可能包含正数负数或者0，求数组中绝对值最小的数，要求复杂度小于O(n)。</p>
 <p>题目被发到<a href="http://group.jobbole.com/9254" target="_blank" rel="external">伯乐在线 - 2015百度笔试题（算法）</a>。</p>
-<h3 id="分析">分析</h3><p>有序数组搜索一个元素，经验主义者会立刻想到二分法，殊不知，本题是求绝对值，数组的绝对值不再是有序的，而是下凸的，即中间小，两边大。所求的正好是最小值。能满足三分法的要求。</p>
-<h3 id="示例代码">示例代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 用三分法求升序数组data中绝对值最小的元素。如果有两个绝对值相等，返回值小的那一个。</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">findMinAbs</span><span class="params">(<span class="keyword">int</span>[] data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> right = data.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> m1 = left;</span><br><span class="line">    <span class="keyword">int</span> m2 = right;</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">        m1 = left + (right - left) / <span class="number">3</span>;</span><br><span class="line">        m2 = right - (right - left) / <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> f1 = Math.<span class="built_in">abs</span>(data[m1]);</span><br><span class="line">        <span class="keyword">int</span> f2 = Math.<span class="built_in">abs</span>(data[m2]);</span><br><span class="line">        <span class="keyword">if</span> (f1 &gt; f2) &#123;<span class="comment">//缩小到区间(m1,right]</span></span><br><span class="line">            left = m1 + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (f1 &lt; f2) &#123;<span class="comment">//缩小到区间[left,m2)</span></span><br><span class="line">            right = m2 - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">//缩小到区间[m1,m2]</span></span><br><span class="line">            left = m1;</span><br><span class="line">            right = m2;</span><br><span class="line">            <span class="keyword">if</span> (left == right - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;<span class="comment">//TODO这里是发现了两个最小值</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data[left];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] data = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; -<span class="number">123</span>, -<span class="number">23</span>, -<span class="number">1</span>, <span class="number">2</span>, <span class="number">25</span>, <span class="number">100</span> &#125;;</span><br><span class="line">    System.out.println(findMinAbs(data));</span><br><span class="line">    data = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; -<span class="number">123</span>, -<span class="number">23</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">25</span>, <span class="number">100</span> &#125;;</span><br><span class="line">    System.out.println(findMinAbs(data));</span><br><span class="line">    data = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; <span class="number">12</span>, <span class="number">12</span>, <span class="number">23</span>, <span class="number">34</span>,<span class="number">112</span>, <span class="number">125</span>, <span class="number">1100</span> &#125;;</span><br><span class="line">    System.out.println(findMinAbs(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>有序数组搜索一个元素，经验主义者会立刻想到二分法，殊不知，本题是求绝对值，数组的绝对值不再是有序的，而是下凸的，即中间小，两边大。所求的正好是最小值。能满足三分法的要求。</p>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 用三分法求升序数组data中绝对值最小的元素。如果有两个绝对值相等，返回值小的那一个。</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> int findMinAbs(int[] data) &#123;</span><br><span class="line">    int <span class="keyword">left</span> = <span class="number">0</span>;</span><br><span class="line">    int <span class="keyword">right</span> = data.length - <span class="number">1</span>;</span><br><span class="line">    int m1 = <span class="keyword">left</span>;</span><br><span class="line">    int m2 = <span class="keyword">right</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">left</span> &lt; <span class="keyword">right</span>) &#123;</span><br><span class="line">        m1 = <span class="keyword">left</span> + (<span class="keyword">right</span> - <span class="keyword">left</span>) / <span class="number">3</span>;</span><br><span class="line">        m2 = <span class="keyword">right</span> - (<span class="keyword">right</span> - <span class="keyword">left</span>) / <span class="number">3</span>;</span><br><span class="line">        int f1 = <span class="type">Math</span>.<span class="built_in">abs</span>(data[m1]);</span><br><span class="line">        int f2 = <span class="type">Math</span>.<span class="built_in">abs</span>(data[m2]);</span><br><span class="line">        <span class="keyword">if</span> (f1 &gt; f2) &#123;<span class="comment">//缩小到区间(m1,right]</span></span><br><span class="line">            <span class="keyword">left</span> = m1 + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (f1 &lt; f2) &#123;<span class="comment">//缩小到区间[left,m2)</span></span><br><span class="line">            <span class="keyword">right</span> = m2 - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">//缩小到区间[m1,m2]</span></span><br><span class="line">            <span class="keyword">left</span> = m1;</span><br><span class="line">            <span class="keyword">right</span> = m2;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">left</span> == <span class="keyword">right</span> - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;<span class="comment">//TODO这里是发现了两个最小值</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> data[<span class="keyword">left</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="type">String</span>[] args) &#123;</span><br><span class="line">    int[] data = new int[] &#123; -<span class="number">123</span>, -<span class="number">23</span>, -<span class="number">1</span>, <span class="number">2</span>, <span class="number">25</span>, <span class="number">100</span> &#125;;</span><br><span class="line">    <span class="type">System</span>.out.<span class="built_in">println</span>(findMinAbs(data));</span><br><span class="line">    data = new int[] &#123; -<span class="number">123</span>, -<span class="number">23</span>, -<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">25</span>, <span class="number">100</span> &#125;;</span><br><span class="line">    <span class="type">System</span>.out.<span class="built_in">println</span>(findMinAbs(data));</span><br><span class="line">    data = new int[] &#123; <span class="number">12</span>, <span class="number">12</span>, <span class="number">23</span>, <span class="number">34</span>,<span class="number">112</span>, <span class="number">125</span>, <span class="number">1100</span> &#125;;</span><br><span class="line">    <span class="type">System</span>.out.<span class="built_in">println</span>(findMinAbs(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出:<br><figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">-<span class="ruby"><span class="number">1</span></span><br><span class="line"></span>-<span class="ruby"><span class="number">1</span></span><br><span class="line"></span>12</span><br></pre></td></tr></table></figure></p>
-<h2 id="与二分法的区别">与二分法的区别</h2><p>二分法适用的场景是：从一个有序数组中寻找指定值的元素。二分法适用的是有序数组，三分法适用的是先升后降或者先降后升的数组。</p>
+<h2 id="与二分法的区别"><a href="#与二分法的区别" class="headerlink" title="与二分法的区别"></a>与二分法的区别</h2><p>二分法适用的场景是：从一个有序数组中寻找指定值的元素。二分法适用的是有序数组，三分法适用的是先升后降或者先降后升的数组。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -139,7 +140,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/三分法/">三分法</a><a href="/tags/分治算法/">分治算法</a><a href="/tags/搜索算法/">搜索算法</a>
+  <span></span> <a href="/tags/搜索算法/">搜索算法</a><a href="/tags/三分法/">三分法</a><a href="/tags/分治算法/">分治算法</a>
   </div>
 
 </div>
@@ -204,7 +205,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
 </div>
  
 
@@ -222,7 +223,7 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>4</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>5</sup></a></li>
 			
 		
 			
@@ -230,11 +231,15 @@
 			
 		
 			
-				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
+				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
+				<li><a href="/tags/blogs/" title="blogs">blogs<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
 			
 		
 			
@@ -242,55 +247,51 @@
 			
 		
 			
-				<li><a href="/tags/blogs/" title="blogs">blogs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/逻辑学/" title="逻辑学">逻辑学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/基数/" title="基数">基数<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/无穷大/" title="无穷大">无穷大<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/一一对应/" title="一一对应">一一对应<sup>1</sup></a></li>
+				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/搜索算法/" title="搜索算法">搜索算法<sup>1</sup></a></li>
+				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/三分法/" title="三分法">三分法<sup>1</sup></a></li>
+				<li><a href="/tags/平方数/" title="平方数">平方数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/尼云数/" title="尼云数">尼云数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/深度遍历/" title="深度遍历">深度遍历<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pisot数/" title="Pisot数">Pisot数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/等比数列/" title="等比数列">等比数列<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -363,7 +364,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="debug4me@163.com">debug4me@163.com</a>
 		

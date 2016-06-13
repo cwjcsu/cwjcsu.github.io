@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://debug4.me/Project-Euler/PE48/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
 <meta property="og:description" content="Project Euler 48 - 求大数的模">
-<meta property="og:updated_time" content="2015-10-19T15:51:49.724Z">
+<meta property="og:updated_time" content="2016-06-12T15:21:35.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 48 - 求大数的模">
 <meta name="twitter:description" content="Project Euler 48 - 求大数的模">
@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
   <body>
@@ -104,14 +104,14 @@
 		</div>
 		
 		<p><a href="https://projecteuler.net/problem=48" target="_blank" rel="external">Project Euler 48</a> ,获取大数 1^1 + 2^2 + … + 1000^1000 的最后10个数字<br><a id="more"></a></p>
-<h2 id="暴力法">暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">static</span> <span class="keyword">String </span><span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    <span class="keyword">String </span>s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="使用幂模运算规则">使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="preprocessor">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="preprocessor">%</span> p</span><br></pre></td></tr></table></figure></p>
+<h2 id="暴力法"><a href="#暴力法" class="headerlink" title="暴力法"></a>暴力法</h2><p>用[BigInteger]把这些数进行累加，并不会特别大（内存可hold住），见Java代码：<br><figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">static String <span class="keyword">bruteForce(int </span>n) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>S = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="keyword">BigInteger </span>Max = <span class="keyword">BigInteger.valueOf(n);</span><br><span class="line"></span>    for (<span class="keyword">BigInteger </span>i = <span class="keyword">BigInteger.valueOf(2); </span>i.compareTo(Max) &lt; <span class="number">0</span><span class="comment">; i = i.add(BigInteger.ONE)) &#123;</span></span><br><span class="line">        S = S.<span class="keyword">add(i.pow(i.intValue()));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    String s = S.toString(<span class="number">10</span>)<span class="comment">;</span></span><br><span class="line">    return s.<span class="keyword">substring(s.length() </span>- <span class="number">10</span>, s.length())<span class="comment">;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用幂模运算规则"><a href="#使用幂模运算规则" class="headerlink" title="使用幂模运算规则"></a>使用幂模运算规则</h2><p>有幂模运算规则：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(a + b)</span> <span class="meta">%</span> p = <span class="comment">(a % p + b % p)</span> <span class="meta">%</span> p</span><br></pre></td></tr></table></figure></p>
 <p>所以, (1<sup>1</sup>+ 2<sup>2</sup>+ … + 1000<sup>1000</sup>) % m = (1<sup>1</sup> % m + 2<sup>2</sup> % m + … + 1000<sup>1000</sup> % m) % m </p>
-<p>用BigInteger实现<a href="http://cwjcsu.gitcafe.io/Project-Euler/PE188/#powerMod" target="_blank" rel="external">powerMod方法</a>：<br><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static BigInteger powerMod(BigInteger <span class="keyword">n</span>, BigInteger p, BigInteger <span class="keyword">m</span>) &#123;</span><br><span class="line">    BigInteger r = <span class="keyword">n</span>.<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">    BigInteger tmp = BigInteger.<span class="keyword">ONE</span>;</span><br><span class="line">    <span class="keyword">while</span> (p.compareTo(BigInteger.<span class="keyword">ONE</span>) &gt; 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((p.byteValue() &amp; 1) != 0) &#123;<span class="comment">// p 是奇数，则</span></span><br><span class="line">            tmp = (tmp.multiply(r)).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        r = r.multiply(r).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">        p = p.divide(BigInteger.valueOf(2L));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> r.multiply(tmp).<span class="literal">mod</span>(<span class="keyword">m</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="实现PE48">实现PE48</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;<span class="comment">// 9110846700</span></span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">         System.out.println(usePowerMod(<span class="number">1000</span>));</span><br><span class="line"><span class="comment">//      System.err.println(bruteForce(1000));</span></span><br><span class="line">        System.out.println(<span class="string">"time consumed : "</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">usePowerMod</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        BigInteger N = BigInteger.valueOf(n);</span><br><span class="line">        BigInteger S = BigInteger.ZERO;</span><br><span class="line">        BigInteger m = BigInteger.valueOf((<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span> (BigInteger i = BigInteger.ONE; i.compareTo(N) &lt;= <span class="number">0</span>; i = i.add(BigInteger.ONE)) &#123;</span><br><span class="line">            S = S.add(powerMod(i, i, m));</span><br><span class="line">        &#125;</span><br><span class="line">        S = S.mod(m);</span><br><span class="line">        String s = S.toString(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="输出">输出</h2><p>使用幂模运算规则的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">124</span> ms</span><br></pre></td></tr></table></figure></p>
-<p>使用暴力法的输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line">time consumed : <span class="number">89</span> ms</span><br></pre></td></tr></table></figure></p>
-<h2 id="小结">小结</h2><p>发现暴力法速度更快，原因估计是powerMod(BigInteger,BigInteger,BigInteger)创建了太多的重量级BigInteger导致的。</p>
+<p>用BigInteger实现<a href="http://cwjcsu.gitcafe.io/Project-Euler/PE188/#powerMod" target="_blank" rel="external">powerMod方法</a>：<br><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">public</span> static <span class="keyword">BigInteger </span>powerMod(<span class="keyword">BigInteger </span>n, <span class="keyword">BigInteger </span>p, <span class="keyword">BigInteger </span>m) &#123;</span><br><span class="line">    <span class="keyword">BigInteger </span>r = n.mod(m)<span class="comment">;</span></span><br><span class="line">    <span class="keyword">BigInteger </span>tmp = <span class="keyword">BigInteger.ONE;</span><br><span class="line"></span>    <span class="meta">while</span> (p.compareTo(<span class="keyword">BigInteger.ONE) </span>&gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="meta">if</span> ((p.<span class="keyword">byteValue() </span>&amp; <span class="number">1</span>) != <span class="number">0</span>) &#123;// p 是奇数，则</span><br><span class="line">            tmp = (tmp.<span class="keyword">multiply(r)).mod(m);</span><br><span class="line"></span>        &#125;</span><br><span class="line">        r = r.<span class="keyword">multiply(r).mod(m);</span><br><span class="line"></span>        p = p.divide(<span class="keyword">BigInteger.valueOf(2L));</span><br><span class="line"></span>    &#125;</span><br><span class="line">    return r.<span class="keyword">multiply(tmp).mod(m);</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现PE48"><a href="#实现PE48" class="headerlink" title="实现PE48"></a>实现PE48</h2><figure class="highlight processing"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;<span class="comment">// 9110846700</span></span><br><span class="line">        <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">         System.out.<span class="built_in">println</span>(usePowerMod(<span class="number">1000</span>));</span><br><span class="line"><span class="comment">//      System.err.println(bruteForce(1000));</span></span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"time consumed : "</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">String</span> usePowerMod(<span class="built_in">int</span> n) &#123;</span><br><span class="line">        BigInteger N = BigInteger.valueOf(n);</span><br><span class="line">        BigInteger S = BigInteger.ZERO;</span><br><span class="line">        BigInteger m = BigInteger.valueOf((<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">10</span>));</span><br><span class="line">        <span class="keyword">for</span> (BigInteger i = BigInteger.ONE; i.compareTo(N) &lt;= <span class="number">0</span>; i = i.<span class="built_in">add</span>(BigInteger.ONE)) &#123;</span><br><span class="line">            S = S.<span class="built_in">add</span>(powerMod(i, i, m));</span><br><span class="line">        &#125;</span><br><span class="line">        S = S.mod(m);</span><br><span class="line">        <span class="keyword">String</span> s = S.toString(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>使用幂模运算规则的输出：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line"><span class="selector-tag">time</span> consumed : <span class="number">124</span> ms</span><br></pre></td></tr></table></figure></p>
+<p>使用暴力法的输出：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="number">9110846700</span></span><br><span class="line"><span class="selector-tag">time</span> consumed : <span class="number">89</span> ms</span><br></pre></td></tr></table></figure></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>发现暴力法速度更快，原因估计是powerMod(BigInteger,BigInteger,BigInteger)创建了太多的重量级BigInteger导致的。</p>
 <ul>
 <li>See also, <a href="/Project-Euler/PE188/">Project Euler 188 Solution: Find the last 8 digits of 1777↑↑1855.</a></li>
 <li>See also, <a href="https://projecteuler.net/problem=97" target="_blank" rel="external">Project Euler 97 : Find the last ten digits of the non-Mersenne prime: 28433 × 2<sup>7830457</sup> + 1.</a></li>
@@ -129,7 +129,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/幂模运算/">幂模运算</a>
+  <span></span> <a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/Java/">Java</a><a href="/tags/幂模运算/">幂模运算</a>
   </div>
 
 </div>
@@ -194,7 +194,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
 </div>
  
 
@@ -212,7 +212,7 @@
 			
 		
 			
-				<li><a href="/tags/hexo/" title="hexo">hexo<sup>4</sup></a></li>
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>5</sup></a></li>
 			
 		
 			
@@ -220,11 +220,15 @@
 			
 		
 			
-				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
+				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
+				<li><a href="/tags/blogs/" title="blogs">blogs<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
 			
 		
 			
@@ -232,55 +236,51 @@
 			
 		
 			
-				<li><a href="/tags/blogs/" title="blogs">blogs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/逻辑学/" title="逻辑学">逻辑学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/基数/" title="基数">基数<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/无穷大/" title="无穷大">无穷大<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/一一对应/" title="一一对应">一一对应<sup>1</sup></a></li>
+				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/搜索算法/" title="搜索算法">搜索算法<sup>1</sup></a></li>
+				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/三分法/" title="三分法">三分法<sup>1</sup></a></li>
+				<li><a href="/tags/平方数/" title="平方数">平方数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/尼云数/" title="尼云数">尼云数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/深度遍历/" title="深度遍历">深度遍历<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pisot数/" title="Pisot数">Pisot数<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/等比数列/" title="等比数列">等比数列<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -353,7 +353,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
 		
 		<a href="/about" target="_blank" title="debug4me@163.com">debug4me@163.com</a>
 		
