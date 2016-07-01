@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://debug4.me/"/>
-  <updated>2016-06-13T12:04:04.555Z</updated>
+  <updated>2016-07-01T13:20:05.198Z</updated>
   <id>http://debug4.me/</id>
   
   <author>
@@ -16,11 +16,70 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>稳定婚姻的数学模型</title>
+    <link href="http://debug4.me/CestLaVie/stable-marriage/"/>
+    <id>http://debug4.me/CestLaVie/stable-marriage/</id>
+    <published>2016-07-01T12:27:41.000Z</published>
+    <updated>2016-07-01T13:20:05.198Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;完美的婚姻配对&quot;&gt;&lt;a href=&quot;#完美的婚姻配对&quot; class=&quot;headerlink&quot; title=&quot;完美的婚姻配对&quot;&gt;&lt;/a&gt;完美的婚姻配对&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;婚姻的最佳配对方案是什么呢？当然是，每个人的另一半正好都是自己的“第一选择”。&lt;/strong&gt;&lt;br&gt;这虽然很完美，但绝大多数情况下都不可能实现。比方说，男 1 号最喜欢的是女 1 号，而女 1 号的最爱不是男 1 号，这两个人的最佳选择就不可能被同时满足。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;什么是稳定的婚姻？&quot;&gt;&lt;a href=&quot;#什么是稳定的婚姻？&quot; class=&quot;headerlink&quot; title=&quot;什么是稳定的婚姻？&quot;&gt;&lt;/a&gt;什么是稳定的婚姻？&lt;/h3&gt;&lt;p&gt;在婚姻关系中，比当前伴侣更好的异性，都不会认为自己也是一个更好的选择。这个婚姻配对就是稳定的。通俗一点说，分成两种情况：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我的老婆（或老公）是最好的对象，我知足了；&lt;/li&gt;
+&lt;li&gt;有比我老婆（或老公）更好的对象，但是TA们都看不上我；&lt;br&gt;注意，对于第2种情况，如果我看上了另外的人，而这个人也看上了我，呵呵，那我跟当前伴侣的婚姻关系就不稳定了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;有一个&lt;a href=&quot;https://en.wikipedia.org/wiki/Stable_marriage_problem&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;数学算法&lt;/a&gt;,不管男女多少人，不管他们的偏好是什么，总是可以找到一个稳定的配对模型，使得大家都不会出轨。算法的具体描述过程，不赘述，网上搜索“Gale-Shapley算法”，或者“稳定婚姻问题”。我这里给出通俗流程和可操作步骤。&lt;/p&gt;
+&lt;h3 id=&quot;可操作步骤&quot;&gt;&lt;a href=&quot;#可操作步骤&quot; class=&quot;headerlink&quot; title=&quot;可操作步骤&quot;&gt;&lt;/a&gt;可操作步骤&lt;/h3&gt;&lt;p&gt;对于每个男人：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;把所有女人按喜欢程度排一个序；&lt;/li&gt;
+&lt;li&gt;从没拒绝过自己的女人中选最喜欢的向她表白（不管她现在是否是单身）。如果她不接受，就把她加入拒绝列表，继续步骤2。&lt;/li&gt;
+&lt;li&gt;如果男人被甩了，继续步骤2；&lt;br&gt;对于每个女人：&lt;/li&gt;
+&lt;li&gt;当有人向你表白的时候，你可以接受也可以拒绝。&lt;/li&gt;
+&lt;li&gt;当你已经接受了一个男人后，又有你更加喜欢的男人向你表白时，你必须接受他并放弃现男友（注意是必须，否则无法保证形成稳定的配对）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h3&gt;&lt;p&gt;仔细推敲以后，你会发现，在这个系统里面，男人都是被甩的（女友被她认为更好的男人抢走了），但这个算法却是对男人更有利的。&lt;/p&gt;
+&lt;p&gt;稳定婚姻的匹配方案不止一种，已经证明，按照上述算法在所有稳定婚姻搭配方案中，男人总是能找到自己最理想的那个女人，而女人得到的却都是最差的搭配。&lt;/p&gt;
+&lt;p&gt;换句话说，男人搞定了自己能力范围内的最好的女人；而女人只等着被人挑，自己更喜欢的而且有能力搞定的男人很有可能找了别人。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;题外话&lt;/strong&gt;：此时，倘若有某位女性知道所有其他人的偏好列表，经过精心计算推演，她会发现，可能故意拒绝掉本不该拒绝的人，暂时保留一个较差的人在身边，或许有机会等来更好的结果。当然，在实际生活中应用这种算法，不得不考虑一些可能的欺诈与博弈。&lt;/p&gt;
+&lt;h3 id=&quot;数学模型与实际的不同&quot;&gt;&lt;a href=&quot;#数学模型与实际的不同&quot; class=&quot;headerlink&quot; title=&quot;数学模型与实际的不同&quot;&gt;&lt;/a&gt;数学模型与实际的不同&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;首先，这个算法是从生活中提炼出来的，自然在生活中时时刻刻发生着；只是数学模型去掉了很多不确定性，添加了一些合理的约束（这是数学建模的手段），从而只是反映生活中的一个大体趋势，而不是个例；&lt;/li&gt;
+&lt;li&gt;算法中的喜欢（偏好）不是一个确定的概念，实际生活中可能因为对方的外在形象、经济能力等因素变化，可能误判。而对于同一个人，在不同阶段对喜欢的定义也不一样，人的婚姻观、价值观总是在不断变化的；对每个样本的了解程度不一样，也会影响这个排序；&lt;/li&gt;
+&lt;li&gt;样本集合在变化：随着时间的推移，男人女人总是会遇到很多新的人，中间很可能有自己更喜欢的，然后选择了更加喜欢的。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;该来点结论了&quot;&gt;&lt;a href=&quot;#该来点结论了&quot; class=&quot;headerlink&quot; title=&quot;该来点结论了&quot;&gt;&lt;/a&gt;该来点结论了&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;男同胞们&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;努力扩展自己的圈子，增大样本集合，接触和了解她们，然后进入2；&lt;/li&gt;
+&lt;li&gt;按照算法规则排序，一个个下手，当被拒绝了或者被甩了，把她加入黑名单，重新执行第1步；&lt;br&gt;数学理论告诉你：根据上面的策略，你最终肯定可以找到一个自己最喜欢的人相守一辈子。（可以这样理解：愿意跟你相守一辈子的人中，你找到了最喜欢的那个）&lt;br&gt;&lt;strong&gt;女同胞们&lt;/strong&gt;：&lt;br&gt;这个算法对女性不利，但是女性同样可以追求自己喜欢的人，而不是等待男人来追然后自己做个选择。如果你总是被动的，根据算法的规则，最终你很可能得到的是最差的那一个&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;兄弟姐们们&lt;/strong&gt;：&lt;br&gt;当你已经找到对象，且你是他最中意的人，却有一个你认为更好的人追求你时，你要小心了：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;现在认为更好不代表以后也是更好的，你的情绪、暂时的兴奋和虚荣会影响你的判断；&lt;/li&gt;
+&lt;li&gt;有些所谓更好的人并不会择一而终。有些男人追求女孩，可能是因为一时被美貌所迷，等到女人老珠黄了。。。说远了，或许上了床以后他就放弃了，这都不是爱；&lt;/li&gt;
+&lt;li&gt;不排除，你确实遇到最合适最喜欢的那一个。那祝你好运吧。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;说了这么多，如果有人看完，希望不要更加混乱。是的，像量子物理一样，不确定性正是人性的最根本特征。那到底应该怎么做呢？走得远了，别忘了为什么出发。漫漫人生路，不忘初心，方得始终。&lt;/p&gt;
+&lt;h3 id=&quot;参考文献&quot;&gt;&lt;a href=&quot;#参考文献&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Stable_marriage_problem&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stable marriage problem&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      用数学的方法告诉你，为什么找对象就要广撒网、要发狠、要脸皮厚。
+    
+    </summary>
+    
+      <category term="CestLaVie" scheme="http://debug4.me/categories/CestLaVie/"/>
+    
+    
+      <category term="找对象" scheme="http://debug4.me/tags/%E6%89%BE%E5%AF%B9%E8%B1%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>我回来了</title>
-    <link href="http://debug4.me/Misc/imback/"/>
-    <id>http://debug4.me/Misc/imback/</id>
+    <link href="http://debug4.me/CestLaVie/imback/"/>
+    <id>http://debug4.me/CestLaVie/imback/</id>
     <published>2016-06-12T16:41:40.000Z</published>
-    <updated>2016-06-13T12:04:04.555Z</updated>
+    <updated>2016-07-01T12:31:43.375Z</updated>
     
     <content type="html">&lt;p&gt;由于家里的电脑重装了系统，昨晚重新搭建了node+hexo环境。结果&lt;code&gt;hexo s&lt;/code&gt;没有任何异常，但是无法通过&lt;a href=&quot;http://localhost:4000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:4000&lt;/a&gt; 查看到任何文章。后来…&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;后来用下面命令找到了原来是Foxit程序占用了这个端口。&lt;br&gt;&lt;figure class=&quot;highlight taggerscript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:&lt;span class=&quot;symbol&quot;&gt;\U&lt;/span&gt;sers&lt;span class=&quot;symbol&quot;&gt;\A&lt;/span&gt;tlas&amp;gt;netstat -aon |findstr 4000&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;果断结束进程，然后去&lt;code&gt;msconfig&lt;/code&gt;里面把Foxit相关的自启动服务全部停止。&lt;/p&gt;
@@ -37,12 +96,12 @@
     
     </summary>
     
-      <category term="Misc" scheme="http://debug4.me/categories/Misc/"/>
+      <category term="CestLaVie" scheme="http://debug4.me/categories/CestLaVie/"/>
     
-    
-      <category term="blogs" scheme="http://debug4.me/tags/blogs/"/>
     
       <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
+    
+      <category term="blogs" scheme="http://debug4.me/tags/blogs/"/>
     
   </entry>
   
@@ -524,9 +583,9 @@
       <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="blogs" scheme="http://debug4.me/tags/blogs/"/>
-    
       <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
+    
+      <category term="blogs" scheme="http://debug4.me/tags/blogs/"/>
     
       <category term="github" scheme="http://debug4.me/tags/github/"/>
     
@@ -615,9 +674,9 @@
     
       <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
-      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
-    
       <category term="幂模运算" scheme="http://debug4.me/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
+    
+      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
     
   </entry>
   
@@ -664,11 +723,11 @@
     
       <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
+      <category term="幂模运算" scheme="http://debug4.me/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
+    
       <category term="Java" scheme="http://debug4.me/tags/Java/"/>
     
       <category term="超指数" scheme="http://debug4.me/tags/%E8%B6%85%E6%8C%87%E6%95%B0/"/>
-    
-      <category term="幂模运算" scheme="http://debug4.me/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
     
   </entry>
   
@@ -705,9 +764,9 @@
     
       <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
-      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
-    
       <category term="幂模运算" scheme="http://debug4.me/tags/%E5%B9%82%E6%A8%A1%E8%BF%90%E7%AE%97/"/>
+    
+      <category term="Java" scheme="http://debug4.me/tags/Java/"/>
     
   </entry>
   
@@ -736,9 +795,9 @@
     
       <category term="Project Euler" scheme="http://debug4.me/tags/Project-Euler/"/>
     
-      <category term="平方数" scheme="http://debug4.me/tags/%E5%B9%B3%E6%96%B9%E6%95%B0/"/>
-    
       <category term="Java" scheme="http://debug4.me/tags/Java/"/>
+    
+      <category term="平方数" scheme="http://debug4.me/tags/%E5%B9%B3%E6%96%B9%E6%95%B0/"/>
     
   </entry>
   
@@ -832,11 +891,11 @@
       <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="blogs" scheme="http://debug4.me/tags/blogs/"/>
-    
       <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
     
       <category term="jacman" scheme="http://debug4.me/tags/jacman/"/>
+    
+      <category term="blogs" scheme="http://debug4.me/tags/blogs/"/>
     
   </entry>
   
@@ -968,7 +1027,7 @@
 &lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&lt;span class=&quot;selector-tag&quot;&gt;address&lt;/span&gt;@&lt;span class=&quot;keyword&quot;&gt;example&lt;/span&gt;.&lt;span class=&quot;keyword&quot;&gt;com&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;产生：&lt;br&gt;&lt;figure class=&quot;highlight gcode&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;a href=&lt;span class=&quot;string&quot;&gt;&quot;&amp;amp;#x6D;&amp;amp;#x61;i&amp;amp;#x6C;&amp;amp;#x74;&amp;amp;#x6F;:&amp;amp;#x61;&amp;amp;#x64;&amp;amp;#x64;&amp;amp;#x72;&amp;amp;#x65;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;amp;#115;&amp;amp;#115;&amp;amp;#64;&amp;amp;#101;&amp;amp;#120;&amp;amp;#x61;&amp;amp;#109;&amp;amp;#x70;&amp;amp;#x6C;e&amp;amp;#x2E;&amp;amp;#99;&amp;amp;#111;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;amp;#109;&quot;&lt;/span&gt;&amp;gt;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#x61&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#x64&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#x64&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#x72&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#x65&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#115&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#115&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#64&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#101&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#120&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#x61&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#109&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#x70&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#x6&lt;/span&gt;C;e&amp;amp;&lt;span class=&quot;attr&quot;&gt;#x2&lt;/span&gt;E;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#99&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#111&lt;/span&gt;;&amp;amp;&lt;span class=&quot;attr&quot;&gt;#109&lt;/span&gt;;&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;效果：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;&amp;#109;&amp;#97;&amp;#105;&amp;#x6c;&amp;#x74;&amp;#111;&amp;#x3a;&amp;#97;&amp;#100;&amp;#100;&amp;#x72;&amp;#x65;&amp;#x73;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#x6d;&amp;#x70;&amp;#x6c;&amp;#x65;&amp;#46;&amp;#x63;&amp;#x6f;&amp;#x6d;&quot;&gt;&amp;#97;&amp;#100;&amp;#100;&amp;#x72;&amp;#x65;&amp;#x73;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#x6d;&amp;#x70;&amp;#x6c;&amp;#x65;&amp;#46;&amp;#x63;&amp;#x6f;&amp;#x6d;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;&amp;#109;&amp;#x61;&amp;#105;&amp;#108;&amp;#x74;&amp;#x6f;&amp;#58;&amp;#x61;&amp;#x64;&amp;#100;&amp;#x72;&amp;#101;&amp;#x73;&amp;#115;&amp;#x40;&amp;#101;&amp;#120;&amp;#97;&amp;#109;&amp;#x70;&amp;#x6c;&amp;#101;&amp;#46;&amp;#99;&amp;#x6f;&amp;#109;&quot;&gt;&amp;#x61;&amp;#x64;&amp;#100;&amp;#x72;&amp;#101;&amp;#x73;&amp;#115;&amp;#x40;&amp;#101;&amp;#120;&amp;#97;&amp;#109;&amp;#x70;&amp;#x6c;&amp;#101;&amp;#46;&amp;#99;&amp;#x6f;&amp;#109;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;反斜线（BACKSLASH-ESCAPES）&quot;&gt;&lt;a href=&quot;#反斜线（BACKSLASH-ESCAPES）&quot; class=&quot;headerlink&quot; title=&quot;反斜线（BACKSLASH ESCAPES）&quot;&gt;&lt;/a&gt;反斜线（BACKSLASH ESCAPES）&lt;/h3&gt;&lt;p&gt;markdwon可以用反斜杠来生成一些字面量：&lt;/p&gt;
 &lt;figure class=&quot;highlight armasm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;\   &lt;span class=&quot;keyword&quot;&gt;backslash&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;`   &lt;span class=&quot;keyword&quot;&gt;backtick&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;*   asterisk&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;_   underscore&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&amp;#125;  curly &lt;span class=&quot;keyword&quot;&gt;braces&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;[]  square &lt;span class=&quot;keyword&quot;&gt;brackets&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;()  parentheses&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#   hash &lt;span class=&quot;keyword&quot;&gt;mark&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;+   plus sign&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-   minus sign (hyphen)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.   dot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;!   exclamation &lt;span class=&quot;keyword&quot;&gt;mark&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;效果：&lt;/p&gt;
@@ -1112,9 +1171,9 @@
       <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
-    
       <category term="Get Started" scheme="http://debug4.me/tags/Get-Started/"/>
+    
+      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
     
       <category term="jacman" scheme="http://debug4.me/tags/jacman/"/>
     
@@ -1152,9 +1211,9 @@
       <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
-    
       <category term="Get Started" scheme="http://debug4.me/tags/Get-Started/"/>
+    
+      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
     
       <category term="jacman" scheme="http://debug4.me/tags/jacman/"/>
     
