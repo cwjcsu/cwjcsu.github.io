@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://debug4.me/Project-Euler/PE455/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
 <meta property="og:description" content="Project Euler Problem 455 - Powers With Trailing Digits">
-<meta property="og:updated_time" content="2016-06-12T15:21:35.746Z">
+<meta property="og:updated_time" content="2015-10-26T01:40:46.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 455 - Powers With Trailing Digits">
 <meta name="twitter:description" content="Project Euler Problem 455 - Powers With Trailing Digits">
@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
   <body>
@@ -104,7 +104,7 @@
 		</div>
 		
 		<p><a href="https://projecteuler.net/problem=455" target="_blank" rel="external">Project Euler Problem 455 - Powers With Trailing Digits</a> ,<em>Completed on 2015-10-10  00:50</em><br><a id="more"></a></p>
-<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>Let f(n) be the largest positive integer x less than 10<sup>9</sup> such that the last 9 digits of n<sup>x</sup> form the number x (including leading zeros), or zero if no such integer exists.</p>
+<h2 id="原题">原题</h2><p>Let f(n) be the largest positive integer x less than 10<sup>9</sup> such that the last 9 digits of n<sup>x</sup> form the number x (including leading zeros), or zero if no such integer exists.</p>
 <p>For example:</p>
 <ul>
 <li>f(4) = 411728896 (4<sup>411728896</sup> = …490411728896)</li>
@@ -112,12 +112,12 @@
 <li>f(157) = 743757 (157<sup>743757</sup> = …567000743757)</li>
 <li>Σf(n), 2 ≤ n ≤ 10<sup>3</sup> = 442530011399<br>Find Σf(n), 2 ≤ n ≤ 10<sup>6</sup>.</li>
 </ul>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>设 f(n) = x，根据题意可得：<br>n<sup>x</sup>≡x(mod 10<sup>9</sup>)<br>也就是x满足：<br>x = powerMod(n,x,10<sup>9</sup>)  [1]<br>所以，为了求f(n)的值x，可以用穷举试探法，从 x = 0开始试探，直到找到满足[1]的x，或者x变成0；x每次递归取值为:<br>    x<sub>k+1</sub> = powerMod(n,  x<sub>k</sub>,  10<sup>9</sup>);<br>终止条件是：<br>    x<sub>k+1</sub> = x<sub>k</sub> or x<sub>k+1</sub>=0</p>
-<h2 id="递推算法实现"><a href="#递推算法实现" class="headerlink" title="递推算法实现"></a>递推算法实现</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求f(n) = x，满足：</span><br><span class="line"> * （1）， n^x % 10^9 = x； or</span><br><span class="line"> * （2），x=0 如果不存在满足（1）的x </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> m = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">long</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">long</span> x = powerMod(n, k, m);</span><br><span class="line">        <span class="keyword">if</span> (x == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k == x &amp;&amp; x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        k = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="分析">分析</h2><p>设 f(n) = x，根据题意可得：<br>n<sup>x</sup>≡x(mod 10<sup>9</sup>)<br>也就是x满足：<br>x = powerMod(n,x,10<sup>9</sup>)  [1]<br>所以，为了求f(n)的值x，可以用穷举试探法，从 x = 0开始试探，直到找到满足[1]的x，或者x变成0；x每次递归取值为:<br>    x<sub>k+1</sub> = powerMod(n,  x<sub>k</sub>,  10<sup>9</sup>);<br>终止条件是：<br>    x<sub>k+1</sub> = x<sub>k</sub> or x<sub>k+1</sub>=0</p>
+<h2 id="递推算法实现">递推算法实现</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求f(n) = x，满足：</span><br><span class="line"> * （1）， n^x % 10^9 = x； or</span><br><span class="line"> * （2），x=0 如果不存在满足（1）的x </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> m = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">long</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">long</span> x = powerMod(n, k, m);</span><br><span class="line">        <span class="keyword">if</span> (x == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k == x &amp;&amp; x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        k = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>powerMod是幂模运算的快速算法，参见<a href="/2015/10/09/PE188/#powerMod">蒙哥马利(Montgomery)幂模运算</a></p>
-<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>从i=2到10<sup>9</sup>遍历相加f(i)得到结果：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求f(n) = x，满足：</span><br><span class="line"> * （1）， n^x % 10^9 = x； or</span><br><span class="line"> * （2），x=0 如果不存在满足（1）的x </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> m = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">long</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">long</span> x = Util.powerMod(n, k, m);</span><br><span class="line">        <span class="keyword">if</span> (k == x || x == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        k = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line"><span class="number">450186511399999</span></span><br><span class="line">Time consumed : 983 <span class="type">ms</span></span><br></pre></td></tr></table></figure>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>这个题目也用到了快速幂模运算，求解f(n)，理解f(n)=x对x进行迭代是解决问题的关键。</p>
+<h2 id="解决问题">解决问题</h2><p>从i=2到10<sup>9</sup>遍历相加f(i)得到结果：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求f(n) = x，满足：</span><br><span class="line"> * （1）， n^x % 10^9 = x； or</span><br><span class="line"> * （2），x=0 如果不存在满足（1）的x </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> m = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">long</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">long</span> x = Util.powerMod(n, k, m);</span><br><span class="line">        <span class="keyword">if</span> (k == x || x == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        k = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">450186511399999</span></span><br><span class="line">Time consumed : <span class="number">983</span> ms</span><br></pre></td></tr></table></figure>
+<h2 id="小结">小结</h2><p>这个题目也用到了快速幂模运算，求解f(n)，理解f(n)=x对x进行迭代是解决问题的关键。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -131,7 +131,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/幂模运算/">幂模运算</a><a href="/tags/Java/">Java</a>
+  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/幂模运算/">幂模运算</a>
   </div>
 
 </div>
@@ -163,9 +163,9 @@
 
 
 <div class="next">
-<a href="/Project-Euler/PE188/"  title="Project Euler Problem 188-求超指数的最后8位-大数求余">
+<a href="/Project-Euler/PE48/"  title="Project Euler Problem 48 - 求大数的模">
  <strong>下一篇：</strong><br/> 
- <span>Project Euler Problem 188-求超指数的最后8位-大数求余
+ <span>Project Euler Problem 48 - 求大数的模
 </span>
 </a>
 </div>
@@ -196,7 +196,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CestLaVie/">CestLaVie</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span></li></ul> 
 </div>
  
 
@@ -222,10 +222,6 @@
 			
 		
 			
-				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/blogs/" title="blogs">blogs<sup>3</sup></a></li>
 			
 		
@@ -234,55 +230,59 @@
 			
 		
 			
+				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/三分法/" title="三分法">三分法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/分治算法/" title="分治算法">分治算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MathJax/" title="MathJax">MathJax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/辩论/" title="辩论">辩论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/逻辑学/" title="逻辑学">逻辑学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/阿里云/" title="阿里云">阿里云<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Pisot数/" title="Pisot数">Pisot数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/尼云数/" title="尼云数">尼云数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/深度遍历/" title="深度遍历">深度遍历<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Chinese-remainder-theorem/" title="Chinese remainder theorem">Chinese remainder theorem<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/中国剩余定理/" title="中国剩余定理">中国剩余定理<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/等比数列/" title="等比数列">等比数列<sup>1</sup></a></li>
 			
 		
 		</ul>

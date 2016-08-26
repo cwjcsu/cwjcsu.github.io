@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://debug4.me/Project-Euler/518.prime-triples-and-geometric-sequences/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
 <meta property="og:description" content="Project Euler Problem 518 - Prime triples and geometric sequences">
-<meta property="og:updated_time" content="2016-06-12T15:21:35.743Z">
+<meta property="og:updated_time" content="2015-10-26T01:40:46.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 518 - 等比素数三元组">
 <meta name="twitter:description" content="Project Euler Problem 518 - Prime triples and geometric sequences">
@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
   <body>
@@ -104,29 +104,29 @@
 		</div>
 		
 		<p><a href="https://projecteuler.net/problem=518" target="_blank" rel="external">Problem 518 - Prime triples and geometric sequences </a> ,存在一些素数三元组(a,b,c)，使得(a+1,b+1,c+1)是等比数列，求10<sup>8</sup>以内的所有这种三元组的元素的和。<em>Completed on 2015-10-22  14:39</em><br><a id="more"></a></p>
-<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>Let S(n) = a+b+c over all triples (a,b,c) such that:</p>
+<h2 id="原题">原题</h2><p>Let S(n) = a+b+c over all triples (a,b,c) such that:</p>
 <ul>
 <li>a, b, and c are prime numbers.</li>
 <li>a &lt; b &lt; c &lt; n.</li>
 <li>a+1, b+1, and c+1 form a geometric sequence.<br>For example, S(100) = 1035 with the following triples:<br>(2, 5, 11), (2, 11, 47), (5, 11, 23), (5, 17, 53), (7, 11, 17), (7, 23, 71), (11, 23, 47), (17, 23, 31), (17, 41, 97), (31, 47, 71), (71, 83, 97)</li>
 </ul>
 <p>Find S(10<sup>8</sup>).</p>
-<h2 id="补偿法"><a href="#补偿法" class="headerlink" title="补偿法"></a>补偿法</h2><p>根据等比数列的特征，可以得到$(a+1)(c+1)=(b+1)^2$。将$(b+1)^2$分解质因数之后，每个质因子的幂必然是偶数，从而(a+1)和(c+1)的<strong>相同的</strong>质因数的幂必然都是同奇或者同偶，那么只需要把这些奇数次质因数相乘得到一个积，那么(a+1)和(c+1)的这个积相等，把(p+1)的这个积称为<strong>质素p的补偿数</strong> 。可以利用这个结论求解这个题。</p>
-<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><ol>
+<h2 id="补偿法">补偿法</h2><p>根据等比数列的特征，可以得到$(a+1)(c+1)=(b+1)^2$。将$(b+1)^2$分解质因数之后，每个质因子的幂必然是偶数，从而(a+1)和(c+1)的<strong>相同的</strong>质因数的幂必然都是同奇或者同偶，那么只需要把这些奇数次质因数相乘得到一个积，那么(a+1)和(c+1)的这个积相等，把(p+1)的这个积称为<strong>质素p的补偿数</strong> 。可以利用这个结论求解这个题。</p>
+<h3 id="算法步骤">算法步骤</h3><ol>
 <li>获取小于$N=10^8$的所有素数:primes;</li>
 <li>遍历数组primes，给每个质素p分解质因数并把奇数次因子相乘得到complements数组，complements[i]保存素数primes[i]的补偿数；</li>
 <li>把补偿数相同的素数放入相同的列表并排序，得到Map{complements[i] =&gt; Li},Li是补偿数为complements[i]的素数列表。</li>
 <li>把所有素数的平方存入一个Set，遍历列表Li，如果有两个质数的积在这个Set中，则是满足条件的三元组，把它们相加；</li>
 <li>对每个补偿数和列表进行上述操作对结果求和。</li>
 </ol>
-<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>用上述方法在我的T420s笔记本上跑了大概<strong>两个半小时</strong>,8核CPU呼呼转了那么久才算出来。中间有很多次因为内存溢出而失败，把内存加到4G还是溢出，后面去掉了补偿数那个Map集合以及保存相同补偿数质素列表的那些List，全部用原生的int[]进行运算才成功。</p>
+<h3 id="复杂度分析">复杂度分析</h3><p>用上述方法在我的T420s笔记本上跑了大概<strong>两个半小时</strong>,8核CPU呼呼转了那么久才算出来。中间有很多次因为内存溢出而失败，把内存加到4G还是溢出，后面去掉了补偿数那个Map集合以及保存相同补偿数质素列表的那些List，全部用原生的int[]进行运算才成功。</p>
 <p>Java的包装类Integer，Long，以及对象引用本身消耗的内存在这种情况下不得不考虑。所以做大尺度的数值计算，只能用原生类型而不能用对象类型，但是Java的Set和Map等基本数据结构都是基于对象的，都是吃内存大户。这是Java在计算领域的劣势。</p>
-<h2 id="遍历比值法"><a href="#遍历比值法" class="headerlink" title="遍历比值法"></a>遍历比值法</h2><p>根据等比数列得到:b+1 = (a+1)*(k/d) ,(c+1)=(b+1)*(k/d)=(a+1)* k<sup>2</sup>/d<sup>2</sup>，假设gcd(k,d)=1,则(a+1)可被d<sup>2</sup>整除。(dev_random’s answer in <a href="https://projecteuler.net/thread=518" target="_blank" rel="external">Thread 518</a>)。</p>
-<h3 id="算法步骤-1"><a href="#算法步骤-1" class="headerlink" title="算法步骤"></a>算法步骤</h3><ol>
+<h2 id="遍历比值法">遍历比值法</h2><p>根据等比数列得到:b+1 = (a+1)*(k/d) ,(c+1)=(b+1)*(k/d)=(a+1)* k<sup>2</sup>/d<sup>2</sup>，假设gcd(k,d)=1,则(a+1)可被d<sup>2</sup>整除。(dev_random’s answer in <a href="https://projecteuler.net/thread=518" target="_blank" rel="external">Thread 518</a>)。</p>
+<h3 id="算法步骤-1">算法步骤</h3><ol>
 <li>创建一个数组，flag[i]=1表示i是素数flag[i]=0表示i是合数；</li>
 <li>loop d from 1 to N with step 1,for each d ,loop n from d^2 to N with step d^2，如果flag[n-1]=1,loop k from d+1 to K with step 1。这样，已知a,k,d，可以求出另外b+1,c+1,只需判断b和c是否是质素就可以判断是否满足条件。这里K是使c+1&lt;=N的最大数，$k^2 = {(c+1) \over (a+1)}d^2$. 得到<br>$$ \frac{k^2 (a+1)}{d^2}  = c+1 &lt;= N$$</li>
 </ol>
-<h3 id="Java代码实现"><a href="#Java代码实现" class="headerlink" title="Java代码实现"></a>Java代码实现</h3><figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">sumGeometricPrimeTriples</span>(<span class="params"><span class="keyword">int</span> N</span>) </span>&#123;</span><br><span class="line">    BitSet flag = Util.getPrimeDecisionBlow2(N);</span><br><span class="line">    <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> d = <span class="number">1</span>; d &lt; N; d++) &#123;<span class="comment">// 遍历d</span></span><br><span class="line">        <span class="keyword">long</span> d2 = d * d;</span><br><span class="line">        <span class="keyword">if</span> (d2 &gt; N) &#123;<span class="comment">// when convert to int,may overflow</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> n = (<span class="keyword">int</span>) d2; n &lt; N; n += d2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (flag.<span class="keyword">get</span>(n - <span class="number">1</span>)) &#123;<span class="comment">// a = n-1是素数</span></span><br><span class="line">                <span class="keyword">int</span> nd = n / d;</span><br><span class="line">                <span class="keyword">int</span> ndd = n / d / d;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = d + <span class="number">1</span>; ndd * k * k &lt;= N; k++) &#123;<span class="comment">// 找到a之后遍历k,根据d,k可以确定b和c</span></span><br><span class="line">                    <span class="keyword">int</span> b = nd * k - <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">int</span> c = ndd * k * k - <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (flag.<span class="keyword">get</span>(b) &amp;&amp; flag.<span class="keyword">get</span>(c) &amp;&amp; gcd(d, k) == <span class="number">1</span>) &#123;</span><br><span class="line">                        <span class="comment">// gcd这个条件去除重复统计</span></span><br><span class="line">                        sum += (n - <span class="number">1</span>) + b + c;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Java代码实现">Java代码实现</h3><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">public static long sumGeometricPrimeTriples(int <span class="keyword">N</span>) &#123;</span><br><span class="line">    BitSet flag = Util.getPrimeDecisionBlow2(<span class="keyword">N</span>);</span><br><span class="line">    long <span class="keyword">sum</span> = 0;</span><br><span class="line">    <span class="keyword">for</span> (int <span class="keyword">d</span> = 1; <span class="keyword">d</span> &lt; <span class="keyword">N</span>; <span class="keyword">d</span>++) &#123;<span class="comment">// 遍历d</span></span><br><span class="line">        long d2 = <span class="keyword">d</span> * <span class="keyword">d</span>;</span><br><span class="line">        <span class="keyword">if</span> (d2 &gt; <span class="keyword">N</span>) &#123;<span class="comment">// when convert to int,may overflow</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (int <span class="keyword">n</span> = (int) d2; <span class="keyword">n</span> &lt; <span class="keyword">N</span>; <span class="keyword">n</span> += d2) &#123;</span><br><span class="line">            <span class="keyword">if</span> (flag.<span class="literal">get</span>(<span class="keyword">n</span> - 1)) &#123;<span class="comment">// a = n-1是素数</span></span><br><span class="line">                int nd = <span class="keyword">n</span> / <span class="keyword">d</span>;</span><br><span class="line">                int ndd = <span class="keyword">n</span> / <span class="keyword">d</span> / <span class="keyword">d</span>;</span><br><span class="line">                <span class="keyword">for</span> (int k = <span class="keyword">d</span> + 1; ndd * k * k &lt;= <span class="keyword">N</span>; k++) &#123;<span class="comment">// 找到a之后遍历k,根据d,k可以确定b和c</span></span><br><span class="line">                    int b = nd * k - 1;</span><br><span class="line">                    int c = ndd * k * k - 1;</span><br><span class="line">                    <span class="keyword">if</span> (flag.<span class="literal">get</span>(b) &amp;&amp; flag.<span class="literal">get</span>(c) &amp;&amp; gcd(<span class="keyword">d</span>, k) == 1) &#123;</span><br><span class="line">                        <span class="comment">// gcd这个条件去除重复统计</span></span><br><span class="line">                        <span class="keyword">sum</span> += (<span class="keyword">n</span> - 1) + b + c;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>答案不贴出来了，在10<sup>14</sup>数量级上，运行时间，大概5秒。</p>
   
 	</div>
@@ -141,7 +141,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/素数/">素数</a><a href="/tags/等比数列/">等比数列</a><a href="/tags/Project-Euler/">Project Euler</a>
+  <span></span> <a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/等比数列/">等比数列</a><a href="/tags/素数/">素数</a>
   </div>
 
 </div>
@@ -206,7 +206,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CestLaVie/">CestLaVie</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span></li></ul> 
 </div>
  
 
@@ -232,10 +232,6 @@
 			
 		
 			
-				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/blogs/" title="blogs">blogs<sup>3</sup></a></li>
 			
 		
@@ -244,55 +240,59 @@
 			
 		
 			
+				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/三分法/" title="三分法">三分法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/分治算法/" title="分治算法">分治算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MathJax/" title="MathJax">MathJax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/辩论/" title="辩论">辩论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/逻辑学/" title="逻辑学">逻辑学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/阿里云/" title="阿里云">阿里云<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Pisot数/" title="Pisot数">Pisot数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/尼云数/" title="尼云数">尼云数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/深度遍历/" title="深度遍历">深度遍历<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Chinese-remainder-theorem/" title="Chinese remainder theorem">Chinese remainder theorem<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/中国剩余定理/" title="中国剩余定理">中国剩余定理<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/等比数列/" title="等比数列">等比数列<sup>1</sup></a></li>
 			
 		
 		</ul>

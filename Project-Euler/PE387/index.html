@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://debug4.me/Project-Euler/PE387/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
 <meta property="og:description" content="Project Euler Problem 387 - Harshad Numbers">
-<meta property="og:updated_time" content="2016-06-12T15:21:35.745Z">
+<meta property="og:updated_time" content="2015-10-13T09:12:24.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 387 - Harshad Numbers">
 <meta name="twitter:description" content="Project Euler Problem 387 - Harshad Numbers">
@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
   <body>
@@ -99,17 +99,17 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Harshad-Numbers-哈沙德数"><span class="toc-number">2.1.</span> <span class="toc-text">Harshad Numbers(哈沙德数)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基数哈沙德数深度优先搜索"><span class="toc-number">3.1.</span> <span class="toc-text">基数哈沙德数深度优先搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求和"><span class="toc-number">3.2.</span> <span class="toc-text">求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.3.</span> <span class="toc-text">输出</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Harshad_Numbers(哈沙德数)"><span class="toc-number">2.1.</span> <span class="toc-text">Harshad Numbers(哈沙德数)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基数哈沙德数深度优先搜索"><span class="toc-number">3.1.</span> <span class="toc-text">基数哈沙德数深度优先搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求和"><span class="toc-number">3.2.</span> <span class="toc-text">求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.3.</span> <span class="toc-text">输出</span></a></li></ol></li></ol>
 		
 		</div>
 		
 		<p><a href="https://projecteuler.net/problem=387" target="_blank" rel="external">Project Euler Problem 387</a> - Find the sum of the strong, right truncatable Harshad primes less than 10<sup>14</sup> ,<em>Completed on 2015-10-11  23:41</em><br><a id="more"></a></p>
-<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>A Harshad or Niven number is a number that is divisible by the sum of its digits.<br>201 is a Harshad number because it is divisible by 3 (the sum of its digits.)<br>When we truncate the last digit from 201, we get 20, which is a Harshad number.<br>When we truncate the last digit from 20, we get 2, which is also a Harshad number.<br>Let’s call a Harshad number that, while recursively truncating the last digit, always results in a Harshad number a right truncatable Harshad number.</p>
+<h2 id="原题">原题</h2><p>A Harshad or Niven number is a number that is divisible by the sum of its digits.<br>201 is a Harshad number because it is divisible by 3 (the sum of its digits.)<br>When we truncate the last digit from 201, we get 20, which is a Harshad number.<br>When we truncate the last digit from 20, we get 2, which is also a Harshad number.<br>Let’s call a Harshad number that, while recursively truncating the last digit, always results in a Harshad number a right truncatable Harshad number.</p>
 <p>Also:<br>201/3=67 which is prime.<br>Let’s call a Harshad number that, when divided by the sum of its digits, results in a prime a strong Harshad number.</p>
 <p>Now take the number 2011 which is prime.<br>When we truncate the last digit from it we get 201, a strong Harshad number that is also right truncatable.<br>Let’s call such primes strong, right truncatable Harshad primes.</p>
 <p>You are given that the sum of the strong, right truncatable Harshad primes less than 10000 is 90619.</p>
 <p>Find the sum of the strong, right truncatable Harshad primes less than 10<sup>14<sup>.</sup></sup></p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="Harshad-Numbers-哈沙德数"><a href="#Harshad-Numbers-哈沙德数" class="headerlink" title="Harshad Numbers(哈沙德数)"></a><a name="Harshad_number"></a><a href="https://en.wikipedia.org/wiki/Harshad_number" target="_blank" rel="external">Harshad Numbers</a>(<a href="http://baike.baidu.com/view/1745210.htm" target="_blank" rel="external">哈沙德数</a>)</h3><p>是可以在某个固定的进位制中,被其数位的数字之和整除的整数。</p>
+<h2 id="分析">分析</h2><h3 id="Harshad_Numbers(哈沙德数)"><a name="Harshad_number"></a><a href="https://en.wikipedia.org/wiki/Harshad_number" target="_blank" rel="external">Harshad Numbers</a>(<a href="http://baike.baidu.com/view/1745210.htm" target="_blank" rel="external">哈沙德数</a>)</h3><p>是可以在某个固定的进位制中,被其数位的数字之和整除的整数。</p>
 <ul>
 <li><p><a name="right_truncatable_Harshadnumber"></a>right truncatable Harshad number :循环截掉哈沙德数右边一个数字，新数字还是哈沙德数</p>
 </li>
@@ -124,10 +124,10 @@
 <li>思路二：基数哈沙德数搜索。<br>  从数字1 ~ 9开始(1 ~ 9都是哈沙德数)，深度遍历搜索哈沙德数，在哈沙德数基础上递归搜索这个数末尾加上0~9之后是否素数，是否是哈沙德数，以此遍历下去。每次在末尾添加0 ~ 9 可以保证哈沙德数都是right truncatable的，无需而外运算。</li>
 </ul>
 <p>实践证明，思路一不可行，10<sup>14</sup>以内的素数不是短时间内可以遍历完的，而且对每个素数进行条件判断也比较耗时。思路二可行。</p>
-<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><h3 id="基数哈沙德数深度优先搜索"><a href="#基数哈沙德数深度优先搜索" class="headerlink" title="基数哈沙德数深度优先搜索"></a>基数哈沙德数深度优先搜索</h3><figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">long</span> N = (<span class="keyword">long</span>) Math.pow(<span class="number">10</span>, <span class="number">14</span>);</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 按照 Truncatable HarshadNumber遍历：</span><br><span class="line">     * <span class="doctag">@param</span> n a Right Truncatable HarshadNumber</span><br><span class="line">     * <span class="doctag">@param</span> ds sum of digits of n</span><br><span class="line">     * <span class="doctag">@param</span> strong n is strong HarshadNumber</span><br><span class="line">     * <span class="doctag">@return</span> 以n为前缀的所有StrongRightTruncatableHarshad素数之和</span><br><span class="line">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">long</span> <span class="title">sumHarshadNumber</span><span class="params">(<span class="keyword">long</span> n, <span class="keyword">int</span> ds, <span class="keyword">boolean</span> strong)</span> </span>&#123;</span><br><span class="line">        n = n * <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (n &gt;= N) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">            n += i; <span class="comment">// new n</span></span><br><span class="line">            ds += i;<span class="comment">// new ds</span></span><br><span class="line">            <span class="keyword">if</span> (strong &amp;&amp; Util.isProbablePrime(n, <span class="number">100</span>)) &#123;<span class="comment">// new n is prime</span></span><br><span class="line">                sum += n;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (n % ds == <span class="number">0</span>) &#123; <span class="comment">// new n is a Right Truncatable HarshadNumber,recursive</span></span><br><span class="line">                sum += sumHarshadNumber(n, ds, Util.isProbablePrime(n / ds, <span class="number">100</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            n -= i;<span class="comment">// restore n</span></span><br><span class="line">            ds -= i;<span class="comment">// restore ds</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解题">解题</h2><h3 id="基数哈沙德数深度优先搜索">基数哈沙德数深度优先搜索</h3><figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">static long <span class="keyword">N</span> = (long) Math.pow(10, 14);</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 按照 Truncatable HarshadNumber遍历：</span><br><span class="line">     * @param n a Right Truncatable HarshadNumber</span><br><span class="line">     * @param ds sum of digits of n</span><br><span class="line">     * @param strong n is strong HarshadNumber</span><br><span class="line">     * @return 以n为前缀的所有StrongRightTruncatableHarshad素数之和</span><br><span class="line">     */</span></span><br><span class="line">    public static long sumHarshadNumber(long <span class="keyword">n</span>, int <span class="keyword">ds</span>, boolean strong) &#123;</span><br><span class="line">        <span class="keyword">n</span> = <span class="keyword">n</span> * 10;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">n</span> &gt;= <span class="keyword">N</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> 0;</span><br><span class="line">        &#125;</span><br><span class="line">        long <span class="keyword">sum</span> = 0;</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt;= 9; i++) &#123;</span><br><span class="line">            <span class="keyword">n</span> += i; <span class="comment">// new n</span></span><br><span class="line">            <span class="keyword">ds</span> += i;<span class="comment">// new ds</span></span><br><span class="line">            <span class="keyword">if</span> (strong &amp;&amp; Util.isProbablePrime(<span class="keyword">n</span>, 100)) &#123;<span class="comment">// new n is prime</span></span><br><span class="line">                <span class="keyword">sum</span> += <span class="keyword">n</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">n</span> % <span class="keyword">ds</span> == 0) &#123; <span class="comment">// new n is a Right Truncatable HarshadNumber,recursive</span></span><br><span class="line">                <span class="keyword">sum</span> += sumHarshadNumber(<span class="keyword">n</span>, <span class="keyword">ds</span>, Util.isProbablePrime(<span class="keyword">n</span> / <span class="keyword">ds</span>, 100));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">n</span> -= i;<span class="comment">// restore n</span></span><br><span class="line">            <span class="keyword">ds</span> -= i;<span class="comment">// restore ds</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>其中，<code>Util.isProbablePrime</code> 如下：<br><figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 判断v是否可能是素数，是素数的概率为：1-1/2^certainty</span><br><span class="line"> * <span class="doctag">@return</span></span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">boolean</span> <span class="title">isProbablePrime</span><span class="params">(<span class="keyword">long</span> v, <span class="keyword">int</span> certainty)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> BigInteger.valueOf(v).isProbablePrime(certainty);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="求和"><a href="#求和" class="headerlink" title="求和"></a>求和</h3><figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">    System.<span class="keyword">out</span>.println(sumHarshadNumbes());</span><br><span class="line">    System.<span class="keyword">out</span>.println(<span class="string">"Time consumed : "</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">sumHarshadNumbers</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">        sum += sumHarshadNumber(i, i, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><figure class="highlight ada"><table><tr><td class="code"><pre><span class="line"><span class="number">696067597313468</span></span><br><span class="line">Time consumed : 168 <span class="type">ms</span></span><br></pre></td></tr></table></figure>  
+<h3 id="求和">求和</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> s = System.nanoTime();</span><br><span class="line">    System.out.println(sumHarshadNumbes());</span><br><span class="line">    System.out.println(<span class="string">"Time consumed : "</span> + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - s) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">sumHarshadNumbers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">9</span>; i++) &#123;</span><br><span class="line">        sum += sumHarshadNumber(i, i, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">696067597313468</span></span><br><span class="line">Time consumed : <span class="number">168</span> ms</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -140,7 +140,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/素数/">素数</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/哈沙德数/">哈沙德数</a><a href="/tags/尼云数/">尼云数</a><a href="/tags/数论/">数论</a><a href="/tags/Harshad-number/">Harshad number</a><a href="/tags/深度遍历/">深度遍历</a>
+  <span></span> <a href="/tags/Harshad-number/">Harshad number</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/哈沙德数/">哈沙德数</a><a href="/tags/尼云数/">尼云数</a><a href="/tags/数论/">数论</a><a href="/tags/深度遍历/">深度遍历</a><a href="/tags/素数/">素数</a>
   </div>
 
 </div>
@@ -193,7 +193,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Harshad-Numbers-哈沙德数"><span class="toc-number">2.1.</span> <span class="toc-text">Harshad Numbers(哈沙德数)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基数哈沙德数深度优先搜索"><span class="toc-number">3.1.</span> <span class="toc-text">基数哈沙德数深度优先搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求和"><span class="toc-number">3.2.</span> <span class="toc-text">求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.3.</span> <span class="toc-text">输出</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Harshad_Numbers(哈沙德数)"><span class="toc-number">2.1.</span> <span class="toc-text">Harshad Numbers(哈沙德数)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基数哈沙德数深度优先搜索"><span class="toc-number">3.1.</span> <span class="toc-text">基数哈沙德数深度优先搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求和"><span class="toc-number">3.2.</span> <span class="toc-text">求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">3.3.</span> <span class="toc-text">输出</span></a></li></ol></li></ol>
  
   </div>
 
@@ -205,7 +205,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CestLaVie/">CestLaVie</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span></li></ul> 
 </div>
  
 
@@ -231,10 +231,6 @@
 			
 		
 			
-				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/blogs/" title="blogs">blogs<sup>3</sup></a></li>
 			
 		
@@ -243,55 +239,59 @@
 			
 		
 			
+				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/三分法/" title="三分法">三分法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/分治算法/" title="分治算法">分治算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MathJax/" title="MathJax">MathJax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/辩论/" title="辩论">辩论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/逻辑学/" title="逻辑学">逻辑学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/阿里云/" title="阿里云">阿里云<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Pisot数/" title="Pisot数">Pisot数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/尼云数/" title="尼云数">尼云数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/深度遍历/" title="深度遍历">深度遍历<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Chinese-remainder-theorem/" title="Chinese remainder theorem">Chinese remainder theorem<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/中国剩余定理/" title="中国剩余定理">中国剩余定理<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/等比数列/" title="等比数列">等比数列<sup>1</sup></a></li>
 			
 		
 		</ul>

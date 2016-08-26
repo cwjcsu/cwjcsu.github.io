@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://debug4.me/Project-Euler/PE318/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
 <meta property="og:description" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
-<meta property="og:updated_time" content="2016-06-12T15:21:35.745Z">
+<meta property="og:updated_time" content="2015-10-10T10:36:55.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
 <meta name="twitter:description" content="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
   <body>
@@ -99,28 +99,28 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共轭实数"><span class="toc-number">2.1.</span> <span class="toc-text"> 共轭实数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#证明它们的n次方和是整数"><span class="toc-number">2.2.</span> <span class="toc-text">证明它们的n次方和是整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展-Fibonacci数"><span class="toc-number">2.3.</span> <span class="toc-text">扩展-Fibonacci数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#√p-√q-lt-1"><span class="toc-number">2.4.</span> <span class="toc-text">|√p-√q|< 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.1.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结："><span class="toc-number">4.</span> <span class="toc-text">小结：</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共轭实数"><span class="toc-number">2.1.</span> <span class="toc-text"> 共轭实数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#证明它们的n次方和是整数"><span class="toc-number">2.2.</span> <span class="toc-text">证明它们的n次方和是整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展-Fibonacci数"><span class="toc-number">2.3.</span> <span class="toc-text">扩展-Fibonacci数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#|√p-√q|<_1"><span class="toc-number">2.4.</span> <span class="toc-text">|√p-√q|< 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.1.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结："><span class="toc-number">4.</span> <span class="toc-text">小结：</span></a></li></ol>
 		
 		</div>
 		
 		<p><a href="https://projecteuler.net/problem=318" target="_blank" rel="external">Project Euler Problem 318</a> - 涉及二项式分解、接近整数、Pisot数等数学知识 ,<em>Completed on 2015-10-10  15:00</em><br><a id="more"></a></p>
-<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>Consider the real number √2+√3.<br>When we calculate the even powers of √2+√3 we get:<br>(√2+√3)<sup>2</sup> = 9.898979485566356…<br>(√2+√3)<sup>4</sup> = 97.98979485566356…<br>(√2+√3)<sup>6</sup> = 969.998969071069263…<br>(√2+√3)<sup>8</sup> = 9601.99989585502907…<br>(√2+√3)<sup>10</sup> = 95049.999989479221…<br>(√2+√3)<sup>11</sup> = 940897.9999989371855…<br>(√2+√3)<sup>14</sup> = 9313929.99999989263…<br>(√2+√3)<sup>16</sup> = 92198401.99999998915…</p>
+<h2 id="原题">原题</h2><p>Consider the real number √2+√3.<br>When we calculate the even powers of √2+√3 we get:<br>(√2+√3)<sup>2</sup> = 9.898979485566356…<br>(√2+√3)<sup>4</sup> = 97.98979485566356…<br>(√2+√3)<sup>6</sup> = 969.998969071069263…<br>(√2+√3)<sup>8</sup> = 9601.99989585502907…<br>(√2+√3)<sup>10</sup> = 95049.999989479221…<br>(√2+√3)<sup>11</sup> = 940897.9999989371855…<br>(√2+√3)<sup>14</sup> = 9313929.99999989263…<br>(√2+√3)<sup>16</sup> = 92198401.99999998915…</p>
 <p>It looks like that the number of consecutive nines at the beginning of the fractional part of these powers is non-decreasing.<br>In fact it can be proven that the fractional part of (√2+√3)<sup>2n</sup> approaches 1 for large n.</p>
 <p>Consider all real numbers of the form √p+√q with p and q positive integers and p&lt;q, such that the fractional part of (√p+√q)<sup>2n</sup> approaches 1 for large n.</p>
 <p>Let C(p,q,n) be the number of consecutive nines at the beginning of the f于actional part of<br>(√p+√q)<sup>2n</sup> = (p+q+2.√pq)<sup>2n</sup>,<br>(√p+√q)<sup>2n</sup> = (p+q+2.√pq)<sup>2n</sup>,</p>
 <p>Let N(p,q) be the minimal value of n such that C(p,q,n) ≥ 2011.</p>
 <p>Find ∑N(p,q) for p+q ≤ 2011.</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>题中的(√2+√3)<sup>2</sup>就是一个<a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot数</a>，它具有这个特点：<br>当n趋向无穷大的时候，它的n次方趋向一个整数，而它的共轭实数(√2-√3)<sup>2</sup>的n次方趋向0。而且这两个n次方数相加是一个整数。</p>
-<h3 id="共轭实数"><a href="#共轭实数" class="headerlink" title=" 共轭实数"></a><a name="conjugates"></a> 共轭实数</h3><p>形如a+b√m和a-b√m的两个实数,叫做共轭实数。</p>
-<h3 id="证明它们的n次方和是整数"><a href="#证明它们的n次方和是整数" class="headerlink" title="证明它们的n次方和是整数"></a>证明它们的n次方和是整数</h3><p>对于p和q：<br>(√p+√q)<sup>2n</sup> = (p+q+2√pq)<sup>2n</sup>,<br>(√p-√q)<sup>2n</sup> = (p+q-2√pq)<sup>2n</sup>,<br>设a = p+q,b = 2√pq，<br>（这里a+b与a-b是<a href="#conjugates">共轭实数</a>，它们的小数部分相加等于1，现在证明它们的任意n次方和是整数）<br>则<br>(√p+√q)<sup>2n</sup> + (p+q-2√pq)<sup>2n</sup> = (a+b)<sup>n</sup>+(a-b)<sup>n</sup>,其中a是整数，b是实数，<br>根据二项式展开式可知，所有展开项中，b为偶数次方的都同号，b为奇数次方的都不同号（从而相减消除了），而b的偶数次方是整数，所以展开项相加也是整数。</p>
-<h3 id="扩展-Fibonacci数"><a href="#扩展-Fibonacci数" class="headerlink" title="扩展-Fibonacci数"></a>扩展-Fibonacci数</h3><p>Fibonacci数就是两个共轭实数的n次方和：<br>$$a_n = A \left(  { \frac {1 + \sqrt 5} 2 } \right) ^ n + B \left( { \frac {1 - \sqrt 5} 2 } \right) ^ n.$$</p>
-<h3 id="√p-√q-lt-1"><a href="#√p-√q-lt-1" class="headerlink" title="|√p-√q|&lt; 1"></a>|√p-√q|&lt; 1</h3><p>还有一个关键条件，就是必须满足|√p-√q|&lt; 1，即(a-b)&lt;1 才是上面几个结论成立的关键，也是解答本题的关键（证明还没有找到）。</p>
-<h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>为了使(√p+√q)<sup>2n</sup>的小数有2011或更多的9，那么(√p-√q)<sup>2n</sup>的小数就必须具有2011或更多的0（就是非常接近0），从而：<br>$$(\sqrt p - \sqrt q)^{2n}  \le 10 ^{-2011}$$<br>可以导出：<br>$$n \ge \frac{-2011}{2\lg(\sqrt q -\sqrt p)}$$</p>
+<h2 id="分析">分析</h2><p>题中的(√2+√3)<sup>2</sup>就是一个<a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot数</a>，它具有这个特点：<br>当n趋向无穷大的时候，它的n次方趋向一个整数，而它的共轭实数(√2-√3)<sup>2</sup>的n次方趋向0。而且这两个n次方数相加是一个整数。</p>
+<h3 id="共轭实数"><a name="conjugates"></a> 共轭实数</h3><p>形如a+b√m和a-b√m的两个实数,叫做共轭实数。</p>
+<h3 id="证明它们的n次方和是整数">证明它们的n次方和是整数</h3><p>对于p和q：<br>(√p+√q)<sup>2n</sup> = (p+q+2√pq)<sup>2n</sup>,<br>(√p-√q)<sup>2n</sup> = (p+q-2√pq)<sup>2n</sup>,<br>设a = p+q,b = 2√pq，<br>（这里a+b与a-b是<a href="#conjugates">共轭实数</a>，它们的小数部分相加等于1，现在证明它们的任意n次方和是整数）<br>则<br>(√p+√q)<sup>2n</sup> + (p+q-2√pq)<sup>2n</sup> = (a+b)<sup>n</sup>+(a-b)<sup>n</sup>,其中a是整数，b是实数，<br>根据二项式展开式可知，所有展开项中，b为偶数次方的都同号，b为奇数次方的都不同号（从而相减消除了），而b的偶数次方是整数，所以展开项相加也是整数。</p>
+<h3 id="扩展-Fibonacci数">扩展-Fibonacci数</h3><p>Fibonacci数就是两个共轭实数的n次方和：<br>$$a_n = A \left(  { \frac {1 + \sqrt 5} 2 } \right) ^ n + B \left( { \frac {1 - \sqrt 5} 2 } \right) ^ n.$$</p>
+<h3 id="|√p-√q|&lt;_1">|√p-√q|&lt; 1</h3><p>还有一个关键条件，就是必须满足|√p-√q|&lt; 1，即(a-b)&lt;1 才是上面几个结论成立的关键，也是解答本题的关键（证明还没有找到）。</p>
+<h2 id="解题">解题</h2><p>为了使(√p+√q)<sup>2n</sup>的小数有2011或更多的9，那么(√p-√q)<sup>2n</sup>的小数就必须具有2011或更多的0（就是非常接近0），从而：<br>$$(\sqrt p - \sqrt q)^{2n}  \le 10 ^{-2011}$$<br>可以导出：<br>$$n \ge \frac{-2011}{2\lg(\sqrt q -\sqrt p)}$$</p>
 <p>n取最小值：<br>$$n = ceil(\frac{-2011}{2\lg(\sqrt q -\sqrt p)})$$</p>
 <p>于是，只需要循环p和q，寻找满足条件的 (a-b)&lt;1 的p、q对，然后计算n，并相加即可。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight processing"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">    <span class="keyword">long</span> t = System.nanoTime();</span><br><span class="line">    <span class="keyword">long</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">int</span> L = <span class="number">2011</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> p = <span class="number">1</span>; p &lt; L; p++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> q = p + <span class="number">1</span>; q &lt; L - p + <span class="number">1</span>; q++) &#123;</span><br><span class="line">            <span class="keyword">double</span> c = p + q - <span class="number">2</span> * Math.<span class="built_in">sqrt</span>(p * q);</span><br><span class="line">            <span class="keyword">if</span> (c &lt; <span class="number">1</span>) &#123;<span class="comment">// 等价于 (√q-√p) &lt; 1</span></span><br><span class="line">                s += Math.<span class="built_in">ceil</span>(-L / Math.log10(c));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.<span class="built_in">println</span>(s);</span><br><span class="line">    System.out.<span class="built_in">println</span>(<span class="string">"Time consumed "</span></span><br><span class="line">            + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - t) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：<br><figure class="highlight dns"><table><tr><td class="code"><pre><span class="line"><span class="number">709313889</span></span><br><span class="line">Time consumed <span class="number">22</span> ms</span><br></pre></td></tr></table></figure></p>
-<h2 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h2><p><a href="http://blog.dreamshire.com/project-euler-318-solution/" target="_blank" rel="external">参考1</a><br><a href="https://projecteuler.net/thread=318" target="_blank" rel="external">参考2-NickMcG</a><br><a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot–Vijayaraghavan_number</a> </p>
+<h3 id="代码">代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> t = System.nanoTime();</span><br><span class="line">    <span class="keyword">long</span> s = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> L = <span class="number">2011</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">1</span>; p &lt; L; p++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> q = p + <span class="number">1</span>; q &lt; L - p + <span class="number">1</span>; q++) &#123;</span><br><span class="line">            <span class="keyword">double</span> c = p + q - <span class="number">2</span> * Math.<span class="built_in">sqrt</span>(p * q);</span><br><span class="line">            <span class="keyword">if</span> (c &lt; <span class="number">1</span>) &#123;<span class="comment">// 等价于 (√q-√p) &lt; 1</span></span><br><span class="line">                s += Math.<span class="built_in">ceil</span>(-L / Math.<span class="built_in">log10</span>(c));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">    System.out.println(<span class="string">"Time consumed "</span></span><br><span class="line">            + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - t) + <span class="string">" ms"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">709313889</span></span><br><span class="line">Time consumed <span class="number">22</span> ms</span><br></pre></td></tr></table></figure></p>
+<h2 id="小结：">小结：</h2><p><a href="http://blog.dreamshire.com/project-euler-318-solution/" target="_blank" rel="external">参考1</a><br><a href="https://projecteuler.net/thread=318" target="_blank" rel="external">参考2-NickMcG</a><br><a href="https://en.wikipedia.org/wiki/Pisot%E2%80%93Vijayaraghavan_number" target="_blank" rel="external">Pisot–Vijayaraghavan_number</a> </p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -134,7 +134,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/Java/">Java</a><a href="/tags/共轭实数/">共轭实数</a><a href="/tags/二项式/">二项式</a><a href="/tags/Pisot数/">Pisot数</a>
+  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Pisot数/">Pisot数</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/二项式/">二项式</a><a href="/tags/共轭实数/">共轭实数</a>
   </div>
 
 </div>
@@ -187,7 +187,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共轭实数"><span class="toc-number">2.1.</span> <span class="toc-text"> 共轭实数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#证明它们的n次方和是整数"><span class="toc-number">2.2.</span> <span class="toc-text">证明它们的n次方和是整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展-Fibonacci数"><span class="toc-number">2.3.</span> <span class="toc-text">扩展-Fibonacci数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#√p-√q-lt-1"><span class="toc-number">2.4.</span> <span class="toc-text">|√p-√q|< 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.1.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结："><span class="toc-number">4.</span> <span class="toc-text">小结：</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共轭实数"><span class="toc-number">2.1.</span> <span class="toc-text"> 共轭实数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#证明它们的n次方和是整数"><span class="toc-number">2.2.</span> <span class="toc-text">证明它们的n次方和是整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展-Fibonacci数"><span class="toc-number">2.3.</span> <span class="toc-text">扩展-Fibonacci数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#|√p-√q|<_1"><span class="toc-number">2.4.</span> <span class="toc-text">|√p-√q|< 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题"><span class="toc-number">3.</span> <span class="toc-text">解题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.1.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结："><span class="toc-number">4.</span> <span class="toc-text">小结：</span></a></li></ol>
  
   </div>
 
@@ -199,7 +199,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CestLaVie/">CestLaVie</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span></li></ul> 
 </div>
  
 
@@ -225,10 +225,6 @@
 			
 		
 			
-				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/blogs/" title="blogs">blogs<sup>3</sup></a></li>
 			
 		
@@ -237,55 +233,59 @@
 			
 		
 			
+				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/三分法/" title="三分法">三分法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/分治算法/" title="分治算法">分治算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MathJax/" title="MathJax">MathJax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/辩论/" title="辩论">辩论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/逻辑学/" title="逻辑学">逻辑学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/阿里云/" title="阿里云">阿里云<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Pisot数/" title="Pisot数">Pisot数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/尼云数/" title="尼云数">尼云数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/深度遍历/" title="深度遍历">深度遍历<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Chinese-remainder-theorem/" title="Chinese remainder theorem">Chinese remainder theorem<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/中国剩余定理/" title="中国剩余定理">中国剩余定理<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/等比数列/" title="等比数列">等比数列<sup>1</sup></a></li>
 			
 		
 		</ul>

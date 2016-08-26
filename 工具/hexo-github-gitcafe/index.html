@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://debug4.me/工具/hexo-github-gitcafe/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
 <meta property="og:description" content="把hexo博客的源码和生成的页面实时同步到github和gitcafe。">
-<meta property="og:updated_time" content="2016-06-12T15:21:35.747Z">
+<meta property="og:updated_time" content="2015-10-12T02:46:49.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo建立github,gitcafe博客并实时同步的要点">
 <meta name="twitter:description" content="把hexo博客的源码和生成的页面实时同步到github和gitcafe。">
@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon" href="/img/jacman.jpg">
     <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
     
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 
   <body>
@@ -99,20 +99,20 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1，-不一定要购买域名"><span class="toc-number">1.</span> <span class="toc-text">1， 不一定要购买域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2，使用gh-pages分支创建的页面"><span class="toc-number">2.</span> <span class="toc-text">2，使用gh_pages分支创建的页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3，举例说明"><span class="toc-number">3.</span> <span class="toc-text">3，举例说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4，hexo搭建"><span class="toc-number">4.</span> <span class="toc-text">4，hexo搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐几篇好文章："><span class="toc-number">4.1.</span> <span class="toc-text">推荐几篇好文章：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5，hexo部署"><span class="toc-number">5.</span> <span class="toc-text">5，hexo部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-gitcafe博客"><span class="toc-number">6.</span> <span class="toc-text">6,gitcafe博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-配置评论系统和百度统计"><span class="toc-number">7.</span> <span class="toc-text">7,配置评论系统和百度统计</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1，_不一定要购买域名"><span class="toc-number">1.</span> <span class="toc-text">1， 不一定要购买域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2，使用gh_pages分支创建的页面"><span class="toc-number">2.</span> <span class="toc-text">2，使用gh_pages分支创建的页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3，举例说明"><span class="toc-number">3.</span> <span class="toc-text">3，举例说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4，hexo搭建"><span class="toc-number">4.</span> <span class="toc-text">4，hexo搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐几篇好文章："><span class="toc-number">4.1.</span> <span class="toc-text">推荐几篇好文章：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5，hexo部署"><span class="toc-number">5.</span> <span class="toc-text">5，hexo部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6,gitcafe博客"><span class="toc-number">6.</span> <span class="toc-text">6,gitcafe博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7,配置评论系统和百度统计"><span class="toc-number">7.</span> <span class="toc-text">7,配置评论系统和百度统计</span></a></li></ol>
 		
 		</div>
 		
 		<p>把hexo博客的源码和生成的页面实时同步到github和gitcafe。<br><a id="more"></a></p>
 <p>用搜索引擎搜索”github 博客”等关键字会出现大量很好的文章教小白一步步搭建。我这里列出一些关键点，希望可以让你少走弯路。这篇博客的markdown源代码在：<a href="https://gitcafe.com/cwjcsu/cwjcsu/blob/master/source/_posts/hexo-github-gitcafe.md" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu/blob/master/source/_posts/hexo-github-gitcafe.md</a><br>其他涉及的源码在同一个仓库可以找到。</p>
-<h2 id="1，-不一定要购买域名"><a href="#1，-不一定要购买域名" class="headerlink" title="1， 不一定要购买域名"></a>1， 不一定要购买域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:cwjcsu.github.io。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：你创建的github的仓库名称必须是cwjcsu.github.io,这样你只要在master分支上 仓库根目录push一个index.html，这个页面就可以通过 <a href="http://cwjcsu.github.io" target="_blank" rel="external">http://cwjcsu.github.io</a> 访问到。cwjcsu是我的github用户名，实际操作中替换成你的即可。</p>
-<h2 id="2，使用gh-pages分支创建的页面"><a href="#2，使用gh-pages分支创建的页面" class="headerlink" title="2，使用gh_pages分支创建的页面"></a>2，使用gh_pages分支创建的页面</h2><p>在github上，你可以为你的任何仓库添加一个网站，你只需要：</p>
+<h2 id="1，_不一定要购买域名">1， 不一定要购买域名</h2><p>很多文章都有介绍购买域名，并在根目录下配置CName文件，其实不一定要购买的。Github会给每个用户一个二级域名:cwjcsu.github.io。这个二级域名下，你可以定制样式、404页面等等，记住最重要的一点：你创建的github的仓库名称必须是cwjcsu.github.io,这样你只要在master分支上 仓库根目录push一个index.html，这个页面就可以通过 <a href="http://cwjcsu.github.io" target="_blank" rel="external">http://cwjcsu.github.io</a> 访问到。cwjcsu是我的github用户名，实际操作中替换成你的即可。</p>
+<h2 id="2，使用gh_pages分支创建的页面">2，使用gh_pages分支创建的页面</h2><p>在github上，你可以为你的任何仓库添加一个网站，你只需要：</p>
 <ol>
 <li>把网站的页面push到这个仓库的gh_pages分支；（github有向导可以指引你自动创建这个分支）</li>
 <li>通过<a href="http://username.github.io/reponame" target="_blank" rel="external">http://username.github.io/reponame</a> 进行访问（即<code>http://博客地址/仓库名称/</code>）。我的github博客地址是：<a href="http://cwjcsu.github.io/" target="_blank" rel="external"><code>http://cwjcsu.github.io/</code></a>，而joutable是我一个开源项目的仓库名称，它的页面可以通过<a href="http://cwjcsu.github.io/joutable" target="_blank" rel="external">http://cwjcsu.github.io/joutable</a> 访问到</li>
 </ol>
-<h2 id="3，举例说明"><a href="#3，举例说明" class="headerlink" title="3，举例说明"></a>3，举例说明</h2><p>我在github上面的首页是：<a href="https://github.com/cwjcsu" target="_blank" rel="external">https://github.com/cwjcsu</a><br>我在github上的博客源码仓库是：<a href="https://github.com/cwjcsu/cwjcsu.github.io" target="_blank" rel="external">https://github.com/cwjcsu/cwjcsu.github.io</a><br>我在github上博客首页：<a href="http://cwjcsu.github.io" target="_blank" rel="external">http://cwjcsu.github.io</a><br>我的一个开源项目joutable仓库是：<a href="https://github.com/cwjcsu/joutable" target="_blank" rel="external">https://github.com/cwjcsu/joutable</a> ，有两个分支，一个是master放置开源项目源码，一个是gh_pages放置项目介绍页面可以通过<a href="http://cwjcsu.github.io/joutable/" target="_blank" rel="external">http://cwjcsu.github.io/joutable/</a> 访问</p>
-<h2 id="4，hexo搭建"><a href="#4，hexo搭建" class="headerlink" title="4，hexo搭建"></a>4，hexo搭建</h2><p>hexo主页：<a href="https://hexo.io/" target="_blank" rel="external">https://hexo.io/</a><br>经过试用，hexo用来写博客真是不二选择（配合<a href="http://www.sublimetext.com/3" target="_blank" rel="external">sublime Text3</a> +<a href="http://www.cnblogs.com/IPrograming/p/Sublime-markdown-editor.html" target="_blank" rel="external">Markdown Editing</a>,），具有下面的优势：</p>
+<h2 id="3，举例说明">3，举例说明</h2><p>我在github上面的首页是：<a href="https://github.com/cwjcsu" target="_blank" rel="external">https://github.com/cwjcsu</a><br>我在github上的博客源码仓库是：<a href="https://github.com/cwjcsu/cwjcsu.github.io" target="_blank" rel="external">https://github.com/cwjcsu/cwjcsu.github.io</a><br>我在github上博客首页：<a href="http://cwjcsu.github.io" target="_blank" rel="external">http://cwjcsu.github.io</a><br>我的一个开源项目joutable仓库是：<a href="https://github.com/cwjcsu/joutable" target="_blank" rel="external">https://github.com/cwjcsu/joutable</a> ，有两个分支，一个是master放置开源项目源码，一个是gh_pages放置项目介绍页面可以通过<a href="http://cwjcsu.github.io/joutable/" target="_blank" rel="external">http://cwjcsu.github.io/joutable/</a> 访问</p>
+<h2 id="4，hexo搭建">4，hexo搭建</h2><p>hexo主页：<a href="https://hexo.io/" target="_blank" rel="external">https://hexo.io/</a><br>经过试用，hexo用来写博客真是不二选择（配合<a href="http://www.sublimetext.com/3" target="_blank" rel="external">sublime Text3</a> +<a href="http://www.cnblogs.com/IPrograming/p/Sublime-markdown-editor.html" target="_blank" rel="external">Markdown Editing</a>,），具有下面的优势：</p>
 <ol>
 <li>使用markdown，完美支持github-flavored-markdown</li>
 <li>实时本地预览，（#hexo s 创建一个本地http-server在本地实时预览你的博客网站）</li>
@@ -127,20 +127,20 @@
 <li>使用<code>&lt;!--more--&gt;</code>用来分割摘要和正文，上面部分是摘要，会出现在主页。同wordpress。</li>
 <li>description:xxx 会生成网页的description描述:<code>&lt;meta property=&quot;og:description&quot; content=&quot;xxx&quot;&gt;</code>这是SEO需要注意的地方。</li>
 </ol>
-<h3 id="推荐几篇好文章："><a href="#推荐几篇好文章：" class="headerlink" title="推荐几篇好文章："></a>推荐几篇好文章：</h3><p>hexo搭建博客：<a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>hexo的Jacman主题：<a href="https://github.com/wuchong/jacman" target="_blank" rel="external">https://github.com/wuchong/jacman</a><br>hexo配置介绍：<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">https://hexo.io/docs/configuration.html</a><br>markdown大全：<a href="http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/" target="_blank" rel="external">http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/</a> </p>
-<h2 id="5，hexo部署"><a href="#5，hexo部署" class="headerlink" title="5，hexo部署"></a>5，hexo部署</h2><p>在hexo配置文件_config.yml 有个deploy的配置项目用来配置git仓库，注意type需设置为git，是hexo3中的类型，需要安装：hexo-deployer-git：<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="推荐几篇好文章：">推荐几篇好文章：</h3><p>hexo搭建博客：<a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br>hexo的Jacman主题：<a href="https://github.com/wuchong/jacman" target="_blank" rel="external">https://github.com/wuchong/jacman</a><br>hexo配置介绍：<a href="https://hexo.io/docs/configuration.html" target="_blank" rel="external">https://hexo.io/docs/configuration.html</a><br>markdown大全：<a href="http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/" target="_blank" rel="external">http://cwjcsu.gitcafe.io/2015/09/26/markdown-learning/</a> </p>
+<h2 id="5，hexo部署">5，hexo部署</h2><p>在hexo配置文件_config.yml 有个deploy的配置项目用来配置git仓库，注意type需设置为git，是hexo3中的类型，需要安装：hexo-deployer-git：<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure></p>
 <p>网上的教程大多是hexo2的，很多文章没有指出这个区别。</p>
 <p>#hexo deploy 可以一键部署到github仓库，但是我需要部署到不同仓库，所以没有采用hexo的自动部署，二是写了一个脚本：<br>在hexo生成的博客根目录cwjcsu.github.io下有个脚本：up.sh</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">git commit -am <span class="string">"<span class="variable">$1</span>"</span> </span><br><span class="line">git push github master:master </span><br><span class="line">git push gitcafe master:gitcafe-pages</span><br></pre></td></tr></table></figure>
-<p>于是，可以通过下面命令一键把生成的博客内容更新到github和gitcafe了。<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">#./up<span class="selector-class">.sh</span> <span class="string">"commit comment"</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">git commit -am <span class="string">"<span class="variable">$1</span>"</span> </span><br><span class="line">git push github master:master </span><br><span class="line">git push gitcafe master:gitcafe-pages</span><br></pre></td></tr></table></figure>
+<p>于是，可以通过下面命令一键把生成的博客内容更新到github和gitcafe了。<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">#./up<span class="class">.sh</span> <span class="string">"commit comment"</span></span><br></pre></td></tr></table></figure></p>
 <p> 下面是我的git配置文件：cwjcsu.github.io/.git/config</p>
 <figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">[core]</span><br><span class="line">    repositoryformatversion = <span class="number">0</span></span><br><span class="line">    filemode = <span class="keyword">false</span></span><br><span class="line">    bare = <span class="keyword">false</span></span><br><span class="line">    logallrefupdates = <span class="keyword">true</span></span><br><span class="line">    symlinks = <span class="keyword">false</span></span><br><span class="line">    ignorecase = <span class="keyword">true</span></span><br><span class="line">    hideDotFiles = dotGitOnly</span><br><span class="line"></span><br><span class="line">[remote <span class="string">"gitcafe"</span>]</span><br><span class="line">    url = git<span class="variable">@gitcafe</span>.<span class="symbol">com:</span>cwjcsu/cwjcsu.git</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/gitcafe/*</span></span><br><span class="line"></span><br><span class="line">[remote <span class="string">"github"</span>]</span><br><span class="line">    url = git<span class="variable">@github</span>.<span class="symbol">com:</span>cwjcsu/cwjcsu.github.io.git</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/github/*</span></span><br><span class="line">    </span><br><span class="line">[branch <span class="string">"master"</span>]</span><br><span class="line">    remote = github</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure>
 <p> 可以看到有两个remote：github和gitcafe，分别配置github和gitcafe上面我的博客所在的仓库地址。up.sh脚本中gitcafe的分支是gitcafe-pages而不是master，仓库名称也不是域名而是直接用户名。这是因为gitcafe博客与github博客略有不同，下面会介绍。<br> 为了避免每次push都提示你输入用户名和密码，你需要在github和gitcafe中添加你的公钥，具体操作本文不赘述。[user]部分我没有贴出来。</p>
-<h2 id="6-gitcafe博客"><a href="#6-gitcafe博客" class="headerlink" title="6,gitcafe博客"></a>6,gitcafe博客</h2><p> 与github不同的是，创建gitcafe的博客，<strong>你只需要创建一个和你的用户名一样的仓库，然后把页面push到这个仓库的gitcafe-pages分支即可</strong>，然后把源码push到这个分支的master。<br> 比如：<br> 博客所在仓库是：<a href="https://gitcafe.com/cwjcsu/cwjcsu" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu</a><br> 博客源码的分支是master：<a href="https://gitcafe.com/cwjcsu/cwjcsu/tree/master" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu/tree/master</a><br> 博客页面分支是gitcafe-pages：<a href="https://gitcafe.com/cwjcsu/cwjcsu/tree/gitcafe-pages" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu/tree/gitcafe-pages</a></p>
-<p> 这两个分支与github上两个仓库代码是同一份，我又写了个脚本，用来实时push博客源码到两个仓库：blog/up.sh: (blog是博客源码所在目录)<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">git commit -am <span class="string">"<span class="variable">$1</span>"</span> </span><br><span class="line">git push github master:master </span><br><span class="line">git push gitcafe master:master</span><br></pre></td></tr></table></figure></p>
+<h2 id="6,gitcafe博客">6,gitcafe博客</h2><p> 与github不同的是，创建gitcafe的博客，<strong>你只需要创建一个和你的用户名一样的仓库，然后把页面push到这个仓库的gitcafe-pages分支即可</strong>，然后把源码push到这个分支的master。<br> 比如：<br> 博客所在仓库是：<a href="https://gitcafe.com/cwjcsu/cwjcsu" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu</a><br> 博客源码的分支是master：<a href="https://gitcafe.com/cwjcsu/cwjcsu/tree/master" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu/tree/master</a><br> 博客页面分支是gitcafe-pages：<a href="https://gitcafe.com/cwjcsu/cwjcsu/tree/gitcafe-pages" target="_blank" rel="external">https://gitcafe.com/cwjcsu/cwjcsu/tree/gitcafe-pages</a></p>
+<p> 这两个分支与github上两个仓库代码是同一份，我又写了个脚本，用来实时push博客源码到两个仓库：blog/up.sh: (blog是博客源码所在目录)<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line">git commit -am <span class="string">"<span class="variable">$1</span>"</span> </span><br><span class="line">git push github master:master </span><br><span class="line">git push gitcafe master:master</span><br></pre></td></tr></table></figure></p>
 <p>blog/.git/config:<br><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">[core]</span><br><span class="line">    repositoryformatversion = <span class="number">0</span></span><br><span class="line">    filemode = <span class="keyword">false</span></span><br><span class="line">    bare = <span class="keyword">false</span></span><br><span class="line">    logallrefupdates = <span class="keyword">true</span></span><br><span class="line">    symlinks = <span class="keyword">false</span></span><br><span class="line">    ignorecase = <span class="keyword">true</span></span><br><span class="line">    hideDotFiles = dotGitOnly</span><br><span class="line"></span><br><span class="line">[remote <span class="string">"gitcafe"</span>]</span><br><span class="line">    url = git<span class="variable">@gitcafe</span>.<span class="symbol">com:</span>cwjcsu/cwjcsu.git</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/gitcafe/*</span></span><br><span class="line"></span><br><span class="line">[remote <span class="string">"github"</span>]</span><br><span class="line">    url = git<span class="variable">@github</span>.<span class="symbol">com:</span>cwjcsu/blog.git</span><br><span class="line">    fetch = +refs/heads/*<span class="symbol">:refs/remotes/github/*</span></span><br><span class="line">    </span><br><span class="line">[branch <span class="string">"master"</span>]</span><br><span class="line">    remote = github</span><br><span class="line">    merge = refs/heads/master</span><br></pre></td></tr></table></figure></p>
 <p>[user]部分我没有贴出来。</p>
-<h2 id="7-配置评论系统和百度统计"><a href="#7-配置评论系统和百度统计" class="headerlink" title="7,配置评论系统和百度统计"></a>7,配置评论系统和百度统计</h2><p>我使用了国内很火的一个评论系统：<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>,注册、添加站点后，只需要把ID设置到hexo主题的_config.yml文件里面即可（注意不是hexo的配置文件而是themes/jacman/_config.yml，jacman是我使用的一个主题）。添加百度统计网上教程很多不赘述。</p>
+<h2 id="7,配置评论系统和百度统计">7,配置评论系统和百度统计</h2><p>我使用了国内很火的一个评论系统：<a href="http://duoshuo.com/" target="_blank" rel="external">多说</a>,注册、添加站点后，只需要把ID设置到hexo主题的_config.yml文件里面即可（注意不是hexo的配置文件而是themes/jacman/_config.yml，jacman是我使用的一个主题）。添加百度统计网上教程很多不赘述。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -154,7 +154,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/hexo/">hexo</a><a href="/tags/blogs/">blogs</a><a href="/tags/github/">github</a>
+  <span></span> <a href="/tags/blogs/">blogs</a><a href="/tags/github/">github</a><a href="/tags/hexo/">hexo</a>
   </div>
 
 </div>
@@ -207,7 +207,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1，-不一定要购买域名"><span class="toc-number">1.</span> <span class="toc-text">1， 不一定要购买域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2，使用gh-pages分支创建的页面"><span class="toc-number">2.</span> <span class="toc-text">2，使用gh_pages分支创建的页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3，举例说明"><span class="toc-number">3.</span> <span class="toc-text">3，举例说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4，hexo搭建"><span class="toc-number">4.</span> <span class="toc-text">4，hexo搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐几篇好文章："><span class="toc-number">4.1.</span> <span class="toc-text">推荐几篇好文章：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5，hexo部署"><span class="toc-number">5.</span> <span class="toc-text">5，hexo部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-gitcafe博客"><span class="toc-number">6.</span> <span class="toc-text">6,gitcafe博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-配置评论系统和百度统计"><span class="toc-number">7.</span> <span class="toc-text">7,配置评论系统和百度统计</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1，_不一定要购买域名"><span class="toc-number">1.</span> <span class="toc-text">1， 不一定要购买域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2，使用gh_pages分支创建的页面"><span class="toc-number">2.</span> <span class="toc-text">2，使用gh_pages分支创建的页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3，举例说明"><span class="toc-number">3.</span> <span class="toc-text">3，举例说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4，hexo搭建"><span class="toc-number">4.</span> <span class="toc-text">4，hexo搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐几篇好文章："><span class="toc-number">4.1.</span> <span class="toc-text">推荐几篇好文章：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5，hexo部署"><span class="toc-number">5.</span> <span class="toc-text">5，hexo部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6,gitcafe博客"><span class="toc-number">6.</span> <span class="toc-text">6,gitcafe博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7,配置评论系统和百度统计"><span class="toc-number">7.</span> <span class="toc-text">7,配置评论系统和百度统计</span></a></li></ol>
  
   </div>
 
@@ -219,7 +219,7 @@
   
 <div class="category-container">
   <h3 class="category-title">分类</h3>
-     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CestLaVie/">CestLaVie</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">6</span></li></ul> 
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">Math</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/My-Projects/">My Projects</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span></li></ul> 
 </div>
  
 
@@ -245,10 +245,6 @@
 			
 		
 			
-				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/blogs/" title="blogs">blogs<sup>3</sup></a></li>
 			
 		
@@ -257,55 +253,59 @@
 			
 		
 			
+				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/三分法/" title="三分法">三分法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/分治算法/" title="分治算法">分治算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MathJax/" title="MathJax">MathJax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/辩论/" title="辩论">辩论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/逻辑学/" title="逻辑学">逻辑学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/阿里云/" title="阿里云">阿里云<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/共轭实数/" title="共轭实数">共轭实数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/二项式/" title="二项式">二项式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Pisot数/" title="Pisot数">Pisot数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/哈沙德数/" title="哈沙德数">哈沙德数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/尼云数/" title="尼云数">尼云数<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数论/" title="数论">数论<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Harshad-number/" title="Harshad number">Harshad number<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/深度遍历/" title="深度遍历">深度遍历<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Chinese-remainder-theorem/" title="Chinese remainder theorem">Chinese remainder theorem<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/中国剩余定理/" title="中国剩余定理">中国剩余定理<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/等比数列/" title="等比数列">等比数列<sup>1</sup></a></li>
 			
 		
 		</ul>
