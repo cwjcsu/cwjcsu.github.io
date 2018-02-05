@@ -4,7 +4,7 @@
   <subtitle><![CDATA[码农，数学物理科幻爱好者 - 子非鱼，安知鱼之乐]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://debug4.me/"/>
-  <updated>2016-08-26T10:20:14.089Z</updated>
+  <updated>2018-02-05T09:36:07.494Z</updated>
   <id>http://debug4.me/</id>
   
   <author>
@@ -15,11 +15,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[我用Powershell遇到的那些坑]]></title>
+    <link href="http://debug4.me/%E7%BC%96%E7%A8%8B/Tips-on-powershell/"/>
+    <id>http://debug4.me/编程/Tips-on-powershell/</id>
+    <published>2018-02-05T07:18:20.000Z</published>
+    <updated>2018-02-05T09:36:07.494Z</updated>
+    <content type="html"><![CDATA[<p>行云管家的Proxy和Agent在windows下的安装脚本是用powershell编写的，到现在已经28个小版本了。Proxy的bug，40%是来自powershell，40%来自bat,剩下20%来自java代码。<br><a id="more"></a></p>
+<h1 id="下载文件的进度条把下载速度降低了10倍">下载文件的进度条把下载速度降低了10倍</h1><p><strong>要求：</strong>用powershell下载一个文件到指定位置，并且显示进度条。<br>    网上去搜索应该有一大堆代码，我也是参考了其中一些。代码片段如下：<br><figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> DownloadFile(<span class="variable">$url</span>, <span class="variable">$targetFile</span>)&#123;</span><br><span class="line">   <span class="variable">$uri</span> = New-Object <span class="string">"System.Uri"</span> <span class="string">"$url"</span></span><br><span class="line">   <span class="variable">$request</span> = [System.Net.HttpWebRequest]::Create(<span class="variable">$uri</span>)</span><br><span class="line">   <span class="variable">$request</span>.set_Timeout(<span class="number">10000</span>) #<span class="number">10</span> second timeout</span><br><span class="line">   <span class="variable">$response</span> = <span class="variable">$request</span>.GetResponse()</span><br><span class="line">   ...</span><br><span class="line">     <span class="variable">$sw</span> = [System.Diagnostics.Stopwatch]::StartNew()</span><br><span class="line">   <span class="variable">$delta</span>=<span class="number">0</span></span><br><span class="line">   while (<span class="variable">$count</span> -gt <span class="number">0</span>)&#123;</span><br><span class="line">       <span class="variable">$targetStream</span>.Write(<span class="variable">$buffer</span>, <span class="number">0</span>, <span class="variable">$count</span>)</span><br><span class="line">       <span class="variable">$count</span> = <span class="variable">$responseStream</span>.Read(<span class="variable">$buffer</span>,<span class="number">0</span>,<span class="variable">$buffer</span>.length)</span><br><span class="line">       <span class="variable">$downloadedBytes</span> = <span class="variable">$downloadedBytes</span> + <span class="variable">$count</span></span><br><span class="line">       <span class="variable">$delta</span> = <span class="variable">$delta</span>+<span class="variable">$count</span></span><br><span class="line">       if ((<span class="variable">$sw</span>.Elapsed.TotalMilliseconds -ge <span class="number">500</span>) -or (<span class="variable">$count</span> -le <span class="number">0</span>) ) &#123;#【<span class="number">1</span>】</span><br><span class="line">        #make it fast,avoid write-progress too often</span><br><span class="line">           <span class="variable">$percent</span>=(([System.Math]::Floor(<span class="variable">$downloadedBytes</span>/<span class="number">1024</span>)) / <span class="variable">$totalLength</span>)  * <span class="number">100</span></span><br><span class="line">           <span class="variable">$percentStr</span>=<span class="string">'&#123;0:n1&#125;'</span> -f <span class="variable">$percent</span></span><br><span class="line">           <span class="variable">$speed</span>=<span class="string">'&#123;0:n2&#125;'</span> -f (<span class="variable">$delta</span>*<span class="number">1000</span>/<span class="number">1024</span>/<span class="variable">$sw</span>.Elapsed.TotalMilliseconds)</span><br><span class="line">           Write-Progress -activity <span class="string">"Downloading file '$fileName'"</span> -status <span class="string">"Downloaded ($([System.Math]::Floor($downloadedBytes/1024))K of $($totalLength)K):$percentStr% $speed KB/s"</span> -PercentComplete <span class="variable">$percent</span></span><br><span class="line">           <span class="variable">$sw</span>.Reset(); <span class="variable">$sw</span>.Start();<span class="variable">$delta</span>=<span class="number">0</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>刚开始的代码【1】是没有<code>Stopwatch</code>计时器判断的，意味着每下载一个$buffer的数据之后，就会调用一次<code>Write-Progress</code>，而这个调用会在屏幕上移动一步进度条（如果精度够的话），这是一个UI操作，可以想象到这个过程必然是同步的。调用一两次耗时并无感知，但是当下载一个几十MB的文件，就要调用成千上万次（&gt;100MB/32KB），而且跟IO操作的线程是串行的，所以会明显降低下载速度。<br>当初调试的时候，发现下载速度怎么也达不到该有的速度（100兆带宽11MB/s,千兆带宽30~80MB/s），最后找到罪魁祸首是<code>Write-Progress</code>调用过于频繁。<br>如上代码所示，降到500毫秒（或者1s）打印一次，就可以忽略<code>Write-Progress</code>带来的延迟，而界面显示的信息对人眼来说，也是实时更新的。<br>参见<a href="https://stackoverflow.com/questions/21304282/how-to-improve-the-performance-of-write-progress" target="_blank" rel="external">How to improve the performance of Write-Progress?</a></p>
+<h1 id="递归删除非空目录偶尔失败且一直阻塞">递归删除非空目录偶尔失败且一直阻塞</h1><p>先看代码：<br><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">test-path</span> <span class="string">"<span class="variable">$cloudGateway_folder</span>\YunAgent"</span>)&#123;</span><br><span class="line">    <span class="built_in">Write-Host</span> <span class="string">"Removing the old remaining directory <span class="variable">$cloudGateway_folder</span>\YunAgent"</span></span><br><span class="line">    <span class="built_in">Remove-Item</span> <span class="string">"<span class="variable">$cloudGateway_folder</span>\CloudGateway"</span> -Recurse -Force</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>问题出在函数<code>Remote-Item</code>的参数<code>-Recurse</code> 上面。</p>
+<p>这个bug有点奇葩：powershell的文档说<code>-Recurse</code>参数在这里无法正常工作，应该使用<code>Get-Childitem</code>加管道来替代。既然知道是bug，你倒是修复啊！经过测试发现，powershell 2.0~5.0都存在这个问题，微软不屑于修复这个bug。</p>
+<p>另外，增加参数<code>-ErrorAction SilentlyContinue</code>并不能解决问题，但是会忽略错误，然后继续进行，很多时候这并不算你想要的。</p>
+<p>我的替代方式是用cmd命令，应该足够稳定靠谱了吧。<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">&amp;cmd<span class="class">.exe</span> /c rd /s /<span class="tag">q</span> <span class="variable">$cloudGateway_folder</span>\YunAgent</span><br></pre></td></tr></table></figure></p>
+<p>这个bug不是必现的，所以你在开发测试阶段不一定能发现问题，这是最坑人的地方。<br>参见<a href="https://serverfault.com/questions/199921/force-remove-files-and-directories-in-powershell-fails-sometimes-but-not-always" target="_blank" rel="external">Force-remove files and directories in PowerShell fails sometimes, but not always</a></p>
+<h1 id="未使用windows换行符导致脚本无法运行">未使用windows换行符导致脚本无法运行</h1><p>众所周知，widnows、linux、mac三个大平台下的文件换行符都是各自一套的，powershell脚本(xxx.ps1)的换行符必须是windows换行符，即<code>CRLF</code>或者<code>\r\n</code>。这个看似一个很愚蠢的错误，其实不经意就会犯。</p>
+<p>我们公司用idea做开发，我的开发及其是windows平台的。我编写powershell的时候，很多时候都是直接用idea打开修改，然后用git提交。git在windows下有时候配置为这样：<br><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>cat .git/config</span><br><span class="line">[core]</span><br><span class="line">        autocrlf=<span class="literal">true</span></span><br><span class="line">        ...</span><br></pre></td></tr></table></figure></p>
+<p>这样，代码checkout下来的时候，会自动添加CRLF换行符，而提交推送的时候，会去掉CR只保留LF。<br>在Linux下有一个简单的方法检测处理Windows换行符问题。使用vi -b 打开可以看到是否添加了CR字符。下面的示例<code>^M</code>表示CR字符<br><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">#:vi -b installGateway.ps1 </span><br><span class="line">param(^M</span><br><span class="line">[<span class="keyword">string</span>]<span class="variable">$importKey</span>=<span class="variable">$(</span>throw <span class="string">"Parameter missing: -importKey key"</span>),^M</span><br><span class="line">[<span class="keyword">string</span>]<span class="variable">$repo</span>=<span class="variable">$(</span>throw <span class="string">"Parameter missing: -repo repo"</span>),^M</span><br><span class="line">[<span class="keyword">string</span>]<span class="variable">$download_prefix</span>=<span class="variable">$(</span>throw <span class="string">"Parameter missing: -download_prefix download_prefix"</span>),^M</span><br><span class="line">[<span class="keyword">int</span>]<span class="variable">$isAdmin</span>=<span class="variable">$(</span><span class="number">0</span>)^M</span><br><span class="line">)^M</span><br><span class="line"><span class="variable">$appName</span> =<span class="string">"Cloudbility Gateway Service"</span>^M</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>反过来，如果你的shell脚本以<code>\r\n</code>结尾，也是无法在linux下执行的。</p>
+<h1 id="变量${env:ProgramFiles(x86)}可能不存在">变量<code>${env:ProgramFiles(x86)}</code>可能不存在</h1><p>某些情况下，你需要使用ProgramFiles目录，通常是<br><figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">C:\<span class="function"><span class="keyword">Program</span></span> Files (x86)</span><br><span class="line">or</span><br><span class="line">C:\<span class="function"><span class="keyword">Program</span></span> Files</span><br></pre></td></tr></table></figure></p>
+<p>在64位的windows下访问32位程序安装目录，用变量：<code>${env:ProgramFiles(x86)}</code>（注意必须用${}符号包裹， 因为变量名中有特殊字符<code>()</code>)，比如在我的64位windows下：<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">PS <span class="string">C:</span>\&gt; $&#123;<span class="string">env:</span>ProgramFiles(x86)&#125;</span><br><span class="line"><span class="string">C:</span>\Program Files (x86)</span><br><span class="line">PS <span class="string">C:</span>\&gt; $&#123;<span class="string">env:</span>ProgramFiles&#125;</span><br><span class="line"><span class="string">C:</span>\Program Files</span><br></pre></td></tr></table></figure></p>
+<p>但是在32位下是没有变量<code>${env:ProgramFiles(x86)}</code>的，你的代码会出错。<br>这个坑一般要把你的代码放到32位机器上跑才会暴露，所以有时候也很难发现（现在32位windows已经越来越少了）。</p>
+<h1 id="TODO_more">TODO more</h1>]]></content>
+    <summary type="html">
+    <![CDATA[使用powershell遇到的坑]]>
+    
+    </summary>
+    
+      <category term="powershel" scheme="http://debug4.me/tags/powershel/"/>
+    
+      <category term="编程" scheme="http://debug4.me/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[轻松管理100台云主机不是梦-云管家试用心得]]></title>
     <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/yunguanjia1/"/>
     <id>http://debug4.me/工具/yunguanjia1/</id>
     <published>2016-08-26T07:13:42.000Z</published>
-    <updated>2016-08-26T10:20:14.089Z</updated>
+    <updated>2018-02-05T09:37:50.077Z</updated>
     <content type="html"><![CDATA[<p>自从公司买了几十台阿里云ECS服务器以来，每天设置告警、统计费用成本、整理IP地址和登录密钥。。。那么ugly的复杂无比的控制台。。。每天上百条不知所云的告警短信和邮件。。。搞得我崩溃了，被老板吊了好几次。直到我试用行云服务的<a href="https://yun.cloudbility.com/" target="_blank" rel="external">云管家</a>以后———世界终于安静了！腰不酸腿不疼了，有精力yy性生活了~~</p>
 <a id="more"></a>
 <h3 id="概述">概述</h3><p>为了满足大家的好奇心，我先概述一下云管家的以下特性：</p>
@@ -51,10 +85,10 @@
   
   <entry>
     <title><![CDATA[我回来了]]></title>
-    <link href="http://debug4.me/Misc/imback/"/>
-    <id>http://debug4.me/Misc/imback/</id>
+    <link href="http://debug4.me/%E7%94%9F%E6%B4%BB/imback/"/>
+    <id>http://debug4.me/生活/imback/</id>
     <published>2016-06-12T16:41:40.000Z</published>
-    <updated>2016-08-26T06:59:14.440Z</updated>
+    <updated>2018-02-05T09:41:31.962Z</updated>
     <content type="html"><![CDATA[<p>由于家里的电脑重装了系统，昨晚重新搭建了node+hexo环境。结果<code>hexo s</code>没有任何异常，但是无法通过<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 查看到任何文章。后来…<br><a id="more"></a><br>后来用下面命令找到了原来是Foxit程序占用了这个端口。<br><figure class="highlight tex"><table><tr><td class="code"><pre><span class="line">C:<span class="command">\Users</span><span class="command">\Atlas</span>&gt;netstat -aon |findstr 4000</span><br></pre></td></tr></table></figure></p>
 <p>果断结束进程，然后去<code>msconfig</code>里面把Foxit相关的自启动服务全部停止。</p>
 <p>你以为这就完了？</p>
@@ -72,16 +106,16 @@
     
       <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
     
-      <category term="Misc" scheme="http://debug4.me/categories/Misc/"/>
+      <category term="生活" scheme="http://debug4.me/categories/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[关于庄子“子非鱼”是诡辩，我为你正名]]></title>
-    <link href="http://debug4.me/Math/logic-and-debate/"/>
-    <id>http://debug4.me/Math/logic-and-debate/</id>
+    <link href="http://debug4.me/%E6%95%B0%E5%AD%A6/logic-and-debate/"/>
+    <id>http://debug4.me/数学/logic-and-debate/</id>
     <published>2015-11-21T05:03:07.000Z</published>
-    <updated>2016-01-28T09:27:25.478Z</updated>
+    <updated>2018-02-05T09:37:07.533Z</updated>
     <content type="html"><![CDATA[<p>一般评论和著作都认为庄子对于“子非鱼”的辩论是诡辩，输了惠子一筹，其实不是。</p>
 <a id="more"></a>
 <h2 id="原文及翻译">原文及翻译</h2><p>子非鱼的辩论，原文是：<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">庄子曰：“鲦鱼出游从容，是鱼乐也。”</span><br><span class="line">惠子曰：“子非鱼，安知鱼之乐？”</span><br><span class="line">庄子曰：“子非我，安知我不知鱼之乐？”</span><br><span class="line">惠子曰：“我非子，固不知子矣，子固非鱼也，子不知鱼之乐，全矣。”</span><br><span class="line">庄子曰：“请循其本。子曰汝安知鱼乐云者，既已知吾知之而问我，我知之濠上也。”</span><br></pre></td></tr></table></figure></p>
@@ -121,7 +155,7 @@
     
       <category term="逻辑学" scheme="http://debug4.me/tags/%E9%80%BB%E8%BE%91%E5%AD%A6/"/>
     
-      <category term="Math" scheme="http://debug4.me/categories/Math/"/>
+      <category term="数学" scheme="http://debug4.me/categories/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
@@ -266,10 +300,10 @@
   
   <entry>
     <title><![CDATA[三分法求极值-Ternary Search]]></title>
-    <link href="http://debug4.me/Algorithm/ternary-search/"/>
-    <id>http://debug4.me/Algorithm/ternary-search/</id>
+    <link href="http://debug4.me/%E7%AE%97%E6%B3%95/ternary-search/"/>
+    <id>http://debug4.me/算法/ternary-search/</id>
     <published>2015-10-21T02:57:53.000Z</published>
-    <updated>2015-10-21T04:49:51.272Z</updated>
+    <updated>2018-02-05T09:37:35.405Z</updated>
     <content type="html"><![CDATA[<p>本文介绍了三分法（Ternary Search）的适用场景，并用一道2015百度笔试题讲解三分法，最后分析了三分法和二分法的区别。<br><a id="more"></a></p>
 <h2 id="什么是三分法">什么是三分法</h2><p>三分法是求单峰函数的最大值或最小值的算法，是一种<a href="https://en.wikipedia.org/wiki/Divide_and_conquer_algorithm" target="_blank" rel="external">分治算法</a>。维基百科：<a href="https://en.wikipedia.org/wiki/Ternary_search" target="_blank" rel="external">Ternary_search</a>。</p>
 <p>所谓单峰函数，就是凸函数（包括上凸和下凸，严格定义不赘述）。举个例子，假设求函数f(x)的最大值，而且最大值落在区间[A,B]上，为了使用三分法，那么必须存在一个x满足下面的条件：</p>
@@ -304,7 +338,7 @@
     
       <category term="搜索算法" scheme="http://debug4.me/tags/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Algorithm" scheme="http://debug4.me/categories/Algorithm/"/>
+      <category term="算法" scheme="http://debug4.me/categories/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -355,10 +389,10 @@
   
   <entry>
     <title><![CDATA[无穷大——你从没听说过的事情 Infinity - You've Never Heard of]]></title>
-    <link href="http://debug4.me/Math/infinity-you-never-heard-of/"/>
-    <id>http://debug4.me/Math/infinity-you-never-heard-of/</id>
+    <link href="http://debug4.me/%E6%95%B0%E5%AD%A6/infinity-you-never-heard-of/"/>
+    <id>http://debug4.me/数学/infinity-you-never-heard-of/</id>
     <published>2015-10-18T16:00:20.000Z</published>
-    <updated>2015-10-21T07:29:28.968Z</updated>
+    <updated>2018-02-05T09:36:43.125Z</updated>
     <content type="html"><![CDATA[<p>本文从原理上探讨集合的基数，以及无穷大的分类依据。<br><a id="more"></a></p>
 <h2 id="关于计数">关于计数</h2><p>据考古证据显示，原始非洲部落的人对超过3的数是数不清楚的。就是说如果一个人他有4个儿子，他只会说有很多儿子，而不是4个。</p>
 <p>虽然原始人不会计数，但当数目比较多时，他们可以判断一个东西的个数是否比另一个东西多。而这条能被原始人理解使用的简单原理也是理解几类无穷大的关键。</p>
@@ -412,7 +446,7 @@
     
       <category term="集合论" scheme="http://debug4.me/tags/%E9%9B%86%E5%90%88%E8%AE%BA/"/>
     
-      <category term="Math" scheme="http://debug4.me/categories/Math/"/>
+      <category term="数学" scheme="http://debug4.me/categories/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
@@ -722,10 +756,10 @@
   
   <entry>
     <title><![CDATA[joutable - Java格式化打印表格工具]]></title>
-    <link href="http://debug4.me/My-Projects/joutable/"/>
-    <id>http://debug4.me/My-Projects/joutable/</id>
+    <link href="http://debug4.me/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/joutable/"/>
+    <id>http://debug4.me/开源项目/joutable/</id>
     <published>2015-10-09T08:50:52.000Z</published>
-    <updated>2015-10-12T02:46:49.863Z</updated>
+    <updated>2018-02-05T09:36:51.270Z</updated>
     <content type="html"><![CDATA[<p>一个Java写的把简单表格格式化打印到控制台的工具，自动对齐和换行，可以定制标题填充字符、表头分隔字符。<a href="https://cwjcsu.github.io/joutable/" target="_blank" rel="external">Click Here to see more detail</a><br><a id="more"></a></p>
 <h1 id="An_simple_and_pretty_formatted_Table_in_Java">An simple and pretty formatted Table in Java</h1><p>You may want to print out some simple table (with title,headers) to the console with a readable format,then joutable is your best choise.</p>
 <h1 id="Usages">Usages</h1><h2 id="How_to_Use_joutable_?">How to Use joutable ?</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">DefaultTable dt = <span class="keyword">new</span> DefaultTable();</span><br><span class="line">dt.setTitle(<span class="string">"Aacademic Record Table"</span>);</span><br><span class="line">dt.setHeaders(<span class="keyword">new</span> String[] &#123; <span class="string">"Id"</span>, <span class="string">"Name"</span>, <span class="string">"Grade"</span>, <span class="string">"Remark"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1001</span>, <span class="string">"Jack Bower"</span>, <span class="string">"A"</span>, <span class="string">"Good at fighting"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1002</span>, <span class="string">"Vincent Willem  Van Gogh"</span>, <span class="string">"A+"</span>,<span class="string">"Good at painting"</span> &#125;);</span><br><span class="line">dt.addRow(<span class="keyword">new</span> Object[] &#123; <span class="number">1003</span>, <span class="string">"Jone Doe"</span>, <span class="string">"B"</span>, <span class="string">"Noop"</span> &#125;);</span><br><span class="line">DefaultTableFormatter dtf = <span class="keyword">new</span> DefaultTableFormatter(<span class="number">100</span>, <span class="number">2</span>);</span><br><span class="line">System.out.println(dtf.format(dt));</span><br></pre></td></tr></table></figure>
@@ -758,7 +792,7 @@
     
       <category term="joutable" scheme="http://debug4.me/tags/joutable/"/>
     
-      <category term="My Projects" scheme="http://debug4.me/categories/My-Projects/"/>
+      <category term="开源项目" scheme="http://debug4.me/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
@@ -937,7 +971,7 @@
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x61;&#x64;&#100;&#x72;&#x65;&#115;&#x73;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#46;&#99;&#111;&#109;">&#x61;&#x64;&#100;&#x72;&#x65;&#115;&#x73;&#x40;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#46;&#99;&#111;&#109;</a></p>
+<p><a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#x61;&#x64;&#100;&#114;&#101;&#115;&#x73;&#x40;&#x65;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#x2e;&#99;&#111;&#x6d;">&#x61;&#x64;&#100;&#114;&#101;&#115;&#x73;&#x40;&#x65;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#x2e;&#99;&#111;&#x6d;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
@@ -1069,42 +1103,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>]]>
-    
-    </summary>
-    
-      <category term="Get Started" scheme="http://debug4.me/tags/Get-Started/"/>
-    
-      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
-    
-      <category term="jacman" scheme="http://debug4.me/tags/jacman/"/>
-    
-      <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[第一篇日志]]></title>
-    <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%97%A5%E5%BF%97/"/>
-    <id>http://debug4.me/工具/第一篇日志/</id>
-    <published>2015-09-25T11:14:17.000Z</published>
-    <updated>2015-09-28T02:20:38.873Z</updated>
-    <content type="html"><![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
-<p>通过下面的命令，就可以创建新文章<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo new 新的开始</span><br><span class="line">[info] File created at D:\workspace\javascript\nodejs-hexo\<span class="built_in">source</span>\_posts\新的开始.md</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>感觉非常好。</p>
-<p>在命令行，启动服务器:<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo server</span><br><span class="line">[info] Hexo is running at http://localhost:<span class="number">4000</span>/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></p>
-<p>通过浏览器打开， <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> ，就出现了我们新写的文章。</p>
-<h2 id="引用">引用</h2><blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
-<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="external">Welcome to Island Marketing</a></cite></footer></blockquote>
-<h2 id="代码块">代码块</h2><figure class="highlight cpp"><figcaption><span>.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">Underscore.js</a></figcaption><table><tr><td class="code"><pre><span class="line">.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, ‘’, <span class="number">3</span>]);</span><br><span class="line">=&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-<h2 id="链接">链接</h2><a href="http://cwjcsu.github.io" title="粉丝日志" target="_blank">粉丝日志</a>
-<h2 id="数学公式">数学公式</h2><p>$$J_\alpha(x)=\sum _{m=0}^\infty \frac{(-1)^ m}{m! \, \Gamma (m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha }$$</p>
-<h2 id="图片">图片</h2><p><img src="http://7xn1o8.com1.z0.glb.clouddn.com/banner.jpg" alt="猜一猜这是哪里？"></p>
-<p>TODO</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>这是<strong>新的开始</strong>，我用hexo创建了第一篇文章。</p>
-<p>通过下面的命令，就可以创建新文章<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">D:\workspace\javascript\nodejs-hexo&gt;hexo new 新的开始</span><br><span class="line">[info] File created at D:\workspace\javascript\nodejs-hexo\<span class="built_in">source</span>\_posts\新的开始.md</span><br></pre></td></tr></table></figure></p>]]>
     
     </summary>
     

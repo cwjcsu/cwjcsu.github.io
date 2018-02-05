@@ -1,0 +1,616 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>我用Powershell遇到的那些坑 | debug4me | 子非鱼-博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="debug4me@163.com">
+    
+
+    
+    <meta name="description" content="使用powershell遇到的坑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我用Powershell遇到的那些坑">
+<meta property="og:url" content="http://debug4.me/编程/Tips-on-powershell/index.html">
+<meta property="og:site_name" content="debug4me | 子非鱼-博客">
+<meta property="og:description" content="使用powershell遇到的坑">
+<meta property="og:updated_time" content="2018-02-05T09:36:07.494Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我用Powershell遇到的那些坑">
+<meta name="twitter:description" content="使用powershell遇到的坑">
+
+    
+    <link rel="alternative" href="/atom.xml" title="debug4me | 子非鱼-博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="debug4me | 子非鱼-博客" title="debug4me | 子非鱼-博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="debug4me | 子非鱼-博客">debug4me | 子非鱼-博客</a></h1>
+				<h2 class="blog-motto">码农，数学物理科幻爱好者 - 子非鱼，安知鱼之乐</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/sitemap.xml">Sitemap</a></li>
+					
+						<li><a href="/atom.xml">RSS</a></li>
+					
+					<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h2 itemprop="name">
+    
+      <a href="/编程/Tips-on-powershell/" title="我用Powershell遇到的那些坑" itemprop="url">我用Powershell遇到的那些坑</a>
+  </h2>
+  <p class="article-author">By
+       
+		<a href="/about" title="debug4me@163.com" target="_blank" itemprop="author">debug4me@163.com</a>
+		
+  <p class="article-time">
+    <time datetime="2018-02-05T07:18:20.000Z" itemprop="datePublished"> 发表于 2018-02-05</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#下载文件的进度条把下载速度降低了10倍"><span class="toc-number">1.</span> <span class="toc-text">下载文件的进度条把下载速度降低了10倍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#递归删除非空目录偶尔失败且一直阻塞"><span class="toc-number">2.</span> <span class="toc-text">递归删除非空目录偶尔失败且一直阻塞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#未使用windows换行符导致脚本无法运行"><span class="toc-number">3.</span> <span class="toc-text">未使用windows换行符导致脚本无法运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变量${env:ProgramFiles(x86)}可能不存在"><span class="toc-number">4.</span> <span class="toc-text">变量${env:ProgramFiles(x86)}可能不存在</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TODO_more"><span class="toc-number">5.</span> <span class="toc-text">TODO more</span></a></li></ol>
+		
+		</div>
+		
+		<p>行云管家的Proxy和Agent在windows下的安装脚本是用powershell编写的，到现在已经28个小版本了。Proxy的bug，40%是来自powershell，40%来自bat,剩下20%来自java代码。<br><a id="more"></a></p>
+<h1 id="下载文件的进度条把下载速度降低了10倍">下载文件的进度条把下载速度降低了10倍</h1><p><strong>要求：</strong>用powershell下载一个文件到指定位置，并且显示进度条。<br>    网上去搜索应该有一大堆代码，我也是参考了其中一些。代码片段如下：<br><figure class="highlight xquery"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> DownloadFile(<span class="variable">$url</span>, <span class="variable">$targetFile</span>)&#123;</span><br><span class="line">   <span class="variable">$uri</span> = New-Object <span class="string">"System.Uri"</span> <span class="string">"$url"</span></span><br><span class="line">   <span class="variable">$request</span> = [System.Net.HttpWebRequest]::Create(<span class="variable">$uri</span>)</span><br><span class="line">   <span class="variable">$request</span>.set_Timeout(<span class="number">10000</span>) #<span class="number">10</span> second timeout</span><br><span class="line">   <span class="variable">$response</span> = <span class="variable">$request</span>.GetResponse()</span><br><span class="line">   ...</span><br><span class="line">     <span class="variable">$sw</span> = [System.Diagnostics.Stopwatch]::StartNew()</span><br><span class="line">   <span class="variable">$delta</span>=<span class="number">0</span></span><br><span class="line">   while (<span class="variable">$count</span> -gt <span class="number">0</span>)&#123;</span><br><span class="line">       <span class="variable">$targetStream</span>.Write(<span class="variable">$buffer</span>, <span class="number">0</span>, <span class="variable">$count</span>)</span><br><span class="line">       <span class="variable">$count</span> = <span class="variable">$responseStream</span>.Read(<span class="variable">$buffer</span>,<span class="number">0</span>,<span class="variable">$buffer</span>.length)</span><br><span class="line">       <span class="variable">$downloadedBytes</span> = <span class="variable">$downloadedBytes</span> + <span class="variable">$count</span></span><br><span class="line">       <span class="variable">$delta</span> = <span class="variable">$delta</span>+<span class="variable">$count</span></span><br><span class="line">       if ((<span class="variable">$sw</span>.Elapsed.TotalMilliseconds -ge <span class="number">500</span>) -or (<span class="variable">$count</span> -le <span class="number">0</span>) ) &#123;#【<span class="number">1</span>】</span><br><span class="line">        #make it fast,avoid write-progress too often</span><br><span class="line">           <span class="variable">$percent</span>=(([System.Math]::Floor(<span class="variable">$downloadedBytes</span>/<span class="number">1024</span>)) / <span class="variable">$totalLength</span>)  * <span class="number">100</span></span><br><span class="line">           <span class="variable">$percentStr</span>=<span class="string">'&#123;0:n1&#125;'</span> -f <span class="variable">$percent</span></span><br><span class="line">           <span class="variable">$speed</span>=<span class="string">'&#123;0:n2&#125;'</span> -f (<span class="variable">$delta</span>*<span class="number">1000</span>/<span class="number">1024</span>/<span class="variable">$sw</span>.Elapsed.TotalMilliseconds)</span><br><span class="line">           Write-Progress -activity <span class="string">"Downloading file '$fileName'"</span> -status <span class="string">"Downloaded ($([System.Math]::Floor($downloadedBytes/1024))K of $($totalLength)K):$percentStr% $speed KB/s"</span> -PercentComplete <span class="variable">$percent</span></span><br><span class="line">           <span class="variable">$sw</span>.Reset(); <span class="variable">$sw</span>.Start();<span class="variable">$delta</span>=<span class="number">0</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>刚开始的代码【1】是没有<code>Stopwatch</code>计时器判断的，意味着每下载一个$buffer的数据之后，就会调用一次<code>Write-Progress</code>，而这个调用会在屏幕上移动一步进度条（如果精度够的话），这是一个UI操作，可以想象到这个过程必然是同步的。调用一两次耗时并无感知，但是当下载一个几十MB的文件，就要调用成千上万次（&gt;100MB/32KB），而且跟IO操作的线程是串行的，所以会明显降低下载速度。<br>当初调试的时候，发现下载速度怎么也达不到该有的速度（100兆带宽11MB/s,千兆带宽30~80MB/s），最后找到罪魁祸首是<code>Write-Progress</code>调用过于频繁。<br>如上代码所示，降到500毫秒（或者1s）打印一次，就可以忽略<code>Write-Progress</code>带来的延迟，而界面显示的信息对人眼来说，也是实时更新的。<br>参见<a href="https://stackoverflow.com/questions/21304282/how-to-improve-the-performance-of-write-progress" target="_blank" rel="external">How to improve the performance of Write-Progress?</a></p>
+<h1 id="递归删除非空目录偶尔失败且一直阻塞">递归删除非空目录偶尔失败且一直阻塞</h1><p>先看代码：<br><figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">test-path</span> <span class="string">"<span class="variable">$cloudGateway_folder</span>\YunAgent"</span>)&#123;</span><br><span class="line">    <span class="built_in">Write-Host</span> <span class="string">"Removing the old remaining directory <span class="variable">$cloudGateway_folder</span>\YunAgent"</span></span><br><span class="line">    <span class="built_in">Remove-Item</span> <span class="string">"<span class="variable">$cloudGateway_folder</span>\CloudGateway"</span> -Recurse -Force</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>问题出在函数<code>Remote-Item</code>的参数<code>-Recurse</code> 上面。</p>
+<p>这个bug有点奇葩：powershell的文档说<code>-Recurse</code>参数在这里无法正常工作，应该使用<code>Get-Childitem</code>加管道来替代。既然知道是bug，你倒是修复啊！经过测试发现，powershell 2.0~5.0都存在这个问题，微软不屑于修复这个bug。</p>
+<p>另外，增加参数<code>-ErrorAction SilentlyContinue</code>并不能解决问题，但是会忽略错误，然后继续进行，很多时候这并不算你想要的。</p>
+<p>我的替代方式是用cmd命令，应该足够稳定靠谱了吧。<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">&amp;cmd<span class="class">.exe</span> /c rd /s /<span class="tag">q</span> <span class="variable">$cloudGateway_folder</span>\YunAgent</span><br></pre></td></tr></table></figure></p>
+<p>这个bug不是必现的，所以你在开发测试阶段不一定能发现问题，这是最坑人的地方。<br>参见<a href="https://serverfault.com/questions/199921/force-remove-files-and-directories-in-powershell-fails-sometimes-but-not-always" target="_blank" rel="external">Force-remove files and directories in PowerShell fails sometimes, but not always</a></p>
+<h1 id="未使用windows换行符导致脚本无法运行">未使用windows换行符导致脚本无法运行</h1><p>众所周知，widnows、linux、mac三个大平台下的文件换行符都是各自一套的，powershell脚本(xxx.ps1)的换行符必须是windows换行符，即<code>CRLF</code>或者<code>\r\n</code>。这个看似一个很愚蠢的错误，其实不经意就会犯。</p>
+<p>我们公司用idea做开发，我的开发及其是windows平台的。我编写powershell的时候，很多时候都是直接用idea打开修改，然后用git提交。git在windows下有时候配置为这样：<br><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ </span>cat .git/config</span><br><span class="line">[core]</span><br><span class="line">        autocrlf=<span class="literal">true</span></span><br><span class="line">        ...</span><br></pre></td></tr></table></figure></p>
+<p>这样，代码checkout下来的时候，会自动添加CRLF换行符，而提交推送的时候，会去掉CR只保留LF。<br>在Linux下有一个简单的方法检测处理Windows换行符问题。使用vi -b 打开可以看到是否添加了CR字符。下面的示例<code>^M</code>表示CR字符<br><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">#:vi -b installGateway.ps1 </span><br><span class="line">param(^M</span><br><span class="line">[<span class="keyword">string</span>]<span class="variable">$importKey</span>=<span class="variable">$(</span>throw <span class="string">"Parameter missing: -importKey key"</span>),^M</span><br><span class="line">[<span class="keyword">string</span>]<span class="variable">$repo</span>=<span class="variable">$(</span>throw <span class="string">"Parameter missing: -repo repo"</span>),^M</span><br><span class="line">[<span class="keyword">string</span>]<span class="variable">$download_prefix</span>=<span class="variable">$(</span>throw <span class="string">"Parameter missing: -download_prefix download_prefix"</span>),^M</span><br><span class="line">[<span class="keyword">int</span>]<span class="variable">$isAdmin</span>=<span class="variable">$(</span><span class="number">0</span>)^M</span><br><span class="line">)^M</span><br><span class="line"><span class="variable">$appName</span> =<span class="string">"Cloudbility Gateway Service"</span>^M</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>反过来，如果你的shell脚本以<code>\r\n</code>结尾，也是无法在linux下执行的。</p>
+<h1 id="变量${env:ProgramFiles(x86)}可能不存在">变量<code>${env:ProgramFiles(x86)}</code>可能不存在</h1><p>某些情况下，你需要使用ProgramFiles目录，通常是<br><figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">C:\<span class="function"><span class="keyword">Program</span></span> Files (x86)</span><br><span class="line">or</span><br><span class="line">C:\<span class="function"><span class="keyword">Program</span></span> Files</span><br></pre></td></tr></table></figure></p>
+<p>在64位的windows下访问32位程序安装目录，用变量：<code>${env:ProgramFiles(x86)}</code>（注意必须用${}符号包裹， 因为变量名中有特殊字符<code>()</code>)，比如在我的64位windows下：<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">PS <span class="string">C:</span>\&gt; $&#123;<span class="string">env:</span>ProgramFiles(x86)&#125;</span><br><span class="line"><span class="string">C:</span>\Program Files (x86)</span><br><span class="line">PS <span class="string">C:</span>\&gt; $&#123;<span class="string">env:</span>ProgramFiles&#125;</span><br><span class="line"><span class="string">C:</span>\Program Files</span><br></pre></td></tr></table></figure></p>
+<p>但是在32位下是没有变量<code>${env:ProgramFiles(x86)}</code>的，你的代码会出错。<br>这个坑一般要把你的代码放到32位机器上跑才会暴露，所以有时候也很难发现（现在32位windows已经越来越少了）。</p>
+<h1 id="TODO_more">TODO more</h1>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/编程/">编程</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/powershel/">powershel</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://debug4.me/编程/Tips-on-powershell/" data-title="我用Powershell遇到的那些坑 | debug4me | 子非鱼-博客" data-tsina="2172283884" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/工具/yunguanjia1/"  title="轻松管理100台云主机不是梦-云管家试用心得">
+ <strong>下一篇：</strong><br/> 
+ <span>轻松管理100台云主机不是梦-云管家试用心得
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="编程/Tips-on-powershell/" data-title="我用Powershell遇到的那些坑" data-url="http://debug4.me/编程/Tips-on-powershell/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#下载文件的进度条把下载速度降低了10倍"><span class="toc-number">1.</span> <span class="toc-text">下载文件的进度条把下载速度降低了10倍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#递归删除非空目录偶尔失败且一直阻塞"><span class="toc-number">2.</span> <span class="toc-text">递归删除非空目录偶尔失败且一直阻塞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#未使用windows换行符导致脚本无法运行"><span class="toc-number">3.</span> <span class="toc-text">未使用windows换行符导致脚本无法运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变量${env:ProgramFiles(x86)}可能不存在"><span class="toc-number">4.</span> <span class="toc-text">变量${env:ProgramFiles(x86)}可能不存在</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TODO_more"><span class="toc-number">5.</span> <span class="toc-text">TODO more</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+<a href="https://projecteuler.net/"><img src="http://projecteuler.net/profile/cwjcsu.png" alt="My Project Euler Profile" title="Project Euler Profile" class="aligncenter" width="200" height="60"></a>
+
+  
+<div class="category-container">
+  <h3 class="category-title">分类</h3>
+     <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Project-Euler/">Project Euler</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开源项目/">开源项目</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数学/">数学</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a><span class="category-list-count">1</span></li></ul> 
+</div>
+ 
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Project-Euler/" title="Project Euler">Project Euler<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jacman/" title="jacman">jacman<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/blogs/" title="blogs">blogs<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/幂模运算/" title="幂模运算">幂模运算<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/素数/" title="素数">素数<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Get-Started/" title="Get Started">Get Started<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/三分法/" title="三分法">三分法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/分治算法/" title="分治算法">分治算法<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MathJax/" title="MathJax">MathJax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/markdown/" title="markdown">markdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/辩论/" title="辩论">辩论<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/逻辑学/" title="逻辑学">逻辑学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/My-Projects/" title="My Projects">My Projects<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/阿里云/" title="阿里云">阿里云<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/joutable/" title="joutable">joutable<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/集合论/" title="集合论">集合论<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://projecteuler.net/" target="_blank" title="一个有挑战性的数学和计算机编程试题网站">Project Euler</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://openmind.iteye.com/" target="_blank" title="我的iteye博客">OpenMind&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Atlas in Github. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2172283884" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/cwjcsu" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/1770716" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:cwjcsu@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="debug4me@163.com">debug4me@163.com</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url');
+  if(url.indexOf('http://')<0){
+     url = 'http://' + url;
+  }
+  var encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"cwjcsu"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-68836938-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<script>
+var option = {
+  engineKey: '9058ca157e9c5b1686f7'
+};
+(function(w,d,t,u,n,s,e){
+  s = d.createElement(t);
+  s.src = u;
+  s.async = 1;
+  w[n] = function(r){
+    w[n].opts = r;
+  };
+  e = d.getElementsByTagName(t)[0];
+  e.parentNode.insertBefore(s, e);
+})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
+_ts(option);
+</script>
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
