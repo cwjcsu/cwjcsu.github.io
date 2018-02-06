@@ -67,10 +67,11 @@
 					
 					<li>
  					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="30" placeholder="搜索"><br>
-						</form>
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:debug4.me">
+					</form>
 					
 					</li>
 				</ul>
@@ -225,7 +226,7 @@
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#97;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#x40;&#101;&#120;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#97;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#x40;&#101;&#120;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;</a></p>
+<p><a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#x61;&#x64;&#100;&#114;&#x65;&#x73;&#115;&#64;&#101;&#x78;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#x63;&#111;&#109;">&#x61;&#x64;&#100;&#114;&#x65;&#x73;&#115;&#64;&#101;&#x78;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#x63;&#111;&#109;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
@@ -379,10 +380,26 @@
 </nav>
 
 	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="工具/markdown-learning/" data-title="Markdown标准语法与GitHub Flavored Markdown语法大全" data-url="http://debug4.me/工具/markdown-learning/"></div>
-</section>
 
+
+	<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzkzNS8xMDQ3MA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
@@ -533,8 +550,8 @@
 	
 	
 	<section class="info">
-		<p> Hello ,I&#39;m Atlas in Github. <br/>
-			This is my blog,believe it or not.</p>
+		<p> 路漫漫其修远兮 <br/>
+			吾将上下而求索</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
@@ -702,18 +719,6 @@ $(document).ready(function(){
 
 
 
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"cwjcsu"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
 
 
 
@@ -798,30 +803,13 @@ ga('send', 'pageview');
     });
 </script>
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
 <!-- MathJax End -->
 
 <!-- Tiny_search Begin -->
-
-<script>
-var option = {
-  engineKey: '9058ca157e9c5b1686f7'
-};
-(function(w,d,t,u,n,s,e){
-  s = d.createElement(t);
-  s.src = u;
-  s.async = 1;
-  w[n] = function(r){
-    w[n].opts = r;
-  };
-  e = d.getElementsByTagName(t)[0];
-  e.parentNode.insertBefore(s, e);
-})(window,document,'script','//tinysou-cdn.b0.upaiyun.com/ts.js','_ts');
-_ts(option);
-</script>
 
 <!-- Tiny_search End -->
 
