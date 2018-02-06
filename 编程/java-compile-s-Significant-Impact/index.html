@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Project Euler Problem 455 - Powers With Trailing Digits | debug4me | 子非鱼-博客</title>
+    <title>我是如何让minio client上传速度提高几十倍的 | debug4me | 子非鱼-博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="debug4me@163.com">
     
 
     
-    <meta name="description" content="Project Euler Problem 455 - Powers With Trailing Digits">
+    <meta name="description" content="-Djava.compile虚拟机参数对性能的重大影响，导致minio client上传文件速度相差达到几十倍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Project Euler Problem 455 - Powers With Trailing Digits">
-<meta property="og:url" content="http://debug4.me/Project-Euler/PE455/index.html">
+<meta property="og:title" content="我是如何让minio client上传速度提高几十倍的">
+<meta property="og:url" content="http://debug4.me/编程/java-compile-s-Significant-Impact/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
-<meta property="og:description" content="Project Euler Problem 455 - Powers With Trailing Digits">
-<meta property="og:updated_time" content="2015-10-26T01:40:46.053Z">
+<meta property="og:description" content="-Djava.compile虚拟机参数对性能的重大影响，导致minio client上传文件速度相差达到几十倍">
+<meta property="og:updated_time" content="2018-02-06T04:00:47.154Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Project Euler Problem 455 - Powers With Trailing Digits">
-<meta name="twitter:description" content="Project Euler Problem 455 - Powers With Trailing Digits">
+<meta name="twitter:title" content="我是如何让minio client上传速度提高几十倍的">
+<meta name="twitter:description" content="-Djava.compile虚拟机参数对性能的重大影响，导致minio client上传文件速度相差达到几十倍">
 
     
     <link rel="alternative" href="/atom.xml" title="debug4me | 子非鱼-博客" type="application/atom+xml">
@@ -83,14 +83,14 @@
 		<header class="article-info clearfix">
   <h2 itemprop="name">
     
-      <a href="/Project-Euler/PE455/" title="Project Euler Problem 455 - Powers With Trailing Digits" itemprop="url">Project Euler Problem 455 - Powers With Trailing Digits</a>
+      <a href="/编程/java-compile-s-Significant-Impact/" title="我是如何让minio client上传速度提高几十倍的" itemprop="url">我是如何让minio client上传速度提高几十倍的</a>
   </h2>
   <p class="article-author">By
        
 		<a href="/about" title="debug4me@163.com" target="_blank" itemprop="author">debug4me@163.com</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-10T01:40:11.000Z" itemprop="datePublished"> 发表于 2015-10-10</time>
+    <time datetime="2018-02-06T02:17:18.000Z" itemprop="datePublished"> 发表于 2018-02-06</time>
     
   </p>
 </header>
@@ -99,25 +99,21 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#递推算法实现"><span class="toc-number">3.</span> <span class="toc-text">递推算法实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决问题"><span class="toc-number">4.</span> <span class="toc-text">解决问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">4.1.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#发现问题的场景"><span class="toc-number">1.</span> <span class="toc-text">发现问题的场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排查问题"><span class="toc-number">2.</span> <span class="toc-text">排查问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#是不是MINIO_Server的问题？"><span class="toc-number">2.1.</span> <span class="toc-text">是不是MINIO Server的问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#是不是okhttp使用代理导致的？"><span class="toc-number">2.2.</span> <span class="toc-text">是不是okhttp使用代理导致的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位到Wrapper"><span class="toc-number">2.3.</span> <span class="toc-text">定位到Wrapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位到java-compile=none"><span class="toc-number">2.4.</span> <span class="toc-text">定位到java.compile=none</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#速度慢的原因"><span class="toc-number">3.</span> <span class="toc-text">速度慢的原因</span></a></li></ol>
 		
 		</div>
 		
-		<p><a href="https://projecteuler.net/problem=455" target="_blank" rel="external">Project Euler Problem 455 - Powers With Trailing Digits</a> ,<em>Completed on 2015-10-10  00:50</em><br><a id="more"></a></p>
-<h2 id="原题">原题</h2><p>Let f(n) be the largest positive integer x less than 10<sup>9</sup> such that the last 9 digits of n<sup>x</sup> form the number x (including leading zeros), or zero if no such integer exists.</p>
-<p>For example:</p>
-<ul>
-<li>f(4) = 411728896 (4<sup>411728896</sup> = …490411728896)</li>
-<li>f(10) = 0</li>
-<li>f(157) = 743757 (157<sup>743757</sup> = …567000743757)</li>
-<li>Σf(n), 2 ≤ n ≤ 10<sup>3</sup> = 442530011399<br>Find Σf(n), 2 ≤ n ≤ 10<sup>6</sup>.</li>
-</ul>
-<h2 id="分析">分析</h2><p>设 f(n) = x，根据题意可得：<br>n<sup>x</sup>≡x(mod 10<sup>9</sup>)<br>也就是x满足：<br>x = powerMod(n,x,10<sup>9</sup>)  [1]<br>所以，为了求f(n)的值x，可以用穷举试探法，从 x = 0开始试探，直到找到满足[1]的x，或者x变成0；x每次递归取值为:<br>    x<sub>k+1</sub> = powerMod(n,  x<sub>k</sub>,  10<sup>9</sup>);<br>终止条件是：<br>    x<sub>k+1</sub> = x<sub>k</sub> or x<sub>k+1</sub>=0</p>
-<h2 id="递推算法实现">递推算法实现</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求f(n) = x，满足：</span><br><span class="line"> * （1）， n^x % 10^9 = x； or</span><br><span class="line"> * （2），x=0 如果不存在满足（1）的x </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> m = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">long</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">long</span> x = powerMod(n, k, m);</span><br><span class="line">        <span class="keyword">if</span> (x == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (k == x &amp;&amp; x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        k = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>powerMod是幂模运算的快速算法，参见<a href="/2015/10/09/PE188/#powerMod">蒙哥马利(Montgomery)幂模运算</a></p>
-<h2 id="解决问题">解决问题</h2><p>从i=2到10<sup>9</sup>遍历相加f(i)得到结果：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 求f(n) = x，满足：</span><br><span class="line"> * （1）， n^x % 10^9 = x； or</span><br><span class="line"> * （2），x=0 如果不存在满足（1）的x </span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> m = (<span class="keyword">long</span>) Math.<span class="built_in">pow</span>(<span class="number">10</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="keyword">long</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="keyword">long</span> x = Util.powerMod(n, k, m);</span><br><span class="line">        <span class="keyword">if</span> (k == x || x == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">        k = x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="输出">输出</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">450186511399999</span></span><br><span class="line">Time consumed : <span class="number">983</span> ms</span><br></pre></td></tr></table></figure>
-<h2 id="小结">小结</h2><p>这个题目也用到了快速幂模运算，求解f(n)，理解f(n)=x对x进行迭代是解决问题的关键。</p>
+		<p><a href="https://github.com/minio/minio-java" target="_blank" rel="external">minio java client</a> 使用okhttp作为底层的http实现，在产品包里面局域网上传文件的速度一直只有400~800KB/s，经过一天排查发现是<code>-Djava.compile=none</code>禁用了即时编译导致。<br><a id="more"></a></p>
+<h1 id="发现问题的场景">发现问题的场景</h1><p>minio-java的使用架构图是这样的：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">[Minio Server]&lt;--nginx &lt;== <span class="function"><span class="title">Proxy</span><span class="params">(Socks5 Sever)</span></span> &lt;== <span class="function"><span class="title">Agent</span><span class="params">(minio-java on top of okhttp)</span></span></span><br><span class="line">and</span><br><span class="line">[Minio Server]&lt;--nginx &lt;== <span class="function"><span class="title">Browser</span><span class="params">(minio-js api)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>行云管家发布的第一个私有云版本（即4.0），由于网络需要完全隔离，行云管家的团队网盘功能，无法使用阿里云的OSS以及腾讯云的COS作为媒介，经过多方考察，我们选用了<a href="https://www.minio.io/" target="_blank" rel="external">MINIO</a>作为服务端存储的解决方案。minio-java适配很顺利，毕竟它是兼容亚马逊S3的，而阿里云的OSS跟S3穿的是一条裤子，minio-java底层使用的是okhttp，添加socks代理支持也不在话下。</p>
+<p>问题来了，正式发版以后，一个同事测试文件采集，上传一个1.2G的文件用了50分钟左右，私有部署跟Proxy以及Agent都安装在一台机器上，带宽理论上来说至少是百兆，速度应该不会低于10MB/s才正常。实测发现，Agent在minio-java情况下的上传速度不超过800KB/s.</p>
+<h1 id="排查问题">排查问题</h1><h2 id="是不是MINIO_Server的问题？">是不是MINIO Server的问题？</h2><p>检查了MINIO Server的配置，都是是默认的，使用团队网盘网页上传文件速度能接近带宽速度（minio-js api），证明MINIO Server和前置的nginx都没有问题。</p>
+<h2 id="是不是okhttp使用代理导致的？">是不是okhttp使用代理导致的？</h2><p>Socks5代理Server是在Proxy进程里面启动的，从开发上线到现在只经历大概两个版本的迭代，如果有隐藏bug确实不容易暴露的。我这么排查：还是用Agent采集文件，不过网盘分别是OSS和COS，速度都可以达到2~5MB/s，都走Socks5代理，这个速度是正常的，远远超过minio-java的速度。所以可以证明不是代理导致（我的代理程序还是相当靠谱的）。</p>
+<h2 id="定位到Wrapper">定位到Wrapper</h2><p>我在idea里面启动Agent实例测试，发现速度接近带宽速度。idea里面的进程跟安装后的Agent最大的区别是：Agent是被<a href="https://wrapper.tanukisoftware.com/doc/english/download.jsp" target="_blank" rel="external">java service wrapper</a>包装启动的，而Java代码是一模一样的。于是我替换Agent的jre，调整内存等参数，都没找到问题。</p>
+<p>然后我升级了wrapper的版本到最新版，速度依然很慢。</p>
+<h2 id="定位到java-compile=none">定位到<code>java.compile=none</code></h2><p>我把速度正常的进程启动参数和安装Agent的启动参数拿下来逐一对比，排除了一些明显不可能的参数之后，发现安装Agent里面有一个参数<code>java.compile=none</code>，把这个参数去掉以后，Agent文件采集的速度果然恢复正常：达到15MB/s。</p>
+<h1 id="速度慢的原因">速度慢的原因</h1><p>Java程序是通过解释器（Interpreter）进行解释执行的，当虚拟机发现某些代码执行非常频繁时，会把这些代码认定为<strong>热点代码</strong>。为了提高热点代码的执行效率，在运行时，即时编译器（JIT，Just In Time Compiler）会把热点代码编译成本地平台相关的机器码。随着时间的推移，编译器逐渐发挥作用，把越来越多的代码编译成本地代码之后，可以获得更高的执行效率。</p>
+<p>虚拟机参数：<code>java.compile=none</code>是禁用即时编译的意思，去掉这个配置即可（默认是开启的）。我已经忘记这个参数是怎么配置上去的了，或许是wrapper的默认配置？</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -125,13 +121,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Project-Euler/">Project Euler</a>
+  <a class="article-category-link" href="/categories/编程/">编程</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Java/">Java</a><a href="/tags/Project-Euler/">Project Euler</a><a href="/tags/幂模运算/">幂模运算</a>
+  <span></span> <a href="/tags/java/">java</a>
   </div>
 
 </div>
@@ -140,7 +136,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://debug4.me/Project-Euler/PE455/" data-title="Project Euler Problem 455 - Powers With Trailing Digits | debug4me | 子非鱼-博客" data-tsina="2172283884" class="share clearfix">
+	  <div data-url="http://debug4.me/编程/java-compile-s-Significant-Impact/" data-title="我是如何让minio client上传速度提高几十倍的 | debug4me | 子非鱼-博客" data-tsina="2172283884" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -153,19 +149,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/Project-Euler/PE318/" title="Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Project Euler Problem 318 - Counting the number of consecutive nines at the beginning of the fractional part of (√p+√q)^2n</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/Project-Euler/PE48/"  title="Project Euler Problem 48 - 求大数的模">
+<a href="/编程/Tips-on-powershell/"  title="我用Powershell遇到的那些坑">
  <strong>下一篇：</strong><br/> 
- <span>Project Euler Problem 48 - 求大数的模
+ <span>我用Powershell遇到的那些坑
 </span>
 </a>
 </div>
@@ -174,7 +162,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="Project-Euler/PE455/" data-title="Project Euler Problem 455 - Powers With Trailing Digits" data-url="http://debug4.me/Project-Euler/PE455/"></div>
+	<div class="ds-thread" data-thread-key="编程/java-compile-s-Significant-Impact/" data-title="我是如何让minio client上传速度提高几十倍的" data-url="http://debug4.me/编程/java-compile-s-Significant-Impact/"></div>
 </section>
 
 
@@ -184,7 +172,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原题"><span class="toc-number">1.</span> <span class="toc-text">原题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#递推算法实现"><span class="toc-number">3.</span> <span class="toc-text">递推算法实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决问题"><span class="toc-number">4.</span> <span class="toc-text">解决问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#输出"><span class="toc-number">4.1.</span> <span class="toc-text">输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#发现问题的场景"><span class="toc-number">1.</span> <span class="toc-text">发现问题的场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排查问题"><span class="toc-number">2.</span> <span class="toc-text">排查问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#是不是MINIO_Server的问题？"><span class="toc-number">2.1.</span> <span class="toc-text">是不是MINIO Server的问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#是不是okhttp使用代理导致的？"><span class="toc-number">2.2.</span> <span class="toc-text">是不是okhttp使用代理导致的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位到Wrapper"><span class="toc-number">2.3.</span> <span class="toc-text">定位到Wrapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位到java-compile=none"><span class="toc-number">2.4.</span> <span class="toc-text">定位到java.compile=none</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#速度慢的原因"><span class="toc-number">3.</span> <span class="toc-text">速度慢的原因</span></a></li></ol>
  
   </div>
 

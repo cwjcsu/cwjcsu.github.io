@@ -4,7 +4,7 @@
   <subtitle><![CDATA[码农，数学物理科幻爱好者 - 子非鱼，安知鱼之乐]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://debug4.me/"/>
-  <updated>2018-02-05T09:36:07.494Z</updated>
+  <updated>2018-02-06T04:00:47.154Z</updated>
   <id>http://debug4.me/</id>
   
   <author>
@@ -13,6 +13,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[我是如何让minio client上传速度提高几十倍的]]></title>
+    <link href="http://debug4.me/%E7%BC%96%E7%A8%8B/java-compile-s-Significant-Impact/"/>
+    <id>http://debug4.me/编程/java-compile-s-Significant-Impact/</id>
+    <published>2018-02-06T02:17:18.000Z</published>
+    <updated>2018-02-06T04:00:47.154Z</updated>
+    <content type="html"><![CDATA[<p><a href="https://github.com/minio/minio-java" target="_blank" rel="external">minio java client</a> 使用okhttp作为底层的http实现，在产品包里面局域网上传文件的速度一直只有400~800KB/s，经过一天排查发现是<code>-Djava.compile=none</code>禁用了即时编译导致。<br><a id="more"></a></p>
+<h1 id="发现问题的场景">发现问题的场景</h1><p>minio-java的使用架构图是这样的：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">[Minio Server]&lt;--nginx &lt;== <span class="function"><span class="title">Proxy</span><span class="params">(Socks5 Sever)</span></span> &lt;== <span class="function"><span class="title">Agent</span><span class="params">(minio-java on top of okhttp)</span></span></span><br><span class="line">and</span><br><span class="line">[Minio Server]&lt;--nginx &lt;== <span class="function"><span class="title">Browser</span><span class="params">(minio-js api)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>行云管家发布的第一个私有云版本（即4.0），由于网络需要完全隔离，行云管家的团队网盘功能，无法使用阿里云的OSS以及腾讯云的COS作为媒介，经过多方考察，我们选用了<a href="https://www.minio.io/" target="_blank" rel="external">MINIO</a>作为服务端存储的解决方案。minio-java适配很顺利，毕竟它是兼容亚马逊S3的，而阿里云的OSS跟S3穿的是一条裤子，minio-java底层使用的是okhttp，添加socks代理支持也不在话下。</p>
+<p>问题来了，正式发版以后，一个同事测试文件采集，上传一个1.2G的文件用了50分钟左右，私有部署跟Proxy以及Agent都安装在一台机器上，带宽理论上来说至少是百兆，速度应该不会低于10MB/s才正常。实测发现，Agent在minio-java情况下的上传速度不超过800KB/s.</p>
+<h1 id="排查问题">排查问题</h1><h2 id="是不是MINIO_Server的问题？">是不是MINIO Server的问题？</h2><p>检查了MINIO Server的配置，都是是默认的，使用团队网盘网页上传文件速度能接近带宽速度（minio-js api），证明MINIO Server和前置的nginx都没有问题。</p>
+<h2 id="是不是okhttp使用代理导致的？">是不是okhttp使用代理导致的？</h2><p>Socks5代理Server是在Proxy进程里面启动的，从开发上线到现在只经历大概两个版本的迭代，如果有隐藏bug确实不容易暴露的。我这么排查：还是用Agent采集文件，不过网盘分别是OSS和COS，速度都可以达到2~5MB/s，都走Socks5代理，这个速度是正常的，远远超过minio-java的速度。所以可以证明不是代理导致（我的代理程序还是相当靠谱的）。</p>
+<h2 id="定位到Wrapper">定位到Wrapper</h2><p>我在idea里面启动Agent实例测试，发现速度接近带宽速度。idea里面的进程跟安装后的Agent最大的区别是：Agent是被<a href="https://wrapper.tanukisoftware.com/doc/english/download.jsp" target="_blank" rel="external">java service wrapper</a>包装启动的，而Java代码是一模一样的。于是我替换Agent的jre，调整内存等参数，都没找到问题。</p>
+<p>然后我升级了wrapper的版本到最新版，速度依然很慢。</p>
+<h2 id="定位到java-compile=none">定位到<code>java.compile=none</code></h2><p>我把速度正常的进程启动参数和安装Agent的启动参数拿下来逐一对比，排除了一些明显不可能的参数之后，发现安装Agent里面有一个参数<code>java.compile=none</code>，把这个参数去掉以后，Agent文件采集的速度果然恢复正常：达到15MB/s。</p>
+<h1 id="速度慢的原因">速度慢的原因</h1><p>Java程序是通过解释器（Interpreter）进行解释执行的，当虚拟机发现某些代码执行非常频繁时，会把这些代码认定为<strong>热点代码</strong>。为了提高热点代码的执行效率，在运行时，即时编译器（JIT，Just In Time Compiler）会把热点代码编译成本地平台相关的机器码。随着时间的推移，编译器逐渐发挥作用，把越来越多的代码编译成本地代码之后，可以获得更高的执行效率。</p>
+<p>虚拟机参数：<code>java.compile=none</code>是禁用即时编译的意思，去掉这个配置即可（默认是开启的）。我已经忘记这个参数是怎么配置上去的了，或许是wrapper的默认配置？</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[-Djava.compile虚拟机参数对性能的重大影响，导致minio client上传文件速度相差达到几十倍]]>
+    
+    </summary>
+    
+      <category term="java" scheme="http://debug4.me/tags/java/"/>
+    
+      <category term="编程" scheme="http://debug4.me/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[我用Powershell遇到的那些坑]]></title>
@@ -971,7 +1000,7 @@
 <figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;address@example.com&gt;</span></span><br></pre></td></tr></table></figure>
 <p>产生：<br><figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line">&lt;a href=<span class="string">"&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;</span><br><span class="line">&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;</span><br><span class="line">&amp;#109;"</span>&gt;&amp;<span class="title">#x61</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x64</span>;&amp;<span class="title">#x72</span>;&amp;<span class="title">#x65</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#115</span>;&amp;<span class="title">#64</span>;&amp;<span class="title">#101</span>;&amp;<span class="title">#120</span>;&amp;<span class="title">#x61</span>;</span><br><span class="line">&amp;<span class="title">#109</span>;&amp;<span class="title">#x70</span>;&amp;<span class="title">#x6</span>C;e&amp;<span class="title">#x2</span>E;&amp;<span class="title">#99</span>;&amp;<span class="title">#111</span>;&amp;<span class="title">#109</span>;&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
-<p><a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#x61;&#x64;&#100;&#114;&#101;&#115;&#x73;&#x40;&#x65;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#x2e;&#99;&#111;&#x6d;">&#x61;&#x64;&#100;&#114;&#101;&#115;&#x73;&#x40;&#x65;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p><a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#97;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#x40;&#101;&#120;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;">&#97;&#x64;&#x64;&#x72;&#x65;&#x73;&#x73;&#x40;&#101;&#120;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;</a></p>
 <h3 id="反斜线（BACKSLASH_ESCAPES）">反斜线（BACKSLASH ESCAPES）</h3><p>markdwon可以用反斜杠来生成一些字面量：</p>
 <figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">\   <span class="keyword">backslash</span><br><span class="line"></span>`   <span class="keyword">backtick</span><br><span class="line"></span>*   asterisk</span><br><span class="line">_   underscore</span><br><span class="line">&#123;&#125;  curly <span class="keyword">braces</span><br><span class="line"></span>[]  square <span class="keyword">brackets</span><br><span class="line"></span>()  parentheses</span><br><span class="line">#   hash <span class="keyword">mark</span><br><span class="line"></span>+   plus sign</span><br><span class="line">-   minus sign (hyphen)</span><br><span class="line">.   dot</span><br><span class="line">!   exclamation <span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
@@ -1079,38 +1108,6 @@
       <category term="markdown" scheme="http://debug4.me/tags/markdown/"/>
     
       <category term="工具" scheme="http://debug4.me/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hell World]]></title>
-    <link href="http://debug4.me/%E5%B7%A5%E5%85%B7/hello-world/"/>
-    <id>http://debug4.me/工具/hello-world/</id>
-    <published>2015-09-25T11:14:17.000Z</published>
-    <updated>2015-09-28T02:20:38.836Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>]]>
-    
-    </summary>
-    
-      <category term="Get Started" scheme="http://debug4.me/tags/Get-Started/"/>
-    
-      <category term="hexo" scheme="http://debug4.me/tags/hexo/"/>
-    
-      <category term="jacman" scheme="http://debug4.me/tags/jacman/"/>
     
       <category term="工具" scheme="http://debug4.me/categories/%E5%B7%A5%E5%85%B7/"/>
     
