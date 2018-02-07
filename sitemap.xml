@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://debug4.me/%E7%BC%96%E7%A8%8B/add-socks-proxy-support-for-okhttp/</loc>
+    <lastmod>2018-02-07T05:34:21.741Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://debug4.me/%E7%BC%96%E7%A8%8B/how-to-add-socks-proxy-support-for-httpclient/</loc>
-    <lastmod>2018-02-06T10:10:02.270Z</lastmod>
+    <lastmod>2018-02-07T02:32:19.251Z</lastmod>
   </url>
   
   <url>
@@ -82,12 +87,12 @@
   </url>
   
   <url>
-    <loc>http://debug4.me/%E5%B7%A5%E5%85%B7/tips-about-github-blog/</loc>
+    <loc>http://debug4.me/%E5%B7%A5%E5%85%B7/markdown-learning/</loc>
     <lastmod>2015-10-12T02:46:49.864Z</lastmod>
   </url>
   
   <url>
-    <loc>http://debug4.me/%E5%B7%A5%E5%85%B7/markdown-learning/</loc>
+    <loc>http://debug4.me/%E5%B7%A5%E5%85%B7/tips-about-github-blog/</loc>
     <lastmod>2015-10-12T02:46:49.864Z</lastmod>
   </url>
   
