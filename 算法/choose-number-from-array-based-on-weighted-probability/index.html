@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>我是如何让minio client上传速度提高几十倍的 | debug4me | 子非鱼-博客</title>
+    <title>以给定概率权值从一个数组中选出一个数 | debug4me | 子非鱼-博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="debug4me@163.com">
     
 
     
-    <meta name="description" content="-Djava.compile虚拟机参数对性能的重大影响，导致minio client上传文件速度相差达到几十倍">
+    <meta name="description" content="从n个数中随机选择一个数，要求抽出来的数出现的概率与给定的权值对应。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我是如何让minio client上传速度提高几十倍的">
-<meta property="og:url" content="http://debug4.me/编程/java-compile-s-Significant-Impact/index.html">
+<meta property="og:title" content="以给定概率权值从一个数组中选出一个数">
+<meta property="og:url" content="http://debug4.me/算法/choose-number-from-array-based-on-weighted-probability/index.html">
 <meta property="og:site_name" content="debug4me | 子非鱼-博客">
-<meta property="og:description" content="-Djava.compile虚拟机参数对性能的重大影响，导致minio client上传文件速度相差达到几十倍">
-<meta property="og:updated_time" content="2018-02-06T04:00:47.154Z">
+<meta property="og:description" content="从n个数中随机选择一个数，要求抽出来的数出现的概率与给定的权值对应。">
+<meta property="og:updated_time" content="2018-02-07T10:13:22.545Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我是如何让minio client上传速度提高几十倍的">
-<meta name="twitter:description" content="-Djava.compile虚拟机参数对性能的重大影响，导致minio client上传文件速度相差达到几十倍">
+<meta name="twitter:title" content="以给定概率权值从一个数组中选出一个数">
+<meta name="twitter:description" content="从n个数中随机选择一个数，要求抽出来的数出现的概率与给定的权值对应。">
 
     
     <link rel="alternative" href="/atom.xml" title="debug4me | 子非鱼-博客" type="application/atom+xml">
@@ -84,14 +84,14 @@
 		<header class="article-info clearfix">
   <h2 itemprop="name">
     
-      <a href="/编程/java-compile-s-Significant-Impact/" title="我是如何让minio client上传速度提高几十倍的" itemprop="url">我是如何让minio client上传速度提高几十倍的</a>
+      <a href="/算法/choose-number-from-array-based-on-weighted-probability/" title="以给定概率权值从一个数组中选出一个数" itemprop="url">以给定概率权值从一个数组中选出一个数</a>
   </h2>
   <p class="article-author">By
        
 		<a href="/about" title="debug4me@163.com" target="_blank" itemprop="author">debug4me@163.com</a>
 		
   <p class="article-time">
-    <time datetime="2018-02-06T02:17:18.000Z" itemprop="datePublished"> 发表于 2018-02-06</time>
+    <time datetime="2018-02-07T09:42:42.000Z" itemprop="datePublished"> 发表于 2018-02-07</time>
     
   </p>
 </header>
@@ -100,21 +100,16 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#发现问题的场景"><span class="toc-number">1.</span> <span class="toc-text">发现问题的场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排查问题"><span class="toc-number">2.</span> <span class="toc-text">排查问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#是不是MINIO_Server的问题？"><span class="toc-number">2.1.</span> <span class="toc-text">是不是MINIO Server的问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#是不是okhttp使用代理导致的？"><span class="toc-number">2.2.</span> <span class="toc-text">是不是okhttp使用代理导致的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位到Wrapper"><span class="toc-number">2.3.</span> <span class="toc-text">定位到Wrapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位到java-compile=none"><span class="toc-number">2.4.</span> <span class="toc-text">定位到java.compile=none</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#速度慢的原因"><span class="toc-number">3.</span> <span class="toc-text">速度慢的原因</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建模"><span class="toc-number">2.</span> <span class="toc-text">建模</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化算法"><span class="toc-number">3.</span> <span class="toc-text">优化算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#扩展到从n个数中随机挑选m个"><span class="toc-number">4.</span> <span class="toc-text">扩展到从n个数中随机挑选m个</span></a></li></ol>
 		
 		</div>
 		
-		<p><a href="https://github.com/minio/minio-java" target="_blank" rel="external">minio java client</a> 使用okhttp作为底层的http实现，在产品包里面局域网上传文件的速度一直只有400~800KB/s，经过一天排查发现是<code>-Djava.compile=none</code>禁用了即时编译导致。<br><a id="more"></a></p>
-<h1 id="发现问题的场景">发现问题的场景</h1><p>minio-java的使用架构图是这样的：<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">[Minio Server]&lt;--nginx &lt;== <span class="function"><span class="title">Proxy</span><span class="params">(Socks5 Sever)</span></span> &lt;== <span class="function"><span class="title">Agent</span><span class="params">(minio-java on top of okhttp)</span></span></span><br><span class="line">and</span><br><span class="line">[Minio Server]&lt;--nginx &lt;== <span class="function"><span class="title">Browser</span><span class="params">(minio-js api)</span></span></span><br></pre></td></tr></table></figure></p>
-<p>行云管家发布的第一个私有云版本（即4.0），由于网络需要完全隔离，行云管家的团队网盘功能，无法使用阿里云的OSS以及腾讯云的COS作为媒介，经过多方考察，我们选用了<a href="https://www.minio.io/" target="_blank" rel="external">MINIO</a>作为服务端存储的解决方案。minio-java适配很顺利，毕竟它是兼容亚马逊S3的，而阿里云的OSS跟S3穿的是一条裤子，minio-java底层使用的是okhttp，添加socks代理支持也不在话下。</p>
-<p>问题来了，正式发版以后，一个同事测试文件采集，上传一个1.2G的文件用了50分钟左右，私有部署跟Proxy以及Agent都安装在一台机器上，带宽理论上来说至少是百兆，速度应该不会低于10MB/s才正常。实测发现，Agent在minio-java情况下的上传速度不超过800KB/s.</p>
-<h1 id="排查问题">排查问题</h1><h2 id="是不是MINIO_Server的问题？">是不是MINIO Server的问题？</h2><p>检查了MINIO Server的配置，都是是默认的，使用团队网盘网页上传文件速度能接近带宽速度（minio-js api），证明MINIO Server和前置的nginx都没有问题。</p>
-<h2 id="是不是okhttp使用代理导致的？">是不是okhttp使用代理导致的？</h2><p>Socks5代理Server是在Proxy进程里面启动的，从开发上线到现在只经历大概两个版本的迭代，如果有隐藏bug确实不容易暴露的。我这么排查：还是用Agent采集文件，不过网盘分别是OSS和COS，速度都可以达到2~5MB/s，都走Socks5代理，这个速度是正常的，远远超过minio-java的速度。所以可以证明不是代理导致（我的代理程序还是相当靠谱的）。</p>
-<h2 id="定位到Wrapper">定位到Wrapper</h2><p>我在idea里面启动Agent实例测试，发现速度接近带宽速度。idea里面的进程跟安装后的Agent最大的区别是：Agent是被<a href="https://wrapper.tanukisoftware.com/doc/english/download.jsp" target="_blank" rel="external">java service wrapper</a>包装启动的，而Java代码是一模一样的。于是我替换Agent的jre，调整内存等参数，都没找到问题。</p>
-<p>然后我升级了wrapper的版本到最新版，速度依然很慢。</p>
-<h2 id="定位到java-compile=none">定位到<code>java.compile=none</code></h2><p>我把速度正常的进程启动参数和安装Agent的启动参数拿下来逐一对比，排除了一些明显不可能的参数之后，发现安装Agent里面有一个参数<code>java.compile=none</code>，把这个参数去掉以后，Agent文件采集的速度果然恢复正常：达到15MB/s。</p>
-<h1 id="速度慢的原因">速度慢的原因</h1><p>Java程序是通过解释器（Interpreter）进行解释执行的，当虚拟机发现某些代码执行非常频繁时，会把这些代码认定为<strong>热点代码</strong>。为了提高热点代码的执行效率，在运行时，即时编译器（JIT，Just In Time Compiler）会把热点代码编译成本地平台相关的机器码。随着时间的推移，编译器逐渐发挥作用，把越来越多的代码编译成本地代码之后，可以获得更高的执行效率。</p>
-<p>虚拟机参数：<code>java.compile=none</code>是禁用即时编译的意思，去掉这个配置即可（默认是开启的）。我已经忘记这个参数是怎么配置上去的了，或许是wrapper的默认配置？</p>
+		<h1 id="问题描述">问题描述</h1><p>假设n个数是[1,2,3,4,5,6,7,8,9,10]，权值对应为[20,7,3,1,12,12,17,19,4,5]（这里权值之和刚好等于100），那么随机抽取1000000次，1出现的概率应该是20%即200000次左右、2出现的概率为7%，即70000次左右，以此类推。<br><a id="more"></a></p>
+<h1 id="建模">建模</h1><p>将权值数组累加构造成一个区间数组，即[20,27,30,31,43,55,72,91,95,100]<br>分别表示10个区间[0,20),[20,27),…,(95,100]，区间的长度对应权值的大小。然后随机生成一个范围是[0,100]的整数，那么这个数落在某个区间的概率跟这个区间对应的额权值相等，然后选这个区间的权值对应的整数就是所求。<br>算法的代码：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> RandomChooseOnWeight &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> Chooser &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span>[] nums;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span>[] weights;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span>[] ranges;</span><br><span class="line">        <span class="keyword">private</span> Random random = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> maxR = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Chooser</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span>[] weights)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.nums = nums;</span><br><span class="line">            <span class="keyword">this</span>.weights = weights;</span><br><span class="line">            buildRange();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildRange</span><span class="params">()</span> </span>&#123;<span class="comment">//构造权值区间</span></span><br><span class="line">            ranges = <span class="keyword">new</span> <span class="keyword">int</span>[weights.length];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ranges.length; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    ranges[i] = ranges[i - <span class="number">1</span>] + weights[i];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    ranges[i] = weights[i];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            maxR = ranges[ranges.length - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">randomIndex</span><span class="params">()</span> </span>&#123;<span class="comment">//获取随机区间</span></span><br><span class="line">            <span class="keyword">int</span> range = random.nextInt(maxR + <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> indexInRange(range);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">indexInRange</span><span class="params">(<span class="keyword">int</span> range)</span> </span>&#123;<span class="comment">//查询随机数所在的区间</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ranges.length; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (ranges[i] &gt;= range) &#123;</span><br><span class="line">                    <span class="keyword">return</span> i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">chose</span><span class="params">()</span> </span>&#123;<span class="comment">//随机选择一个</span></span><br><span class="line">            <span class="keyword">return</span> nums[randomIndex()];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span>[] weights = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">20</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">12</span>, <span class="number">12</span>, <span class="number">17</span>, <span class="number">19</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">        Chooser chooser = <span class="keyword">new</span> Chooser(nums, weights);</span><br><span class="line">        <span class="keyword">int</span> COUNT = <span class="number">1000000</span>;</span><br><span class="line">        Map&lt;Integer, Integer&gt; distributeMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; COUNT; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> num = chooser.chose();</span><br><span class="line">            Integer count = distributeMap.get(num);</span><br><span class="line">            <span class="keyword">if</span> (count == null) &#123;</span><br><span class="line">                count = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            count++;</span><br><span class="line">            distributeMap.put(num, count);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            Integer count = distributeMap.get(nums[i]);</span><br><span class="line">            System.out.println(<span class="string">"num "</span> + nums[i] + <span class="string">" :"</span> + (count != null ? count * <span class="number">1.0</span> / COUNT : <span class="string">"0"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>main函数有运行1000000次的结果是：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">num <span class="number">1</span> :<span class="number">0.208496</span></span><br><span class="line">num <span class="number">2</span> :<span class="number">0.0695</span></span><br><span class="line">num <span class="number">3</span> :<span class="number">0.029214</span></span><br><span class="line">num <span class="number">4</span> :<span class="number">0.009872</span></span><br><span class="line">num <span class="number">5</span> :<span class="number">0.118575</span></span><br><span class="line">num <span class="number">6</span> :<span class="number">0.118941</span></span><br><span class="line">num <span class="number">7</span> :<span class="number">0.168433</span></span><br><span class="line">num <span class="number">8</span> :<span class="number">0.188238</span></span><br><span class="line">num <span class="number">9</span> :<span class="number">0.03953</span></span><br><span class="line">num <span class="number">10</span> :<span class="number">0.049201</span></span><br></pre></td></tr></table></figure></p>
+<p>在四舍五入保留两位小数的结果跟权值是匹配的。</p>
+<h1 id="优化算法">优化算法</h1><p>由于<code>ranges</code>数组是递增的，所以，确定随机数的分组的方法<code>indexInRange(int range)</code>可以采用二分搜索算法的变种进行，这样，在<code>nums</code>长度很大时，可以大幅优化计算时间。<br><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//TODO</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="扩展到从n个数中随机挑选m个">扩展到从n个数中随机挑选m个</h1><p>可以这样实现：随机挑选一个数字，如果这个数字已经选出了，则挑选另外一个，知道挑满m个为止。<br>（这个算法应该是正确的，数学上的证明忘记了）</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -122,13 +117,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/编程/">编程</a>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/java/">java</a>
+  <span></span> <a href="/tags/概率/">概率</a>
   </div>
 
 </div>
@@ -137,7 +132,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://debug4.me/编程/java-compile-s-Significant-Impact/" data-title="我是如何让minio client上传速度提高几十倍的 | debug4me | 子非鱼-博客" data-tsina="2172283884" class="share clearfix">
+	  <div data-url="http://debug4.me/算法/choose-number-from-array-based-on-weighted-probability/" data-title="以给定概率权值从一个数组中选出一个数 | debug4me | 子非鱼-博客" data-tsina="2172283884" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -150,19 +145,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/编程/how-to-add-socks-proxy-support-for-httpclient/" title="给HttpClient添加Socks代理">
-  <strong>上一篇：</strong><br/>
-  <span>
-  给HttpClient添加Socks代理</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/编程/Tips-on-powershell/"  title="我用Powershell遇到的那些坑">
+<a href="/编程/add-socks-proxy-support-for-okhttp/"  title="给OkHttp Client添加socks代理">
  <strong>下一篇：</strong><br/> 
- <span>我用Powershell遇到的那些坑
+ <span>给OkHttp Client添加socks代理
 </span>
 </a>
 </div>
@@ -197,7 +184,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#发现问题的场景"><span class="toc-number">1.</span> <span class="toc-text">发现问题的场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排查问题"><span class="toc-number">2.</span> <span class="toc-text">排查问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#是不是MINIO_Server的问题？"><span class="toc-number">2.1.</span> <span class="toc-text">是不是MINIO Server的问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#是不是okhttp使用代理导致的？"><span class="toc-number">2.2.</span> <span class="toc-text">是不是okhttp使用代理导致的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位到Wrapper"><span class="toc-number">2.3.</span> <span class="toc-text">定位到Wrapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位到java-compile=none"><span class="toc-number">2.4.</span> <span class="toc-text">定位到java.compile=none</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#速度慢的原因"><span class="toc-number">3.</span> <span class="toc-text">速度慢的原因</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建模"><span class="toc-number">2.</span> <span class="toc-text">建模</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化算法"><span class="toc-number">3.</span> <span class="toc-text">优化算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#扩展到从n个数中随机挑选m个"><span class="toc-number">4.</span> <span class="toc-text">扩展到从n个数中随机挑选m个</span></a></li></ol>
  
   </div>
 
